@@ -1,162 +1,328 @@
-Ôr@Ÿªassertions¤code´customTransformCache¬dependencies¢id¤meta±moduleSideEffects¬originalCode±originalSourcemap«resolvedIds®sourcemapChainµsyntheticNamedExportsµtransformDependencies®transformFiles¨cacheAstÔrAÚàif (!("finalizeConstruction" in ViewPU.prototype)) {
+Ôr@Ÿªassertions¤code´customTransformCache¬dependencies¢id¤meta±moduleSideEffects¬originalCode±originalSourcemap«resolvedIds®sourcemapChainµsyntheticNamedExportsµtransformDependencies®transformFiles¨cacheAstÔrAÚI1if (!("finalizeConstruction" in ViewPU.prototype)) {
     Reflect.set(ViewPU.prototype, "finalizeConstruction", () => { });
 }
 // entry/src/main/ets/pages/ListIndex.ets
 import { ProductItem } from '../view/GoodsListComponent';
-// Adjust import path for Product and ProductListDataSource
-import { ProductListDataSource } from '../viewmodel/ListDataSource'; // <<< Corrected import
+import { ProductListDataSource } from '../viewmodel/ListDataSource';
+import { RefreshLayout } from '../view/RefreshLayout'; // å¼•å…¥æ–°çš„ RefreshLayout ç»„ä»¶
 class ProductListPage extends ViewPU {
     constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
         super(parent, __localStorage, elmtId, extraInfo);
         if (typeof paramsLambda === "function") {
             this.paramsGenerator_ = paramsLambda;
         }
-        this.scroller = new Scroller();
-        this.productDataSource = new ProductListDataSource();
-        this.__scrollY = new ObservedPropertySimplePU(0, this, "scrollY");
-        this.__contentHeight = new ObservedPropertySimplePU(0, this, "contentHeight");
-        this.__scrollHeight = new ObservedPropertySimplePU(0, this, "scrollHeight");
+        this.__selectedTabIndex = new ObservedPropertySimplePU(0, this, "selectedTabIndex");
+        this.tabsController = new TabsController();
+        this.featuredDataSource = new ProductListDataSource();
+        this.mobileDataSource = new ProductListDataSource();
+        this.fashionDataSource = new ProductListDataSource();
+        this.wearDataSource = new ProductListDataSource();
+        this.homeDataSource = new ProductListDataSource();
         this.setInitiallyProvidedValue(params);
         this.finalizeConstruction();
     }
     setInitiallyProvidedValue(params) {
-        if (params.scroller !== undefined) {
-            this.scroller = params.scroller;
+        if (params.selectedTabIndex !== undefined) {
+            this.selectedTabIndex = params.selectedTabIndex;
         }
-        if (params.productDataSource !== undefined) {
-            this.productDataSource = params.productDataSource;
+        if (params.tabsController !== undefined) {
+            this.tabsController = params.tabsController;
         }
-        if (params.scrollY !== undefined) {
-            this.scrollY = params.scrollY;
+        if (params.featuredDataSource !== undefined) {
+            this.featuredDataSource = params.featuredDataSource;
         }
-        if (params.contentHeight !== undefined) {
-            this.contentHeight = params.contentHeight;
+        if (params.mobileDataSource !== undefined) {
+            this.mobileDataSource = params.mobileDataSource;
         }
-        if (params.scrollHeight !== undefined) {
-            this.scrollHeight = params.scrollHeight;
+        if (params.fashionDataSource !== undefined) {
+            this.fashionDataSource = params.fashionDataSource;
+        }
+        if (params.wearDataSource !== undefined) {
+            this.wearDataSource = params.wearDataSource;
+        }
+        if (params.homeDataSource !== undefined) {
+            this.homeDataSource = params.homeDataSource;
         }
     }
     updateStateVars(params) {
     }
     purgeVariableDependenciesOnElmtId(rmElmtId) {
-        this.__scrollY.purgeDependencyOnElmtId(rmElmtId);
-        this.__contentHeight.purgeDependencyOnElmtId(rmElmtId);
-        this.__scrollHeight.purgeDependencyOnElmtId(rmElmtId);
+        this.__selectedTabIndex.purgeDependencyOnElmtId(rmElmtId);
     }
     aboutToBeDeleted() {
-        this.__scrollY.aboutToBeDeleted();
-        this.__contentHeight.aboutToBeDeleted();
-        this.__scrollHeight.aboutToBeDeleted();
+        this.__selectedTabIndex.aboutToBeDeleted();
         SubscriberManager.Get().delete(this.id__());
         this.aboutToBeDeletedInternal();
     }
-    get scrollY() {
-        return this.__scrollY.get();
+    get selectedTabIndex() {
+        return this.__selectedTabIndex.get();
     }
-    set scrollY(newValue) {
-        this.__scrollY.set(newValue);
-    }
-    get contentHeight() {
-        return this.__contentHeight.get();
-    }
-    set contentHeight(newValue) {
-        this.__contentHeight.set(newValue);
-    }
-    get scrollHeight() {
-        return this.__scrollHeight.get();
-    }
-    set scrollHeight(newValue) {
-        this.__scrollHeight.set(newValue);
-    }
-    onPageShow() {
-        // Initial data load is handled by ProductListDataSource's constructor
+    set selectedTabIndex(newValue) {
+        this.__selectedTabIndex.set(newValue);
     }
     initialRender() {
         this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Column.create();
-            Column.height('100%');
-            Column.width('100%');
-        }, Column);
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Text.create('å•†åŸ');
-            Text.fontSize(24);
-            Text.fontWeight(FontWeight.Bold);
-            Text.margin({ bottom: 10 });
-        }, Text);
-        Text.pop();
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Scroll.create(this.scroller);
-            Scroll.scrollable(ScrollDirection.Vertical);
-            Scroll.edgeEffect(EdgeEffect.Spring);
-            Scroll.onScroll((xOffset, yOffset) => {
-                if (yOffset <= 0) {
-                    console.log('Reached top edge, consider refreshing');
-                    this.productDataSource.refresh();
-                }
-                if (this.contentHeight > 0 && yOffset >= this.contentHeight - this.scrollHeight) {
-                    console.log('Reached bottom edge, consider loading more');
-                    this.productDataSource.loadMore();
-                }
-            });
-        }, Scroll);
+            Navigation.create(new NavPathStack(), { moduleName: "entry", pagePath: "entry/src/main/ets/pages/ListIndex", isUserCreateStack: false });
+            Navigation.title("å•†åŸ");
+            Navigation.titleMode(NavigationTitleMode.Mini);
+            Navigation.backgroundColor(Color.White);
+        }, Navigation);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Column.create();
         }, Column);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Text.create('æ­£åœ¨åˆ·æ–°...');
-            Text.visibility(Visibility.None);
-        }, Text);
-        Text.pop();
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            List.create();
-            List.onScrollIndex((first, last) => {
-                if (last >= this.productDataSource.totalCount() - 6 && this.productDataSource.totalCount() > 0) {
-                    console.log('Loading more products...');
-                    this.productDataSource.loadMore();
+            Tabs.create({
+                index: this.selectedTabIndex,
+                controller: this.tabsController
+            });
+            Tabs.scrollable(true);
+            Tabs.barMode(BarMode.Scrollable);
+            Tabs.barHeight(56);
+            Tabs.backgroundColor(Color.White);
+            Tabs.onChange(index => {
+                this.selectedTabIndex = index;
+                // å½“Tabåˆ‡æ¢æ—¶ï¼Œç¡®ä¿å½“å‰DataSourceçš„æ•°æ®æ˜¯åŠ è½½è¿‡çš„
+                try {
+                    if (this.currentDataSource.totalCount() === 0) {
+                        console.log(`Loading data for tab ${index}`);
+                        this.currentDataSource.refresh(); // æˆ–è€…æ ¹æ®éœ€æ±‚åªåŠ è½½ä¸€æ¬¡
+                    }
+                }
+                catch (e) {
+                    console.error(`Error loading data on tab switch: ${e}`);
                 }
             });
-        }, List);
+        }, Tabs);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            TabContent.create(() => {
+                // "ç²¾é€‰" Tabçš„å†…å®¹
+                this.buildProductListContent.bind(this)(this.featuredDataSource);
+            });
+            TabContent.tabBar("ç²¾é€‰");
+        }, TabContent);
+        TabContent.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            TabContent.create(() => {
+                // "æ‰‹æœº" Tabçš„å†…å®¹
+                this.buildProductListContent.bind(this)(this.mobileDataSource);
+            });
+            TabContent.tabBar("æ‰‹æœº");
+        }, TabContent);
+        TabContent.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            TabContent.create(() => {
+                // "æœé¥°" Tabçš„å†…å®¹
+                this.buildProductListContent.bind(this)(this.fashionDataSource);
+            });
+            TabContent.tabBar("æœé¥°");
+        }, TabContent);
+        TabContent.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            TabContent.create(() => {
+                // "ç©¿æ­" Tabçš„å†…å®¹
+                this.buildProductListContent.bind(this)(this.wearDataSource);
+            });
+            TabContent.tabBar("ç©¿æ­");
+        }, TabContent);
+        TabContent.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            TabContent.create(() => {
+                // "å®¶å±…" Tabçš„å†…å®¹
+                this.buildProductListContent.bind(this)(this.homeDataSource);
+            });
+            TabContent.tabBar("å®¶å±…");
+        }, TabContent);
+        TabContent.pop();
+        Tabs.pop();
+        Column.pop();
+        Navigation.pop();
+    }
+    // è¾…åŠ©æ–¹æ³•ï¼Œç”¨äºæ„å»ºå•†å“åˆ—è¡¨å†…å®¹ï¼ŒåŒ…å«ä¸‹æ‹‰åˆ·æ–°å’Œæ‡’åŠ è½½
+    buildProductListContent(dataSource, parent = null) {
         {
-            const __lazyForEachItemGenFunction = _item => {
-                const item = _item;
-                {
-                    const itemCreation2 = (elmtId, isInitialRender) => {
-                        ListItem.create(() => { }, false);
-                    };
-                    const observedDeepRender = () => {
-                        this.observeComponentCreation2(itemCreation2, ListItem);
-                        {
+            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                if (isInitialRender) {
+                    let componentCall = new 
+                    // RefreshLayoutç°åœ¨ç›´æ¥æ¥å—dataSourceï¼Œå¹¶åœ¨å†…éƒ¨ç®¡ç†åŠ è½½çŠ¶æ€
+                    // scrollerä¹Ÿä¸éœ€è¦ä»å¤–éƒ¨ä¼ å…¥ï¼ŒRefreshLayoutå†…éƒ¨ä¼šç®¡ç†å…¶Scrollç»„ä»¶
+                    RefreshLayout(this, {
+                        dataSource: dataSource // ä¼ é€’DataSourceå®ä¾‹
+                        ,
+                        content: () => {
                             this.observeComponentCreation2((elmtId, isInitialRender) => {
-                                if (isInitialRender) {
-                                    let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 38, col: 17 });
-                                    ViewPU.create(componentCall);
-                                    let paramsLambda = () => {
-                                        return {
-                                            product: item
+                                Column.create();
+                                Column.width('100%');
+                                Column.height('100%');
+                            }, Column);
+                            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                List.create();
+                                List.width('100%');
+                                List.layoutWeight(1);
+                                List.onScrollIndex((first, last) => {
+                                    if (last >= dataSource.totalCount() - 6 && dataSource.totalCount() > 0 && !dataSource.isLoadingMore && dataSource.hasMore) {
+                                        console.log('LazyForEach triggered load more via onScrollIndex');
+                                        dataSource.loadMore();
+                                    }
+                                });
+                            }, List);
+                            {
+                                const __lazyForEachItemGenFunction = _item => {
+                                    const item = _item;
+                                    {
+                                        const itemCreation2 = (elmtId, isInitialRender) => {
+                                            ListItem.create(() => { }, false);
                                         };
-                                    };
-                                    componentCall.paramsGenerator_ = paramsLambda;
-                                }
-                                else {
-                                    this.updateStateVarsOfChildByElmtId(elmtId, {
-                                        product: item
+                                        const observedDeepRender = () => {
+                                            this.observeComponentCreation2(itemCreation2, ListItem);
+                                            {
+                                                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                    if (isInitialRender) {
+                                                        let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 113, col: 15 });
+                                                        ViewPU.create(componentCall);
+                                                        let paramsLambda = () => {
+                                                            return {
+                                                                product: item
+                                                            };
+                                                        };
+                                                        componentCall.paramsGenerator_ = paramsLambda;
+                                                    }
+                                                    else {
+                                                        this.updateStateVarsOfChildByElmtId(elmtId, {
+                                                            product: item
+                                                        });
+                                                    }
+                                                }, { name: "ProductItem" });
+                                            }
+                                            ListItem.pop();
+                                        };
+                                        observedDeepRender();
+                                    }
+                                };
+                                const __lazyForEachItemIdFunc = (item) => item.id.toString();
+                                LazyForEach.create("1", this, dataSource, __lazyForEachItemGenFunction, __lazyForEachItemIdFunc);
+                                LazyForEach.pop();
+                            }
+                            List.pop();
+                            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                If.create();
+                                // åˆ°åº•æç¤º
+                                if (dataSource.totalCount() > 0 && !dataSource.hasMore) {
+                                    this.ifElseBranchUpdateFunction(0, () => {
+                                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                            Text.create('å·²ç»åˆ°åº•äº†');
+                                            Text.fontSize(14);
+                                            Text.fontColor(Color.Gray);
+                                            Text.textAlign(TextAlign.Center);
+                                            Text.width('100%');
+                                            Text.padding(10);
+                                        }, Text);
+                                        Text.pop();
                                     });
                                 }
-                            }, { name: "ProductItem" });
+                                else {
+                                    this.ifElseBranchUpdateFunction(1, () => {
+                                    });
+                                }
+                            }, If);
+                            If.pop();
+                            Column.pop();
                         }
-                        ListItem.pop();
+                    }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 106, col: 5 });
+                    ViewPU.create(componentCall);
+                    let paramsLambda = () => {
+                        return {
+                            dataSource: dataSource // ä¼ é€’DataSourceå®ä¾‹
+                            ,
+                            content: () => {
+                                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                    Column.create();
+                                    Column.width('100%');
+                                    Column.height('100%');
+                                }, Column);
+                                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                    List.create();
+                                    List.width('100%');
+                                    List.layoutWeight(1);
+                                    List.onScrollIndex((first, last) => {
+                                        if (last >= dataSource.totalCount() - 6 && dataSource.totalCount() > 0 && !dataSource.isLoadingMore && dataSource.hasMore) {
+                                            console.log('LazyForEach triggered load more via onScrollIndex');
+                                            dataSource.loadMore();
+                                        }
+                                    });
+                                }, List);
+                                {
+                                    const __lazyForEachItemGenFunction = _item => {
+                                        const item = _item;
+                                        {
+                                            const itemCreation2 = (elmtId, isInitialRender) => {
+                                                ListItem.create(() => { }, false);
+                                            };
+                                            const observedDeepRender = () => {
+                                                this.observeComponentCreation2(itemCreation2, ListItem);
+                                                {
+                                                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                        if (isInitialRender) {
+                                                            let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 113, col: 15 });
+                                                            ViewPU.create(componentCall);
+                                                            let paramsLambda = () => {
+                                                                return {
+                                                                    product: item
+                                                                };
+                                                            };
+                                                            componentCall.paramsGenerator_ = paramsLambda;
+                                                        }
+                                                        else {
+                                                            this.updateStateVarsOfChildByElmtId(elmtId, {
+                                                                product: item
+                                                            });
+                                                        }
+                                                    }, { name: "ProductItem" });
+                                                }
+                                                ListItem.pop();
+                                            };
+                                            observedDeepRender();
+                                        }
+                                    };
+                                    const __lazyForEachItemIdFunc = (item) => item.id.toString();
+                                    LazyForEach.create("1", this, dataSource, __lazyForEachItemGenFunction, __lazyForEachItemIdFunc);
+                                    LazyForEach.pop();
+                                }
+                                List.pop();
+                                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                    If.create();
+                                    // åˆ°åº•æç¤º
+                                    if (dataSource.totalCount() > 0 && !dataSource.hasMore) {
+                                        this.ifElseBranchUpdateFunction(0, () => {
+                                            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                Text.create('å·²ç»åˆ°åº•äº†');
+                                                Text.fontSize(14);
+                                                Text.fontColor(Color.Gray);
+                                                Text.textAlign(TextAlign.Center);
+                                                Text.width('100%');
+                                                Text.padding(10);
+                                            }, Text);
+                                            Text.pop();
+                                        });
+                                    }
+                                    else {
+                                        this.ifElseBranchUpdateFunction(1, () => {
+                                        });
+                                    }
+                                }, If);
+                                If.pop();
+                                Column.pop();
+                            }
+                        };
                     };
-                    observedDeepRender();
+                    componentCall.paramsGenerator_ = paramsLambda;
                 }
-            };
-            const __lazyForEachItemIdFunc = (item) => item.id.toString();
-            LazyForEach.create("1", this, this.productDataSource, __lazyForEachItemGenFunction, __lazyForEachItemIdFunc);
-            LazyForEach.pop();
+                else {
+                    this.updateStateVarsOfChildByElmtId(elmtId, {
+                        dataSource: dataSource // ä¼ é€’DataSourceå®ä¾‹
+                    });
+                }
+            }, { name: "RefreshLayout" });
         }
-        List.pop();
-        Column.pop();
-        Scroll.pop();
-        Column.pop();
     }
     rerender() {
         this.updateDirtyElements();
@@ -166,95 +332,171 @@ class ProductListPage extends ViewPU {
     }
 }
 registerNamedRoute(() => new ProductListPage(undefined, {}), "", { bundleName: "com.example.list_harmony", moduleName: "entry", pagePath: "pages/ListIndex", pageFullPath: "entry/src/main/ets/pages/ListIndex", integratedHsp: "false", moduleType: "followWithHap" });
-//# sourceMappingURL=ListIndex.js.mapÂ’ÙRC:\Users\Ran\Desktop\List_commodity\entry\src\main\ets\view\GoodsListComponent.etsÙSC:\Users\Ran\Desktop\List_commodity\entry\src\main\ets\viewmodel\ListDataSource.etsÙJC:\Users\Ran\Desktop\List_commodity\entry\src\main\ets\pages\ListIndex.etsÔrB›ªmoduleName±isLocalDependency¯isNodeEntryFile§pkgPath±belongProjectPath§pkgNameªpkgVersion±dependencyPkgInfo°belongModulePath§checker¬shouldEmitJs¥entryÃÂÙ)C:\Users\Ran\Desktop\List_commodity\entryÙ#C:\Users\Ran\Desktop\List_commodity¥entry¥1.0.0Ô  Ù)C:\Users\Ran\Desktop\List_commodity\entryÔrCÜ ®¬getNodeCount²getIdentifierCount®getSymbolCount¬getTypeCountµgetInstantiationCountµgetRelationCacheSizes±isUndefinedSymbol±isArgumentsSymbol¯isUnknownSymbol¯getMergedSymbol®getDiagnostics´getGlobalDiagnostics´getRecursionIdentity¶getUnmatchedProperties¹getTypeOfSymbolAtLocation¯getTypeOfSymbolÙ(getSymbolsOfParameterPropertyDeclaration·getDeclaredTypeOfSymbol³getPropertiesOfType±getPropertyOfTypeÙ"getPrivateIdentifierPropertyOfType·getTypeOfPropertyOfType²getIndexInfoOfType³getIndexInfosOfTypeºgetIndexInfosOfIndexSymbol³getSignaturesOfType²getIndexTypeOfType¬getIndexType¬getBaseTypes¸getBaseTypeOfLiteralType®getWidenedType³getTypeFromTypeNode°getParameterTypeÙ$getParameterIdentifierNameAtPosition¸getPromisedTypeOfPromise®getAwaitedType¸getReturnTypeOfSignature®isNullableType¯getNullableType²getNonNullableType²getNonOptionalType°getTypeArguments®typeToTypeNodeÙ$indexInfoToIndexSignatureDeclaration¿signatureToSignatureDeclaration²symbolToEntityName²symbolToExpression¬symbolToNodeÙ!symbolToTypeParameterDeclarations¼symbolToParameterDeclarationºtypeParameterToDeclaration±getSymbolsInScope³getSymbolAtLocation·getIndexInfosAtLocationÙ!getShorthandAssignmentValueSymbolÙ#getExportSpecifierLocalTargetSymbol·getExportSymbolOfSymbol±getTypeAtLocationÙ tryGetTypeAtLocationWithoutCheckºgetTypeOfAssignmentPatternÙ*getPropertySymbolOfDestructuringAssignment±signatureToString¬typeToString®symbolToStringµtypePredicateToString®writeSignature©writeType«writeSymbol²writeTypePredicate¼getAugmentedPropertiesOfType®getRootSymbols²getSymbolOfExpando±getContextualTypeÙ(getContextualTypeForObjectLiteralElementÙ#getContextualTypeForArgumentAtIndexÙ getContextualTypeForJsxAttribute²isContextSensitiveÙ!getTypeOfPropertyOfContextualTypeµgetFullyQualifiedNameÙ#tryGetResolvedSignatureWithoutCheck´getResolvedSignatureÙ/getResolvedSignatureForStringLiteralCompletionsÙ$getResolvedSignatureForSignatureHelpµgetExpandedParameters¹hasEffectiveRestParameterºcontainsArgumentsReference°getConstantValueµisValidPropertyAccessÙ#isValidPropertyAccessForCompletions»getSignatureFromDeclarationºisImplementationOfOverload¹getImmediateAliasedSymbol°getAliasedSymbol¯getEmitResolver²getExportsOfModule¿getExportsAndPropertiesOfModuleÙ forEachExportAndPropertyOfModule¯getSymbolWalker±getAmbientModules¹getJsxIntrinsicTagNamesAt³isOptionalParameter»tryGetMemberInModuleExportsÙ(tryGetMemberInModuleExportsAndProperties´tryFindAmbientModuleÙ(tryFindAmbientModuleWithoutAugmentations¯getApparentType¬getUnionType²isTypeAssignableTo³createAnonymousType¯createSignature¬createSymbol¯createIndexInfoªgetAnyType­getStringType­getNumberType±createPromiseType¯createArrayType¹getElementTypeOfArrayType®getBooleanType¬getFalseType«getTrueType«getVoidType°getUndefinedType«getNullType¯getESSymbolType¬getNeverType¯getOptionalType®getPromiseType²getPromiseLikeType´getAsyncIterableType²isSymbolAccessible«isArrayType«isTupleType¯isArrayLikeTypeÙ#isTypeInvalidDueToUnionDiscriminantºgetExactOptionalProperties¿getAllPossiblePropertiesOfTypesÙ(getSuggestedSymbolForNonexistentPropertyÙ#getSuggestionForNonexistentPropertyÙ,getSuggestedSymbolForNonexistentJSXAttributeÙ&getSuggestedSymbolForNonexistentSymbolÙ!getSuggestionForNonexistentSymbolÙ&getSuggestedSymbolForNonexistentModuleÙ!getSuggestionForNonexistentExportÙ+getSuggestedSymbolForNonexistentClassMember·getBaseConstraintOfType»getDefaultFromTypeParameter«resolveName¯getJsxNamespaceµgetJsxFragmentFactory¸getAccessibleSymbolChain»getTypePredicateOfSignature¹resolveExternalModuleName»resolveExternalModuleSymbol°tryGetThisTypeAt¹getTypeArgumentConstraint¸getSuggestionDiagnostics¸runWithCancellationTokenÙ3getLocalTypeParametersOfClassOrInterfaceOrTypeAlias´isDeclarationVisible´isPropertyAccessible»getTypeOnlyAliasDeclaration¿getMemberOverrideModifierStatusÙ!isTypeParameterPossiblyReferenced²getConstEnumRelate´clearConstEnumRelateµdeleteConstEnumRelateÙ$getTypeArgumentsForResolvedSignatureµgetCheckedSourceFilesÙ"collectHaveTsNoCheckFilesForLinter·clearQualifiedNameCache®isStaticRecord²isStaticSourceFile³createIntrinsicTypeÔ  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  ÃÃÚ¿// entry/src/main/ets/pages/ListIndex.ets
+//# sourceMappingURL=ListIndex.js.mapÂ“ÙRC:\Users\Ran\Desktop\List_commodity\entry\src\main\ets\view\GoodsListComponent.etsÙSC:\Users\Ran\Desktop\List_commodity\entry\src\main\ets\viewmodel\ListDataSource.etsÙMC:\Users\Ran\Desktop\List_commodity\entry\src\main\ets\view\RefreshLayout.etsÙJC:\Users\Ran\Desktop\List_commodity\entry\src\main\ets\pages\ListIndex.etsÔrB›ªmoduleName±isLocalDependency¯isNodeEntryFile§pkgPath±belongProjectPath§pkgNameªpkgVersion±dependencyPkgInfo°belongModulePath§checker¬shouldEmitJs¥entryÃÂÙ)C:\Users\Ran\Desktop\List_commodity\entryÙ#C:\Users\Ran\Desktop\List_commodity¥entry¥1.0.0Ô  Ù)C:\Users\Ran\Desktop\List_commodity\entryÔrCÜ ®¬getNodeCount²getIdentifierCount®getSymbolCount¬getTypeCountµgetInstantiationCountµgetRelationCacheSizes±isUndefinedSymbol±isArgumentsSymbol¯isUnknownSymbol¯getMergedSymbol®getDiagnostics´getGlobalDiagnostics´getRecursionIdentity¶getUnmatchedProperties¹getTypeOfSymbolAtLocation¯getTypeOfSymbolÙ(getSymbolsOfParameterPropertyDeclaration·getDeclaredTypeOfSymbol³getPropertiesOfType±getPropertyOfTypeÙ"getPrivateIdentifierPropertyOfType·getTypeOfPropertyOfType²getIndexInfoOfType³getIndexInfosOfTypeºgetIndexInfosOfIndexSymbol³getSignaturesOfType²getIndexTypeOfType¬getIndexType¬getBaseTypes¸getBaseTypeOfLiteralType®getWidenedType³getTypeFromTypeNode°getParameterTypeÙ$getParameterIdentifierNameAtPosition¸getPromisedTypeOfPromise®getAwaitedType¸getReturnTypeOfSignature®isNullableType¯getNullableType²getNonNullableType²getNonOptionalType°getTypeArguments®typeToTypeNodeÙ$indexInfoToIndexSignatureDeclaration¿signatureToSignatureDeclaration²symbolToEntityName²symbolToExpression¬symbolToNodeÙ!symbolToTypeParameterDeclarations¼symbolToParameterDeclarationºtypeParameterToDeclaration±getSymbolsInScope³getSymbolAtLocation·getIndexInfosAtLocationÙ!getShorthandAssignmentValueSymbolÙ#getExportSpecifierLocalTargetSymbol·getExportSymbolOfSymbol±getTypeAtLocationÙ tryGetTypeAtLocationWithoutCheckºgetTypeOfAssignmentPatternÙ*getPropertySymbolOfDestructuringAssignment±signatureToString¬typeToString®symbolToStringµtypePredicateToString®writeSignature©writeType«writeSymbol²writeTypePredicate¼getAugmentedPropertiesOfType®getRootSymbols²getSymbolOfExpando±getContextualTypeÙ(getContextualTypeForObjectLiteralElementÙ#getContextualTypeForArgumentAtIndexÙ getContextualTypeForJsxAttribute²isContextSensitiveÙ!getTypeOfPropertyOfContextualTypeµgetFullyQualifiedNameÙ#tryGetResolvedSignatureWithoutCheck´getResolvedSignatureÙ/getResolvedSignatureForStringLiteralCompletionsÙ$getResolvedSignatureForSignatureHelpµgetExpandedParameters¹hasEffectiveRestParameterºcontainsArgumentsReference°getConstantValueµisValidPropertyAccessÙ#isValidPropertyAccessForCompletions»getSignatureFromDeclarationºisImplementationOfOverload¹getImmediateAliasedSymbol°getAliasedSymbol¯getEmitResolver²getExportsOfModule¿getExportsAndPropertiesOfModuleÙ forEachExportAndPropertyOfModule¯getSymbolWalker±getAmbientModules¹getJsxIntrinsicTagNamesAt³isOptionalParameter»tryGetMemberInModuleExportsÙ(tryGetMemberInModuleExportsAndProperties´tryFindAmbientModuleÙ(tryFindAmbientModuleWithoutAugmentations¯getApparentType¬getUnionType²isTypeAssignableTo³createAnonymousType¯createSignature¬createSymbol¯createIndexInfoªgetAnyType­getStringType­getNumberType±createPromiseType¯createArrayType¹getElementTypeOfArrayType®getBooleanType¬getFalseType«getTrueType«getVoidType°getUndefinedType«getNullType¯getESSymbolType¬getNeverType¯getOptionalType®getPromiseType²getPromiseLikeType´getAsyncIterableType²isSymbolAccessible«isArrayType«isTupleType¯isArrayLikeTypeÙ#isTypeInvalidDueToUnionDiscriminantºgetExactOptionalProperties¿getAllPossiblePropertiesOfTypesÙ(getSuggestedSymbolForNonexistentPropertyÙ#getSuggestionForNonexistentPropertyÙ,getSuggestedSymbolForNonexistentJSXAttributeÙ&getSuggestedSymbolForNonexistentSymbolÙ!getSuggestionForNonexistentSymbolÙ&getSuggestedSymbolForNonexistentModuleÙ!getSuggestionForNonexistentExportÙ+getSuggestedSymbolForNonexistentClassMember·getBaseConstraintOfType»getDefaultFromTypeParameter«resolveName¯getJsxNamespaceµgetJsxFragmentFactory¸getAccessibleSymbolChain»getTypePredicateOfSignature¹resolveExternalModuleName»resolveExternalModuleSymbol°tryGetThisTypeAt¹getTypeArgumentConstraint¸getSuggestionDiagnostics¸runWithCancellationTokenÙ3getLocalTypeParametersOfClassOrInterfaceOrTypeAlias´isDeclarationVisible´isPropertyAccessible»getTypeOnlyAliasDeclaration¿getMemberOverrideModifierStatusÙ!isTypeParameterPossiblyReferenced²getConstEnumRelate´clearConstEnumRelateµdeleteConstEnumRelateÙ$getTypeArgumentsForResolvedSignatureµgetCheckedSourceFilesÙ"collectHaveTsNoCheckFilesForLinter·clearQualifiedNameCache®isStaticRecord²isStaticSourceFile³createIntrinsicTypeÔ  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  ÃÃÚK// entry/src/main/ets/pages/ListIndex.ets
 import { ProductItem } from '../view/GoodsListComponent';
-// Adjust import path for Product and ProductListDataSource
-import { Product, ProductListDataSource } from '../viewmodel/ListDataSource'; // <<< Corrected import
-
+import { Product, ProductListDataSource } from '../viewmodel/ListDataSource';
+import { RefreshLayout } from '../view/RefreshLayout'; // å¼•å…¥æ–°çš„ RefreshLayout ç»„ä»¶
 
 @Entry
 @Component
 struct ProductListPage {
-  // We no longer need @State products here, the DataSource manages it.
-  private scroller: Scroller = new Scroller();
-  private productDataSource: ProductListDataSource = new ProductListDataSource(); // <<< Initialize with new DataSource
+  @State private selectedTabIndex: number = 0;
+  private tabsController: TabsController = new TabsController();
+  // ä¸éœ€è¦åœ¨è¿™é‡Œå£°æ˜scrollerï¼ŒRefreshLayoutå†…éƒ¨ä¼šåˆ›å»ºå¹¶ç®¡ç†
+  // private scroller: Scroller = new Scroller(); // ç§»é™¤è¿™è¡Œ
 
-  // æ·»åŠ å˜é‡æ¥è·Ÿè¸ªæ»šåŠ¨ä½ç½®
-  @State private scrollY: number = 0;
-  @State private contentHeight: number = 0;
-  @State private scrollHeight: number = 0;
+  // ä¸ºæ¯ä¸ªTabåˆ›å»ºä¸€ä¸ªç‹¬ç«‹çš„DataSourceå®ä¾‹ï¼Œä»¥ç®¡ç†å„è‡ªçš„æ•°æ®çŠ¶æ€
+  // è¿™é‡Œéœ€è¦ä½¿ç”¨ 'new' å…³é”®å­—åˆå§‹åŒ–
+  private featuredDataSource: ProductListDataSource = new ProductListDataSource();
+  private mobileDataSource: ProductListDataSource = new ProductListDataSource();
+  private fashionDataSource: ProductListDataSource = new ProductListDataSource();
+  private wearDataSource: ProductListDataSource = new ProductListDataSource();
+  private homeDataSource: ProductListDataSource = new ProductListDataSource();
 
-  onPageShow() {
-    // Initial data load is handled by ProductListDataSource's constructor
+
+  // æ ¹æ®å½“å‰é€‰ä¸­çš„Tabè¿”å›å¯¹åº”çš„DataSource
+  private get currentDataSource(): ProductListDataSource {
+    switch (this.selectedTabIndex) {
+      case 0:
+        return this.featuredDataSource;
+      case 1:
+        return this.mobileDataSource;
+      case 2:
+        return this.fashionDataSource;
+      case 3:
+        return this.wearDataSource;
+      case 4:
+        return this.homeDataSource;
+      default:
+        return this.featuredDataSource;
+    }
   }
 
   build() {
-    Column() {
-      Text('å•†åŸ')
-        .fontSize(24)
-        .fontWeight(FontWeight.Bold)
-        .margin({ bottom: 10 })
-
-      Scroll(this.scroller) {
-        Column() {
-          Text('æ­£åœ¨åˆ·æ–°...')
-            .visibility(Visibility.None) // Control visibility based on refresh state
-
-          List() {
-            LazyForEach(this.productDataSource, (item: Product) => {
-              ListItem() {
-                ProductItem({ product: item })
-              }
-            }, (item: Product) => item.id.toString())
+    Navigation() {
+      Column() {
+        Tabs({
+          index: this.selectedTabIndex,
+          controller: this.tabsController
+        }) {
+          TabContent() {
+            // "ç²¾é€‰" Tabçš„å†…å®¹
+            this.buildProductListContent(this.featuredDataSource);
           }
-          .onScrollIndex((first: number, last: number) => {
-            if (last >= this.productDataSource.totalCount() - 6 && this.productDataSource.totalCount() > 0) {
-              console.log('Loading more products...');
-              this.productDataSource.loadMore();
+          .tabBar("ç²¾é€‰")
+
+          TabContent() {
+            // "æ‰‹æœº" Tabçš„å†…å®¹
+            this.buildProductListContent(this.mobileDataSource);
+          }
+          .tabBar("æ‰‹æœº")
+
+          TabContent() {
+            // "æœé¥°" Tabçš„å†…å®¹
+            this.buildProductListContent(this.fashionDataSource);
+          }
+          .tabBar("æœé¥°")
+
+          TabContent() {
+            // "ç©¿æ­" Tabçš„å†…å®¹
+            this.buildProductListContent(this.wearDataSource);
+          }
+          .tabBar("ç©¿æ­")
+
+          TabContent() {
+            // "å®¶å±…" Tabçš„å†…å®¹
+            this.buildProductListContent(this.homeDataSource);
+          }
+          .tabBar("å®¶å±…")
+        }
+        .scrollable(true) // Tabsæœ¬èº«å¯æ»šåŠ¨
+        .barMode(BarMode.Scrollable) // TabBarå¯æ»šåŠ¨
+        .barHeight(56)
+        .backgroundColor(Color.White)
+        .onChange(index => {
+          this.selectedTabIndex = index;
+          // å½“Tabåˆ‡æ¢æ—¶ï¼Œç¡®ä¿å½“å‰DataSourceçš„æ•°æ®æ˜¯åŠ è½½è¿‡çš„
+          try {
+            if (this.currentDataSource.totalCount() === 0) {
+              console.log(`Loading data for tab ${index}`);
+              this.currentDataSource.refresh(); // æˆ–è€…æ ¹æ®éœ€æ±‚åªåŠ è½½ä¸€æ¬¡
             }
-          })
+          } catch (e) {
+            console.error(`Error loading data on tab switch: ${e}`);
+          }
+        })
+      }
+    }
+    .title("å•†åŸ") // Navigationçš„æ ‡é¢˜
+    .titleMode(NavigationTitleMode.Mini) // å°æ ‡é¢˜æ¨¡å¼
+    .backgroundColor(Color.White)
+  }
+
+  // è¾…åŠ©æ–¹æ³•ï¼Œç”¨äºæ„å»ºå•†å“åˆ—è¡¨å†…å®¹ï¼ŒåŒ…å«ä¸‹æ‹‰åˆ·æ–°å’Œæ‡’åŠ è½½
+  @Builder
+  buildProductListContent(dataSource: ProductListDataSource) {
+    // RefreshLayoutç°åœ¨ç›´æ¥æ¥å—dataSourceï¼Œå¹¶åœ¨å†…éƒ¨ç®¡ç†åŠ è½½çŠ¶æ€
+    // scrollerä¹Ÿä¸éœ€è¦ä»å¤–éƒ¨ä¼ å…¥ï¼ŒRefreshLayoutå†…éƒ¨ä¼šç®¡ç†å…¶Scrollç»„ä»¶
+    RefreshLayout({
+      dataSource: dataSource // ä¼ é€’DataSourceå®ä¾‹
+    }) {
+      Column() { // ä½¿ç”¨ColumnåŒ…è£¹Listï¼Œä»¥ä¾¿åœ¨åº•éƒ¨æ·»åŠ â€œåˆ°åº•äº†â€æç¤º
+        List() {
+          LazyForEach(dataSource, (item: Product) => {
+            ListItem() {
+              ProductItem({ product: item })
+            }
+          }, (item: Product) => item.id.toString())
+        }
+        .width('100%')
+        .layoutWeight(1)
+        // LazyForEach å†…éƒ¨çš„ onScrollIndex å¯ä»¥ç”¨æ¥è¾…åŠ©è§¦å‘æ‡’åŠ è½½ï¼Œä½†ä¸»è¦é€»è¾‘åœ¨RefreshLayoutçš„onScrollä¸­
+        .onScrollIndex((first: number, last: number) => {
+          if (last >= dataSource.totalCount() - 6 && dataSource.totalCount() > 0 && !dataSource.isLoadingMore && dataSource.hasMore) {
+            console.log('LazyForEach triggered load more via onScrollIndex');
+            dataSource.loadMore();
+          }
+        }); // æ·»åŠ åˆ†å·ä»¥æ˜ç¡®ç»ˆæ­¢è¯­å¥
+
+        // åˆ°åº•æç¤º
+        if (dataSource.totalCount() > 0 && !dataSource.hasMore) {
+          Text('å·²ç»åˆ°åº•äº†')
+            .fontSize(14)
+            .fontColor(Color.Gray)
+            .textAlign(TextAlign.Center)
+            .width('100%')
+            .padding(10)
         }
       }
-      .scrollable(ScrollDirection.Vertical)
-      .edgeEffect(EdgeEffect.Spring)
-      .onScroll((xOffset: number, yOffset: number) => {
-        if (yOffset <= 0) {
-          console.log('Reached top edge, consider refreshing');
-          this.productDataSource.refresh();
-        }
-        if (this.contentHeight > 0 && yOffset >= this.contentHeight - this.scrollHeight) {
-          console.log('Reached bottom edge, consider loading more');
-          this.productDataSource.loadMore();
-        }
-      })
+      .width('100%')
+      .height('100%') // Columnçš„é«˜åº¦éœ€è¦è®¾ç½®ï¼Œä»¥ä¾¿Listå¯ä»¥å¡«å……
     }
-    .height('100%')
-    .width('100%')
+    //.height('100%') // RefreshLayoutçš„é«˜åº¦éœ€è¦è®¾ç½® (uncommented to fix potential layout crashes)
   }
-}ÀÔrD’»../viewmodel/ListDataSourceº../view/GoodsListComponentÔrE—ªassertions¨external¢id¤meta±moduleSideEffectsªresolvedByµsyntheticNamedExportsAÂÙSC:\Users\Ran\Desktop\List_commodity\entry\src\main\ets\viewmodel\ListDataSource.etsAÃªoh-resolveÂEAÂÙRC:\Users\Ran\Desktop\List_commodity\entry\src\main\ets\view\GoodsListComponent.etsAÃªoh-resolveÂ“ÔrF–§version¤fileªsourceRoot§sources¥names¨mappings¬ListIndex.js ‘­ListIndex.etsÜ  ’”    ”)  )˜”   ” ”	 	” ” ” ”8 8”9 9’”   ”; ;š”   ” ”	 ” '”  )”& /”ÌC ÌL”ÌD ÌM”ÌE ÌN”Ì\ Ìe’” ” ‘”  ”” 
-” 
-#”$ 
-+”& 
--””! 5”% 9”: ÌN”< ÌP’”6 #”7 $’”< )”= *’”; (”< )‘” ÌM’” ” ’” ” ’” ” ’” ” ’” ” ’” ” ’” ” ’” ”ÌN ÌJ’” ” ‘” ’” ” 
-–” ” 
-” >” >” >”  >–” ” 
-” ?” ?
-” ?” ?”” ” 
-” ” –” ” 
-” 	” ” ” ˜” ” 
-” 	” ” ”& ”' ”+ #š” ” 
-” 	” ” ” ”  ”" ”$ ”& ’” ” 
-–” ” ” ” ” ”' ˜” ” ” 1” 1” 1”- 1!”. 1"”6 1*˜” ” ” 2” 2” 2”( 2”) 2”/ 2#›” ” ” 3” 3” 3” 3”$ 3 ”& 3"”- 31”/ 33”1 35–” 4” 4” 4” 4”  4”" 4˜” 5
-” 5” 5” 5”  5”ÌG 5=”ÌH 5>”ÌI 5?˜” 6
-” 6” 6”* 6 ”+ 6!”2 6(”4 6*”5 6+‘” 7	Ü ” 8” 8” 8” 8”& 8”) 8!”* 8"”. 8&”5 8-”9 81”= 85”> 86”ÌK 8ÌC”ÌN 8ÌF”ÌR 8ÌJ”ÌS 8ÌK”Ì_ 8ÌW”Ìa 8ÌY˜” 9
-” 9” 9” 9”  9”ÌL 9ÌB”ÌM 9ÌC”ÌN 9ÌD˜” :
-” :” :”* : ”+ :!”3 :)”5 :+”6 :,‘” ;	’” <” <’” ” ”” 
-” ” ”! ˜” 
-” ”  ”  ”  ”&  "”'  #”+  '’” 
-” ’” "
-” "›” "
-” "” )” )” )”  )”% )'”' ))”+ )5”- )7”/ )9Ü ” *” *” *” *”  *”! *”2 *.”3 */”= *9”? *;”ÌB *>”ÌC *?”ÌG *ÌC”ÌK *ÌG”ÌL *ÌH”Ì] *ÌY”Ì^ *ÌZ”Ìh *Ìd”Ìj *Ìf”Ìm *Ìi”Ìn *Ìj”Ìp *Ìl˜” +” +” +” +”  +”: +4”; +5”< +6˜” ,” ,” ,”* ,$”+ ,%”3 ,-”5 ,/”6 ,0‘” -’” .
-” .˜”< %”ÌG %”ÌN %”ÌP %”ÌW %%”ÌY %'”Ì] %+”Ì_ %-””, %”3 %%”5 %'”9 %+””( %”/ %%”1 %'”5 %+’” $”  $œ”, '”- '”1 '”3 '”5 '!”6 '"”: '&”; ''”= ')”> '*”ÌF '2”ÌH '4””* #”. #”/ #”Ì@ #.’” #” #’” "
-” "’” ” ’” ” ’” ” 
-‘” Ì@ÔrG–§version¤file§sources®sourcesContent¥names¨mappingsÀ‘À‘ÀÜ ©‘”    ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”  	 ‘”  
- ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”    ‘”  ! ‘”  " ‘”  # ‘”  $ ‘”  % ‘”  & ‘”  ' ‘”  ( ‘”  ) ‘”  * ‘”  + ‘”  , ‘”  - ‘”  . ‘”  / ‘”  0 ‘”  1 ‘”  2 ‘”  3 ‘”  4 ‘”  5 ‘”  6 ‘”  7 ‘”  8 ‘”  9 ‘”  : ‘”  ; ‘”  < ‘”  = ‘”  > ‘”  ? ‘”  Ì@ ‘”  ÌA ‘”  ÌB ‘”  ÌC ‘”  ÌD ‘”  ÌE ‘”  ÌF ‘”  ÌG ‘”  ÌH ‘”  ÌI ‘”  ÌJ ‘”  ÌK ‘”  ÌL ‘”  ÌM ‘”  ÌN ‘”  ÌO ‘”  ÌP ‘”  ÌQ ‘”  ÌR ‘”  ÌS ‘”  ÌT ‘”  ÌU ‘”  ÌV ‘”  ÌW ‘”  ÌX ‘”  ÌY ‘”  ÌZ ‘”  Ì[ ‘”  Ì\ ‘”  Ì] ‘”  Ì^ ‘”  Ì_ ‘”  Ì` ‘”  Ìa ‘”  Ìb ‘”  Ìc ‘”  Ìd ‘”  Ìe ‘”  Ìf ‘”  Ìg ‘”  Ìh ‘”  Ìi ‘”  Ìj ‘”  Ìk ‘”  Ìl ‘”  Ìm ‘”  Ìn ‘”  Ìo ‘”  Ìp ‘”  Ìq ‘”  Ìr ‘”  Ìs ‘”  Ìt ‘”  Ìu ‘”  Ìv ‘”  Ìw ‘”  Ìx ‘”  Ìy ‘”  Ìz ‘”  Ì{ ‘”  Ì| ‘”  Ì} ‘”  Ì~ ‘”  Ì ‘”  Ì€ ‘”  Ì ‘”  Ì‚ ‘”  Ìƒ ‘”  Ì„ ‘”  Ì… ‘”  Ì† ‘”  Ì‡ ‘”  Ìˆ ‘”  Ì‰ ‘”  ÌŠ ‘”  Ì‹ ‘”  ÌŒ ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì‘ ‘”  Ì’ ‘”  Ì“ ‘”  Ì” ‘”  Ì• ‘”  Ì– ‘”  Ì— ‘”  Ì˜ ‘”  Ì™ ‘”  Ìš ‘”  Ì› ‘”  Ìœ ‘”  Ì ‘”  Ì ‘”  ÌŸ ‘”  Ì  ‘”  Ì¡ ‘”  Ì¢ ‘”  Ì£ ‘”  Ì¤ ‘”  Ì¥ ‘”  Ì¦ ‘”  Ì§ ‘”  Ì¨ ÔrH’§missing¦pluginÃ¦genAbcÂÔ  ÔrI”²dynamicImportCache¹exportAllDeclarationCache»exportNamedDeclarationCache«importCache’ÔrJ•¤type¥start£endªspecifiers¦source±ImportDeclarationÌ«Ìä‘ÔrK•¤type¥start£end¨imported¥local¯ImportSpecifierÌ´Ì¿ÔrL”¤type¥start£end¤nameªIdentifierÌ´Ì¿«ProductItemLªIdentifierÌ´Ì¿«ProductItemÔrM•¤type¥start£end¥value£raw§LiteralÌÇÌãº../view/GoodsListComponent¼'../view/GoodsListComponent'J±ImportDeclarationÍ#Íg‘K¯ImportSpecifierÍ,ÍALªIdentifierÍ,ÍAµProductListDataSourceLªIdentifierÍ,ÍAµProductListDataSourceM§LiteralÍIÍf»../viewmodel/ListDataSource½'../viewmodel/ListDataSource'
+}ÀÔrD“º../view/GoodsListComponentµ../view/RefreshLayout»../viewmodel/ListDataSourceÔrE—ªassertions¨external¢id¤meta±moduleSideEffectsªresolvedByµsyntheticNamedExportsAÂÙRC:\Users\Ran\Desktop\List_commodity\entry\src\main\ets\view\GoodsListComponent.etsAÃªoh-resolveÂEAÂÙMC:\Users\Ran\Desktop\List_commodity\entry\src\main\ets\view\RefreshLayout.etsAÃªoh-resolveÂEAÂÙSC:\Users\Ran\Desktop\List_commodity\entry\src\main\ets\viewmodel\ListDataSource.etsAÃªoh-resolveÂ“ÔrF–§version¤fileªsourceRoot§sources¥names¨mappings¬ListIndex.js ‘­ListIndex.etsÜF’”    ”)  )˜”   ” ”	 	” ” ” ”8 8”9 9˜”   ” ”	 ” '”  )”& /”ÌC ÌL”ÌD ÌMš”   ” ”	 	” ” ” ”5 5”6 6”7 7”ÌO ÌO’” ” ‘”  ’”? ,”Ì@ -”” 	+”" 	/”0 	=”2 	?””" 6”& :”; ÌO”= ÌQ””  4”$ 8”9 ÌM”; ÌO””! 5”% 9”: ÌN”< ÌP”” 2”" 6”7 ÌK”9 ÌM”” 2”" 6”7 ÌK”9 ÌM‘” 6’” ” !’” ” !‘” (’” )” )–” )” )” Ì_” Ì_
+” Ì_”! Ì_˜” )” )” Ì`”  Ì`”! Ì`”4 Ì`"”5 Ì`#”9 Ì`'˜” )” )” Ìa”& Ìa”' Ìa”, Ìa”- Ìa”2 Ìa ’” *” *“” +” +” +–” ,
+” ,” ,” ,” ,”, ,&–” -
+” -” -”  -”! -”/ -)‘” .	–” +” +” ÌM	” ÌM” ÌM”  ÌM˜” +” +” ÌN	” ÌN” ÌN”  ÌN”! ÌN”+ ÌN#–” +” +” ÌO	” ÌO” ÌO” ÌO˜” +” +” ÌP	”  ÌP”! ÌP”& ÌP”' ÌP”, ÌP$˜” +” +” ÌQ	” ÌQ” ÌQ” ÌQ”  ÌQ”" ÌQ—” ÌR
+” ÌR” ÌR”% ÌR”( ÌR"”- ÌR'”. ÌR(’” ÌS
+”1 ÌS+’” ÌT
+” ÌT›” ÌU” ÌU” ÌU” ÌU”. ÌU&”/ ÌU'”9 ÌU1”; ÌU3”Ì@ ÌU8”ÌA ÌU9”ÌC ÌU;š” ÌV” ÌV”  ÌV”# ÌV”$ ÌV”< ÌV2”ÌA ÌV7”ÌC ÌV9”ÌD ÌV:”ÌE ÌV;š” ÌW” ÌW” ÌW”. ÌW$”/ ÌW%”6 ÌW,”8 ÌW.”9 ÌW/”: ÌW0”ÌH ÌW>‘” ÌX‘” ÌY”” ÌY” ÌY” ÌY” ÌYš” ÌZ” ÌZ” ÌZ”! ÌZ”" ÌZ”ÌG ÌZ?”ÌH ÌZÌ@”ÌJ ÌZÌB”ÌK ÌZÌC”ÌL ÌZÌD‘” Ì[’” Ì\” Ì\	’” 0” 0™” 1” 1” 1”, 1(”8 1)”< 1-”= 1.”ÌO 1Ì@”ÌP 1ÌA”” 3” 3” 3”" 3’” 6” 6™” 7” 7” 7”, 7(”8 7)”< 7-”= 7.”ÌM 7>”ÌN 7?”” 9” 9” 9”" 9’” <” <™” =” =” =”, =(”8 =)”< =-”= =.”ÌN =?”ÌO =Ì@”” ?” ?” ?”" ?’” ÌB” ÌB™” ÌC” ÌC” ÌC”, ÌC(”8 ÌC)”< ÌC-”= ÌC.”ÌK ÌC<”ÌL ÌC=”” ÌE” ÌE” ÌE”" ÌE’” ÌH” ÌH™” ÌI” ÌI” ÌI”, ÌI(”8 ÌI)”< ÌI-”= ÌI.”ÌK ÌI<”ÌL ÌI=”” ÌK” ÌK” ÌK”" ÌK’” +” +’” *” *’” )” )‘” Ìb’” Ìd”! Ìd”” Ìf” Ìf” Ìf”& Ìf;’” Ìg”? Ìg/’” Ìh”ÌD Ìh4’” Ìi”! Ìi–” Ìj”" Ìj”$ Ìj”. Ìj”/ Ìj”Ì@ Ìj.’”  Ìl”& Ìl–”  Ìl”& Ìl”' Ìˆ”, Ìˆ”- Ìˆ”3 Ìˆ–”  Ìl”& Ìl”' Ì‰”- Ì‰”. Ì‰”4 Ì‰’”  Ìm”$ Ìm–”  Ìm”$ Ìm”% Ìt	”* Ìt”+ Ìt”1 Ìt–”  Ìm”$ Ìm”% Ìu	”1 Ìu”2 Ìu”3 Ìu›”  Ìm”$ Ìm”% Ìw	”2 Ìw”3 Ìw”4 Ìw”9 Ìw%”; Ìw'”? Ìw3”ÌA Ìw5”ÌC Ìw7Ü ”$ Ìx
+”( Ìx”, Ìx”0 Ìx”: Ìx ”; Ìx!”ÌE Ìx+”ÌG Ìx-”ÌJ Ìx0”ÌK Ìx1”ÌO Ìx5”ÌY Ìx?”ÌZ ÌxÌ@”Ìd ÌxÌJ”Ìf ÌxÌL”Ìi ÌxÌO”Ìj ÌxÌP”Ìn ÌxÌT”Ìo ÌxÌU”Ìy ÌxÌ_”Ìz ÌxÌ`”Ì‡ ÌxÌm”Ì‹ ÌxÌq”Ì• ÌxÌ{”Ì– ÌxÌ|”Ì ÌxÌƒ”ÌŸ ÌxÌ…˜”( Ìy”/ Ìy”0 Ìy”3 Ìy”4 Ìy”Ìg ÌyÌK”Ìh ÌyÌL”Ìi ÌyÌM–”( Ìz”2 Ìz”3 Ìz”; Ìz”= Ìz!”> Ìz"‘”% Ì{’”  Ì|”! Ì|	˜”ÌP Ìp”Ì[ Ìp”Ìb Ìp”Ìd Ìp”Ìk Ìp#”Ìm Ìp%”Ìq Ìp)”Ìs Ìp+””Ì@ Ìp”ÌG Ìp#”ÌI Ìp%”ÌM Ìp)””< Ìp”ÌC Ìp#”ÌE Ìp%”ÌI Ìp)’”, Ìo”4 Ìoœ”Ì@ Ìr”ÌA Ìr”ÌE Ìr”ÌG Ìr”ÌI Ìr”ÌJ Ìr ”ÌN Ìr$”ÌO Ìr%”ÌQ Ìr'”ÌR Ìr(”ÌZ Ìr0”Ì\ Ìr2’”> Ìn”ÌH Ìn ’”  Ìn
+”+ Ìn’” Ìm”  Ìm’”  Ì~”' Ì~”  Ì”$ Ì”. Ì”/ Ì”9 Ì!”; Ì#”> Ì&”? Ì'”ÌC Ì+”ÌD Ì,”ÌN Ì6”ÌO Ì7”ÌV Ì>”ÌX ÌÌ@””, Ì€
+”0 Ì€”8 Ì€”? Ì€–”, Ì€
+”0 Ì€”1 Ì”9 Ì”: Ì”< Ì˜”, Ì€
+”0 Ì€”1 Ì‚”: Ì‚”; Ì‚”Ì@ Ì‚”ÌA Ì‚”ÌE Ì‚!˜”, Ì€
+”0 Ì€”1 Ìƒ”: Ìƒ”; Ìƒ”ÌD Ìƒ ”ÌE Ìƒ!”ÌK Ìƒ'–”, Ì€
+”0 Ì€”1 Ì„”6 Ì„”7 Ì„”= Ì„–”, Ì€
+”0 Ì€”1 Ì…”8 Ì…”9 Ì…”; Ì…’”( Ì€
+”, Ì€‘”! Ì†	‘”! Ì†	’” Ìl”" Ìl–” Ìj”& Ìj”( Ìj”2 Ìj”3 Ìj”ÌD Ìj.’”$ Ìl”* Ìl–”$ Ìl”* Ìl”+ Ìˆ”0 Ìˆ”1 Ìˆ”7 Ìˆ–”$ Ìl”* Ìl”+ Ì‰”1 Ì‰”2 Ì‰”8 Ì‰’”$ Ìm”( Ìm–”$ Ìm”( Ìm”) Ìt	”. Ìt”/ Ìt”5 Ìt–”$ Ìm”( Ìm”) Ìu	”5 Ìu”6 Ìu”7 Ìu›”$ Ìm”( Ìm”) Ìw	”6 Ìw”7 Ìw”8 Ìw”= Ìw%”? Ìw'”ÌC Ìw3”ÌE Ìw5”ÌG Ìw7Ü ”( Ìx
+”, Ìx”0 Ìx”4 Ìx”> Ìx ”? Ìx!”ÌI Ìx+”ÌK Ìx-”ÌN Ìx0”ÌO Ìx1”ÌS Ìx5”Ì] Ìx?”Ì^ ÌxÌ@”Ìh ÌxÌJ”Ìj ÌxÌL”Ìm ÌxÌO”Ìn ÌxÌP”Ìr ÌxÌT”Ìs ÌxÌU”Ì} ÌxÌ_”Ì~ ÌxÌ`”Ì‹ ÌxÌm”Ì ÌxÌq”Ì™ ÌxÌ{”Ìš ÌxÌ|”Ì¡ ÌxÌƒ”Ì£ ÌxÌ…˜”, Ìy”3 Ìy”4 Ìy”7 Ìy”8 Ìy”Ìk ÌyÌK”Ìl ÌyÌL”Ìm ÌyÌM–”, Ìz”6 Ìz”7 Ìz”? Ìz”ÌA Ìz!”ÌB Ìz"‘”) Ì{’”$ Ì|”% Ì|	˜”ÌT Ìp”Ì_ Ìp”Ìf Ìp”Ìh Ìp”Ìo Ìp#”Ìq Ìp%”Ìu Ìp)”Ìw Ìp+””ÌD Ìp”ÌK Ìp#”ÌM Ìp%”ÌQ Ìp)””Ì@ Ìp”ÌG Ìp#”ÌI Ìp%”ÌM Ìp)’”0 Ìo”8 Ìoœ”ÌD Ìr”ÌE Ìr”ÌI Ìr”ÌK Ìr”ÌM Ìr”ÌN Ìr ”ÌR Ìr$”ÌS Ìr%”ÌU Ìr'”ÌV Ìr(”Ì^ Ìr0”Ì` Ìr2’”ÌB Ìn”ÌL Ìn ’”$ Ìn
+”/ Ìn’”  Ìm”$ Ìm’”$ Ì~”+ Ì~”$ Ì”( Ì”2 Ì”3 Ì”= Ì!”? Ì#”ÌB Ì&”ÌC Ì'”ÌG Ì+”ÌH Ì,”ÌR Ì6”ÌS Ì7”ÌZ Ì>”Ì\ ÌÌ@””0 Ì€
+”4 Ì€”< Ì€”ÌC Ì€–”0 Ì€
+”4 Ì€”5 Ì”= Ì”> Ì”Ì@ Ì˜”0 Ì€
+”4 Ì€”5 Ì‚”> Ì‚”? Ì‚”ÌD Ì‚”ÌE Ì‚”ÌI Ì‚!˜”0 Ì€
+”4 Ì€”5 Ìƒ”> Ìƒ”? Ìƒ”ÌH Ìƒ ”ÌI Ìƒ!”ÌO Ìƒ'–”0 Ì€
+”4 Ì€”5 Ì„”: Ì„”; Ì„”ÌA Ì„–”0 Ì€
+”4 Ì€”5 Ì…”< Ì…”= Ì…”? Ì…’”, Ì€
+”0 Ì€‘”% Ì†	‘”% Ì†	’”  Ìl”& Ìl–” Ìj”" Ìj”$ Ìj”. Ìj”/ Ìj”Ì@ Ìj.‘” ÌŒÔrG–§version¤file§sources®sourcesContent¥names¨mappingsÀ‘À‘ÀÜO‘”    ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”  	 ‘”  
+ ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”    ‘”  ! ‘”  " ‘”  # ‘”  $ ‘”  % ‘”  & ‘”  ' ‘”  ( ‘”  ) ‘”  * ‘”  + ‘”  , ‘”  - ‘”  . ‘”  / ‘”  0 ‘”  1 ‘”  2 ‘”  3 ‘”  4 ‘”  5 ‘”  6 ‘”  7 ‘”  8 ‘”  9 ‘”  : ‘”  ; ‘”  < ‘”  = ‘”  > ‘”  ? ‘”  Ì@ ‘”  ÌA ‘”  ÌB ‘”  ÌC ‘”  ÌD ‘”  ÌE ‘”  ÌF ‘”  ÌG ‘”  ÌH ‘”  ÌI ‘”  ÌJ ‘”  ÌK ‘”  ÌL ‘”  ÌM ‘”  ÌN ‘”  ÌO ‘”  ÌP ‘”  ÌQ ‘”  ÌR ‘”  ÌS ‘”  ÌT ‘”  ÌU ‘”  ÌV ‘”  ÌW ‘”  ÌX ‘”  ÌY ‘”  ÌZ ‘”  Ì[ ‘”  Ì\ ‘”  Ì] ‘”  Ì^ ‘”  Ì_ ‘”  Ì` ‘”  Ìa ‘”  Ìb ‘”  Ìc ‘”  Ìd ‘”  Ìe ‘”  Ìf ‘”  Ìg ‘”  Ìh ‘”  Ìi ‘”  Ìj ‘”  Ìk ‘”  Ìl ‘”  Ìm ‘”  Ìn ‘”  Ìo ‘”  Ìp ‘”  Ìq ‘”  Ìr ‘”  Ìs ‘”  Ìt ‘”  Ìu ‘”  Ìv ‘”  Ìw ‘”  Ìx ‘”  Ìy ‘”  Ìz ‘”  Ì{ ‘”  Ì| ‘”  Ì} ‘”  Ì~ ‘”  Ì ‘”  Ì€ ‘”  Ì ‘”  Ì‚ ‘”  Ìƒ ‘”  Ì„ ‘”  Ì… ‘”  Ì† ‘”  Ì‡ ‘”  Ìˆ ‘”  Ì‰ ‘”  ÌŠ ‘”  Ì‹ ‘”  ÌŒ ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì‘ ‘”  Ì’ ‘”  Ì“ ‘”  Ì” ‘”  Ì• ‘”  Ì– ‘”  Ì— ‘”  Ì˜ ‘”  Ì™ ‘”  Ìš ‘”  Ì› ‘”  Ìœ ‘”  Ì ‘”  Ì ‘”  ÌŸ ‘”  Ì  ‘”  Ì¡ ‘”  Ì¢ ‘”  Ì£ ‘”  Ì¤ ‘”  Ì¥ ‘”  Ì¦ ‘”  Ì§ ‘”  Ì¨ ‘”  Ì© ‘”  Ìª ‘”  Ì« ‘”  Ì¬ ‘”  Ì­ ‘”  Ì® ‘”  Ì¯ ‘”  Ì° ‘”  Ì± ‘”  Ì² ‘”  Ì³ ‘”  Ì´ ‘”  Ìµ ‘”  Ì¶ ‘”  Ì· ‘”  Ì¸ ‘”  Ì¹ ‘”  Ìº ‘”  Ì» ‘”  Ì¼ ‘”  Ì½ ‘”  Ì¾ ‘”  Ì¿ ‘”  ÌÀ ‘”  ÌÁ ‘”  ÌÂ ‘”  ÌÃ ‘”  ÌÄ ‘”  ÌÅ ‘”  ÌÆ ‘”  ÌÇ ‘”  ÌÈ ‘”  ÌÉ ‘”  ÌÊ ‘”  ÌË ‘”  ÌÌ ‘”  ÌÍ ‘”  ÌÎ ‘”  ÌÏ ‘”  ÌĞ ‘”  ÌÑ ‘”  ÌÒ ‘”  ÌÓ ‘”  ÌÔ ‘”  ÌÕ ‘”  ÌÖ ‘”  Ì× ‘”  ÌØ ‘”  ÌÙ ‘”  ÌÚ ‘”  ÌÛ ‘”  ÌÜ ‘”  Ìİ ‘”  ÌŞ ‘”  Ìß ‘”  Ìà ‘”  Ìá ‘”  Ìâ ‘”  Ìã ‘”  Ìä ‘”  Ìå ‘”  Ìæ ‘”  Ìç ‘”  Ìè ‘”  Ìé ‘”  Ìê ‘”  Ìë ‘”  Ìì ‘”  Ìí ‘”  Ìî ‘”  Ìï ‘”  Ìğ ‘”  Ìñ ‘”  Ìò ‘”  Ìó ‘”  Ìô ‘”  Ìõ ‘”  Ìö ‘”  Ì÷ ‘”  Ìø ‘”  Ìù ‘”  Ìú ‘”  Ìû ‘”  Ìü ‘”  Ìı ‘”  Ìş ‘”  Ìÿ ‘”  Í  ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í	 ‘”  Í
+ ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í  ‘”  Í! ‘”  Í" ‘”  Í# ‘”  Í$ ‘”  Í% ‘”  Í& ‘”  Í' ‘”  Í( ‘”  Í) ‘”  Í* ‘”  Í+ ‘”  Í, ‘”  Í- ‘”  Í. ‘”  Í/ ‘”  Í0 ‘”  Í1 ‘”  Í2 ‘”  Í3 ‘”  Í4 ‘”  Í5 ‘”  Í6 ‘”  Í7 ‘”  Í8 ‘”  Í9 ‘”  Í: ‘”  Í; ‘”  Í< ‘”  Í= ‘”  Í> ‘”  Í? ‘”  Í@ ‘”  ÍA ‘”  ÍB ‘”  ÍC ‘”  ÍD ‘”  ÍE ‘”  ÍF ‘”  ÍG ‘”  ÍH ‘”  ÍI ‘”  ÍJ ‘”  ÍK ‘”  ÍL ‘”  ÍM ‘”  ÍN ÔrH’§missing¦pluginÃ¦genAbcÂÔ  ÔrI”²dynamicImportCache¹exportAllDeclarationCache»exportNamedDeclarationCache«importCache“ÔrJ•¤type¥start£endªspecifiers¦source±ImportDeclarationÌ«Ìä‘ÔrK•¤type¥start£end¨imported¥local¯ImportSpecifierÌ´Ì¿ÔrL”¤type¥start£end¤nameªIdentifierÌ´Ì¿«ProductItemLªIdentifierÌ´Ì¿«ProductItemÔrM•¤type¥start£end¥value£raw§LiteralÌÇÌãº../view/GoodsListComponent¼'../view/GoodsListComponent'J±ImportDeclarationÌæÍ*‘K¯ImportSpecifierÌïÍLªIdentifierÌïÍµProductListDataSourceLªIdentifierÌïÍµProductListDataSourceM§LiteralÍÍ)»../viewmodel/ListDataSource½'../viewmodel/ListDataSource'J±ImportDeclarationÍ,Íb‘K¯ImportSpecifierÍ5ÍBLªIdentifierÍ5ÍB­RefreshLayoutLªIdentifierÍ5ÍB­RefreshLayoutM§LiteralÍJÍaµ../view/RefreshLayout·'../view/RefreshLayout'

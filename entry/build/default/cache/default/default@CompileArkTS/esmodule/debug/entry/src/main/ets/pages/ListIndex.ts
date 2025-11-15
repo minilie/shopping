@@ -2,174 +2,347 @@ if (!("finalizeConstruction" in ViewPU.prototype)) {
     Reflect.set(ViewPU.prototype, "finalizeConstruction", () => { });
 }
 interface ProductListPage_Params {
-    scroller?: Scroller;
-    productDataSource?: ProductListDataSource;
-    scrollY?: number;
-    contentHeight?: number;
-    scrollHeight?: number;
+    selectedTabIndex?: number;
+    tabsController?: TabsController;
+    featuredDataSource?: ProductListDataSource;
+    mobileDataSource?: ProductListDataSource;
+    fashionDataSource?: ProductListDataSource;
+    wearDataSource?: ProductListDataSource;
+    homeDataSource?: ProductListDataSource;
 }
 import { ProductItem } from "@bundle:com.example.list_harmony/entry/ets/view/GoodsListComponent";
 import { ProductListDataSource } from "@bundle:com.example.list_harmony/entry/ets/viewmodel/ListDataSource";
 import type { Product } from "@bundle:com.example.list_harmony/entry/ets/viewmodel/ListDataSource";
+import { RefreshLayout } from "@bundle:com.example.list_harmony/entry/ets/view/RefreshLayout";
 class ProductListPage extends ViewPU {
     constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
         super(parent, __localStorage, elmtId, extraInfo);
         if (typeof paramsLambda === "function") {
             this.paramsGenerator_ = paramsLambda;
         }
-        this.scroller = new Scroller();
-        this.productDataSource = new ProductListDataSource();
-        this.__scrollY = new ObservedPropertySimplePU(0, this, "scrollY");
-        this.__contentHeight = new ObservedPropertySimplePU(0, this, "contentHeight");
-        this.__scrollHeight = new ObservedPropertySimplePU(0, this, "scrollHeight");
+        this.__selectedTabIndex = new ObservedPropertySimplePU(0, this, "selectedTabIndex");
+        this.tabsController = new TabsController();
+        this.featuredDataSource = new ProductListDataSource();
+        this.mobileDataSource = new ProductListDataSource();
+        this.fashionDataSource = new ProductListDataSource();
+        this.wearDataSource = new ProductListDataSource();
+        this.homeDataSource = new ProductListDataSource();
         this.setInitiallyProvidedValue(params);
         this.finalizeConstruction();
     }
     setInitiallyProvidedValue(params: ProductListPage_Params) {
-        if (params.scroller !== undefined) {
-            this.scroller = params.scroller;
+        if (params.selectedTabIndex !== undefined) {
+            this.selectedTabIndex = params.selectedTabIndex;
         }
-        if (params.productDataSource !== undefined) {
-            this.productDataSource = params.productDataSource;
+        if (params.tabsController !== undefined) {
+            this.tabsController = params.tabsController;
         }
-        if (params.scrollY !== undefined) {
-            this.scrollY = params.scrollY;
+        if (params.featuredDataSource !== undefined) {
+            this.featuredDataSource = params.featuredDataSource;
         }
-        if (params.contentHeight !== undefined) {
-            this.contentHeight = params.contentHeight;
+        if (params.mobileDataSource !== undefined) {
+            this.mobileDataSource = params.mobileDataSource;
         }
-        if (params.scrollHeight !== undefined) {
-            this.scrollHeight = params.scrollHeight;
+        if (params.fashionDataSource !== undefined) {
+            this.fashionDataSource = params.fashionDataSource;
+        }
+        if (params.wearDataSource !== undefined) {
+            this.wearDataSource = params.wearDataSource;
+        }
+        if (params.homeDataSource !== undefined) {
+            this.homeDataSource = params.homeDataSource;
         }
     }
     updateStateVars(params: ProductListPage_Params) {
     }
     purgeVariableDependenciesOnElmtId(rmElmtId) {
-        this.__scrollY.purgeDependencyOnElmtId(rmElmtId);
-        this.__contentHeight.purgeDependencyOnElmtId(rmElmtId);
-        this.__scrollHeight.purgeDependencyOnElmtId(rmElmtId);
+        this.__selectedTabIndex.purgeDependencyOnElmtId(rmElmtId);
     }
     aboutToBeDeleted() {
-        this.__scrollY.aboutToBeDeleted();
-        this.__contentHeight.aboutToBeDeleted();
-        this.__scrollHeight.aboutToBeDeleted();
+        this.__selectedTabIndex.aboutToBeDeleted();
         SubscriberManager.Get().delete(this.id__());
         this.aboutToBeDeletedInternal();
     }
-    // We no longer need @State products here, the DataSource manages it.
-    private scroller: Scroller;
-    private productDataSource: ProductListDataSource; // <<< Initialize with new DataSource
-    // 添加变量来跟踪滚动位置
-    private __scrollY: ObservedPropertySimplePU<number>;
-    get scrollY() {
-        return this.__scrollY.get();
+    private __selectedTabIndex: ObservedPropertySimplePU<number>;
+    get selectedTabIndex() {
+        return this.__selectedTabIndex.get();
     }
-    set scrollY(newValue: number) {
-        this.__scrollY.set(newValue);
+    set selectedTabIndex(newValue: number) {
+        this.__selectedTabIndex.set(newValue);
     }
-    private __contentHeight: ObservedPropertySimplePU<number>;
-    get contentHeight() {
-        return this.__contentHeight.get();
-    }
-    set contentHeight(newValue: number) {
-        this.__contentHeight.set(newValue);
-    }
-    private __scrollHeight: ObservedPropertySimplePU<number>;
-    get scrollHeight() {
-        return this.__scrollHeight.get();
-    }
-    set scrollHeight(newValue: number) {
-        this.__scrollHeight.set(newValue);
-    }
-    onPageShow() {
-        // Initial data load is handled by ProductListDataSource's constructor
-    }
+    private tabsController: TabsController;
+    // 不需要在这里声明scroller，RefreshLayout内部会创建并管理
+    // private scroller: Scroller = new Scroller(); // 移除这行
+    // 为每个Tab创建一个独立的DataSource实例，以管理各自的数据状态
+    // 这里需要使用 'new' 关键字初始化
+    private featuredDataSource: ProductListDataSource;
+    private mobileDataSource: ProductListDataSource;
+    private fashionDataSource: ProductListDataSource;
+    private wearDataSource: ProductListDataSource;
+    private homeDataSource: ProductListDataSource;
     initialRender() {
         this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Column.create();
-            Column.height('100%');
-            Column.width('100%');
-        }, Column);
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Text.create('商城');
-            Text.fontSize(24);
-            Text.fontWeight(FontWeight.Bold);
-            Text.margin({ bottom: 10 });
-        }, Text);
-        Text.pop();
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Scroll.create(this.scroller);
-            Scroll.scrollable(ScrollDirection.Vertical);
-            Scroll.edgeEffect(EdgeEffect.Spring);
-            Scroll.onScroll((xOffset: number, yOffset: number) => {
-                if (yOffset <= 0) {
-                    console.log('Reached top edge, consider refreshing');
-                    this.productDataSource.refresh();
-                }
-                if (this.contentHeight > 0 && yOffset >= this.contentHeight - this.scrollHeight) {
-                    console.log('Reached bottom edge, consider loading more');
-                    this.productDataSource.loadMore();
-                }
-            });
-        }, Scroll);
+            Navigation.create(new NavPathStack(), { moduleName: "entry", pagePath: "entry/src/main/ets/pages/ListIndex", isUserCreateStack: false });
+            Navigation.title("商城");
+            Navigation.titleMode(NavigationTitleMode.Mini);
+            Navigation.backgroundColor(Color.White);
+        }, Navigation);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Column.create();
         }, Column);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Text.create('正在刷新...');
-            Text.visibility(Visibility.None);
-        }, Text);
-        Text.pop();
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            List.create();
-            List.onScrollIndex((first: number, last: number) => {
-                if (last >= this.productDataSource.totalCount() - 6 && this.productDataSource.totalCount() > 0) {
-                    console.log('Loading more products...');
-                    this.productDataSource.loadMore();
+            Tabs.create({
+                index: this.selectedTabIndex,
+                controller: this.tabsController
+            });
+            Tabs.scrollable(true);
+            Tabs.barMode(BarMode.Scrollable);
+            Tabs.barHeight(56);
+            Tabs.backgroundColor(Color.White);
+            Tabs.onChange(index => {
+                this.selectedTabIndex = index;
+                // 当Tab切换时，确保当前DataSource的数据是加载过的
+                try {
+                    if (this.currentDataSource.totalCount() === 0) {
+                        console.log(`Loading data for tab ${index}`);
+                        this.currentDataSource.refresh(); // 或者根据需求只加载一次
+                    }
+                }
+                catch (e) {
+                    console.error(`Error loading data on tab switch: ${e}`);
                 }
             });
-        }, List);
+        }, Tabs);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            TabContent.create(() => {
+                // "精选" Tab的内容
+                this.buildProductListContent.bind(this)(this.featuredDataSource);
+            });
+            TabContent.tabBar("精选");
+        }, TabContent);
+        TabContent.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            TabContent.create(() => {
+                // "手机" Tab的内容
+                this.buildProductListContent.bind(this)(this.mobileDataSource);
+            });
+            TabContent.tabBar("手机");
+        }, TabContent);
+        TabContent.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            TabContent.create(() => {
+                // "服饰" Tab的内容
+                this.buildProductListContent.bind(this)(this.fashionDataSource);
+            });
+            TabContent.tabBar("服饰");
+        }, TabContent);
+        TabContent.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            TabContent.create(() => {
+                // "穿搭" Tab的内容
+                this.buildProductListContent.bind(this)(this.wearDataSource);
+            });
+            TabContent.tabBar("穿搭");
+        }, TabContent);
+        TabContent.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            TabContent.create(() => {
+                // "家居" Tab的内容
+                this.buildProductListContent.bind(this)(this.homeDataSource);
+            });
+            TabContent.tabBar("家居");
+        }, TabContent);
+        TabContent.pop();
+        Tabs.pop();
+        Column.pop();
+        Navigation.pop();
+    }
+    // 辅助方法，用于构建商品列表内容，包含下拉刷新和懒加载
+    buildProductListContent(dataSource: ProductListDataSource, parent = null) {
         {
-            const __lazyForEachItemGenFunction = _item => {
-                const item = _item;
-                {
-                    const itemCreation2 = (elmtId, isInitialRender) => {
-                        ListItem.create(() => { }, false);
-                    };
-                    const observedDeepRender = () => {
-                        this.observeComponentCreation2(itemCreation2, ListItem);
-                        {
+            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                if (isInitialRender) {
+                    let componentCall = new 
+                    // RefreshLayout现在直接接受dataSource，并在内部管理加载状态
+                    // scroller也不需要从外部传入，RefreshLayout内部会管理其Scroll组件
+                    RefreshLayout(this, {
+                        dataSource: dataSource // 传递DataSource实例
+                        ,
+                        content: () => {
                             this.observeComponentCreation2((elmtId, isInitialRender) => {
-                                if (isInitialRender) {
-                                    let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 38, col: 17 });
-                                    ViewPU.create(componentCall);
-                                    let paramsLambda = () => {
-                                        return {
-                                            product: item
+                                Column.create();
+                                Column.width('100%');
+                                Column.height('100%');
+                            }, Column);
+                            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                List.create();
+                                List.width('100%');
+                                List.layoutWeight(1);
+                                List.onScrollIndex((first: number, last: number) => {
+                                    if (last >= dataSource.totalCount() - 6 && dataSource.totalCount() > 0 && !dataSource.isLoadingMore && dataSource.hasMore) {
+                                        console.log('LazyForEach triggered load more via onScrollIndex');
+                                        dataSource.loadMore();
+                                    }
+                                });
+                            }, List);
+                            {
+                                const __lazyForEachItemGenFunction = _item => {
+                                    const item = _item;
+                                    {
+                                        const itemCreation2 = (elmtId, isInitialRender) => {
+                                            ListItem.create(() => { }, false);
                                         };
-                                    };
-                                    componentCall.paramsGenerator_ = paramsLambda;
-                                }
-                                else {
-                                    this.updateStateVarsOfChildByElmtId(elmtId, {
-                                        product: item
+                                        const observedDeepRender = () => {
+                                            this.observeComponentCreation2(itemCreation2, ListItem);
+                                            {
+                                                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                    if (isInitialRender) {
+                                                        let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 113, col: 15 });
+                                                        ViewPU.create(componentCall);
+                                                        let paramsLambda = () => {
+                                                            return {
+                                                                product: item
+                                                            };
+                                                        };
+                                                        componentCall.paramsGenerator_ = paramsLambda;
+                                                    }
+                                                    else {
+                                                        this.updateStateVarsOfChildByElmtId(elmtId, {
+                                                            product: item
+                                                        });
+                                                    }
+                                                }, { name: "ProductItem" });
+                                            }
+                                            ListItem.pop();
+                                        };
+                                        observedDeepRender();
+                                    }
+                                };
+                                const __lazyForEachItemIdFunc = (item: Product) => item.id.toString();
+                                LazyForEach.create("1", this, dataSource, __lazyForEachItemGenFunction, __lazyForEachItemIdFunc);
+                                LazyForEach.pop();
+                            }
+                            List.pop();
+                            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                If.create();
+                                // 到底提示
+                                if (dataSource.totalCount() > 0 && !dataSource.hasMore) {
+                                    this.ifElseBranchUpdateFunction(0, () => {
+                                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                            Text.create('已经到底了');
+                                            Text.fontSize(14);
+                                            Text.fontColor(Color.Gray);
+                                            Text.textAlign(TextAlign.Center);
+                                            Text.width('100%');
+                                            Text.padding(10);
+                                        }, Text);
+                                        Text.pop();
                                     });
                                 }
-                            }, { name: "ProductItem" });
+                                else {
+                                    this.ifElseBranchUpdateFunction(1, () => {
+                                    });
+                                }
+                            }, If);
+                            If.pop();
+                            Column.pop();
                         }
-                        ListItem.pop();
+                    }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 106, col: 5 });
+                    ViewPU.create(componentCall);
+                    let paramsLambda = () => {
+                        return {
+                            dataSource: dataSource // 传递DataSource实例
+                            ,
+                            content: () => {
+                                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                    Column.create();
+                                    Column.width('100%');
+                                    Column.height('100%');
+                                }, Column);
+                                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                    List.create();
+                                    List.width('100%');
+                                    List.layoutWeight(1);
+                                    List.onScrollIndex((first: number, last: number) => {
+                                        if (last >= dataSource.totalCount() - 6 && dataSource.totalCount() > 0 && !dataSource.isLoadingMore && dataSource.hasMore) {
+                                            console.log('LazyForEach triggered load more via onScrollIndex');
+                                            dataSource.loadMore();
+                                        }
+                                    });
+                                }, List);
+                                {
+                                    const __lazyForEachItemGenFunction = _item => {
+                                        const item = _item;
+                                        {
+                                            const itemCreation2 = (elmtId, isInitialRender) => {
+                                                ListItem.create(() => { }, false);
+                                            };
+                                            const observedDeepRender = () => {
+                                                this.observeComponentCreation2(itemCreation2, ListItem);
+                                                {
+                                                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                        if (isInitialRender) {
+                                                            let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 113, col: 15 });
+                                                            ViewPU.create(componentCall);
+                                                            let paramsLambda = () => {
+                                                                return {
+                                                                    product: item
+                                                                };
+                                                            };
+                                                            componentCall.paramsGenerator_ = paramsLambda;
+                                                        }
+                                                        else {
+                                                            this.updateStateVarsOfChildByElmtId(elmtId, {
+                                                                product: item
+                                                            });
+                                                        }
+                                                    }, { name: "ProductItem" });
+                                                }
+                                                ListItem.pop();
+                                            };
+                                            observedDeepRender();
+                                        }
+                                    };
+                                    const __lazyForEachItemIdFunc = (item: Product) => item.id.toString();
+                                    LazyForEach.create("1", this, dataSource, __lazyForEachItemGenFunction, __lazyForEachItemIdFunc);
+                                    LazyForEach.pop();
+                                }
+                                List.pop();
+                                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                    If.create();
+                                    // 到底提示
+                                    if (dataSource.totalCount() > 0 && !dataSource.hasMore) {
+                                        this.ifElseBranchUpdateFunction(0, () => {
+                                            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                Text.create('已经到底了');
+                                                Text.fontSize(14);
+                                                Text.fontColor(Color.Gray);
+                                                Text.textAlign(TextAlign.Center);
+                                                Text.width('100%');
+                                                Text.padding(10);
+                                            }, Text);
+                                            Text.pop();
+                                        });
+                                    }
+                                    else {
+                                        this.ifElseBranchUpdateFunction(1, () => {
+                                        });
+                                    }
+                                }, If);
+                                If.pop();
+                                Column.pop();
+                            }
+                        };
                     };
-                    observedDeepRender();
+                    componentCall.paramsGenerator_ = paramsLambda;
                 }
-            };
-            const __lazyForEachItemIdFunc = (item: Product) => item.id.toString();
-            LazyForEach.create("1", this, this.productDataSource, __lazyForEachItemGenFunction, __lazyForEachItemIdFunc);
-            LazyForEach.pop();
+                else {
+                    this.updateStateVarsOfChildByElmtId(elmtId, {
+                        dataSource: dataSource // 传递DataSource实例
+                    });
+                }
+            }, { name: "RefreshLayout" });
         }
-        List.pop();
-        Column.pop();
-        Scroll.pop();
-        Column.pop();
     }
     rerender() {
         this.updateDirtyElements();
