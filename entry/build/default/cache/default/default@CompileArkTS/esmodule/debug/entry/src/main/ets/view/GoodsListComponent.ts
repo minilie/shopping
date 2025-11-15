@@ -28,7 +28,7 @@ export class ProductItem extends ViewPU {
         SubscriberManager.Get().delete(this.id__());
         this.aboutToBeDeletedInternal();
     }
-    private __product: SynchedPropertySimpleOneWayPU<Product>; // This remains @Prop
+    private __product: SynchedPropertySimpleOneWayPU<Product>;
     get product() {
         return this.__product.get();
     }
@@ -37,38 +37,70 @@ export class ProductItem extends ViewPU {
     }
     initialRender() {
         this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Row.create();
-            Row.width('100%');
-            Row.padding(10);
-            Row.backgroundColor(Color.White);
-            Row.borderRadius(10);
-            Row.margin({ bottom: 8 });
-        }, Row);
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            // Ensure 'product_image_placeholder' exists in 'entry/src/main/resources/base/media/'
-            Image.create({ "id": 16777246, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" });
-            // Ensure 'product_image_placeholder' exists in 'entry/src/main/resources/base/media/'
-            Image.width(80);
-            // Ensure 'product_image_placeholder' exists in 'entry/src/main/resources/base/media/'
-            Image.height(80);
-            // Ensure 'product_image_placeholder' exists in 'entry/src/main/resources/base/media/'
-            Image.borderRadius(8);
-            // Ensure 'product_image_placeholder' exists in 'entry/src/main/resources/base/media/'
-            Image.margin({ right: 10 });
-        }, Image);
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
             Column.create();
+            Column.width('100%');
+            Column.backgroundColor(Color.White);
+            Column.borderRadius(10);
+            Column.margin({ bottom: 8, left: 12, right: 12 });
+            Column.shadow({ radius: 2, color: '#1A000000', offsetX: 0, offsetY: 1 });
         }, Column);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
+            // 商品图片
+            Image.create(this.product.imageUrl);
+            // 商品图片
+            Image.width('100%');
+            // 商品图片
+            Image.height(180);
+            // 商品图片
+            Image.borderRadius(8);
+            // 商品图片
+            Image.alt({ "id": 16777246, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" });
+        }, Image);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            // 商品信息区域
+            Column.create();
+            // 商品信息区域
+            Column.padding({ left: 8, right: 8, bottom: 8 });
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            // 商品名称
             Text.create(this.product.name);
+            // 商品名称
             Text.fontSize(16);
+            // 商品名称
             Text.fontWeight(FontWeight.Medium);
+            // 商品名称
+            Text.maxLines(2);
+            // 商品名称
+            Text.textOverflow({ overflow: TextOverflow.Ellipsis });
+            // 商品名称
+            Text.margin({ bottom: 4 });
         }, Text);
+        // 商品名称
         Text.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
+            // 商品描述
             Text.create(this.product.description);
+            // 商品描述
+            Text.fontSize(12);
+            // 商品描述
+            Text.fontColor(Color.Gray);
+            // 商品描述
+            Text.margin({ bottom: 8 });
+        }, Text);
+        // 商品描述
+        Text.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            // 评价和价格行
+            Row.create();
+            // 评价和价格行
+            Row.width('100%');
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create(`${this.product.ratingCount || 0}人评价 ${this.product.ratingPercentage || 0}%好评`);
             Text.fontSize(12);
             Text.fontColor(Color.Gray);
+            Text.layoutWeight(1);
         }, Text);
         Text.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
@@ -78,8 +110,11 @@ export class ProductItem extends ViewPU {
             Text.fontWeight(FontWeight.Bold);
         }, Text);
         Text.pop();
-        Column.pop();
+        // 评价和价格行
         Row.pop();
+        // 商品信息区域
+        Column.pop();
+        Column.pop();
     }
     rerender() {
         this.updateDirtyElements();

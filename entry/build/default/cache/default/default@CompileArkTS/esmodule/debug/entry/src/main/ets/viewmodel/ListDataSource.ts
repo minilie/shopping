@@ -6,6 +6,9 @@ export interface Product {
     description: string;
     price: number;
     imageUrl: string;
+    // 可以添加更多属性，例如评价数、好评率
+    ratingCount?: number;
+    ratingPercentage?: number;
 }
 // Data source that implements IDataSource for LazyForEach
 export class ProductListDataSource implements IDataSource {
@@ -21,14 +24,39 @@ export class ProductListDataSource implements IDataSource {
     }
     // Generates a larger pool of mock product data
     private generateAllInitialData() {
-        for (let i = 0; i < 100; i++) { // Generate 100 mock products
+        const productNames = [
+            "畅乐冰晶绿低脂新品",
+            "奶茶自然清新亲近自然",
+            "轻食沙拉活力均衡餐",
+            "阳光谷物能量棒",
+            "有机全麦面包醇香",
+            "新鲜水果每日优选",
+            "零卡气泡水多口味",
+            "坚果混合营养装"
+        ];
+        const productDescriptions = [
+            "重磅推荐，MD新品试用中！",
+            "口感丝滑，清新自然，健康优选！",
+            "轻体低卡，健康美味，享受无负担！",
+            "补充能量，随时随地，活力十足！",
+            "手工烘焙，麦香浓郁，健康早餐伴侣！",
+            "每日配送，新鲜采摘，膳食均衡之选！",
+            "清爽解渴，多种口味，畅饮无负担！",
+            "精选坚果，科学配比，健康零食！"
+        ];
+        const imageNames = ['goodsImg', 'goodsImg_2', 'goodsImg_3', 'goodsImg_4']; // 使用你已有的图片名称
+        for (let i = 0; i < 100; i++) {
+            const nameIndex = i % productNames.length;
+            const descIndex = i % productDescriptions.length;
+            const imageIndex = i % imageNames.length; // 循环使用图片
             this.allAvailableProducts.push({
                 id: this.nextProductId++,
-                name: `新品上市 - 产品 ${i + 1}`,
-                description: `这是产品 ${i + 1} 的详细描述。`,
-                price: 199.00 + (i * 0.5),
-                // Ensure this resource path is correct and the image exists
-                imageUrl: `$r('app.media.goodsImg')`,
+                name: `【新品上市】${productNames[nameIndex]}`,
+                description: productDescriptions[descIndex],
+                price: 180.00 + (i * 0.5),
+                imageUrl: `$r('app.media.${imageNames[imageIndex]}')`,
+                ratingCount: 6000 + (i * 10),
+                ratingPercentage: 90 + (i % 5), // 模拟好评率
             });
         }
         console.log(`Generated ${this.allAvailableProducts.length} total mock products.`);
