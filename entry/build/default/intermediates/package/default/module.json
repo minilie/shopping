@@ -43,9 +43,9 @@
 						"actions":	["action.system.home"]
 					}],
 				"descriptionId":	16777218,
-				"iconId":	16777245,
+				"iconId":	16777253,
 				"labelId":	16777219,
-				"startWindowIconId":	16777245,
+				"startWindowIconId":	16777253,
 				"startWindowBackgroundId":	16777241
 			}],
 		"packageName":	"entry",

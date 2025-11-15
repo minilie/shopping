@@ -1,84 +1,183 @@
-// entry/src/main/ets/viewmodel/ListDataSource.ets
-
-// Define the Product interface here or in a shared common file
 export interface Product {
   id: number;
   name: string;
   description: string;
   price: number;
-  imageUrl: string;
+  imageUrl: Resource;
   ratingCount?: number;
   ratingPercentage?: number;
 }
 
-// Data source that implements IDataSource for LazyForEach
+// Enum for categories to make code cleaner and prevent typos
+export enum ProductCategory {
+  FEATURED = 'Featured',
+  MOBILE = 'Mobile',
+  FASHION = 'Fashion',
+  WEAR = 'Wear',
+  HOME = 'Home',
+}
+
 export class ProductListDataSource implements IDataSource {
-  private products: Product[] = []; // The current data subset shown in UI
+  private products: Product[] = [];
   private dataChangeListener: DataChangeListener | undefined;
-  private allAvailableProducts: Product[] = []; // All products that can be loaded
-  private pageSize: number = 20; // Number of items to load per batch
+  private allAvailableProducts: Product[] = [];
+  private pageSize: number = 20;
   private currentLoadedCount: number = 0;
-  private nextProductId: number = 1; // Used for generating mock IDs
+  private nextProductId: number = 1;
 
-  public isLoadingMore: boolean = false; // Add state to prevent multiple load more calls
-  public hasMore: boolean = true; // Add state to indicate if there's more data to load
+  public isLoadingMore: boolean = false;
+  public hasMore: boolean = true;
+  private category: ProductCategory; // <--- Add category property
 
-  constructor() {
-    this.generateAllInitialData(); // Generate all possible data upfront
-    this.loadInitialData(); // Load the first batch for display
+  constructor(category: ProductCategory) { // <--- Accept category in constructor
+    this.category = category; // Store the category
+    this.generateAllInitialDataForCategory(this.category); // Call the new method
+    this.loadInitialData();
   }
 
-  // Generates a larger pool of mock product data
-  private generateAllInitialData() {
-    const productNames = [
-      "畅乐冰晶绿低脂新品",
-      "奶茶自然清新亲近自然",
-      "轻食沙拉活力均衡餐",
-      "阳光谷物能量棒",
-      "有机全麦面包醇香",
-      "新鲜水果每日优选",
-      "零卡气泡水多口味",
-      "坚果混合营养装"
-    ];
-    const productDescriptions = [
-      "重磅推荐，MD新品试用中！",
-      "口感丝滑，清新自然，健康优选！",
-      "轻体低卡，健康美味，享受无负担！",
-      "补充能量，随时随地，活力十足！",
-      "手工烘焙，麦香浓郁，健康早餐伴侣！",
-      "每日配送，新鲜采摘，膳食均衡之选！",
-      "清爽解渴，多种口味，畅饮无负担！",
-      "精选坚果，科学配比，健康零食！"
-    ];
-    const imageNames = ['goodsImg', 'goodsImg_2', 'goodsImg_3', 'goodsImg_4'];
+  // Modified to generate data based on category
+  private generateAllInitialDataForCategory(category: ProductCategory) {
+    let productNames: string[] = [];
+    let productDescriptions: string[] = [];
+    let imageResources: Resource[] = []; // Array of Resource objects
 
-    // For demonstration, let's create 200 products in total
+    // Define different content based on the category
+    switch (category) {
+      case ProductCategory.FEATURED:
+        productNames = [
+          "畅乐冰晶绿低脂新品",
+          "奶茶自然清新亲近自然",
+          "轻食沙拉活力均衡餐",
+          "阳光谷物能量棒",
+        ];
+        productDescriptions = [
+          "重磅推荐，MD新品试用中！",
+          "口感丝滑，清新自然，健康优选！",
+          "轻体低卡，健康美味，享受无负担！",
+          "补充能量，随时随地，活力十足！",
+        ];
+        imageResources = [
+          $r('app.media.goodsImg_2'),
+          $r('app.media.goodsImg_3'),
+          $r('app.media.goodsImg_4'),
+          $r('app.media.product_image_placeholder'),
+        ];
+        break;
+      case ProductCategory.MOBILE:
+        productNames = [
+          "旗舰智能手机XPro",
+          "超长续航商务手机",
+          "摄影大师级手机Max",
+          "入门级智能手机Lite",
+        ];
+        productDescriptions = [
+          "性能卓越，体验非凡，您的智能新选择！",
+          "一次充电，畅用两天，告别电量焦虑！",
+          "三摄系统，专业级成像，记录生活精彩瞬间！",
+          "价格实惠，功能全面，智能生活轻松开启！",
+        ];
+        imageResources = [
+          $r('app.media.mobile_phone_1'), // Assume you have these assets
+          $r('app.media.mobile_phone_2'),
+          $r('app.media.mobile_phone_3'),
+          $r('app.media.mobile_phone_4'),
+        ];
+        break;
+      case ProductCategory.FASHION:
+        productNames = [
+          "潮流休闲卫衣",
+          "时尚牛仔裤",
+          "优雅连衣裙",
+          "经典款风衣",
+        ];
+        productDescriptions = [
+          "秋冬必备，舒适百搭，街头潮人首选！",
+          "修身显瘦，多种款式，打造你的专属风格！",
+          "法式浪漫，质感面料，出席各种场合皆宜！",
+          "防风保暖，经典版型，永不过时的时尚单品！",
+        ];
+        imageResources = [
+          $r('app.media.fashion_item_1'), // Assume you have these assets
+          $r('app.media.fashion_item_2'),
+          $r('app.media.fashion_item_3'),
+          $r('app.media.fashion_item_4'),
+        ];
+        break;
+      case ProductCategory.WEAR:
+        productNames = [
+          "运动速干T恤",
+          "透气跑步鞋",
+          "智能运动手环",
+          "瑜伽健身套装",
+        ];
+        productDescriptions = [
+          "吸湿排汗，轻盈舒适，助你突破极限！",
+          "缓震防滑，包裹性强，享受畅快奔跑！",
+          "心率监测，睡眠分析，您的健康管家！",
+          "高弹透气，塑形美体，轻松打造完美身材！",
+        ];
+        imageResources = [
+          $r('app.media.wear_item_1'), // Assume you have these assets
+          $r('app.media.wear_item_2'),
+          $r('app.media.wear_item_3'),
+          $r('app.media.wear_item_4'),
+        ];
+        break;
+      case ProductCategory.HOME:
+        productNames = [
+          "智能扫地机器人",
+          "北欧简约咖啡桌",
+          "超声波香薰机",
+          "记忆棉枕头",
+        ];
+        productDescriptions = [
+          "解放双手，智能规划，洁净家居新体验！",
+          "实木打造，造型独特，点亮客厅新空间！",
+          "静音加湿，香气弥漫，营造舒适居家氛围！",
+          "人体工学设计，深度承托，享受整夜好眠！",
+        ];
+        imageResources = [
+          $r('app.media.home_item_1'), // Assume you have these assets
+          $r('app.media.home_item_2'),
+          $r('app.media.home_item_3'),
+          $r('app.media.home_item_4'),
+        ];
+        break;
+      default: // Fallback for any unknown category
+        productNames = ["默认商品"];
+        productDescriptions = ["默认描述"];
+        imageResources = [$r('app.media.product_image_placeholder')];
+        break;
+    }
+
+    // For demonstration, let's create 200 products in total for each category
+    // You might want a different total count per category or base it on available items.
     for (let i = 0; i < 200; i++) {
       const nameIndex = i % productNames.length;
       const descIndex = i % productDescriptions.length;
-      const imageIndex = i % imageNames.length;
+      const imageIndex = i % imageResources.length;
 
       this.allAvailableProducts.push({
         id: this.nextProductId++,
-        name: `【新品上市】${productNames[nameIndex]}`,
+        name: `【${this.category}】${productNames[nameIndex]}`, // Prefix with category for clarity
         description: productDescriptions[descIndex],
         price: 180.00 + (i * 0.5),
-        imageUrl: `$r('app.media.${imageNames[imageIndex]}')`,
+        imageUrl: imageResources[imageIndex],
         ratingCount: 6000 + (i * 10),
         ratingPercentage: 90 + (i % 5),
       });
     }
-    console.log(`Generated ${this.allAvailableProducts.length} total mock products.`);
+    console.log(`Generated ${this.allAvailableProducts.length} total mock products for ${category}.`);
   }
 
   private loadInitialData() {
-    this.products = []; // Clear existing products
+    this.products = [];
     this.currentLoadedCount = 0;
-    this.hasMore = true; // Assume there's more data initially
+    this.hasMore = true;
     const initialBatch = this.allAvailableProducts.slice(0, this.pageSize);
     this.products.push(...initialBatch);
     this.currentLoadedCount = this.products.length;
-    console.log(`Loaded initial ${this.products.length} products.`);
+    console.log(`Loaded initial ${this.products.length} products for ${this.category}.`);
     if (this.dataChangeListener) {
       this.dataChangeListener.onDataReloaded();
     }

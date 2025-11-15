@@ -11,7 +11,7 @@ interface ProductListPage_Params {
     homeDataSource?: ProductListDataSource;
 }
 import { ProductItem } from "@bundle:com.example.list_harmony/entry/ets/view/GoodsListComponent";
-import { ProductListDataSource } from "@bundle:com.example.list_harmony/entry/ets/viewmodel/ListDataSource";
+import { ProductListDataSource, ProductCategory } from "@bundle:com.example.list_harmony/entry/ets/viewmodel/ListDataSource";
 import type { Product } from "@bundle:com.example.list_harmony/entry/ets/viewmodel/ListDataSource";
 import { RefreshLayout } from "@bundle:com.example.list_harmony/entry/ets/view/RefreshLayout";
 class ProductListPage extends ViewPU {
@@ -22,11 +22,11 @@ class ProductListPage extends ViewPU {
         }
         this.__selectedTabIndex = new ObservedPropertySimplePU(0, this, "selectedTabIndex");
         this.tabsController = new TabsController();
-        this.featuredDataSource = new ProductListDataSource();
-        this.mobileDataSource = new ProductListDataSource();
-        this.fashionDataSource = new ProductListDataSource();
-        this.wearDataSource = new ProductListDataSource();
-        this.homeDataSource = new ProductListDataSource();
+        this.featuredDataSource = new ProductListDataSource(ProductCategory.FEATURED);
+        this.mobileDataSource = new ProductListDataSource(ProductCategory.MOBILE);
+        this.fashionDataSource = new ProductListDataSource(ProductCategory.FASHION);
+        this.wearDataSource = new ProductListDataSource(ProductCategory.WEAR);
+        this.homeDataSource = new ProductListDataSource(ProductCategory.HOME);
         this.setInitiallyProvidedValue(params);
         this.finalizeConstruction();
     }
@@ -73,8 +73,7 @@ class ProductListPage extends ViewPU {
     private tabsController: TabsController;
     // 不需要在这里声明scroller，RefreshLayout内部会创建并管理
     // private scroller: Scroller = new Scroller(); // 移除这行
-    // 为每个Tab创建一个独立的DataSource实例，以管理各自的数据状态
-    // 这里需要使用 'new' 关键字初始化
+    // Initialize each DataSource with its specific category
     private featuredDataSource: ProductListDataSource;
     private mobileDataSource: ProductListDataSource;
     private fashionDataSource: ProductListDataSource;
@@ -197,7 +196,7 @@ class ProductListPage extends ViewPU {
                                             {
                                                 this.observeComponentCreation2((elmtId, isInitialRender) => {
                                                     if (isInitialRender) {
-                                                        let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 113, col: 15 });
+                                                        let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 112, col: 15 });
                                                         ViewPU.create(componentCall);
                                                         let paramsLambda = () => {
                                                             return {
@@ -247,7 +246,7 @@ class ProductListPage extends ViewPU {
                             If.pop();
                             Column.pop();
                         }
-                    }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 106, col: 5 });
+                    }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 105, col: 5 });
                     ViewPU.create(componentCall);
                     let paramsLambda = () => {
                         return {
@@ -282,7 +281,7 @@ class ProductListPage extends ViewPU {
                                                 {
                                                     this.observeComponentCreation2((elmtId, isInitialRender) => {
                                                         if (isInitialRender) {
-                                                            let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 113, col: 15 });
+                                                            let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 112, col: 15 });
                                                             ViewPU.create(componentCall);
                                                             let paramsLambda = () => {
                                                                 return {

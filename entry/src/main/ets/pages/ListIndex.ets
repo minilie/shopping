@@ -1,6 +1,6 @@
 // entry/src/main/ets/pages/ListIndex.ets
 import { ProductItem } from '../view/GoodsListComponent';
-import { Product, ProductListDataSource } from '../viewmodel/ListDataSource';
+import { Product, ProductListDataSource, ProductCategory } from '../viewmodel/ListDataSource';
 import { RefreshLayout } from '../view/RefreshLayout'; // 引入新的 RefreshLayout 组件
 
 @Entry
@@ -11,13 +11,12 @@ struct ProductListPage {
   // 不需要在这里声明scroller，RefreshLayout内部会创建并管理
   // private scroller: Scroller = new Scroller(); // 移除这行
 
-  // 为每个Tab创建一个独立的DataSource实例，以管理各自的数据状态
-  // 这里需要使用 'new' 关键字初始化
-  private featuredDataSource: ProductListDataSource = new ProductListDataSource();
-  private mobileDataSource: ProductListDataSource = new ProductListDataSource();
-  private fashionDataSource: ProductListDataSource = new ProductListDataSource();
-  private wearDataSource: ProductListDataSource = new ProductListDataSource();
-  private homeDataSource: ProductListDataSource = new ProductListDataSource();
+  // Initialize each DataSource with its specific category
+  private featuredDataSource: ProductListDataSource = new ProductListDataSource(ProductCategory.FEATURED);
+  private mobileDataSource: ProductListDataSource = new ProductListDataSource(ProductCategory.MOBILE);
+  private fashionDataSource: ProductListDataSource = new ProductListDataSource(ProductCategory.FASHION);
+  private wearDataSource: ProductListDataSource = new ProductListDataSource(ProductCategory.WEAR);
+  private homeDataSource: ProductListDataSource = new ProductListDataSource(ProductCategory.HOME);
 
 
   // 根据当前选中的Tab返回对应的DataSource

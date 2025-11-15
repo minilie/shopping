@@ -105,31 +105,95 @@
 			"id":	"0x01000019"
 		}, {
 			"type":	"media",
-			"name":	"goodsImg_2",
+			"name":	"fashion_item_1",
 			"id":	"0x0100001A"
 		}, {
 			"type":	"media",
-			"name":	"goodsImg_3",
+			"name":	"fashion_item_2",
 			"id":	"0x0100001B"
 		}, {
 			"type":	"media",
-			"name":	"goodsImg_4",
+			"name":	"fashion_item_3",
 			"id":	"0x0100001C"
 		}, {
 			"type":	"media",
-			"name":	"icon",
+			"name":	"fashion_item_4",
 			"id":	"0x0100001D"
 		}, {
 			"type":	"media",
-			"name":	"product_image_placeholder",
+			"name":	"goodsImg_2",
 			"id":	"0x0100001E"
 		}, {
 			"type":	"media",
-			"name":	"refreshing",
+			"name":	"goodsImg_3",
 			"id":	"0x0100001F"
+		}, {
+			"type":	"media",
+			"name":	"goodsImg_4",
+			"id":	"0x01000020"
+		}, {
+			"type":	"media",
+			"name":	"home_item_1",
+			"id":	"0x01000021"
+		}, {
+			"type":	"media",
+			"name":	"home_item_2",
+			"id":	"0x01000022"
+		}, {
+			"type":	"media",
+			"name":	"home_item_3",
+			"id":	"0x01000023"
+		}, {
+			"type":	"media",
+			"name":	"home_item_4",
+			"id":	"0x01000024"
+		}, {
+			"type":	"media",
+			"name":	"icon",
+			"id":	"0x01000025"
+		}, {
+			"type":	"media",
+			"name":	"mobile_phone_1",
+			"id":	"0x01000026"
+		}, {
+			"type":	"media",
+			"name":	"mobile_phone_2",
+			"id":	"0x01000027"
+		}, {
+			"type":	"media",
+			"name":	"mobile_phone_3",
+			"id":	"0x01000028"
+		}, {
+			"type":	"media",
+			"name":	"mobile_phone_4",
+			"id":	"0x01000029"
+		}, {
+			"type":	"media",
+			"name":	"product_image_placeholder",
+			"id":	"0x0100002A"
+		}, {
+			"type":	"media",
+			"name":	"refreshing",
+			"id":	"0x0100002B"
+		}, {
+			"type":	"media",
+			"name":	"wear_item_1",
+			"id":	"0x0100002C"
+		}, {
+			"type":	"media",
+			"name":	"wear_item_2",
+			"id":	"0x0100002D"
+		}, {
+			"type":	"media",
+			"name":	"wear_item_3",
+			"id":	"0x0100002E"
+		}, {
+			"type":	"media",
+			"name":	"wear_item_4",
+			"id":	"0x0100002F"
 		}, {
 			"type":	"profile",
 			"name":	"main_pages",
-			"id":	"0x01000020"
+			"id":	"0x01000030"
 		}]
 }
