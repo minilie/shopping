@@ -18,6 +18,13 @@ struct ProductListPage {
   private wearDataSource: ProductListDataSource = new ProductListDataSource(ProductCategory.WEAR);
   private homeDataSource: ProductListDataSource = new ProductListDataSource(ProductCategory.HOME);
 
+  // State for search bar
+  @State private searchText: string = '';
+  @State private isSearching: boolean = false; // To toggle search input visibility
+
+  // State for scroll-to-top button
+  @State private showScrollToTop: boolean = false;
+  private scroller: Scroller = new Scroller(); // Scroller for "Back to Top"
 
   // 根据当前选中的Tab返回对应的DataSource
   private get currentDataSource(): ProductListDataSource {
@@ -94,7 +101,8 @@ struct ProductListPage {
     }
     .title("商城") // Navigation的标题
     .titleMode(NavigationTitleMode.Mini) // 小标题模式
-    .backgroundColor(Color.White)
+
+    .backgroundColor(Color.Brown)
   }
 
   // 辅助方法，用于构建商品列表内容，包含下拉刷新和懒加载
@@ -105,37 +113,64 @@ struct ProductListPage {
     RefreshLayout({
       dataSource: dataSource // 传递DataSource实例
     }) {
-      Column() { // 使用Column包裹List，以便在底部添加“到底了”提示
-        List() {
-          LazyForEach(dataSource, (item: Product) => {
-            ListItem() {
-              ProductItem({ product: item })
-            }
-          }, (item: Product) => item.id.toString())
+      if (dataSource.totalCount() === 0 && !dataSource.isLoadingMore) {
+        Column() {
+          Image($r('app.media.empty_box_icon')) // You'd need an 'empty_box_icon' asset
+            .width(80).height(80)
+            .margin({ bottom: 16 })
+          Text('哎呀，这里还没有商品哦')
+            .fontSize(16)
+            .fontColor(Color.Gray)
         }
         .width('100%')
-        .layoutWeight(1)
-        // LazyForEach 内部的 onScrollIndex 可以用来辅助触发懒加载，但主要逻辑在RefreshLayout的onScroll中
-        .onScrollIndex((first: number, last: number) => {
-          if (last >= dataSource.totalCount() - 6 && dataSource.totalCount() > 0 && !dataSource.isLoadingMore && dataSource.hasMore) {
-            console.log('LazyForEach triggered load more via onScrollIndex');
-            dataSource.loadMore();
+        .height('100%')
+        .justifyContent(FlexAlign.Center)
+        .alignItems(HorizontalAlign.Center)
+      } else {
+        Column() { // 使用Column包裹List，以便在底部添加"到底了"提示
+          List() {
+            LazyForEach(dataSource, (item: Product) => {
+              ListItem() {
+                ProductItem({ product: item })
+              }
+            }, (item: Product) => item.id.toString())
           }
-        }); // 添加分号以明确终止语句
+          .width('100%')
+          .layoutWeight(1)
+          // LazyForEach 内部的 onScrollIndex 可以用来辅助触发懒加载，但主要逻辑在RefreshLayout的onScroll中
+          .onScrollIndex((first: number, last: number) => {
+            if (last >= dataSource.totalCount() - 6 && dataSource.totalCount() > 0 && !dataSource.isLoadingMore &&
+            dataSource.hasMore) {
+              console.log('LazyForEach triggered load more via onScrollIndex');
+              dataSource.loadMore();
+            }
+          })
 
-        // 到底提示
-        if (dataSource.totalCount() > 0 && !dataSource.hasMore) {
-          Text('已经到底了')
-            .fontSize(14)
-            .fontColor(Color.Gray)
-            .textAlign(TextAlign.Center)
+          // Loading more indicator
+          if (dataSource.isLoadingMore) {
+            Column() {
+              LoadingProgress()
+                .width(30).height(30)
+                .margin({ top: 10, bottom: 20 })
+            }
             .width('100%')
-            .padding(10)
+            .justifyContent(FlexAlign.Center)
+          }
+
+          // 到底提示
+          if (dataSource.totalCount() > 0 && !dataSource.hasMore && !dataSource.isLoadingMore) {
+            Text('已经到底了')
+              .fontSize(14)
+              .fontColor(Color.Gray)
+              .textAlign(TextAlign.Center)
+              .width('100%')
+              .padding(10)
+          }
         }
+        .width('100%')
+        .height('100%') // Column的高度需要设置，以便List可以填充
       }
-      .width('100%')
-      .height('100%') // Column的高度需要设置，以便List可以填充
+      //.height('100%') // RefreshLayout的高度需要设置 (uncommented to fix potential layout crashes)
     }
-    //.height('100%') // RefreshLayout的高度需要设置 (uncommented to fix potential layout crashes)
   }
 }

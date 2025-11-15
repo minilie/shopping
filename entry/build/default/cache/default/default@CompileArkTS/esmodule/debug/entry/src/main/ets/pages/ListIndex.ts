@@ -9,6 +9,10 @@ interface ProductListPage_Params {
     fashionDataSource?: ProductListDataSource;
     wearDataSource?: ProductListDataSource;
     homeDataSource?: ProductListDataSource;
+    searchText?: string;
+    isSearching?: boolean;
+    showScrollToTop?: boolean;
+    scroller?: Scroller;
 }
 import { ProductItem } from "@bundle:com.example.list_harmony/entry/ets/view/GoodsListComponent";
 import { ProductListDataSource, ProductCategory } from "@bundle:com.example.list_harmony/entry/ets/viewmodel/ListDataSource";
@@ -27,6 +31,10 @@ class ProductListPage extends ViewPU {
         this.fashionDataSource = new ProductListDataSource(ProductCategory.FASHION);
         this.wearDataSource = new ProductListDataSource(ProductCategory.WEAR);
         this.homeDataSource = new ProductListDataSource(ProductCategory.HOME);
+        this.__searchText = new ObservedPropertySimplePU('', this, "searchText");
+        this.__isSearching = new ObservedPropertySimplePU(false, this, "isSearching");
+        this.__showScrollToTop = new ObservedPropertySimplePU(false, this, "showScrollToTop");
+        this.scroller = new Scroller();
         this.setInitiallyProvidedValue(params);
         this.finalizeConstruction();
     }
@@ -52,14 +60,32 @@ class ProductListPage extends ViewPU {
         if (params.homeDataSource !== undefined) {
             this.homeDataSource = params.homeDataSource;
         }
+        if (params.searchText !== undefined) {
+            this.searchText = params.searchText;
+        }
+        if (params.isSearching !== undefined) {
+            this.isSearching = params.isSearching;
+        }
+        if (params.showScrollToTop !== undefined) {
+            this.showScrollToTop = params.showScrollToTop;
+        }
+        if (params.scroller !== undefined) {
+            this.scroller = params.scroller;
+        }
     }
     updateStateVars(params: ProductListPage_Params) {
     }
     purgeVariableDependenciesOnElmtId(rmElmtId) {
         this.__selectedTabIndex.purgeDependencyOnElmtId(rmElmtId);
+        this.__searchText.purgeDependencyOnElmtId(rmElmtId);
+        this.__isSearching.purgeDependencyOnElmtId(rmElmtId);
+        this.__showScrollToTop.purgeDependencyOnElmtId(rmElmtId);
     }
     aboutToBeDeleted() {
         this.__selectedTabIndex.aboutToBeDeleted();
+        this.__searchText.aboutToBeDeleted();
+        this.__isSearching.aboutToBeDeleted();
+        this.__showScrollToTop.aboutToBeDeleted();
         SubscriberManager.Get().delete(this.id__());
         this.aboutToBeDeletedInternal();
     }
@@ -79,12 +105,36 @@ class ProductListPage extends ViewPU {
     private fashionDataSource: ProductListDataSource;
     private wearDataSource: ProductListDataSource;
     private homeDataSource: ProductListDataSource;
+    // State for search bar
+    private __searchText: ObservedPropertySimplePU<string>;
+    get searchText() {
+        return this.__searchText.get();
+    }
+    set searchText(newValue: string) {
+        this.__searchText.set(newValue);
+    }
+    private __isSearching: ObservedPropertySimplePU<boolean>; // To toggle search input visibility
+    get isSearching() {
+        return this.__isSearching.get();
+    }
+    set isSearching(newValue: boolean) {
+        this.__isSearching.set(newValue);
+    }
+    // State for scroll-to-top button
+    private __showScrollToTop: ObservedPropertySimplePU<boolean>;
+    get showScrollToTop() {
+        return this.__showScrollToTop.get();
+    }
+    set showScrollToTop(newValue: boolean) {
+        this.__showScrollToTop.set(newValue);
+    }
+    private scroller: Scroller; // Scroller for "Back to Top"
     initialRender() {
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Navigation.create(new NavPathStack(), { moduleName: "entry", pagePath: "entry/src/main/ets/pages/ListIndex", isUserCreateStack: false });
             Navigation.title("商城");
             Navigation.titleMode(NavigationTitleMode.Mini);
-            Navigation.backgroundColor(Color.White);
+            Navigation.backgroundColor(Color.Brown);
         }, Navigation);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Column.create();
@@ -169,84 +219,143 @@ class ProductListPage extends ViewPU {
                         ,
                         content: () => {
                             this.observeComponentCreation2((elmtId, isInitialRender) => {
-                                Column.create();
-                                Column.width('100%');
-                                Column.height('100%');
-                            }, Column);
-                            this.observeComponentCreation2((elmtId, isInitialRender) => {
-                                List.create();
-                                List.width('100%');
-                                List.layoutWeight(1);
-                                List.onScrollIndex((first: number, last: number) => {
-                                    if (last >= dataSource.totalCount() - 6 && dataSource.totalCount() > 0 && !dataSource.isLoadingMore && dataSource.hasMore) {
-                                        console.log('LazyForEach triggered load more via onScrollIndex');
-                                        dataSource.loadMore();
-                                    }
-                                });
-                            }, List);
-                            {
-                                const __lazyForEachItemGenFunction = _item => {
-                                    const item = _item;
-                                    {
-                                        const itemCreation2 = (elmtId, isInitialRender) => {
-                                            ListItem.create(() => { }, false);
-                                        };
-                                        const observedDeepRender = () => {
-                                            this.observeComponentCreation2(itemCreation2, ListItem);
-                                            {
-                                                this.observeComponentCreation2((elmtId, isInitialRender) => {
-                                                    if (isInitialRender) {
-                                                        let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 112, col: 15 });
-                                                        ViewPU.create(componentCall);
-                                                        let paramsLambda = () => {
-                                                            return {
-                                                                product: item
-                                                            };
-                                                        };
-                                                        componentCall.paramsGenerator_ = paramsLambda;
-                                                    }
-                                                    else {
-                                                        this.updateStateVarsOfChildByElmtId(elmtId, {
-                                                            product: item
-                                                        });
-                                                    }
-                                                }, { name: "ProductItem" });
-                                            }
-                                            ListItem.pop();
-                                        };
-                                        observedDeepRender();
-                                    }
-                                };
-                                const __lazyForEachItemIdFunc = (item: Product) => item.id.toString();
-                                LazyForEach.create("1", this, dataSource, __lazyForEachItemGenFunction, __lazyForEachItemIdFunc);
-                                LazyForEach.pop();
-                            }
-                            List.pop();
-                            this.observeComponentCreation2((elmtId, isInitialRender) => {
                                 If.create();
-                                // 到底提示
-                                if (dataSource.totalCount() > 0 && !dataSource.hasMore) {
+                                if (dataSource.totalCount() === 0 && !dataSource.isLoadingMore) {
                                     this.ifElseBranchUpdateFunction(0, () => {
                                         this.observeComponentCreation2((elmtId, isInitialRender) => {
-                                            Text.create('已经到底了');
-                                            Text.fontSize(14);
+                                            Column.create();
+                                            Column.width('100%');
+                                            Column.height('100%');
+                                            Column.justifyContent(FlexAlign.Center);
+                                            Column.alignItems(HorizontalAlign.Center);
+                                        }, Column);
+                                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                            Image.create({ "id": 16777265, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" });
+                                            Image.width(80);
+                                            Image.height(80);
+                                            Image.margin({ bottom: 16 });
+                                        }, Image);
+                                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                            Text.create('哎呀，这里还没有商品哦');
+                                            Text.fontSize(16);
                                             Text.fontColor(Color.Gray);
-                                            Text.textAlign(TextAlign.Center);
-                                            Text.width('100%');
-                                            Text.padding(10);
                                         }, Text);
                                         Text.pop();
+                                        Column.pop();
                                     });
                                 }
                                 else {
                                     this.ifElseBranchUpdateFunction(1, () => {
+                                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                            Column.create();
+                                            Column.width('100%');
+                                            Column.height('100%');
+                                        }, Column);
+                                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                            List.create();
+                                            List.width('100%');
+                                            List.layoutWeight(1);
+                                            List.onScrollIndex((first: number, last: number) => {
+                                                if (last >= dataSource.totalCount() - 6 && dataSource.totalCount() > 0 && !dataSource.isLoadingMore &&
+                                                    dataSource.hasMore) {
+                                                    console.log('LazyForEach triggered load more via onScrollIndex');
+                                                    dataSource.loadMore();
+                                                }
+                                            });
+                                        }, List);
+                                        {
+                                            const __lazyForEachItemGenFunction = _item => {
+                                                const item = _item;
+                                                {
+                                                    const itemCreation2 = (elmtId, isInitialRender) => {
+                                                        ListItem.create(() => { }, false);
+                                                    };
+                                                    const observedDeepRender = () => {
+                                                        this.observeComponentCreation2(itemCreation2, ListItem);
+                                                        {
+                                                            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                                if (isInitialRender) {
+                                                                    let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 134, col: 17 });
+                                                                    ViewPU.create(componentCall);
+                                                                    let paramsLambda = () => {
+                                                                        return {
+                                                                            product: item
+                                                                        };
+                                                                    };
+                                                                    componentCall.paramsGenerator_ = paramsLambda;
+                                                                }
+                                                                else {
+                                                                    this.updateStateVarsOfChildByElmtId(elmtId, {
+                                                                        product: item
+                                                                    });
+                                                                }
+                                                            }, { name: "ProductItem" });
+                                                        }
+                                                        ListItem.pop();
+                                                    };
+                                                    observedDeepRender();
+                                                }
+                                            };
+                                            const __lazyForEachItemIdFunc = (item: Product) => item.id.toString();
+                                            LazyForEach.create("1", this, dataSource, __lazyForEachItemGenFunction, __lazyForEachItemIdFunc);
+                                            LazyForEach.pop();
+                                        }
+                                        List.pop();
+                                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                            If.create();
+                                            // Loading more indicator
+                                            if (dataSource.isLoadingMore) {
+                                                this.ifElseBranchUpdateFunction(0, () => {
+                                                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                        Column.create();
+                                                        Column.width('100%');
+                                                        Column.justifyContent(FlexAlign.Center);
+                                                    }, Column);
+                                                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                        LoadingProgress.create();
+                                                        LoadingProgress.width(30);
+                                                        LoadingProgress.height(30);
+                                                        LoadingProgress.margin({ top: 10, bottom: 20 });
+                                                    }, LoadingProgress);
+                                                    Column.pop();
+                                                });
+                                            }
+                                            // 到底提示
+                                            else {
+                                                this.ifElseBranchUpdateFunction(1, () => {
+                                                });
+                                            }
+                                        }, If);
+                                        If.pop();
+                                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                            If.create();
+                                            // 到底提示
+                                            if (dataSource.totalCount() > 0 && !dataSource.hasMore && !dataSource.isLoadingMore) {
+                                                this.ifElseBranchUpdateFunction(0, () => {
+                                                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                        Text.create('已经到底了');
+                                                        Text.fontSize(14);
+                                                        Text.fontColor(Color.Gray);
+                                                        Text.textAlign(TextAlign.Center);
+                                                        Text.width('100%');
+                                                        Text.padding(10);
+                                                    }, Text);
+                                                    Text.pop();
+                                                });
+                                            }
+                                            else {
+                                                this.ifElseBranchUpdateFunction(1, () => {
+                                                });
+                                            }
+                                        }, If);
+                                        If.pop();
+                                        Column.pop();
                                     });
                                 }
                             }, If);
                             If.pop();
-                            Column.pop();
                         }
-                    }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 105, col: 5 });
+                    }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 113, col: 5 });
                     ViewPU.create(componentCall);
                     let paramsLambda = () => {
                         return {
@@ -254,82 +363,141 @@ class ProductListPage extends ViewPU {
                             ,
                             content: () => {
                                 this.observeComponentCreation2((elmtId, isInitialRender) => {
-                                    Column.create();
-                                    Column.width('100%');
-                                    Column.height('100%');
-                                }, Column);
-                                this.observeComponentCreation2((elmtId, isInitialRender) => {
-                                    List.create();
-                                    List.width('100%');
-                                    List.layoutWeight(1);
-                                    List.onScrollIndex((first: number, last: number) => {
-                                        if (last >= dataSource.totalCount() - 6 && dataSource.totalCount() > 0 && !dataSource.isLoadingMore && dataSource.hasMore) {
-                                            console.log('LazyForEach triggered load more via onScrollIndex');
-                                            dataSource.loadMore();
-                                        }
-                                    });
-                                }, List);
-                                {
-                                    const __lazyForEachItemGenFunction = _item => {
-                                        const item = _item;
-                                        {
-                                            const itemCreation2 = (elmtId, isInitialRender) => {
-                                                ListItem.create(() => { }, false);
-                                            };
-                                            const observedDeepRender = () => {
-                                                this.observeComponentCreation2(itemCreation2, ListItem);
-                                                {
-                                                    this.observeComponentCreation2((elmtId, isInitialRender) => {
-                                                        if (isInitialRender) {
-                                                            let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 112, col: 15 });
-                                                            ViewPU.create(componentCall);
-                                                            let paramsLambda = () => {
-                                                                return {
-                                                                    product: item
-                                                                };
-                                                            };
-                                                            componentCall.paramsGenerator_ = paramsLambda;
-                                                        }
-                                                        else {
-                                                            this.updateStateVarsOfChildByElmtId(elmtId, {
-                                                                product: item
-                                                            });
-                                                        }
-                                                    }, { name: "ProductItem" });
-                                                }
-                                                ListItem.pop();
-                                            };
-                                            observedDeepRender();
-                                        }
-                                    };
-                                    const __lazyForEachItemIdFunc = (item: Product) => item.id.toString();
-                                    LazyForEach.create("1", this, dataSource, __lazyForEachItemGenFunction, __lazyForEachItemIdFunc);
-                                    LazyForEach.pop();
-                                }
-                                List.pop();
-                                this.observeComponentCreation2((elmtId, isInitialRender) => {
                                     If.create();
-                                    // 到底提示
-                                    if (dataSource.totalCount() > 0 && !dataSource.hasMore) {
+                                    if (dataSource.totalCount() === 0 && !dataSource.isLoadingMore) {
                                         this.ifElseBranchUpdateFunction(0, () => {
                                             this.observeComponentCreation2((elmtId, isInitialRender) => {
-                                                Text.create('已经到底了');
-                                                Text.fontSize(14);
+                                                Column.create();
+                                                Column.width('100%');
+                                                Column.height('100%');
+                                                Column.justifyContent(FlexAlign.Center);
+                                                Column.alignItems(HorizontalAlign.Center);
+                                            }, Column);
+                                            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                Image.create({ "id": 16777265, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" });
+                                                Image.width(80);
+                                                Image.height(80);
+                                                Image.margin({ bottom: 16 });
+                                            }, Image);
+                                            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                Text.create('哎呀，这里还没有商品哦');
+                                                Text.fontSize(16);
                                                 Text.fontColor(Color.Gray);
-                                                Text.textAlign(TextAlign.Center);
-                                                Text.width('100%');
-                                                Text.padding(10);
                                             }, Text);
                                             Text.pop();
+                                            Column.pop();
                                         });
                                     }
                                     else {
                                         this.ifElseBranchUpdateFunction(1, () => {
+                                            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                Column.create();
+                                                Column.width('100%');
+                                                Column.height('100%');
+                                            }, Column);
+                                            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                List.create();
+                                                List.width('100%');
+                                                List.layoutWeight(1);
+                                                List.onScrollIndex((first: number, last: number) => {
+                                                    if (last >= dataSource.totalCount() - 6 && dataSource.totalCount() > 0 && !dataSource.isLoadingMore &&
+                                                        dataSource.hasMore) {
+                                                        console.log('LazyForEach triggered load more via onScrollIndex');
+                                                        dataSource.loadMore();
+                                                    }
+                                                });
+                                            }, List);
+                                            {
+                                                const __lazyForEachItemGenFunction = _item => {
+                                                    const item = _item;
+                                                    {
+                                                        const itemCreation2 = (elmtId, isInitialRender) => {
+                                                            ListItem.create(() => { }, false);
+                                                        };
+                                                        const observedDeepRender = () => {
+                                                            this.observeComponentCreation2(itemCreation2, ListItem);
+                                                            {
+                                                                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                                    if (isInitialRender) {
+                                                                        let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 134, col: 17 });
+                                                                        ViewPU.create(componentCall);
+                                                                        let paramsLambda = () => {
+                                                                            return {
+                                                                                product: item
+                                                                            };
+                                                                        };
+                                                                        componentCall.paramsGenerator_ = paramsLambda;
+                                                                    }
+                                                                    else {
+                                                                        this.updateStateVarsOfChildByElmtId(elmtId, {
+                                                                            product: item
+                                                                        });
+                                                                    }
+                                                                }, { name: "ProductItem" });
+                                                            }
+                                                            ListItem.pop();
+                                                        };
+                                                        observedDeepRender();
+                                                    }
+                                                };
+                                                const __lazyForEachItemIdFunc = (item: Product) => item.id.toString();
+                                                LazyForEach.create("1", this, dataSource, __lazyForEachItemGenFunction, __lazyForEachItemIdFunc);
+                                                LazyForEach.pop();
+                                            }
+                                            List.pop();
+                                            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                If.create();
+                                                // Loading more indicator
+                                                if (dataSource.isLoadingMore) {
+                                                    this.ifElseBranchUpdateFunction(0, () => {
+                                                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                            Column.create();
+                                                            Column.width('100%');
+                                                            Column.justifyContent(FlexAlign.Center);
+                                                        }, Column);
+                                                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                            LoadingProgress.create();
+                                                            LoadingProgress.width(30);
+                                                            LoadingProgress.height(30);
+                                                            LoadingProgress.margin({ top: 10, bottom: 20 });
+                                                        }, LoadingProgress);
+                                                        Column.pop();
+                                                    });
+                                                }
+                                                // 到底提示
+                                                else {
+                                                    this.ifElseBranchUpdateFunction(1, () => {
+                                                    });
+                                                }
+                                            }, If);
+                                            If.pop();
+                                            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                If.create();
+                                                // 到底提示
+                                                if (dataSource.totalCount() > 0 && !dataSource.hasMore && !dataSource.isLoadingMore) {
+                                                    this.ifElseBranchUpdateFunction(0, () => {
+                                                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                                            Text.create('已经到底了');
+                                                            Text.fontSize(14);
+                                                            Text.fontColor(Color.Gray);
+                                                            Text.textAlign(TextAlign.Center);
+                                                            Text.width('100%');
+                                                            Text.padding(10);
+                                                        }, Text);
+                                                        Text.pop();
+                                                    });
+                                                }
+                                                else {
+                                                    this.ifElseBranchUpdateFunction(1, () => {
+                                                    });
+                                                }
+                                            }, If);
+                                            If.pop();
+                                            Column.pop();
                                         });
                                     }
                                 }, If);
                                 If.pop();
-                                Column.pop();
                             }
                         };
                     };

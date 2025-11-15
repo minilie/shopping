@@ -195,5 +195,13 @@
 			"type":	"profile",
 			"name":	"main_pages",
 			"id":	"0x01000030"
+		}, {
+			"type":	"media",
+			"name":	"empty_box_icon",
+			"id":	"0x01000031"
+		}, {
+			"type":	"media",
+			"name":	"search_icon",
+			"id":	"0x01000032"
 		}]
 }

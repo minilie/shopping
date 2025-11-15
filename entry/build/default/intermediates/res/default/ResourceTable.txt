@@ -24,6 +24,7 @@ color gray 0x01000017
 color primaryBgColor 0x01000018
 color white 0x01000019
 media app_icon 0x01000001
+media empty_box_icon 0x01000031
 media fashion_item_1 0x0100001a
 media fashion_item_2 0x0100001b
 media fashion_item_3 0x0100001c
@@ -42,6 +43,7 @@ media mobile_phone_3 0x01000028
 media mobile_phone_4 0x01000029
 media product_image_placeholder 0x0100002a
 media refreshing 0x0100002b
+media search_icon 0x01000032
 media wear_item_1 0x0100002c
 media wear_item_2 0x0100002d
 media wear_item_3 0x0100002e
