@@ -1,0 +1,80 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "List"
+    },
+    {
+      "name": "selected",
+      "value": "Choice"
+    },
+    {
+      "name": "mobile_phone",
+      "value": "Cellphone"
+    },
+    {
+      "name": "clothes",
+      "value": "Costume"
+    },
+    {
+      "name": "wear",
+      "value": "Wear"
+    },
+    {
+      "name": "home_furnishing",
+      "value": "Home"
+    },
+    {
+      "name": "goodsName",
+      "value": "【New Arrival】Changle ice crystal green low-fat new products"
+    },
+    {
+      "name": "another_goodsName",
+      "value": "【New Arrival】Milk tea is natural, fresh and close to nature"
+    },
+    {
+      "name": "advertising_language",
+      "value": "Heavy recommendation, MD new product trial!"
+    },
+    {
+      "name": "evaluate",
+      "value": "6,662 people rated it 95% positive"
+    },
+    {
+      "name": "price_199",
+      "value": "¥199"
+    },
+    {
+      "name": "price_265",
+      "value": "¥265"
+    },
+    {
+      "name": "price_810",
+      "value": "¥810"
+    },
+    {
+      "name": "price_999",
+      "value": "¥999"
+    },
+    {
+      "name": "to_bottom",
+      "value": "-- Have reached the end --"
+    },
+    {
+      "name": "refresh_text",
+      "value": "Refresh"
+    },
+    {
+      "name": "shopping_mall",
+      "value": "Shopping Mall"
+    }
+  ]
+}
