@@ -49,6 +49,16 @@
 						]
 					}
 				]
+			},
+			{
+				"name": "TestAbility",
+				"srcEntry": "./ets/testability/TestAbility.ets",
+				"description": "Test runner ability",
+				"icon": "$media:icon",
+				"label": "$string:EntryAbility_label",
+				"startWindowIcon": "$media:icon",
+				"startWindowBackground": "$color:white",
+				"exported": true
 			}
 		],
 		"packageName": "entry"

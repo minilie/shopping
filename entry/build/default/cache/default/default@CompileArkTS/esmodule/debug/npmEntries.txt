@@ -1,3 +1,5 @@
+pkg_modules/.ohpm/@ohos+hypium@1.0.24/pkg_modules/@ohos/hypium:pkg_modules/.ohpm/@ohos+hypium@1.0.24/pkg_modules/@ohos/hypium/index
+pkg_modules@entry/@ohos/hypium:pkg_modules/.ohpm/@ohos+hypium@1.0.24/pkg_modules/@ohos/hypium
 @system.app:@native.system.app
 @ohos.app:@native.ohos.app
 @system.router:@native.system.router

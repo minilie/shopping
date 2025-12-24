@@ -1,0 +1,782 @@
+Ôr@Ÿªassertions¤code´customTransformCache¬dependencies¢id¤meta±moduleSideEffects¬originalCode±originalSourcemap«resolvedIds®sourcemapChainµsyntheticNamedExportsµtransformDependencies®transformFiles¨cacheAstÔrAÚ.?/*
+ * Copyright (c) 2021-2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import Core from './src/main/core';
+import { DEFAULT, TestType, Size, Level, TAG, PrintTag } from './src/main/Constant';
+import DataDriver from './src/main/module/config/DataDriver';
+import ExpectExtend from './src/main/module/assert/ExpectExtend';
+import OhReport from './src/main/module/report/OhReport';
+import SysTestKit from './src/main/module/kit/SysTestKit';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, beforeItSpecified, afterItSpecified, xdescribe, xit } from './src/main/interface';
+import { MockKit, when } from './src/main/module/mock/MockKit';
+import ArgumentMatchers from './src/main/module/mock/ArgumentMatchers';
+import worker from '@ohos.worker';
+
+class Hypium {
+    static context = new Map();
+    static setData(data) {
+        const core = Core.getInstance();
+        const dataDriver = new DataDriver({ data });
+        core.addService('dataDriver', dataDriver);
+    }
+
+    static setTimeConfig(systemTime) {
+        SysTestKit.systemTime = systemTime;
+    }
+	
+    static set(key, value) {
+        Hypium.context.set(key, value);
+    }
+
+    static get(key) {
+        return Hypium.context.get(key);
+    }
+
+    static hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite) {
+        const core = Core.getInstance();
+        const expectExtend = new ExpectExtend({
+            'id': 'extend'
+        });
+        core.addService('expect', expectExtend);
+        const ohReport = new OhReport({
+            'delegator': abilityDelegator,
+            'abilityDelegatorArguments': abilityDelegatorArguments
+        });
+        SysTestKit.delegator = abilityDelegator;
+        core.addService('report', ohReport);
+        core.init();
+        core.subscribeEvent('spec', ohReport);
+        core.subscribeEvent('suite', ohReport);
+        core.subscribeEvent('task', ohReport);
+        const configService = core.getDefaultService('config');
+        if (abilityDelegatorArguments !== null) {
+            let testParameters = configService.translateParams(abilityDelegatorArguments.parameters);
+            console.info(`${TAG}parameters:${JSON.stringify(testParameters)}`);
+            configService.setConfig(testParameters);
+        }
+        testsuite();
+        core.execute(abilityDelegator);
+    }
+    static async hypiumInitWorkers(abilityDelegator, scriptURL, workerNum = 8, params) {
+        console.info(`${TAG}, hypiumInitWorkers call,${scriptURL}`);
+        let workerPromiseArray = [];
+
+        // å¼€å§‹ç»Ÿè®¡æ—¶é—´
+        let startTime = await SysTestKit.getRealTime();
+        for (let i = 0; i < workerNum; i++) {
+            // åˆ›å»ºworkerçº¿ç¨‹
+            const workerPromise = Hypium.createWorkerPromise(scriptURL, i, params);
+            workerPromiseArray.push(workerPromise);
+        }
+        const ret = {total: 0, failure: 0, error: 0, pass: 0, ignore: 0, duration: 0};
+        Promise.all(workerPromiseArray).then(async (items) => {
+            console.info(`${TAG}, all result from workers, ${JSON.stringify(items)}`);
+            let allItemList = new Array();
+            // ç»Ÿè®¡æ‰§è¡Œç»“æœ
+            Hypium.handleWorkerTestResult(ret, allItemList, items);
+            console.info(`${TAG}, all it result, ${JSON.stringify(allItemList)}`);
+            // ç»Ÿè®¡ç”¨ä¾‹æ‰§è¡Œç»“æœ
+            const retResult = {total: 0, failure: 0, error: 0, pass: 0, ignore: 0, duration: 0};
+            // æ ‡è®°ç”¨ä¾‹æ‰§è¡Œç»“æœ
+            Hypium.configWorkerItTestResult(retResult, allItemList);
+            // æ‰“å°ç”¨ä¾‹ç»“æœ
+            Hypium.printWorkerTestResult(abilityDelegator, allItemList);
+            // ç”¨ä¾‹æ‰§è¡Œå®Œæˆç»Ÿè®¡æ—¶é—´
+            let endTime = await SysTestKit.getRealTime();
+            const taskConsuming = endTime - startTime;
+            const message =
+                `\n${PrintTag.OHOS_REPORT_ALL_RESULT}: stream=Test run: runTimes: ${ret.total},total: ${retResult.total}, Failure: ${retResult.failure}, Error: ${retResult.error}, Pass: ${retResult.pass}, Ignore: ${retResult.ignore}` +
+                    `\n${PrintTag.OHOS_REPORT_ALL_CODE}: ${retResult.failure > 0 || retResult.error > 0 ? -1 : 0}` +
+                    `\n${PrintTag.OHOS_REPORT_ALL_STATUS}: taskconsuming=${taskConsuming > 0 ? taskConsuming : ret.duration}`;
+            abilityDelegator.printSync(message);
+            console.info(`${TAG}, [end] you worker test`);
+            abilityDelegator.finishTest('you worker test finished!!!', 0, () => {});
+        }).catch((e) => {
+            console.info(`${TAG}, [end] error you worker test, ${JSON.stringify(e)}`);
+            abilityDelegator.finishTest('you worker test error finished!!!', 0, () => {});
+        }).finally(() => {
+            console.info(`${TAG}, all promise finally end`);
+        });
+    }
+    // åˆ›å»ºworkerçº¿ç¨‹
+    static createWorkerPromise(scriptURL, i, params) {
+        console.info(`${TAG}, createWorkerPromiser, ${scriptURL}, ${i}`);
+        const workerPromise = new Promise((resolve, reject) => {
+            const workerInstance = new worker.ThreadWorker(scriptURL, {name: `worker_${i}`});
+            console.info(`${TAG}, send data to worker`);
+            // å‘é€æ•°æ®åˆ°workerçº¿ç¨‹ä¸­
+            workerInstance.postMessage(params);
+            workerInstance.onmessage = function (e) {
+                let currentThreadName = e.data?.currentThreadName;
+                console.info(`${TAG}, receview data from ${currentThreadName}, ${JSON.stringify(e.data)}`);
+                //
+                resolve(e.data?.summary);
+                console.info(`${TAG}, ${currentThreadName} finish`);
+                workerInstance.terminate();
+            };
+            workerInstance.onerror = function (e) {
+                console.info(`${TAG}, worker error, ${JSON.stringify(e)}`);
+                reject(e);
+                workerInstance.terminate();
+            };
+            workerInstance.onmessageerror = function (e) {
+                console.info(`${TAG}, worker message error, ${JSON.stringify(e)}`);
+                reject(e);
+                workerInstance.terminate();
+            };
+        });
+        return workerPromise;
+    }
+    static handleWorkerTestResult(ret, allItemList, items) {
+        console.info(`${TAG}, handleWorkerTestResult, ${JSON.stringify(items)}`);
+        for (const {total, failure, error, pass, ignore, duration, itItemList} of items) {
+            ret.total += total;
+            ret.failure += failure;
+            ret.error += error;
+            ret.pass += pass;
+            ret.ignore += ignore;
+            ret.duration += duration;
+            Hypium.handleItResult(allItemList, itItemList);
+        }
+    }
+    static handleItResult(allItemList, itItemList) {
+        // éå†æ‰€æœ‰çš„ç”¨ä¾‹ç»“æœç»Ÿè®¡æœ€ç»ˆç»“æœ
+        for (const {currentThreadName, description, result} of itItemList) {
+            let item = allItemList.find((it) => it.description === description);
+            if (item) {
+                let itResult = item.result;
+                // å½“åœ¨workerä¸­å‡ºç°ä¸€æ¬¡failureå°±æ ‡è®°ä¸ºfailure, å‡ºç°ä¸€æ¬¡errorå°±æ ‡è®°ä¸ºerror, æ‰€æœ‰çº¿ç¨‹éƒ½passæ‰æ ‡è®°ä¸ºpass
+                if (itResult === 0) {
+                    item.result = result;
+                    item.currentThreadName = currentThreadName;
+                }
+            } else {
+                let it = {
+                    description: description,
+                    currentThreadName: currentThreadName,
+                    result: result
+                };
+                allItemList.push(it);
+            }
+        }
+    }
+    static configWorkerItTestResult(retResult, allItemList) {
+        console.info(`${TAG}, configWorkerItTestResult, ${JSON.stringify(allItemList)}`);
+        for (const {currentThreadName, description, result} of allItemList) {
+            console.info(`${TAG}, description, ${description}, result,${result}`);
+            retResult.total ++;
+            if (result === 0) {
+                retResult.pass ++;
+            } else if (result === -1) {
+                retResult.error ++;
+            } else if (result === -2) {
+                retResult.failure ++;
+            } else {
+                retResult.ignore ++;
+            }
+        }
+    }
+    static printWorkerTestResult(abilityDelegator, allItemList) {
+        console.info(`${TAG}, printWorkerTestResult, ${JSON.stringify(allItemList)}`);
+        let index = 1;
+        for (const {currentThreadName, description, result} of allItemList) {
+            console.info(`${TAG}, description print, ${description}, result,${result}`);
+            let itArray = description.split('#');
+            let des;
+            let itName;
+            if (itArray.length > 1) {
+                des = itArray[0];
+                itName = itArray[1];
+            } else if (itArray.length > 1) {
+                des = itArray[0];
+                itName = itArray[0];
+            } else {
+                des = 'undefined';
+                itName = 'undefined';
+            }
+
+            let msg = `\n${PrintTag.OHOS_REPORT_WORKER_STATUS}: class=${des}`;
+            msg += `\n${PrintTag.OHOS_REPORT_WORKER_STATUS}: test=${itName}`;
+            msg += `\n${PrintTag.OHOS_REPORT_WORKER_STATUS}: current=${index}`;
+            msg += `\n${PrintTag.OHOS_REPORT_WORKER_STATUS}: CODE=${result}`;
+            abilityDelegator.printSync(msg);
+            index ++;
+        }
+    }
+    static hypiumWorkerTest(abilityDelegator, abilityDelegatorArguments, testsuite, workerPort) {
+        console.info(`${TAG}, hypiumWorkerTest call`);
+        SysTestKit.workerPort = workerPort;
+        let currentWorkerName = workerPort.name;
+        console.info(`${TAG}, hypiumWorkerTest_currentWorkerName: ${currentWorkerName}`);
+        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
+
+    }
+
+    static registerAssert(customAssertion) {
+        const core = Core.getInstance();
+        const expectService = core.getDefaultService('expect');
+        let matchers = {};
+        matchers[customAssertion.name] = customAssertion;
+        expectService.addMatchers(matchers);
+        expectService.customMatchers.push(customAssertion.name);
+        console.info(`${TAG}success to register the ${customAssertion.name}`);
+    }
+
+    static unregisterAssert(customAssertion) {
+        const core = Core.getInstance();
+        const expectService = core.getDefaultService('expect');
+        let customAssertionName = typeof customAssertion === 'function' ? customAssertion.name : customAssertion;
+        expectService.removeMatchers(customAssertionName);
+        console.info(`${TAG}success to unregister the ${customAssertionName}`);
+    }
+
+}
+
+export {
+    Hypium,
+    Core,
+    DEFAULT,
+    TestType,
+    Size,
+    Level,
+    DataDriver,
+    ExpectExtend,
+    OhReport,
+    SysTestKit,
+    describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, beforeItSpecified, afterItSpecified, xdescribe, xit,
+    MockKit, when,
+    ArgumentMatchers
+};ÂšÙhD:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\core.jsÙlD:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\Constant.jsÙ|D:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\config\DataDriver.jsÙ~D:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\assert\ExpectExtend.jsÙzD:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\report\OhReport.jsÙyD:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\kit\SysTestKit.jsÙmD:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\interface.jsÙwD:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\mock\MockKit.jsÙ€D:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\mock\ArgumentMatchers.jsÙp hvigor_ignore_D:_devecostudio-windows-6.0.0.848_DevEco Studio_sdk_default_openharmony_ets_api_@ohos.worker.d.tsÙ`D:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\index.jsÔrB™±isLocalDependency¯isNodeEntryFile§pkgPath§pkgNameªpkgVersion±belongProjectPath±dependencyPkgInfo¨commonjs¯hostModulesInfoÂÃÙWD:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium¬@ohos/hypium¦1.0.24ºD:\shopping\List_commodityÔrC’§pkgNameªpkgVersion¬@ohos/hypium¦1.0.24ÔrD’¯hasNamedExportsªisCommonJSÃÂ’ÔrE’²hostDependencyName®hostModuleName¬@ohos/hypium¥entryE¬@ohos/hypium¥entryÃÚ.?/*
+ * Copyright (c) 2021-2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import Core from './src/main/core';
+import { DEFAULT, TestType, Size, Level, TAG, PrintTag } from './src/main/Constant';
+import DataDriver from './src/main/module/config/DataDriver';
+import ExpectExtend from './src/main/module/assert/ExpectExtend';
+import OhReport from './src/main/module/report/OhReport';
+import SysTestKit from './src/main/module/kit/SysTestKit';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, beforeItSpecified, afterItSpecified, xdescribe, xit } from './src/main/interface';
+import { MockKit, when } from './src/main/module/mock/MockKit';
+import ArgumentMatchers from './src/main/module/mock/ArgumentMatchers';
+import worker from '@ohos.worker';
+
+class Hypium {
+    static context = new Map();
+    static setData(data) {
+        const core = Core.getInstance();
+        const dataDriver = new DataDriver({ data });
+        core.addService('dataDriver', dataDriver);
+    }
+
+    static setTimeConfig(systemTime) {
+        SysTestKit.systemTime = systemTime;
+    }
+	
+    static set(key, value) {
+        Hypium.context.set(key, value);
+    }
+
+    static get(key) {
+        return Hypium.context.get(key);
+    }
+
+    static hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite) {
+        const core = Core.getInstance();
+        const expectExtend = new ExpectExtend({
+            'id': 'extend'
+        });
+        core.addService('expect', expectExtend);
+        const ohReport = new OhReport({
+            'delegator': abilityDelegator,
+            'abilityDelegatorArguments': abilityDelegatorArguments
+        });
+        SysTestKit.delegator = abilityDelegator;
+        core.addService('report', ohReport);
+        core.init();
+        core.subscribeEvent('spec', ohReport);
+        core.subscribeEvent('suite', ohReport);
+        core.subscribeEvent('task', ohReport);
+        const configService = core.getDefaultService('config');
+        if (abilityDelegatorArguments !== null) {
+            let testParameters = configService.translateParams(abilityDelegatorArguments.parameters);
+            console.info(`${TAG}parameters:${JSON.stringify(testParameters)}`);
+            configService.setConfig(testParameters);
+        }
+        testsuite();
+        core.execute(abilityDelegator);
+    }
+    static async hypiumInitWorkers(abilityDelegator, scriptURL, workerNum = 8, params) {
+        console.info(`${TAG}, hypiumInitWorkers call,${scriptURL}`);
+        let workerPromiseArray = [];
+
+        // å¼€å§‹ç»Ÿè®¡æ—¶é—´
+        let startTime = await SysTestKit.getRealTime();
+        for (let i = 0; i < workerNum; i++) {
+            // åˆ›å»ºworkerçº¿ç¨‹
+            const workerPromise = Hypium.createWorkerPromise(scriptURL, i, params);
+            workerPromiseArray.push(workerPromise);
+        }
+        const ret = {total: 0, failure: 0, error: 0, pass: 0, ignore: 0, duration: 0};
+        Promise.all(workerPromiseArray).then(async (items) => {
+            console.info(`${TAG}, all result from workers, ${JSON.stringify(items)}`);
+            let allItemList = new Array();
+            // ç»Ÿè®¡æ‰§è¡Œç»“æœ
+            Hypium.handleWorkerTestResult(ret, allItemList, items);
+            console.info(`${TAG}, all it result, ${JSON.stringify(allItemList)}`);
+            // ç»Ÿè®¡ç”¨ä¾‹æ‰§è¡Œç»“æœ
+            const retResult = {total: 0, failure: 0, error: 0, pass: 0, ignore: 0, duration: 0};
+            // æ ‡è®°ç”¨ä¾‹æ‰§è¡Œç»“æœ
+            Hypium.configWorkerItTestResult(retResult, allItemList);
+            // æ‰“å°ç”¨ä¾‹ç»“æœ
+            Hypium.printWorkerTestResult(abilityDelegator, allItemList);
+            // ç”¨ä¾‹æ‰§è¡Œå®Œæˆç»Ÿè®¡æ—¶é—´
+            let endTime = await SysTestKit.getRealTime();
+            const taskConsuming = endTime - startTime;
+            const message =
+                `\n${PrintTag.OHOS_REPORT_ALL_RESULT}: stream=Test run: runTimes: ${ret.total},total: ${retResult.total}, Failure: ${retResult.failure}, Error: ${retResult.error}, Pass: ${retResult.pass}, Ignore: ${retResult.ignore}` +
+                    `\n${PrintTag.OHOS_REPORT_ALL_CODE}: ${retResult.failure > 0 || retResult.error > 0 ? -1 : 0}` +
+                    `\n${PrintTag.OHOS_REPORT_ALL_STATUS}: taskconsuming=${taskConsuming > 0 ? taskConsuming : ret.duration}`;
+            abilityDelegator.printSync(message);
+            console.info(`${TAG}, [end] you worker test`);
+            abilityDelegator.finishTest('you worker test finished!!!', 0, () => {});
+        }).catch((e) => {
+            console.info(`${TAG}, [end] error you worker test, ${JSON.stringify(e)}`);
+            abilityDelegator.finishTest('you worker test error finished!!!', 0, () => {});
+        }).finally(() => {
+            console.info(`${TAG}, all promise finally end`);
+        });
+    }
+    // åˆ›å»ºworkerçº¿ç¨‹
+    static createWorkerPromise(scriptURL, i, params) {
+        console.info(`${TAG}, createWorkerPromiser, ${scriptURL}, ${i}`);
+        const workerPromise = new Promise((resolve, reject) => {
+            const workerInstance = new worker.ThreadWorker(scriptURL, {name: `worker_${i}`});
+            console.info(`${TAG}, send data to worker`);
+            // å‘é€æ•°æ®åˆ°workerçº¿ç¨‹ä¸­
+            workerInstance.postMessage(params);
+            workerInstance.onmessage = function (e) {
+                let currentThreadName = e.data?.currentThreadName;
+                console.info(`${TAG}, receview data from ${currentThreadName}, ${JSON.stringify(e.data)}`);
+                //
+                resolve(e.data?.summary);
+                console.info(`${TAG}, ${currentThreadName} finish`);
+                workerInstance.terminate();
+            };
+            workerInstance.onerror = function (e) {
+                console.info(`${TAG}, worker error, ${JSON.stringify(e)}`);
+                reject(e);
+                workerInstance.terminate();
+            };
+            workerInstance.onmessageerror = function (e) {
+                console.info(`${TAG}, worker message error, ${JSON.stringify(e)}`);
+                reject(e);
+                workerInstance.terminate();
+            };
+        });
+        return workerPromise;
+    }
+    static handleWorkerTestResult(ret, allItemList, items) {
+        console.info(`${TAG}, handleWorkerTestResult, ${JSON.stringify(items)}`);
+        for (const {total, failure, error, pass, ignore, duration, itItemList} of items) {
+            ret.total += total;
+            ret.failure += failure;
+            ret.error += error;
+            ret.pass += pass;
+            ret.ignore += ignore;
+            ret.duration += duration;
+            Hypium.handleItResult(allItemList, itItemList);
+        }
+    }
+    static handleItResult(allItemList, itItemList) {
+        // éå†æ‰€æœ‰çš„ç”¨ä¾‹ç»“æœç»Ÿè®¡æœ€ç»ˆç»“æœ
+        for (const {currentThreadName, description, result} of itItemList) {
+            let item = allItemList.find((it) => it.description === description);
+            if (item) {
+                let itResult = item.result;
+                // å½“åœ¨workerä¸­å‡ºç°ä¸€æ¬¡failureå°±æ ‡è®°ä¸ºfailure, å‡ºç°ä¸€æ¬¡errorå°±æ ‡è®°ä¸ºerror, æ‰€æœ‰çº¿ç¨‹éƒ½passæ‰æ ‡è®°ä¸ºpass
+                if (itResult === 0) {
+                    item.result = result;
+                    item.currentThreadName = currentThreadName;
+                }
+            } else {
+                let it = {
+                    description: description,
+                    currentThreadName: currentThreadName,
+                    result: result
+                };
+                allItemList.push(it);
+            }
+        }
+    }
+    static configWorkerItTestResult(retResult, allItemList) {
+        console.info(`${TAG}, configWorkerItTestResult, ${JSON.stringify(allItemList)}`);
+        for (const {currentThreadName, description, result} of allItemList) {
+            console.info(`${TAG}, description, ${description}, result,${result}`);
+            retResult.total ++;
+            if (result === 0) {
+                retResult.pass ++;
+            } else if (result === -1) {
+                retResult.error ++;
+            } else if (result === -2) {
+                retResult.failure ++;
+            } else {
+                retResult.ignore ++;
+            }
+        }
+    }
+    static printWorkerTestResult(abilityDelegator, allItemList) {
+        console.info(`${TAG}, printWorkerTestResult, ${JSON.stringify(allItemList)}`);
+        let index = 1;
+        for (const {currentThreadName, description, result} of allItemList) {
+            console.info(`${TAG}, description print, ${description}, result,${result}`);
+            let itArray = description.split('#');
+            let des;
+            let itName;
+            if (itArray.length > 1) {
+                des = itArray[0];
+                itName = itArray[1];
+            } else if (itArray.length > 1) {
+                des = itArray[0];
+                itName = itArray[0];
+            } else {
+                des = 'undefined';
+                itName = 'undefined';
+            }
+
+            let msg = `\n${PrintTag.OHOS_REPORT_WORKER_STATUS}: class=${des}`;
+            msg += `\n${PrintTag.OHOS_REPORT_WORKER_STATUS}: test=${itName}`;
+            msg += `\n${PrintTag.OHOS_REPORT_WORKER_STATUS}: current=${index}`;
+            msg += `\n${PrintTag.OHOS_REPORT_WORKER_STATUS}: CODE=${result}`;
+            abilityDelegator.printSync(msg);
+            index ++;
+        }
+    }
+    static hypiumWorkerTest(abilityDelegator, abilityDelegatorArguments, testsuite, workerPort) {
+        console.info(`${TAG}, hypiumWorkerTest call`);
+        SysTestKit.workerPort = workerPort;
+        let currentWorkerName = workerPort.name;
+        console.info(`${TAG}, hypiumWorkerTest_currentWorkerName: ${currentWorkerName}`);
+        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
+
+    }
+
+    static registerAssert(customAssertion) {
+        const core = Core.getInstance();
+        const expectService = core.getDefaultService('expect');
+        let matchers = {};
+        matchers[customAssertion.name] = customAssertion;
+        expectService.addMatchers(matchers);
+        expectService.customMatchers.push(customAssertion.name);
+        console.info(`${TAG}success to register the ${customAssertion.name}`);
+    }
+
+    static unregisterAssert(customAssertion) {
+        const core = Core.getInstance();
+        const expectService = core.getDefaultService('expect');
+        let customAssertionName = typeof customAssertion === 'function' ? customAssertion.name : customAssertion;
+        expectService.removeMatchers(customAssertionName);
+        console.info(`${TAG}success to unregister the ${customAssertionName}`);
+    }
+
+}
+
+export {
+    Hypium,
+    Core,
+    DEFAULT,
+    TestType,
+    Size,
+    Level,
+    DataDriver,
+    ExpectExtend,
+    OhReport,
+    SysTestKit,
+    describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, beforeItSpecified, afterItSpecified, xdescribe, xit,
+    MockKit, when,
+    ArgumentMatchers
+};ÔrF•§version¨mappings¥names§sources®sourcesContentÜ‘”    ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”  	 ‘”  
+ ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”    ‘”  ! ‘”  " ‘”  # ‘”  $ ‘”  % ‘”  & ‘”  ' ‘”  ( ‘”  ) ‘”  * ‘”  + ‘”  , ‘”  - ‘”  . ‘”  / ‘”  0 ‘”  1 ‘”  2 ‘”  3 ‘”  4 ‘”  5 ‘”  6 ‘”  7 ‘”  8 ‘”  9 ‘”  : ‘”  ; ‘”  < ‘”  = ‘”  > ‘”  ? ‘”  Ì@ ‘”  ÌA ‘”  ÌB ‘”  ÌC ‘”  ÌD ‘”  ÌE ‘”  ÌF ‘”  ÌG ‘”  ÌH ‘”  ÌI ‘”  ÌJ ‘”  ÌK ‘”  ÌL ‘”  ÌM ‘”  ÌN ‘”  ÌO ‘”  ÌP ‘”  ÌQ ‘”  ÌR ‘”  ÌS ‘”  ÌT ‘”  ÌU ‘”  ÌV ‘”  ÌW ‘”  ÌX ‘”  ÌY ‘”  ÌZ ‘”  Ì[ ‘”  Ì\ ‘”  Ì] ‘”  Ì^ ‘”  Ì_ ‘”  Ì` ‘”  Ìa ‘”  Ìb ‘”  Ìc ‘”  Ìd ‘”  Ìe ‘”  Ìf ‘”  Ìg ‘”  Ìh ‘”  Ìi ‘”  Ìj ‘”  Ìk ‘”  Ìl ‘”  Ìm ‘”  Ìn ‘”  Ìo ‘”  Ìp ‘”  Ìq ‘”  Ìr ‘”  Ìs ‘”  Ìt ‘”  Ìu ‘”  Ìv ‘”  Ìw ‘”  Ìx ‘”  Ìy ‘”  Ìz ‘”  Ì{ ‘”  Ì| ‘”  Ì} ‘”  Ì~ ‘”  Ì ‘”  Ì€ ‘”  Ì ‘”  Ì‚ ‘”  Ìƒ ‘”  Ì„ ‘”  Ì… ‘”  Ì† ‘”  Ì‡ ‘”  Ìˆ ‘”  Ì‰ ‘”  ÌŠ ‘”  Ì‹ ‘”  ÌŒ ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì‘ ‘”  Ì’ ‘”  Ì“ ‘”  Ì” ‘”  Ì• ‘”  Ì– ‘”  Ì— ‘”  Ì˜ ‘”  Ì™ ‘”  Ìš ‘”  Ì› ‘”  Ìœ ‘”  Ì ‘”  Ì ‘”  ÌŸ ‘”  Ì  ‘”  Ì¡ ‘”  Ì¢ ‘”  Ì£ ‘”  Ì¤ ‘”  Ì¥ ‘”  Ì¦ ‘”  Ì§ ‘”  Ì¨ ‘”  Ì© ‘”  Ìª ‘”  Ì« ‘”  Ì¬ ‘”  Ì­ ‘”  Ì® ‘”  Ì¯ ‘”  Ì° ‘”  Ì± ‘”  Ì² ‘”  Ì³ ‘”  Ì´ ‘”  Ìµ ‘”  Ì¶ ‘”  Ì· ‘”  Ì¸ ‘”  Ì¹ ‘”  Ìº ‘”  Ì» ‘”  Ì¼ ‘”  Ì½ ‘”  Ì¾ ‘”  Ì¿ ‘”  ÌÀ ‘”  ÌÁ ‘”  ÌÂ ‘”  ÌÃ ‘”  ÌÄ ‘”  ÌÅ ‘”  ÌÆ ‘”  ÌÇ ‘”  ÌÈ ‘”  ÌÉ ‘”  ÌÊ ‘”  ÌË ‘”  ÌÌ ‘”  ÌÍ ‘”  ÌÎ ‘”  ÌÏ ‘”  ÌĞ ‘”  ÌÑ ‘”  ÌÒ ‘”  ÌÓ ‘”  ÌÔ ‘”  ÌÕ ‘”  ÌÖ ‘”  Ì× ‘”  ÌØ ‘”  ÌÙ ‘”  ÌÚ ‘”  ÌÛ ‘”  ÌÜ ‘”  Ìİ ‘”  ÌŞ ‘”  Ìß ‘”  Ìà ‘”  Ìá ‘”  Ìâ ‘”  Ìã ‘”  Ìä ‘”  Ìå ‘”  Ìæ ‘”  Ìç ‘”  Ìè ‘”  Ìé ‘”  Ìê ‘”  Ìë ‘”  Ìì ‘”  Ìí ‘”  Ìî ‘”  Ìï ‘”  Ìğ ‘”  Ìñ ‘”  Ìò ‘”  Ìó ‘”  Ìô ‘”  Ìõ ‘”  Ìö ‘”  Ì÷ ‘”  Ìø ‘”  Ìù ‘”  Ìú ‘”  Ìû ‘”  Ìü ‘”  Ìı ‘”  Ìş ‘”  Ìÿ ‘”  Í  ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘Ù`D:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\index.js‘Ú.?/*
+ * Copyright (c) 2021-2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import Core from './src/main/core';
+import { DEFAULT, TestType, Size, Level, TAG, PrintTag } from './src/main/Constant';
+import DataDriver from './src/main/module/config/DataDriver';
+import ExpectExtend from './src/main/module/assert/ExpectExtend';
+import OhReport from './src/main/module/report/OhReport';
+import SysTestKit from './src/main/module/kit/SysTestKit';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, beforeItSpecified, afterItSpecified, xdescribe, xit } from './src/main/interface';
+import { MockKit, when } from './src/main/module/mock/MockKit';
+import ArgumentMatchers from './src/main/module/mock/ArgumentMatchers';
+import worker from '@ohos.worker';
+
+class Hypium {
+    static context = new Map();
+    static setData(data) {
+        const core = Core.getInstance();
+        const dataDriver = new DataDriver({ data });
+        core.addService('dataDriver', dataDriver);
+    }
+
+    static setTimeConfig(systemTime) {
+        SysTestKit.systemTime = systemTime;
+    }
+	
+    static set(key, value) {
+        Hypium.context.set(key, value);
+    }
+
+    static get(key) {
+        return Hypium.context.get(key);
+    }
+
+    static hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite) {
+        const core = Core.getInstance();
+        const expectExtend = new ExpectExtend({
+            'id': 'extend'
+        });
+        core.addService('expect', expectExtend);
+        const ohReport = new OhReport({
+            'delegator': abilityDelegator,
+            'abilityDelegatorArguments': abilityDelegatorArguments
+        });
+        SysTestKit.delegator = abilityDelegator;
+        core.addService('report', ohReport);
+        core.init();
+        core.subscribeEvent('spec', ohReport);
+        core.subscribeEvent('suite', ohReport);
+        core.subscribeEvent('task', ohReport);
+        const configService = core.getDefaultService('config');
+        if (abilityDelegatorArguments !== null) {
+            let testParameters = configService.translateParams(abilityDelegatorArguments.parameters);
+            console.info(`${TAG}parameters:${JSON.stringify(testParameters)}`);
+            configService.setConfig(testParameters);
+        }
+        testsuite();
+        core.execute(abilityDelegator);
+    }
+    static async hypiumInitWorkers(abilityDelegator, scriptURL, workerNum = 8, params) {
+        console.info(`${TAG}, hypiumInitWorkers call,${scriptURL}`);
+        let workerPromiseArray = [];
+
+        // å¼€å§‹ç»Ÿè®¡æ—¶é—´
+        let startTime = await SysTestKit.getRealTime();
+        for (let i = 0; i < workerNum; i++) {
+            // åˆ›å»ºworkerçº¿ç¨‹
+            const workerPromise = Hypium.createWorkerPromise(scriptURL, i, params);
+            workerPromiseArray.push(workerPromise);
+        }
+        const ret = {total: 0, failure: 0, error: 0, pass: 0, ignore: 0, duration: 0};
+        Promise.all(workerPromiseArray).then(async (items) => {
+            console.info(`${TAG}, all result from workers, ${JSON.stringify(items)}`);
+            let allItemList = new Array();
+            // ç»Ÿè®¡æ‰§è¡Œç»“æœ
+            Hypium.handleWorkerTestResult(ret, allItemList, items);
+            console.info(`${TAG}, all it result, ${JSON.stringify(allItemList)}`);
+            // ç»Ÿè®¡ç”¨ä¾‹æ‰§è¡Œç»“æœ
+            const retResult = {total: 0, failure: 0, error: 0, pass: 0, ignore: 0, duration: 0};
+            // æ ‡è®°ç”¨ä¾‹æ‰§è¡Œç»“æœ
+            Hypium.configWorkerItTestResult(retResult, allItemList);
+            // æ‰“å°ç”¨ä¾‹ç»“æœ
+            Hypium.printWorkerTestResult(abilityDelegator, allItemList);
+            // ç”¨ä¾‹æ‰§è¡Œå®Œæˆç»Ÿè®¡æ—¶é—´
+            let endTime = await SysTestKit.getRealTime();
+            const taskConsuming = endTime - startTime;
+            const message =
+                `\n${PrintTag.OHOS_REPORT_ALL_RESULT}: stream=Test run: runTimes: ${ret.total},total: ${retResult.total}, Failure: ${retResult.failure}, Error: ${retResult.error}, Pass: ${retResult.pass}, Ignore: ${retResult.ignore}` +
+                    `\n${PrintTag.OHOS_REPORT_ALL_CODE}: ${retResult.failure > 0 || retResult.error > 0 ? -1 : 0}` +
+                    `\n${PrintTag.OHOS_REPORT_ALL_STATUS}: taskconsuming=${taskConsuming > 0 ? taskConsuming : ret.duration}`;
+            abilityDelegator.printSync(message);
+            console.info(`${TAG}, [end] you worker test`);
+            abilityDelegator.finishTest('you worker test finished!!!', 0, () => {});
+        }).catch((e) => {
+            console.info(`${TAG}, [end] error you worker test, ${JSON.stringify(e)}`);
+            abilityDelegator.finishTest('you worker test error finished!!!', 0, () => {});
+        }).finally(() => {
+            console.info(`${TAG}, all promise finally end`);
+        });
+    }
+    // åˆ›å»ºworkerçº¿ç¨‹
+    static createWorkerPromise(scriptURL, i, params) {
+        console.info(`${TAG}, createWorkerPromiser, ${scriptURL}, ${i}`);
+        const workerPromise = new Promise((resolve, reject) => {
+            const workerInstance = new worker.ThreadWorker(scriptURL, {name: `worker_${i}`});
+            console.info(`${TAG}, send data to worker`);
+            // å‘é€æ•°æ®åˆ°workerçº¿ç¨‹ä¸­
+            workerInstance.postMessage(params);
+            workerInstance.onmessage = function (e) {
+                let currentThreadName = e.data?.currentThreadName;
+                console.info(`${TAG}, receview data from ${currentThreadName}, ${JSON.stringify(e.data)}`);
+                //
+                resolve(e.data?.summary);
+                console.info(`${TAG}, ${currentThreadName} finish`);
+                workerInstance.terminate();
+            };
+            workerInstance.onerror = function (e) {
+                console.info(`${TAG}, worker error, ${JSON.stringify(e)}`);
+                reject(e);
+                workerInstance.terminate();
+            };
+            workerInstance.onmessageerror = function (e) {
+                console.info(`${TAG}, worker message error, ${JSON.stringify(e)}`);
+                reject(e);
+                workerInstance.terminate();
+            };
+        });
+        return workerPromise;
+    }
+    static handleWorkerTestResult(ret, allItemList, items) {
+        console.info(`${TAG}, handleWorkerTestResult, ${JSON.stringify(items)}`);
+        for (const {total, failure, error, pass, ignore, duration, itItemList} of items) {
+            ret.total += total;
+            ret.failure += failure;
+            ret.error += error;
+            ret.pass += pass;
+            ret.ignore += ignore;
+            ret.duration += duration;
+            Hypium.handleItResult(allItemList, itItemList);
+        }
+    }
+    static handleItResult(allItemList, itItemList) {
+        // éå†æ‰€æœ‰çš„ç”¨ä¾‹ç»“æœç»Ÿè®¡æœ€ç»ˆç»“æœ
+        for (const {currentThreadName, description, result} of itItemList) {
+            let item = allItemList.find((it) => it.description === description);
+            if (item) {
+                let itResult = item.result;
+                // å½“åœ¨workerä¸­å‡ºç°ä¸€æ¬¡failureå°±æ ‡è®°ä¸ºfailure, å‡ºç°ä¸€æ¬¡errorå°±æ ‡è®°ä¸ºerror, æ‰€æœ‰çº¿ç¨‹éƒ½passæ‰æ ‡è®°ä¸ºpass
+                if (itResult === 0) {
+                    item.result = result;
+                    item.currentThreadName = currentThreadName;
+                }
+            } else {
+                let it = {
+                    description: description,
+                    currentThreadName: currentThreadName,
+                    result: result
+                };
+                allItemList.push(it);
+            }
+        }
+    }
+    static configWorkerItTestResult(retResult, allItemList) {
+        console.info(`${TAG}, configWorkerItTestResult, ${JSON.stringify(allItemList)}`);
+        for (const {currentThreadName, description, result} of allItemList) {
+            console.info(`${TAG}, description, ${description}, result,${result}`);
+            retResult.total ++;
+            if (result === 0) {
+                retResult.pass ++;
+            } else if (result === -1) {
+                retResult.error ++;
+            } else if (result === -2) {
+                retResult.failure ++;
+            } else {
+                retResult.ignore ++;
+            }
+        }
+    }
+    static printWorkerTestResult(abilityDelegator, allItemList) {
+        console.info(`${TAG}, printWorkerTestResult, ${JSON.stringify(allItemList)}`);
+        let index = 1;
+        for (const {currentThreadName, description, result} of allItemList) {
+            console.info(`${TAG}, description print, ${description}, result,${result}`);
+            let itArray = description.split('#');
+            let des;
+            let itName;
+            if (itArray.length > 1) {
+                des = itArray[0];
+                itName = itArray[1];
+            } else if (itArray.length > 1) {
+                des = itArray[0];
+                itName = itArray[0];
+            } else {
+                des = 'undefined';
+                itName = 'undefined';
+            }
+
+            let msg = `\n${PrintTag.OHOS_REPORT_WORKER_STATUS}: class=${des}`;
+            msg += `\n${PrintTag.OHOS_REPORT_WORKER_STATUS}: test=${itName}`;
+            msg += `\n${PrintTag.OHOS_REPORT_WORKER_STATUS}: current=${index}`;
+            msg += `\n${PrintTag.OHOS_REPORT_WORKER_STATUS}: CODE=${result}`;
+            abilityDelegator.printSync(msg);
+            index ++;
+        }
+    }
+    static hypiumWorkerTest(abilityDelegator, abilityDelegatorArguments, testsuite, workerPort) {
+        console.info(`${TAG}, hypiumWorkerTest call`);
+        SysTestKit.workerPort = workerPort;
+        let currentWorkerName = workerPort.name;
+        console.info(`${TAG}, hypiumWorkerTest_currentWorkerName: ${currentWorkerName}`);
+        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
+
+    }
+
+    static registerAssert(customAssertion) {
+        const core = Core.getInstance();
+        const expectService = core.getDefaultService('expect');
+        let matchers = {};
+        matchers[customAssertion.name] = customAssertion;
+        expectService.addMatchers(matchers);
+        expectService.customMatchers.push(customAssertion.name);
+        console.info(`${TAG}success to register the ${customAssertion.name}`);
+    }
+
+    static unregisterAssert(customAssertion) {
+        const core = Core.getInstance();
+        const expectService = core.getDefaultService('expect');
+        let customAssertionName = typeof customAssertion === 'function' ? customAssertion.name : customAssertion;
+        expectService.removeMatchers(customAssertionName);
+        console.info(`${TAG}success to unregister the ${customAssertionName}`);
+    }
+
+}
+
+export {
+    Hypium,
+    Core,
+    DEFAULT,
+    TestType,
+    Size,
+    Level,
+    DataDriver,
+    ExpectExtend,
+    OhReport,
+    SysTestKit,
+    describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, beforeItSpecified, afterItSpecified, xdescribe, xit,
+    MockKit, when,
+    ArgumentMatchers
+};ÔrGš¬@ohos.workerÙ%./src/main/module/assert/ExpectExtendÙ#./src/main/module/config/DataDriver¯./src/main/core´./src/main/interface³./src/main/ConstantÙ ./src/main/module/kit/SysTestKitÙ!./src/main/module/report/OhReport¾./src/main/module/mock/MockKitÙ'./src/main/module/mock/ArgumentMatchersÔrH—ªassertions¨external¢id¤meta±moduleSideEffectsªresolvedByµsyntheticNamedExportsAÃÙp hvigor_ignore_D:_devecostudio-windows-6.0.0.848_DevEco Studio_sdk_default_openharmony_ets_api_@ohos.worker.d.tsAÃªoh-resolveÂHAÂÙ~D:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\assert\ExpectExtend.jsAÃªoh-resolveÂHAÂÙ|D:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\config\DataDriver.jsAÃªoh-resolveÂHAÂÙhD:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\core.jsAÃªoh-resolveÂHAÂÙmD:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\interface.jsAÃªoh-resolveÂHAÂÙlD:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\Constant.jsAÃªoh-resolveÂHAÂÙyD:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\kit\SysTestKit.jsAÃªoh-resolveÂHAÂÙzD:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\report\OhReport.jsAÃªoh-resolveÂHAÂÙwD:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\mock\MockKit.jsAÃªoh-resolveÂHAÂÙ€D:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\mock\ArgumentMatchers.jsAÃªoh-resolveÂ‘ÔrI’§missing¦pluginÃ¦genAbcÂÔ  ÔrJ”²dynamicImportCache¹exportAllDeclarationCache»exportNamedDeclarationCache«importCache‘ÔrK–¤type¥start£end«declarationªspecifiers¦source¶ExportNamedDeclarationÍ,/Í-qÀÜ ÔrL•¤type¥start£end¥local¨exported¯ExportSpecifierÍ,=Í,CÔrM”¤type¥start£end¤nameªIdentifierÍ,=Í,C¦HypiumMªIdentifierÍ,=Í,C¦HypiumL¯ExportSpecifierÍ,JÍ,NMªIdentifierÍ,JÍ,N¤CoreMªIdentifierÍ,JÍ,N¤CoreL¯ExportSpecifierÍ,UÍ,\MªIdentifierÍ,UÍ,\§DEFAULTMªIdentifierÍ,UÍ,\§DEFAULTL¯ExportSpecifierÍ,cÍ,kMªIdentifierÍ,cÍ,k¨TestTypeMªIdentifierÍ,cÍ,k¨TestTypeL¯ExportSpecifierÍ,rÍ,vMªIdentifierÍ,rÍ,v¤SizeMªIdentifierÍ,rÍ,v¤SizeL¯ExportSpecifierÍ,}Í,‚MªIdentifierÍ,}Í,‚¥LevelMªIdentifierÍ,}Í,‚¥LevelL¯ExportSpecifierÍ,‰Í,“MªIdentifierÍ,‰Í,“ªDataDriverMªIdentifierÍ,‰Í,“ªDataDriverL¯ExportSpecifierÍ,šÍ,¦MªIdentifierÍ,šÍ,¦¬ExpectExtendMªIdentifierÍ,šÍ,¦¬ExpectExtendL¯ExportSpecifierÍ,­Í,µMªIdentifierÍ,­Í,µ¨OhReportMªIdentifierÍ,­Í,µ¨OhReportL¯ExportSpecifierÍ,¼Í,ÆMªIdentifierÍ,¼Í,ÆªSysTestKitMªIdentifierÍ,¼Í,ÆªSysTestKitL¯ExportSpecifierÍ,ÍÍ,ÕMªIdentifierÍ,ÍÍ,Õ¨describeMªIdentifierÍ,ÍÍ,Õ¨describeL¯ExportSpecifierÍ,×Í,àMªIdentifierÍ,×Í,à©beforeAllMªIdentifierÍ,×Í,à©beforeAllL¯ExportSpecifierÍ,âÍ,ìMªIdentifierÍ,âÍ,ìªbeforeEachMªIdentifierÍ,âÍ,ìªbeforeEachL¯ExportSpecifierÍ,îÍ,÷MªIdentifierÍ,îÍ,÷©afterEachMªIdentifierÍ,îÍ,÷©afterEachL¯ExportSpecifierÍ,ùÍ-MªIdentifierÍ,ùÍ-¨afterAllMªIdentifierÍ,ùÍ-¨afterAllL¯ExportSpecifierÍ-Í-MªIdentifierÍ-Í-¢itMªIdentifierÍ-Í-¢itL¯ExportSpecifierÍ-Í-MªIdentifierÍ-Í-¦expectMªIdentifierÍ-Í-¦expectL¯ExportSpecifierÍ-Í- MªIdentifierÍ-Í- ±beforeItSpecifiedMªIdentifierÍ-Í- ±beforeItSpecifiedL¯ExportSpecifierÍ-"Í-2MªIdentifierÍ-"Í-2°afterItSpecifiedMªIdentifierÍ-"Í-2°afterItSpecifiedL¯ExportSpecifierÍ-4Í-=MªIdentifierÍ-4Í-=©xdescribeMªIdentifierÍ-4Í-=©xdescribeL¯ExportSpecifierÍ-?Í-BMªIdentifierÍ-?Í-B£xitMªIdentifierÍ-?Í-B£xitL¯ExportSpecifierÍ-IÍ-PMªIdentifierÍ-IÍ-P§MockKitMªIdentifierÍ-IÍ-P§MockKitL¯ExportSpecifierÍ-RÍ-VMªIdentifierÍ-RÍ-V¤whenMªIdentifierÍ-RÍ-V¤whenL¯ExportSpecifierÍ-]Í-mMªIdentifierÍ-]Í-m°ArgumentMatchersMªIdentifierÍ-]Í-m°ArgumentMatchersÀšÔrN•¤type¥start£endªspecifiers¦source±ImportDeclarationÍtÍ—‘ÔrO”¤type¥start£end¥local¶ImportDefaultSpecifierÍ{ÍMªIdentifierÍ{Í¤CoreÔrP•¤type¥start£end¥value£raw§LiteralÍ…Í–¯./src/main/core±'./src/main/core'N±ImportDeclarationÍ™Íí–ÔrQ•¤type¥start£end¨imported¥local¯ImportSpecifierÍ¢Í©MªIdentifierÍ¢Í©§DEFAULTMªIdentifierÍ¢Í©§DEFAULTQ¯ImportSpecifierÍ«Í³MªIdentifierÍ«Í³¨TestTypeMªIdentifierÍ«Í³¨TestTypeQ¯ImportSpecifierÍµÍ¹MªIdentifierÍµÍ¹¤SizeMªIdentifierÍµÍ¹¤SizeQ¯ImportSpecifierÍ»ÍÀMªIdentifierÍ»ÍÀ¥LevelMªIdentifierÍ»ÍÀ¥LevelQ¯ImportSpecifierÍÂÍÅMªIdentifierÍÂÍÅ£TAGMªIdentifierÍÂÍÅ£TAGQ¯ImportSpecifierÍÇÍÏMªIdentifierÍÇÍÏ¨PrintTagMªIdentifierÍÇÍÏ¨PrintTagP§LiteralÍ×Íì³./src/main/Constantµ'./src/main/Constant'N±ImportDeclarationÍïÍ,‘O¶ImportDefaultSpecifierÍöÍ MªIdentifierÍöÍ ªDataDriverP§LiteralÍÍ+Ù#./src/main/module/config/DataDriverÙ%'./src/main/module/config/DataDriver'N±ImportDeclarationÍ.Ío‘O¶ImportDefaultSpecifierÍ5ÍAMªIdentifierÍ5ÍA¬ExpectExtendP§LiteralÍGÍnÙ%./src/main/module/assert/ExpectExtendÙ''./src/main/module/assert/ExpectExtend'N±ImportDeclarationÍqÍª‘O¶ImportDefaultSpecifierÍxÍ€MªIdentifierÍxÍ€¨OhReportP§LiteralÍ†Í©Ù!./src/main/module/report/OhReportÙ#'./src/main/module/report/OhReport'N±ImportDeclarationÍ¬Íæ‘O¶ImportDefaultSpecifierÍ³Í½MªIdentifierÍ³Í½ªSysTestKitP§LiteralÍÃÍåÙ ./src/main/module/kit/SysTestKitÙ"'./src/main/module/kit/SysTestKit'N±ImportDeclarationÍèÍ…›Q¯ImportSpecifierÍñÍùMªIdentifierÍñÍù¨describeMªIdentifierÍñÍù¨describeQ¯ImportSpecifierÍûÍMªIdentifierÍûÍ©beforeAllMªIdentifierÍûÍ©beforeAllQ¯ImportSpecifierÍÍMªIdentifierÍÍªbeforeEachMªIdentifierÍÍªbeforeEachQ¯ImportSpecifierÍÍMªIdentifierÍÍ©afterEachMªIdentifierÍÍ©afterEachQ¯ImportSpecifierÍÍ%MªIdentifierÍÍ%¨afterAllMªIdentifierÍÍ%¨afterAllQ¯ImportSpecifierÍ'Í)MªIdentifierÍ'Í)¢itMªIdentifierÍ'Í)¢itQ¯ImportSpecifierÍ+Í1MªIdentifierÍ+Í1¦expectMªIdentifierÍ+Í1¦expectQ¯ImportSpecifierÍ3ÍDMªIdentifierÍ3ÍD±beforeItSpecifiedMªIdentifierÍ3ÍD±beforeItSpecifiedQ¯ImportSpecifierÍFÍVMªIdentifierÍFÍV°afterItSpecifiedMªIdentifierÍFÍV°afterItSpecifiedQ¯ImportSpecifierÍXÍaMªIdentifierÍXÍa©xdescribeMªIdentifierÍXÍa©xdescribeQ¯ImportSpecifierÍcÍfMªIdentifierÍcÍf£xitMªIdentifierÍcÍf£xitP§LiteralÍnÍ„´./src/main/interface¶'./src/main/interface'N±ImportDeclarationÍ‡ÍÆ’Q¯ImportSpecifierÍÍ—MªIdentifierÍÍ—§MockKitMªIdentifierÍÍ—§MockKitQ¯ImportSpecifierÍ™ÍMªIdentifierÍ™Í¤whenMªIdentifierÍ™Í¤whenP§LiteralÍ¥ÍÅ¾./src/main/module/mock/MockKitÙ './src/main/module/mock/MockKit'N±ImportDeclarationÍÈÍ‘O¶ImportDefaultSpecifierÍÏÍßMªIdentifierÍÏÍß°ArgumentMatchersP§LiteralÍåÍÙ'./src/main/module/mock/ArgumentMatchersÙ)'./src/main/module/mock/ArgumentMatchers'N±ImportDeclarationÍÍ3‘O¶ImportDefaultSpecifierÍÍMªIdentifierÍÍ¦workerP§LiteralÍ$Í2¬@ohos.worker®'@ohos.worker'

@@ -1,0 +1,23 @@
+{
+  "modulePathMap": {
+    "entry_test": "D:\\shopping\\List_commodity\\entry",
+    "entry": "D:\\shopping\\List_commodity\\entry"
+  },
+  "compileMode": "esmodule",
+  "projectRootPath": "D:\\shopping\\List_commodity",
+  "nodeModulesPath": "D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\loader_out\\ohosTest\\node_modules",
+  "byteCodeHarInfo": {},
+  "declarationEntry": [],
+  "moduleName": "entry_test",
+  "hspNameOhmMap": {},
+  "harNameOhmMap": {},
+  "packageManagerType": "ohpm",
+  "compileEntry": [],
+  "otherCompileFiles": [],
+  "dynamicImportLibInfo": {},
+  "routerMap": [],
+  "hspResourcesMap": {},
+  "updateVersionInfo": {},
+  "anBuildOutPut": "D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\loader_out\\ohosTest\\an\\arm64-v8a",
+  "anBuildMode": "type"
+}

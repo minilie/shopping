@@ -12,7 +12,8 @@
         "D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.UIAbility.d.ts",
         "D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.Ability.d.ts",
         "D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\application\\UIAbilityContext.d.ts",
-        "D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.EnvironmentCallback.d.ts"
+        "D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.EnvironmentCallback.d.ts",
+        "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\testability\\TestAbility.ets"
       ],
       "error": false
     },
@@ -29,7 +30,8 @@
       "parent": [
         "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\entryability\\EntryAbility.ets",
         "D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\application\\UIAbilityContext.d.ts",
-        "D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.AbilityLifecycleCallback.d.ts"
+        "D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.AbilityLifecycleCallback.d.ts",
+        "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\testability\\TestAbility.ets"
       ],
       "error": false
     },
@@ -50,6 +52,7 @@
         "D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\ability\\startAbilityParameter.d.ts",
         "D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.bundle.d.ts",
         "D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\application\\AppServiceExtensionContext.d.ts",
+        "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\testability\\TestAbility.ets",
         "D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\embedded_component.d.ts"
       ],
       "error": false
@@ -1449,6 +1452,69 @@
       ],
       "error": false
     },
+    "D:\\shopping\\List_commodity\\oh_modules\\.ohpm\\@ohos+hypium@1.0.24\\oh_modules\\@ohos\\hypium\\index.ets": {
+      "mtimeMs": 1755573511000,
+      "children": [
+        "D:\\shopping\\List_commodity\\oh_modules\\.ohpm\\@ohos+hypium@1.0.24\\oh_modules\\@ohos\\hypium\\index.ts"
+      ],
+      "parent": [
+        "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\testability\\TestAbility.ets",
+        "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\test\\ProductListDataSource.test.ets"
+      ],
+      "error": false
+    },
+    "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\test\\List.test.ets": {
+      "mtimeMs": 1766572944043.869,
+      "children": [
+        "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\test\\ProductListDataSource.test.ets"
+      ],
+      "parent": [
+        "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\testability\\TestAbility.ets"
+      ],
+      "error": false
+    },
+    "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\testability\\TestAbility.ets": {
+      "mtimeMs": 1766582250747.7395,
+      "children": [
+        "D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.AbilityConstant.d.ts",
+        "D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.UIAbility.d.ts",
+        "D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.Want.d.ts",
+        "D:\\shopping\\List_commodity\\oh_modules\\.ohpm\\@ohos+hypium@1.0.24\\oh_modules\\@ohos\\hypium\\index.ets",
+        "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\test\\List.test.ets"
+      ],
+      "parent": [],
+      "error": false
+    },
+    "D:\\shopping\\List_commodity\\oh_modules\\.ohpm\\@ohos+hypium@1.0.24\\oh_modules\\@ohos\\hypium\\index.ts": {
+      "mtimeMs": 1755573544000,
+      "children": [],
+      "parent": [
+        "D:\\shopping\\List_commodity\\oh_modules\\.ohpm\\@ohos+hypium@1.0.24\\oh_modules\\@ohos\\hypium\\index.ets"
+      ],
+      "error": false
+    },
+    "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\test\\ProductListDataSource.test.ets": {
+      "mtimeMs": 1766572963712.8254,
+      "children": [
+        "D:\\shopping\\List_commodity\\oh_modules\\.ohpm\\@ohos+hypium@1.0.24\\oh_modules\\@ohos\\hypium\\index.ets",
+        "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\ListDataSource.ets"
+      ],
+      "parent": [
+        "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\test\\List.test.ets"
+      ],
+      "error": false
+    },
+    "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\ListDataSource.ets": {
+      "mtimeMs": 1766567266632.757,
+      "children": [],
+      "parent": [
+        "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\test\\ProductListDataSource.test.ets",
+        "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\pages\\ListIndex.ets",
+        "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\view\\GoodsListComponent.ets",
+        "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\view\\RefreshLayout.ets"
+      ],
+      "error": false
+    },
     "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\view\\GoodsListComponent.ets": {
       "mtimeMs": 1766568079940.2688,
       "children": [
@@ -1458,19 +1524,6 @@
         "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\pages\\ListIndex.ets"
       ],
       "error": false
-    },
-    "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\ListDataSource.ets": {
-      "mtimeMs": 1766567266632.757,
-      "children": [],
-      "parent": [
-        "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\pages\\ListIndex.ets",
-        "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\view\\GoodsListComponent.ets",
-        "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\view\\RefreshLayout.ets"
-      ],
-      "error": false,
-      "errorCodes": [
-        2554
-      ]
     },
     "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\view\\RefreshLayout.ets": {
       "mtimeMs": 1766567296552.9277,
