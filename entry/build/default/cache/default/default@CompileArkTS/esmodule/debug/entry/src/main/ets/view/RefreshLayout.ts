@@ -209,7 +209,7 @@ export class RefreshLayout extends ViewPU {
                 }
             });
             Scroll.onTouch((event: TouchEvent) => {
-                if (this.scrollY <= 0) {
+                if (this.dataSource.isAtTop) {
                     if (event.type === TouchType.Down) {
                         this.lastY = event.touches[0].y;
                         this.pullDistance = 0;
@@ -237,6 +237,10 @@ export class RefreshLayout extends ViewPU {
                         }
                         this.pullDistance = 0;
                     }
+                }
+                else if (event.type === TouchType.Down) {
+                    this.pullDistance = 0;
+                    this.lastY = event.touches[0].y;
                 }
             });
             Scroll.height('100%');

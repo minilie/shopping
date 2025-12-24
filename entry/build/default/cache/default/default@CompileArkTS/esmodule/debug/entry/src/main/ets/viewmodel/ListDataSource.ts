@@ -35,8 +35,10 @@ export class ProductListDataSource implements IDataSource {
     private pageSize: number = 20;
     private currentLoadedCount: number = 0;
     private nextProductId: number = 1;
+    private totalProductCount: number = 60;
     public isLoadingMore: boolean = false;
     public hasMore: boolean = true;
+    public isAtTop: boolean = true;
     private category: ProductCategory; // <--- Add category property
     private searchQuery: string = '';
     private sortOption: SortOption = SortOption.DEFAULT;
@@ -161,15 +163,13 @@ export class ProductListDataSource implements IDataSource {
                 imageResources = [{ "id": 16777259, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" }];
                 break;
         }
-        // For demonstration, let's create 200 products in total for each category
-        // You might want a different total count per category or base it on available items.
-        for (let i = 0; i < 200; i++) {
+        for (let i = 0; i < this.totalProductCount; i++) {
             const nameIndex = i % productNames.length;
             const descIndex = i % productDescriptions.length;
             const imageIndex = i % imageResources.length;
             this.allAvailableProducts.push({
                 id: this.nextProductId++,
-                name: `【${this.category}】${productNames[nameIndex]}`,
+                name: `【${this.category}】${productNames[nameIndex]} ${i + 1}`,
                 description: productDescriptions[descIndex],
                 price: 180.00 + (i * 0.5),
                 imageUrl: imageResources[imageIndex],
@@ -262,6 +262,11 @@ export class ProductListDataSource implements IDataSource {
             return;
         }
         this.isLoadingMore = true;
+        if (this.currentLoadedCount >= this.filteredProducts.length) {
+            this.hasMore = false;
+            this.isLoadingMore = false;
+            return;
+        }
         const newItems = await new Promise<Product[]>(resolve => {
             setTimeout(() => {
                 const startIndex = this.currentLoadedCount;
@@ -277,9 +282,9 @@ export class ProductListDataSource implements IDataSource {
             this.currentLoadedCount = this.products.length;
             console.log(`Added ${newItems.length} new products. Total: ${this.products.length}`);
             if (this.dataChangeListener) {
-                // 修复：onDataAdd方法需要两个参数：startIndex和count
                 this.dataChangeListener.onDataAdd(startIndex);
             }
+            this.hasMore = this.currentLoadedCount < this.filteredProducts.length;
         }
         else {
             this.hasMore = false; // No more data to load
@@ -309,5 +314,8 @@ export class ProductListDataSource implements IDataSource {
     }
     unregisterDataChangeListener(): void {
         this.dataChangeListener = undefined;
+    }
+    setIsAtTop(isAtTop: boolean): void {
+        this.isAtTop = isAtTop;
     }
 }

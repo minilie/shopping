@@ -33,6 +33,7 @@ struct ProductListPage {
   @State private searchText: string = '';
   @State private activeSort: SortOption = SortOption.DEFAULT;
   @State private activePriceFilter: PriceFilter = PriceFilter.ALL;
+  @State private showFilterPanel: boolean = false;
 
   private sortOptions: FilterOption<SortOption>[] = [
     { label: '默认', value: SortOption.DEFAULT },
@@ -175,6 +176,7 @@ struct ProductListPage {
             .layoutWeight(1)
             // LazyForEach 内部的 onScrollIndex 可以用来辅助触发懒加载，但主要逻辑在RefreshLayout的onScroll中
             .onScrollIndex((first: number, last: number) => {
+              dataSource.setIsAtTop(first === 0);
               if (last >= dataSource.totalCount() - 6 && dataSource.totalCount() > 0 && !dataSource.isLoadingMore &&
               dataSource.hasMore) {
                 console.log('LazyForEach triggered load more via onScrollIndex');
@@ -238,63 +240,77 @@ struct ProductListPage {
               dataSource.setSearchQuery('');
             })
         }
+        Text(this.showFilterPanel ? '收起' : '筛选')
+          .fontSize(12)
+          .fontColor(this.activeSort !== SortOption.DEFAULT || this.activePriceFilter !== PriceFilter.ALL ?
+            Color.White : '#666666')
+          .backgroundColor(this.activeSort !== SortOption.DEFAULT || this.activePriceFilter !== PriceFilter.ALL ?
+            '#2D6A4F' : '#E6E6E6')
+          .borderRadius(14)
+          .margin({ left: 8 })
+          .padding({ left: 10, right: 10, top: 6, bottom: 6 })
+          .onClick(() => {
+            this.showFilterPanel = !this.showFilterPanel;
+          })
       }
       .padding({ left: 12, right: 12, top: 12, bottom: 8 })
 
-      Column() {
-        Text('排序')
-          .fontSize(12)
-          .fontColor(Color.Gray)
-          .margin({ left: 12, bottom: 6 })
+      if (this.showFilterPanel) {
+        Column() {
+          Text('排序')
+            .fontSize(12)
+            .fontColor(Color.Gray)
+            .margin({ left: 12, bottom: 6 })
 
-        Scroll() {
-          Row() {
-            ForEach(this.sortOptions, (option: FilterOption<SortOption>) => {
-              Text(option.label)
-                .fontSize(12)
-                .fontColor(this.activeSort === option.value ? Color.White : Color.Black)
-                .backgroundColor(this.activeSort === option.value ? '#2D6A4F' : '#E6E6E6')
-                .borderRadius(12)
-                .padding({ left: 12, right: 12, top: 6, bottom: 6 })
-                .margin({ right: 8, bottom: 4 })
-                .onClick(() => {
-                  this.activeSort = option.value;
-                  dataSource.setSortOption(option.value);
-                })
-            }, (option: FilterOption<SortOption>) => option.value)
+          Scroll() {
+            Row() {
+              ForEach(this.sortOptions, (option: FilterOption<SortOption>) => {
+                Text(option.label)
+                  .fontSize(12)
+                  .fontColor(this.activeSort === option.value ? Color.White : Color.Black)
+                  .backgroundColor(this.activeSort === option.value ? '#2D6A4F' : '#E6E6E6')
+                  .borderRadius(12)
+                  .padding({ left: 12, right: 12, top: 6, bottom: 6 })
+                  .margin({ right: 8, bottom: 4 })
+                  .onClick(() => {
+                    this.activeSort = option.value;
+                    dataSource.setSortOption(option.value);
+                  })
+              }, (option: FilterOption<SortOption>) => option.value)
+            }
+            .padding({ left: 12, right: 12 })
           }
-          .padding({ left: 12, right: 12 })
-        }
-        .scrollable(ScrollDirection.Horizontal)
-        .scrollBar(BarState.Off)
-        .width('100%')
+          .scrollable(ScrollDirection.Horizontal)
+          .scrollBar(BarState.Off)
+          .width('100%')
 
-        Text('价格')
-          .fontSize(12)
-          .fontColor(Color.Gray)
-          .margin({ left: 12, top: 8, bottom: 6 })
+          Text('价格')
+            .fontSize(12)
+            .fontColor(Color.Gray)
+            .margin({ left: 12, top: 8, bottom: 6 })
 
-        Scroll() {
-          Row() {
-            ForEach(this.priceFilters, (option: FilterOption<PriceFilter>) => {
-              Text(option.label)
-                .fontSize(12)
-                .fontColor(this.activePriceFilter === option.value ? Color.White : Color.Black)
-                .backgroundColor(this.activePriceFilter === option.value ? '#2D6A4F' : '#E6E6E6')
-                .borderRadius(12)
-                .padding({ left: 12, right: 12, top: 6, bottom: 6 })
-                .margin({ right: 8, bottom: 4 })
-                .onClick(() => {
-                  this.activePriceFilter = option.value;
-                  dataSource.setPriceFilter(option.value);
-                })
-            }, (option: FilterOption<PriceFilter>) => option.value)
+          Scroll() {
+            Row() {
+              ForEach(this.priceFilters, (option: FilterOption<PriceFilter>) => {
+                Text(option.label)
+                  .fontSize(12)
+                  .fontColor(this.activePriceFilter === option.value ? Color.White : Color.Black)
+                  .backgroundColor(this.activePriceFilter === option.value ? '#2D6A4F' : '#E6E6E6')
+                  .borderRadius(12)
+                  .padding({ left: 12, right: 12, top: 6, bottom: 6 })
+                  .margin({ right: 8, bottom: 4 })
+                  .onClick(() => {
+                    this.activePriceFilter = option.value;
+                    dataSource.setPriceFilter(option.value);
+                  })
+              }, (option: FilterOption<PriceFilter>) => option.value)
+            }
+            .padding({ left: 12, right: 12, bottom: 8 })
           }
-          .padding({ left: 12, right: 12, bottom: 8 })
+          .scrollable(ScrollDirection.Horizontal)
+          .scrollBar(BarState.Off)
+          .width('100%')
         }
-        .scrollable(ScrollDirection.Horizontal)
-        .scrollBar(BarState.Off)
-        .width('100%')
       }
     }
   }

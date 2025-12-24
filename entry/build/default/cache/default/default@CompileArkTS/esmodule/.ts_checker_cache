@@ -1450,7 +1450,7 @@
       "error": false
     },
     "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\view\\GoodsListComponent.ets": {
-      "mtimeMs": 1763216418000,
+      "mtimeMs": 1766568079940.2688,
       "children": [
         "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\ListDataSource.ets"
       ],
@@ -1460,17 +1460,20 @@
       "error": false
     },
     "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\ListDataSource.ets": {
-      "mtimeMs": 1766565144232.8691,
+      "mtimeMs": 1766567266632.757,
       "children": [],
       "parent": [
         "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\pages\\ListIndex.ets",
         "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\view\\GoodsListComponent.ets",
         "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\view\\RefreshLayout.ets"
       ],
-      "error": false
+      "error": false,
+      "errorCodes": [
+        2554
+      ]
     },
     "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\view\\RefreshLayout.ets": {
-      "mtimeMs": 1763223366000,
+      "mtimeMs": 1766567296552.9277,
       "children": [
         "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\ListDataSource.ets"
       ],
@@ -1483,7 +1486,7 @@
       ]
     },
     "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\pages\\ListIndex.ets": {
-      "mtimeMs": 1766565656325.5034,
+      "mtimeMs": 1766567924814.1362,
       "children": [
         "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\view\\GoodsListComponent.ets",
         "D:\\shopping\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\ListDataSource.ets",

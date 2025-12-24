@@ -7,12 +7,26 @@ export struct ProductItem {
 
   build() {
     Column() { // 使用Column作为商品卡片的主容器
-      // 商品图片
-      Image(this.product.imageUrl)
-        .width('100%') // 图片宽度占满
-        .height(180) // 固定高度
-        .borderRadius(8)
-        .alt($r('app.media.product_image_placeholder')) // 替代文本，防止图片加载失败
+      Stack() {
+        Image(this.product.imageUrl)
+          .width('100%') // 图片宽度占满
+          .height(180) // 固定高度
+          .objectFit(ImageFit.Cover)
+          .borderRadius(12)
+          .alt($r('app.media.product_image_placeholder')) // 替代文本，防止图片加载失败
+
+        if (this.product.ratingPercentage !== undefined) {
+          Text(`${this.product.ratingPercentage}%好评`)
+            .fontSize(10)
+            .fontColor(Color.White)
+            .backgroundColor('#3A2D6A4F')
+            .borderRadius(10)
+            .padding({ left: 8, right: 8, top: 4, bottom: 4 })
+            .position({ x: 10, y: 10 })
+        }
+      }
+      .width('100%')
+      .height(180)
 
       // 商品信息区域
       Column() {
@@ -20,36 +34,58 @@ export struct ProductItem {
         Text(this.product.name)
           .fontSize(16)
           .fontWeight(FontWeight.Medium)
+          .fontColor('#1B1B1F')
           .maxLines(2) // 最多显示两行
           .textOverflow({ overflow: TextOverflow.Ellipsis }) // 超出部分显示省略号
-          .margin({ bottom: 4 })
 
         // 商品描述
         Text(this.product.description)
           .fontSize(12)
-          .fontColor(Color.Gray)
-          .margin({ bottom: 8 })
+          .fontColor('#6B6B6B')
+          .maxLines(1)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
+          .margin({ top: 4 })
 
         // 评价和价格行
         Row() {
-          Text(`${this.product.ratingCount || 0}人评价 ${this.product.ratingPercentage || 0}%好评`)
-            .fontSize(12)
-            .fontColor(Color.Gray)
-            .layoutWeight(1) // 占据左侧空间
+          Column() {
+            Row() {
+              Text('¥')
+                .fontSize(12)
+                .fontColor('#C62828')
+                .margin({ top: 2 })
+              Text(`${this.product.price.toFixed(2)}`)
+                .fontSize(18)
+                .fontColor('#C62828')
+                .fontWeight(FontWeight.Bold)
+            }
 
-          Text(`¥${this.product.price.toFixed(2)}`)
-            .fontSize(16)
-            .fontColor(Color.Red)
-            .fontWeight(FontWeight.Bold)
+            if (this.product.ratingCount !== undefined) {
+              Text(`${this.product.ratingCount}人评价`)
+                .fontSize(11)
+                .fontColor('#8A8A8A')
+                .margin({ top: 2 })
+            }
+          }
+          .layoutWeight(1)
+
+          Text('去看看')
+            .fontSize(12)
+            .fontColor(Color.White)
+            .backgroundColor('#2D6A4F')
+            .borderRadius(12)
+            .padding({ left: 10, right: 10, top: 6, bottom: 6 })
         }
         .width('100%')
+        .margin({ top: 10 })
+        .alignItems(VerticalAlign.Center)
       }
-      .padding({ left: 8, right: 8, bottom: 8 }) // 内边距
+      .padding({ left: 12, right: 12, top: 10, bottom: 12 }) // 内边距
     }
     .width('100%') // 卡片宽度占满
-    .backgroundColor(Color.White)
-    .borderRadius(10)
-    .margin({ bottom: 8, left: 12, right: 12 }) // 卡片间距和左右外边距
-    .shadow({ radius: 2, color: '#1A000000', offsetX: 0, offsetY: 1 }) // 添加阴影效果
+    .backgroundColor('#FFFFFF')
+    .borderRadius(16)
+    .margin({ bottom: 12, left: 12, right: 12 }) // 卡片间距和左右外边距
+    .shadow({ radius: 6, color: '#14000000', offsetX: 0, offsetY: 2 }) // 添加阴影效果
   }
 }

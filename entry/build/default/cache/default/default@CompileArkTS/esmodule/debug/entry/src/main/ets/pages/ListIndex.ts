@@ -12,6 +12,7 @@ interface ProductListPage_Params {
     searchText?: string;
     activeSort?: SortOption;
     activePriceFilter?: PriceFilter;
+    showFilterPanel?: boolean;
     sortOptions?: FilterOption<SortOption>[];
     priceFilters?: FilterOption<PriceFilter>[];
     showScrollToTop?: boolean;
@@ -41,6 +42,7 @@ class ProductListPage extends ViewPU {
         this.__searchText = new ObservedPropertySimplePU('', this, "searchText");
         this.__activeSort = new ObservedPropertySimplePU(SortOption.DEFAULT, this, "activeSort");
         this.__activePriceFilter = new ObservedPropertySimplePU(PriceFilter.ALL, this, "activePriceFilter");
+        this.__showFilterPanel = new ObservedPropertySimplePU(false, this, "showFilterPanel");
         this.sortOptions = [
             { label: '默认', value: SortOption.DEFAULT },
             { label: '价格↑', value: SortOption.PRICE_ASC },
@@ -89,6 +91,9 @@ class ProductListPage extends ViewPU {
         if (params.activePriceFilter !== undefined) {
             this.activePriceFilter = params.activePriceFilter;
         }
+        if (params.showFilterPanel !== undefined) {
+            this.showFilterPanel = params.showFilterPanel;
+        }
         if (params.sortOptions !== undefined) {
             this.sortOptions = params.sortOptions;
         }
@@ -109,6 +114,7 @@ class ProductListPage extends ViewPU {
         this.__searchText.purgeDependencyOnElmtId(rmElmtId);
         this.__activeSort.purgeDependencyOnElmtId(rmElmtId);
         this.__activePriceFilter.purgeDependencyOnElmtId(rmElmtId);
+        this.__showFilterPanel.purgeDependencyOnElmtId(rmElmtId);
         this.__showScrollToTop.purgeDependencyOnElmtId(rmElmtId);
     }
     aboutToBeDeleted() {
@@ -116,6 +122,7 @@ class ProductListPage extends ViewPU {
         this.__searchText.aboutToBeDeleted();
         this.__activeSort.aboutToBeDeleted();
         this.__activePriceFilter.aboutToBeDeleted();
+        this.__showFilterPanel.aboutToBeDeleted();
         this.__showScrollToTop.aboutToBeDeleted();
         SubscriberManager.Get().delete(this.id__());
         this.aboutToBeDeletedInternal();
@@ -157,6 +164,13 @@ class ProductListPage extends ViewPU {
     }
     set activePriceFilter(newValue: PriceFilter) {
         this.__activePriceFilter.set(newValue);
+    }
+    private __showFilterPanel: ObservedPropertySimplePU<boolean>;
+    get showFilterPanel() {
+        return this.__showFilterPanel.get();
+    }
+    set showFilterPanel(newValue: boolean) {
+        this.__showFilterPanel.set(newValue);
     }
     private sortOptions: FilterOption<SortOption>[];
     private priceFilters: FilterOption<PriceFilter>[];
@@ -308,6 +322,7 @@ class ProductListPage extends ViewPU {
                                             List.width('100%');
                                             List.layoutWeight(1);
                                             List.onScrollIndex((first: number, last: number) => {
+                                                dataSource.setIsAtTop(first === 0);
                                                 if (last >= dataSource.totalCount() - 6 && dataSource.totalCount() > 0 && !dataSource.isLoadingMore &&
                                                     dataSource.hasMore) {
                                                     console.log('LazyForEach triggered load more via onScrollIndex');
@@ -327,7 +342,7 @@ class ProductListPage extends ViewPU {
                                                         {
                                                             this.observeComponentCreation2((elmtId, isInitialRender) => {
                                                                 if (isInitialRender) {
-                                                                    let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 170, col: 19 });
+                                                                    let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 171, col: 19 });
                                                                     ViewPU.create(componentCall);
                                                                     let paramsLambda = () => {
                                                                         return {
@@ -408,7 +423,7 @@ class ProductListPage extends ViewPU {
                             If.pop();
                             Column.pop();
                         }
-                    }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 144, col: 5 });
+                    }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 145, col: 5 });
                     ViewPU.create(componentCall);
                     let paramsLambda = () => {
                         return {
@@ -461,6 +476,7 @@ class ProductListPage extends ViewPU {
                                                 List.width('100%');
                                                 List.layoutWeight(1);
                                                 List.onScrollIndex((first: number, last: number) => {
+                                                    dataSource.setIsAtTop(first === 0);
                                                     if (last >= dataSource.totalCount() - 6 && dataSource.totalCount() > 0 && !dataSource.isLoadingMore &&
                                                         dataSource.hasMore) {
                                                         console.log('LazyForEach triggered load more via onScrollIndex');
@@ -480,7 +496,7 @@ class ProductListPage extends ViewPU {
                                                             {
                                                                 this.observeComponentCreation2((elmtId, isInitialRender) => {
                                                                     if (isInitialRender) {
-                                                                        let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 170, col: 19 });
+                                                                        let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 171, col: 19 });
                                                                         ViewPU.create(componentCall);
                                                                         let paramsLambda = () => {
                                                                             return {
@@ -617,93 +633,120 @@ class ProductListPage extends ViewPU {
             }
         }, If);
         If.pop();
-        Row.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Column.create();
-        }, Column);
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Text.create('排序');
+            Text.create(this.showFilterPanel ? '收起' : '筛选');
             Text.fontSize(12);
-            Text.fontColor(Color.Gray);
-            Text.margin({ left: 12, bottom: 6 });
+            Text.fontColor(this.activeSort !== SortOption.DEFAULT || this.activePriceFilter !== PriceFilter.ALL ?
+                Color.White : '#666666');
+            Text.backgroundColor(this.activeSort !== SortOption.DEFAULT || this.activePriceFilter !== PriceFilter.ALL ?
+                '#2D6A4F' : '#E6E6E6');
+            Text.borderRadius(14);
+            Text.margin({ left: 8 });
+            Text.padding({ left: 10, right: 10, top: 6, bottom: 6 });
+            Text.onClick(() => {
+                this.showFilterPanel = !this.showFilterPanel;
+            });
         }, Text);
         Text.pop();
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Scroll.create();
-            Scroll.scrollable(ScrollDirection.Horizontal);
-            Scroll.scrollBar(BarState.Off);
-            Scroll.width('100%');
-        }, Scroll);
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Row.create();
-            Row.padding({ left: 12, right: 12 });
-        }, Row);
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            ForEach.create();
-            const forEachItemGenFunction = _item => {
-                const option = _item;
-                this.observeComponentCreation2((elmtId, isInitialRender) => {
-                    Text.create(option.label);
-                    Text.fontSize(12);
-                    Text.fontColor(this.activeSort === option.value ? Color.White : Color.Black);
-                    Text.backgroundColor(this.activeSort === option.value ? '#2D6A4F' : '#E6E6E6');
-                    Text.borderRadius(12);
-                    Text.padding({ left: 12, right: 12, top: 6, bottom: 6 });
-                    Text.margin({ right: 8, bottom: 4 });
-                    Text.onClick(() => {
-                        this.activeSort = option.value;
-                        dataSource.setSortOption(option.value);
-                    });
-                }, Text);
-                Text.pop();
-            };
-            this.forEachUpdateFunction(elmtId, this.sortOptions, forEachItemGenFunction, (option: FilterOption<SortOption>) => option.value, false, false);
-        }, ForEach);
-        ForEach.pop();
         Row.pop();
-        Scroll.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Text.create('价格');
-            Text.fontSize(12);
-            Text.fontColor(Color.Gray);
-            Text.margin({ left: 12, top: 8, bottom: 6 });
-        }, Text);
-        Text.pop();
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Scroll.create();
-            Scroll.scrollable(ScrollDirection.Horizontal);
-            Scroll.scrollBar(BarState.Off);
-            Scroll.width('100%');
-        }, Scroll);
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Row.create();
-            Row.padding({ left: 12, right: 12, bottom: 8 });
-        }, Row);
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            ForEach.create();
-            const forEachItemGenFunction = _item => {
-                const option = _item;
-                this.observeComponentCreation2((elmtId, isInitialRender) => {
-                    Text.create(option.label);
-                    Text.fontSize(12);
-                    Text.fontColor(this.activePriceFilter === option.value ? Color.White : Color.Black);
-                    Text.backgroundColor(this.activePriceFilter === option.value ? '#2D6A4F' : '#E6E6E6');
-                    Text.borderRadius(12);
-                    Text.padding({ left: 12, right: 12, top: 6, bottom: 6 });
-                    Text.margin({ right: 8, bottom: 4 });
-                    Text.onClick(() => {
-                        this.activePriceFilter = option.value;
-                        dataSource.setPriceFilter(option.value);
-                    });
-                }, Text);
-                Text.pop();
-            };
-            this.forEachUpdateFunction(elmtId, this.priceFilters, forEachItemGenFunction, (option: FilterOption<PriceFilter>) => option.value, false, false);
-        }, ForEach);
-        ForEach.pop();
-        Row.pop();
-        Scroll.pop();
-        Column.pop();
+            If.create();
+            if (this.showFilterPanel) {
+                this.ifElseBranchUpdateFunction(0, () => {
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Column.create();
+                    }, Column);
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Text.create('排序');
+                        Text.fontSize(12);
+                        Text.fontColor(Color.Gray);
+                        Text.margin({ left: 12, bottom: 6 });
+                    }, Text);
+                    Text.pop();
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Scroll.create();
+                        Scroll.scrollable(ScrollDirection.Horizontal);
+                        Scroll.scrollBar(BarState.Off);
+                        Scroll.width('100%');
+                    }, Scroll);
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Row.create();
+                        Row.padding({ left: 12, right: 12 });
+                    }, Row);
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        ForEach.create();
+                        const forEachItemGenFunction = _item => {
+                            const option = _item;
+                            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                Text.create(option.label);
+                                Text.fontSize(12);
+                                Text.fontColor(this.activeSort === option.value ? Color.White : Color.Black);
+                                Text.backgroundColor(this.activeSort === option.value ? '#2D6A4F' : '#E6E6E6');
+                                Text.borderRadius(12);
+                                Text.padding({ left: 12, right: 12, top: 6, bottom: 6 });
+                                Text.margin({ right: 8, bottom: 4 });
+                                Text.onClick(() => {
+                                    this.activeSort = option.value;
+                                    dataSource.setSortOption(option.value);
+                                });
+                            }, Text);
+                            Text.pop();
+                        };
+                        this.forEachUpdateFunction(elmtId, this.sortOptions, forEachItemGenFunction, (option: FilterOption<SortOption>) => option.value, false, false);
+                    }, ForEach);
+                    ForEach.pop();
+                    Row.pop();
+                    Scroll.pop();
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Text.create('价格');
+                        Text.fontSize(12);
+                        Text.fontColor(Color.Gray);
+                        Text.margin({ left: 12, top: 8, bottom: 6 });
+                    }, Text);
+                    Text.pop();
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Scroll.create();
+                        Scroll.scrollable(ScrollDirection.Horizontal);
+                        Scroll.scrollBar(BarState.Off);
+                        Scroll.width('100%');
+                    }, Scroll);
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Row.create();
+                        Row.padding({ left: 12, right: 12, bottom: 8 });
+                    }, Row);
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        ForEach.create();
+                        const forEachItemGenFunction = _item => {
+                            const option = _item;
+                            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                Text.create(option.label);
+                                Text.fontSize(12);
+                                Text.fontColor(this.activePriceFilter === option.value ? Color.White : Color.Black);
+                                Text.backgroundColor(this.activePriceFilter === option.value ? '#2D6A4F' : '#E6E6E6');
+                                Text.borderRadius(12);
+                                Text.padding({ left: 12, right: 12, top: 6, bottom: 6 });
+                                Text.margin({ right: 8, bottom: 4 });
+                                Text.onClick(() => {
+                                    this.activePriceFilter = option.value;
+                                    dataSource.setPriceFilter(option.value);
+                                });
+                            }, Text);
+                            Text.pop();
+                        };
+                        this.forEachUpdateFunction(elmtId, this.priceFilters, forEachItemGenFunction, (option: FilterOption<PriceFilter>) => option.value, false, false);
+                    }, ForEach);
+                    ForEach.pop();
+                    Row.pop();
+                    Scroll.pop();
+                    Column.pop();
+                });
+            }
+            else {
+                this.ifElseBranchUpdateFunction(1, () => {
+                });
+            }
+        }, If);
+        If.pop();
         Column.pop();
     }
     private syncControlsFromDataSource(dataSource: ProductListDataSource) {

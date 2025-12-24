@@ -39,28 +39,52 @@ export class ProductItem extends ViewPU {
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Column.create();
             Column.width('100%');
-            Column.backgroundColor(Color.White);
-            Column.borderRadius(10);
-            Column.margin({ bottom: 8, left: 12, right: 12 });
-            Column.shadow({ radius: 2, color: '#1A000000', offsetX: 0, offsetY: 1 });
+            Column.backgroundColor('#FFFFFF');
+            Column.borderRadius(16);
+            Column.margin({ bottom: 12, left: 12, right: 12 });
+            Column.shadow({ radius: 6, color: '#14000000', offsetX: 0, offsetY: 2 });
         }, Column);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
-            // 商品图片
+            Stack.create();
+            Stack.width('100%');
+            Stack.height(180);
+        }, Stack);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
             Image.create(this.product.imageUrl);
-            // 商品图片
             Image.width('100%');
-            // 商品图片
             Image.height(180);
-            // 商品图片
-            Image.borderRadius(8);
-            // 商品图片
+            Image.objectFit(ImageFit.Cover);
+            Image.borderRadius(12);
             Image.alt({ "id": 16777259, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" });
         }, Image);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            If.create();
+            if (this.product.ratingPercentage !== undefined) {
+                this.ifElseBranchUpdateFunction(0, () => {
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Text.create(`${this.product.ratingPercentage}%好评`);
+                        Text.fontSize(10);
+                        Text.fontColor(Color.White);
+                        Text.backgroundColor('#3A2D6A4F');
+                        Text.borderRadius(10);
+                        Text.padding({ left: 8, right: 8, top: 4, bottom: 4 });
+                        Text.position({ x: 10, y: 10 });
+                    }, Text);
+                    Text.pop();
+                });
+            }
+            else {
+                this.ifElseBranchUpdateFunction(1, () => {
+                });
+            }
+        }, If);
+        If.pop();
+        Stack.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             // 商品信息区域
             Column.create();
             // 商品信息区域
-            Column.padding({ left: 8, right: 8, bottom: 8 });
+            Column.padding({ left: 12, right: 12, top: 10, bottom: 12 });
         }, Column);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             // 商品名称
@@ -70,11 +94,11 @@ export class ProductItem extends ViewPU {
             // 商品名称
             Text.fontWeight(FontWeight.Medium);
             // 商品名称
+            Text.fontColor('#1B1B1F');
+            // 商品名称
             Text.maxLines(2);
             // 商品名称
             Text.textOverflow({ overflow: TextOverflow.Ellipsis });
-            // 商品名称
-            Text.margin({ bottom: 4 });
         }, Text);
         // 商品名称
         Text.pop();
@@ -84,9 +108,13 @@ export class ProductItem extends ViewPU {
             // 商品描述
             Text.fontSize(12);
             // 商品描述
-            Text.fontColor(Color.Gray);
+            Text.fontColor('#6B6B6B');
             // 商品描述
-            Text.margin({ bottom: 8 });
+            Text.maxLines(1);
+            // 商品描述
+            Text.textOverflow({ overflow: TextOverflow.Ellipsis });
+            // 商品描述
+            Text.margin({ top: 4 });
         }, Text);
         // 商品描述
         Text.pop();
@@ -95,19 +123,60 @@ export class ProductItem extends ViewPU {
             Row.create();
             // 评价和价格行
             Row.width('100%');
+            // 评价和价格行
+            Row.margin({ top: 10 });
+            // 评价和价格行
+            Row.alignItems(VerticalAlign.Center);
         }, Row);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Text.create(`${this.product.ratingCount || 0}人评价 ${this.product.ratingPercentage || 0}%好评`);
+            Column.create();
+            Column.layoutWeight(1);
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create();
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('¥');
             Text.fontSize(12);
-            Text.fontColor(Color.Gray);
-            Text.layoutWeight(1);
+            Text.fontColor('#C62828');
+            Text.margin({ top: 2 });
         }, Text);
         Text.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Text.create(`¥${this.product.price.toFixed(2)}`);
-            Text.fontSize(16);
-            Text.fontColor(Color.Red);
+            Text.create(`${this.product.price.toFixed(2)}`);
+            Text.fontSize(18);
+            Text.fontColor('#C62828');
             Text.fontWeight(FontWeight.Bold);
+        }, Text);
+        Text.pop();
+        Row.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            If.create();
+            if (this.product.ratingCount !== undefined) {
+                this.ifElseBranchUpdateFunction(0, () => {
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Text.create(`${this.product.ratingCount}人评价`);
+                        Text.fontSize(11);
+                        Text.fontColor('#8A8A8A');
+                        Text.margin({ top: 2 });
+                    }, Text);
+                    Text.pop();
+                });
+            }
+            else {
+                this.ifElseBranchUpdateFunction(1, () => {
+                });
+            }
+        }, If);
+        If.pop();
+        Column.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('去看看');
+            Text.fontSize(12);
+            Text.fontColor(Color.White);
+            Text.backgroundColor('#2D6A4F');
+            Text.borderRadius(12);
+            Text.padding({ left: 10, right: 10, top: 6, bottom: 6 });
         }, Text);
         Text.pop();
         // 评价和价格行
