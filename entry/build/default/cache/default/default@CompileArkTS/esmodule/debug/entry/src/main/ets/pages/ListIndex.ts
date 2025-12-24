@@ -10,14 +10,21 @@ interface ProductListPage_Params {
     wearDataSource?: ProductListDataSource;
     homeDataSource?: ProductListDataSource;
     searchText?: string;
-    isSearching?: boolean;
+    activeSort?: SortOption;
+    activePriceFilter?: PriceFilter;
+    sortOptions?: FilterOption<SortOption>[];
+    priceFilters?: FilterOption<PriceFilter>[];
     showScrollToTop?: boolean;
     scroller?: Scroller;
 }
 import { ProductItem } from "@bundle:com.example.list_harmony/entry/ets/view/GoodsListComponent";
-import { ProductListDataSource, ProductCategory } from "@bundle:com.example.list_harmony/entry/ets/viewmodel/ListDataSource";
+import { ProductListDataSource, ProductCategory, SortOption, PriceFilter } from "@bundle:com.example.list_harmony/entry/ets/viewmodel/ListDataSource";
 import type { Product } from "@bundle:com.example.list_harmony/entry/ets/viewmodel/ListDataSource";
 import { RefreshLayout } from "@bundle:com.example.list_harmony/entry/ets/view/RefreshLayout";
+interface FilterOption<T> {
+    label: string;
+    value: T;
+}
 class ProductListPage extends ViewPU {
     constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
         super(parent, __localStorage, elmtId, extraInfo);
@@ -32,7 +39,20 @@ class ProductListPage extends ViewPU {
         this.wearDataSource = new ProductListDataSource(ProductCategory.WEAR);
         this.homeDataSource = new ProductListDataSource(ProductCategory.HOME);
         this.__searchText = new ObservedPropertySimplePU('', this, "searchText");
-        this.__isSearching = new ObservedPropertySimplePU(false, this, "isSearching");
+        this.__activeSort = new ObservedPropertySimplePU(SortOption.DEFAULT, this, "activeSort");
+        this.__activePriceFilter = new ObservedPropertySimplePU(PriceFilter.ALL, this, "activePriceFilter");
+        this.sortOptions = [
+            { label: '默认', value: SortOption.DEFAULT },
+            { label: '价格↑', value: SortOption.PRICE_ASC },
+            { label: '价格↓', value: SortOption.PRICE_DESC },
+            { label: '好评优先', value: SortOption.RATING_DESC }
+        ];
+        this.priceFilters = [
+            { label: '全部', value: PriceFilter.ALL },
+            { label: '0-100', value: PriceFilter.UNDER_100 },
+            { label: '100-200', value: PriceFilter.BETWEEN_100_200 },
+            { label: '200+', value: PriceFilter.OVER_200 }
+        ];
         this.__showScrollToTop = new ObservedPropertySimplePU(false, this, "showScrollToTop");
         this.scroller = new Scroller();
         this.setInitiallyProvidedValue(params);
@@ -63,8 +83,17 @@ class ProductListPage extends ViewPU {
         if (params.searchText !== undefined) {
             this.searchText = params.searchText;
         }
-        if (params.isSearching !== undefined) {
-            this.isSearching = params.isSearching;
+        if (params.activeSort !== undefined) {
+            this.activeSort = params.activeSort;
+        }
+        if (params.activePriceFilter !== undefined) {
+            this.activePriceFilter = params.activePriceFilter;
+        }
+        if (params.sortOptions !== undefined) {
+            this.sortOptions = params.sortOptions;
+        }
+        if (params.priceFilters !== undefined) {
+            this.priceFilters = params.priceFilters;
         }
         if (params.showScrollToTop !== undefined) {
             this.showScrollToTop = params.showScrollToTop;
@@ -78,13 +107,15 @@ class ProductListPage extends ViewPU {
     purgeVariableDependenciesOnElmtId(rmElmtId) {
         this.__selectedTabIndex.purgeDependencyOnElmtId(rmElmtId);
         this.__searchText.purgeDependencyOnElmtId(rmElmtId);
-        this.__isSearching.purgeDependencyOnElmtId(rmElmtId);
+        this.__activeSort.purgeDependencyOnElmtId(rmElmtId);
+        this.__activePriceFilter.purgeDependencyOnElmtId(rmElmtId);
         this.__showScrollToTop.purgeDependencyOnElmtId(rmElmtId);
     }
     aboutToBeDeleted() {
         this.__selectedTabIndex.aboutToBeDeleted();
         this.__searchText.aboutToBeDeleted();
-        this.__isSearching.aboutToBeDeleted();
+        this.__activeSort.aboutToBeDeleted();
+        this.__activePriceFilter.aboutToBeDeleted();
         this.__showScrollToTop.aboutToBeDeleted();
         SubscriberManager.Get().delete(this.id__());
         this.aboutToBeDeletedInternal();
@@ -113,13 +144,22 @@ class ProductListPage extends ViewPU {
     set searchText(newValue: string) {
         this.__searchText.set(newValue);
     }
-    private __isSearching: ObservedPropertySimplePU<boolean>; // To toggle search input visibility
-    get isSearching() {
-        return this.__isSearching.get();
+    private __activeSort: ObservedPropertySimplePU<SortOption>;
+    get activeSort() {
+        return this.__activeSort.get();
     }
-    set isSearching(newValue: boolean) {
-        this.__isSearching.set(newValue);
+    set activeSort(newValue: SortOption) {
+        this.__activeSort.set(newValue);
     }
+    private __activePriceFilter: ObservedPropertySimplePU<PriceFilter>;
+    get activePriceFilter() {
+        return this.__activePriceFilter.get();
+    }
+    set activePriceFilter(newValue: PriceFilter) {
+        this.__activePriceFilter.set(newValue);
+    }
+    private sortOptions: FilterOption<SortOption>[];
+    private priceFilters: FilterOption<PriceFilter>[];
     // State for scroll-to-top button
     private __showScrollToTop: ObservedPropertySimplePU<boolean>;
     get showScrollToTop() {
@@ -129,6 +169,9 @@ class ProductListPage extends ViewPU {
         this.__showScrollToTop.set(newValue);
     }
     private scroller: Scroller; // Scroller for "Back to Top"
+    aboutToAppear() {
+        this.syncControlsFromDataSource(this.currentDataSource);
+    }
     initialRender() {
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Navigation.create(new NavPathStack(), { moduleName: "entry", pagePath: "entry/src/main/ets/pages/ListIndex", isUserCreateStack: false });
@@ -160,6 +203,7 @@ class ProductListPage extends ViewPU {
                 catch (e) {
                     console.error(`Error loading data on tab switch: ${e}`);
                 }
+                this.syncControlsFromDataSource(this.currentDataSource);
             });
         }, Tabs);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
@@ -219,24 +263,32 @@ class ProductListPage extends ViewPU {
                         ,
                         content: () => {
                             this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                Column.create();
+                                Column.width('100%');
+                                Column.height('100%');
+                            }, Column);
+                            this.buildSearchAndFilter.bind(this)(dataSource);
+                            this.observeComponentCreation2((elmtId, isInitialRender) => {
                                 If.create();
                                 if (dataSource.totalCount() === 0 && !dataSource.isLoadingMore) {
                                     this.ifElseBranchUpdateFunction(0, () => {
                                         this.observeComponentCreation2((elmtId, isInitialRender) => {
                                             Column.create();
                                             Column.width('100%');
-                                            Column.height('100%');
+                                            Column.layoutWeight(1);
                                             Column.justifyContent(FlexAlign.Center);
                                             Column.alignItems(HorizontalAlign.Center);
                                         }, Column);
                                         this.observeComponentCreation2((elmtId, isInitialRender) => {
-                                            Image.create({ "id": 16777265, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" });
+                                            Image.create({ "id": 16777242, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" });
                                             Image.width(80);
                                             Image.height(80);
                                             Image.margin({ bottom: 16 });
                                         }, Image);
                                         this.observeComponentCreation2((elmtId, isInitialRender) => {
-                                            Text.create('哎呀，这里还没有商品哦');
+                                            Text.create(this.searchText.length > 0 || this.activePriceFilter !== PriceFilter.ALL ?
+                                                '没有匹配的商品，请调整搜索或筛选条件' :
+                                                '哎呀，这里还没有商品哦');
                                             Text.fontSize(16);
                                             Text.fontColor(Color.Gray);
                                         }, Text);
@@ -249,7 +301,7 @@ class ProductListPage extends ViewPU {
                                         this.observeComponentCreation2((elmtId, isInitialRender) => {
                                             Column.create();
                                             Column.width('100%');
-                                            Column.height('100%');
+                                            Column.layoutWeight(1);
                                         }, Column);
                                         this.observeComponentCreation2((elmtId, isInitialRender) => {
                                             List.create();
@@ -275,7 +327,7 @@ class ProductListPage extends ViewPU {
                                                         {
                                                             this.observeComponentCreation2((elmtId, isInitialRender) => {
                                                                 if (isInitialRender) {
-                                                                    let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 134, col: 17 });
+                                                                    let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 170, col: 19 });
                                                                     ViewPU.create(componentCall);
                                                                     let paramsLambda = () => {
                                                                         return {
@@ -354,8 +406,9 @@ class ProductListPage extends ViewPU {
                                 }
                             }, If);
                             If.pop();
+                            Column.pop();
                         }
-                    }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 113, col: 5 });
+                    }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 144, col: 5 });
                     ViewPU.create(componentCall);
                     let paramsLambda = () => {
                         return {
@@ -363,24 +416,32 @@ class ProductListPage extends ViewPU {
                             ,
                             content: () => {
                                 this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                    Column.create();
+                                    Column.width('100%');
+                                    Column.height('100%');
+                                }, Column);
+                                this.buildSearchAndFilter.bind(this)(dataSource);
+                                this.observeComponentCreation2((elmtId, isInitialRender) => {
                                     If.create();
                                     if (dataSource.totalCount() === 0 && !dataSource.isLoadingMore) {
                                         this.ifElseBranchUpdateFunction(0, () => {
                                             this.observeComponentCreation2((elmtId, isInitialRender) => {
                                                 Column.create();
                                                 Column.width('100%');
-                                                Column.height('100%');
+                                                Column.layoutWeight(1);
                                                 Column.justifyContent(FlexAlign.Center);
                                                 Column.alignItems(HorizontalAlign.Center);
                                             }, Column);
                                             this.observeComponentCreation2((elmtId, isInitialRender) => {
-                                                Image.create({ "id": 16777265, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" });
+                                                Image.create({ "id": 16777242, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" });
                                                 Image.width(80);
                                                 Image.height(80);
                                                 Image.margin({ bottom: 16 });
                                             }, Image);
                                             this.observeComponentCreation2((elmtId, isInitialRender) => {
-                                                Text.create('哎呀，这里还没有商品哦');
+                                                Text.create(this.searchText.length > 0 || this.activePriceFilter !== PriceFilter.ALL ?
+                                                    '没有匹配的商品，请调整搜索或筛选条件' :
+                                                    '哎呀，这里还没有商品哦');
                                                 Text.fontSize(16);
                                                 Text.fontColor(Color.Gray);
                                             }, Text);
@@ -393,7 +454,7 @@ class ProductListPage extends ViewPU {
                                             this.observeComponentCreation2((elmtId, isInitialRender) => {
                                                 Column.create();
                                                 Column.width('100%');
-                                                Column.height('100%');
+                                                Column.layoutWeight(1);
                                             }, Column);
                                             this.observeComponentCreation2((elmtId, isInitialRender) => {
                                                 List.create();
@@ -419,7 +480,7 @@ class ProductListPage extends ViewPU {
                                                             {
                                                                 this.observeComponentCreation2((elmtId, isInitialRender) => {
                                                                     if (isInitialRender) {
-                                                                        let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 134, col: 17 });
+                                                                        let componentCall = new ProductItem(this, { product: item }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/ListIndex.ets", line: 170, col: 19 });
                                                                         ViewPU.create(componentCall);
                                                                         let paramsLambda = () => {
                                                                             return {
@@ -498,6 +559,7 @@ class ProductListPage extends ViewPU {
                                     }
                                 }, If);
                                 If.pop();
+                                Column.pop();
                             }
                         };
                     };
@@ -510,6 +572,147 @@ class ProductListPage extends ViewPU {
                 }
             }, { name: "RefreshLayout" });
         }
+    }
+    private buildSearchAndFilter(dataSource: ProductListDataSource, parent = null) {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create();
+            Row.padding({ left: 12, right: 12, top: 12, bottom: 8 });
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            TextInput.create({ text: this.searchText, placeholder: '搜索商品名称或描述' });
+            TextInput.layoutWeight(1);
+            TextInput.height(36);
+            TextInput.backgroundColor('#F2F2F2');
+            TextInput.borderRadius(18);
+            TextInput.padding({ left: 12, right: 12 });
+            TextInput.onChange((value: string) => {
+                this.searchText = value;
+                dataSource.setSearchQuery(value);
+            });
+        }, TextInput);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            If.create();
+            if (this.searchText.length > 0) {
+                this.ifElseBranchUpdateFunction(0, () => {
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Text.create('清除');
+                        Text.fontSize(12);
+                        Text.fontColor('#666666');
+                        Text.margin({ left: 8 });
+                        Text.padding({ left: 8, right: 8, top: 6, bottom: 6 });
+                        Text.onClick(() => {
+                            this.searchText = '';
+                            dataSource.setSearchQuery('');
+                        });
+                    }, Text);
+                    Text.pop();
+                });
+            }
+            else {
+                this.ifElseBranchUpdateFunction(1, () => {
+                });
+            }
+        }, If);
+        If.pop();
+        Row.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('排序');
+            Text.fontSize(12);
+            Text.fontColor(Color.Gray);
+            Text.margin({ left: 12, bottom: 6 });
+        }, Text);
+        Text.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Scroll.create();
+            Scroll.scrollable(ScrollDirection.Horizontal);
+            Scroll.scrollBar(BarState.Off);
+            Scroll.width('100%');
+        }, Scroll);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create();
+            Row.padding({ left: 12, right: 12 });
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            ForEach.create();
+            const forEachItemGenFunction = _item => {
+                const option = _item;
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Text.create(option.label);
+                    Text.fontSize(12);
+                    Text.fontColor(this.activeSort === option.value ? Color.White : Color.Black);
+                    Text.backgroundColor(this.activeSort === option.value ? '#2D6A4F' : '#E6E6E6');
+                    Text.borderRadius(12);
+                    Text.padding({ left: 12, right: 12, top: 6, bottom: 6 });
+                    Text.margin({ right: 8, bottom: 4 });
+                    Text.onClick(() => {
+                        this.activeSort = option.value;
+                        dataSource.setSortOption(option.value);
+                    });
+                }, Text);
+                Text.pop();
+            };
+            this.forEachUpdateFunction(elmtId, this.sortOptions, forEachItemGenFunction, (option: FilterOption<SortOption>) => option.value, false, false);
+        }, ForEach);
+        ForEach.pop();
+        Row.pop();
+        Scroll.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('价格');
+            Text.fontSize(12);
+            Text.fontColor(Color.Gray);
+            Text.margin({ left: 12, top: 8, bottom: 6 });
+        }, Text);
+        Text.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Scroll.create();
+            Scroll.scrollable(ScrollDirection.Horizontal);
+            Scroll.scrollBar(BarState.Off);
+            Scroll.width('100%');
+        }, Scroll);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create();
+            Row.padding({ left: 12, right: 12, bottom: 8 });
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            ForEach.create();
+            const forEachItemGenFunction = _item => {
+                const option = _item;
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Text.create(option.label);
+                    Text.fontSize(12);
+                    Text.fontColor(this.activePriceFilter === option.value ? Color.White : Color.Black);
+                    Text.backgroundColor(this.activePriceFilter === option.value ? '#2D6A4F' : '#E6E6E6');
+                    Text.borderRadius(12);
+                    Text.padding({ left: 12, right: 12, top: 6, bottom: 6 });
+                    Text.margin({ right: 8, bottom: 4 });
+                    Text.onClick(() => {
+                        this.activePriceFilter = option.value;
+                        dataSource.setPriceFilter(option.value);
+                    });
+                }, Text);
+                Text.pop();
+            };
+            this.forEachUpdateFunction(elmtId, this.priceFilters, forEachItemGenFunction, (option: FilterOption<PriceFilter>) => option.value, false, false);
+        }, ForEach);
+        ForEach.pop();
+        Row.pop();
+        Scroll.pop();
+        Column.pop();
+        Column.pop();
+    }
+    private syncControlsFromDataSource(dataSource: ProductListDataSource) {
+        if (!dataSource) {
+            return;
+        }
+        this.searchText = dataSource.getSearchQuery();
+        this.activeSort = dataSource.getSortOption();
+        this.activePriceFilter = dataSource.getPriceFilter();
     }
     rerender() {
         this.updateDirtyElements();

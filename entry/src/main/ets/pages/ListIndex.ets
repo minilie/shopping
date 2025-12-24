@@ -1,7 +1,18 @@
 // entry/src/main/ets/pages/ListIndex.ets
 import { ProductItem } from '../view/GoodsListComponent';
-import { Product, ProductListDataSource, ProductCategory } from '../viewmodel/ListDataSource';
+import {
+  Product,
+  ProductListDataSource,
+  ProductCategory,
+  SortOption,
+  PriceFilter
+} from '../viewmodel/ListDataSource';
 import { RefreshLayout } from '../view/RefreshLayout'; // 引入新的 RefreshLayout 组件
+
+interface FilterOption<T> {
+  label: string;
+  value: T;
+}
 
 @Entry
 @Component
@@ -20,7 +31,22 @@ struct ProductListPage {
 
   // State for search bar
   @State private searchText: string = '';
-  @State private isSearching: boolean = false; // To toggle search input visibility
+  @State private activeSort: SortOption = SortOption.DEFAULT;
+  @State private activePriceFilter: PriceFilter = PriceFilter.ALL;
+
+  private sortOptions: FilterOption<SortOption>[] = [
+    { label: '默认', value: SortOption.DEFAULT },
+    { label: '价格↑', value: SortOption.PRICE_ASC },
+    { label: '价格↓', value: SortOption.PRICE_DESC },
+    { label: '好评优先', value: SortOption.RATING_DESC }
+  ];
+
+  private priceFilters: FilterOption<PriceFilter>[] = [
+    { label: '全部', value: PriceFilter.ALL },
+    { label: '0-100', value: PriceFilter.UNDER_100 },
+    { label: '100-200', value: PriceFilter.BETWEEN_100_200 },
+    { label: '200+', value: PriceFilter.OVER_200 }
+  ];
 
   // State for scroll-to-top button
   @State private showScrollToTop: boolean = false;
@@ -42,6 +68,10 @@ struct ProductListPage {
       default:
         return this.featuredDataSource;
     }
+  }
+
+  aboutToAppear() {
+    this.syncControlsFromDataSource(this.currentDataSource);
   }
 
   build() {
@@ -96,6 +126,7 @@ struct ProductListPage {
           } catch (e) {
             console.error(`Error loading data on tab switch: ${e}`);
           }
+          this.syncControlsFromDataSource(this.currentDataSource);
         })
       }
     }
@@ -113,64 +144,167 @@ struct ProductListPage {
     RefreshLayout({
       dataSource: dataSource // 传递DataSource实例
     }) {
-      if (dataSource.totalCount() === 0 && !dataSource.isLoadingMore) {
-        Column() {
-          Image($r('app.media.empty_box_icon')) // You'd need an 'empty_box_icon' asset
-            .width(80).height(80)
-            .margin({ bottom: 16 })
-          Text('哎呀，这里还没有商品哦')
-            .fontSize(16)
-            .fontColor(Color.Gray)
-        }
-        .width('100%')
-        .height('100%')
-        .justifyContent(FlexAlign.Center)
-        .alignItems(HorizontalAlign.Center)
-      } else {
-        Column() { // 使用Column包裹List，以便在底部添加"到底了"提示
-          List() {
-            LazyForEach(dataSource, (item: Product) => {
-              ListItem() {
-                ProductItem({ product: item })
-              }
-            }, (item: Product) => item.id.toString())
+      Column() {
+        this.buildSearchAndFilter(dataSource);
+
+        if (dataSource.totalCount() === 0 && !dataSource.isLoadingMore) {
+          Column() {
+            Image($r('app.media.empty_box_icon')) // You'd need an 'empty_box_icon' asset
+              .width(80).height(80)
+              .margin({ bottom: 16 })
+            Text(this.searchText.length > 0 || this.activePriceFilter !== PriceFilter.ALL ?
+              '没有匹配的商品，请调整搜索或筛选条件' :
+              '哎呀，这里还没有商品哦')
+              .fontSize(16)
+              .fontColor(Color.Gray)
           }
           .width('100%')
           .layoutWeight(1)
-          // LazyForEach 内部的 onScrollIndex 可以用来辅助触发懒加载，但主要逻辑在RefreshLayout的onScroll中
-          .onScrollIndex((first: number, last: number) => {
-            if (last >= dataSource.totalCount() - 6 && dataSource.totalCount() > 0 && !dataSource.isLoadingMore &&
-            dataSource.hasMore) {
-              console.log('LazyForEach triggered load more via onScrollIndex');
-              dataSource.loadMore();
-            }
-          })
-
-          // Loading more indicator
-          if (dataSource.isLoadingMore) {
-            Column() {
-              LoadingProgress()
-                .width(30).height(30)
-                .margin({ top: 10, bottom: 20 })
+          .justifyContent(FlexAlign.Center)
+          .alignItems(HorizontalAlign.Center)
+        } else {
+          Column() { // 使用Column包裹List，以便在底部添加"到底了"提示
+            List() {
+              LazyForEach(dataSource, (item: Product) => {
+                ListItem() {
+                  ProductItem({ product: item })
+                }
+              }, (item: Product) => item.id.toString())
             }
             .width('100%')
-            .justifyContent(FlexAlign.Center)
-          }
+            .layoutWeight(1)
+            // LazyForEach 内部的 onScrollIndex 可以用来辅助触发懒加载，但主要逻辑在RefreshLayout的onScroll中
+            .onScrollIndex((first: number, last: number) => {
+              if (last >= dataSource.totalCount() - 6 && dataSource.totalCount() > 0 && !dataSource.isLoadingMore &&
+              dataSource.hasMore) {
+                console.log('LazyForEach triggered load more via onScrollIndex');
+                dataSource.loadMore();
+              }
+            })
 
-          // 到底提示
-          if (dataSource.totalCount() > 0 && !dataSource.hasMore && !dataSource.isLoadingMore) {
-            Text('已经到底了')
-              .fontSize(14)
-              .fontColor(Color.Gray)
-              .textAlign(TextAlign.Center)
+            // Loading more indicator
+            if (dataSource.isLoadingMore) {
+              Column() {
+                LoadingProgress()
+                  .width(30).height(30)
+                  .margin({ top: 10, bottom: 20 })
+              }
               .width('100%')
-              .padding(10)
+              .justifyContent(FlexAlign.Center)
+            }
+
+            // 到底提示
+            if (dataSource.totalCount() > 0 && !dataSource.hasMore && !dataSource.isLoadingMore) {
+              Text('已经到底了')
+                .fontSize(14)
+                .fontColor(Color.Gray)
+                .textAlign(TextAlign.Center)
+                .width('100%')
+                .padding(10)
+            }
           }
+          .width('100%')
+          .layoutWeight(1) // Column的高度需要设置，以便List可以填充
         }
-        .width('100%')
-        .height('100%') // Column的高度需要设置，以便List可以填充
       }
+      .width('100%')
+      .height('100%')
       //.height('100%') // RefreshLayout的高度需要设置 (uncommented to fix potential layout crashes)
     }
+  }
+
+  @Builder
+  private buildSearchAndFilter(dataSource: ProductListDataSource) {
+    Column() {
+      Row() {
+        TextInput({ text: this.searchText, placeholder: '搜索商品名称或描述' })
+          .layoutWeight(1)
+          .height(36)
+          .backgroundColor('#F2F2F2')
+          .borderRadius(18)
+          .padding({ left: 12, right: 12 })
+          .onChange((value: string) => {
+            this.searchText = value;
+            dataSource.setSearchQuery(value);
+          })
+        if (this.searchText.length > 0) {
+          Text('清除')
+            .fontSize(12)
+            .fontColor('#666666')
+            .margin({ left: 8 })
+            .padding({ left: 8, right: 8, top: 6, bottom: 6 })
+            .onClick(() => {
+              this.searchText = '';
+              dataSource.setSearchQuery('');
+            })
+        }
+      }
+      .padding({ left: 12, right: 12, top: 12, bottom: 8 })
+
+      Column() {
+        Text('排序')
+          .fontSize(12)
+          .fontColor(Color.Gray)
+          .margin({ left: 12, bottom: 6 })
+
+        Scroll() {
+          Row() {
+            ForEach(this.sortOptions, (option: FilterOption<SortOption>) => {
+              Text(option.label)
+                .fontSize(12)
+                .fontColor(this.activeSort === option.value ? Color.White : Color.Black)
+                .backgroundColor(this.activeSort === option.value ? '#2D6A4F' : '#E6E6E6')
+                .borderRadius(12)
+                .padding({ left: 12, right: 12, top: 6, bottom: 6 })
+                .margin({ right: 8, bottom: 4 })
+                .onClick(() => {
+                  this.activeSort = option.value;
+                  dataSource.setSortOption(option.value);
+                })
+            }, (option: FilterOption<SortOption>) => option.value)
+          }
+          .padding({ left: 12, right: 12 })
+        }
+        .scrollable(ScrollDirection.Horizontal)
+        .scrollBar(BarState.Off)
+        .width('100%')
+
+        Text('价格')
+          .fontSize(12)
+          .fontColor(Color.Gray)
+          .margin({ left: 12, top: 8, bottom: 6 })
+
+        Scroll() {
+          Row() {
+            ForEach(this.priceFilters, (option: FilterOption<PriceFilter>) => {
+              Text(option.label)
+                .fontSize(12)
+                .fontColor(this.activePriceFilter === option.value ? Color.White : Color.Black)
+                .backgroundColor(this.activePriceFilter === option.value ? '#2D6A4F' : '#E6E6E6')
+                .borderRadius(12)
+                .padding({ left: 12, right: 12, top: 6, bottom: 6 })
+                .margin({ right: 8, bottom: 4 })
+                .onClick(() => {
+                  this.activePriceFilter = option.value;
+                  dataSource.setPriceFilter(option.value);
+                })
+            }, (option: FilterOption<PriceFilter>) => option.value)
+          }
+          .padding({ left: 12, right: 12, bottom: 8 })
+        }
+        .scrollable(ScrollDirection.Horizontal)
+        .scrollBar(BarState.Off)
+        .width('100%')
+      }
+    }
+  }
+
+  private syncControlsFromDataSource(dataSource: ProductListDataSource) {
+    if (!dataSource) {
+      return;
+    }
+    this.searchText = dataSource.getSearchQuery();
+    this.activeSort = dataSource.getSortOption();
+    this.activePriceFilter = dataSource.getPriceFilter();
   }
 }

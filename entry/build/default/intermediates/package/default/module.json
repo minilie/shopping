@@ -6,7 +6,7 @@
 		"versionName":	"1.0.0",
 		"icon":	"$media:app_icon",
 		"label":	"$string:app_name",
-		"apiReleaseType":	"Release",
+		"apiReleaseType":	"Beta5",
 		"compileSdkVersion":	"6.0.0.47",
 		"targetAPIVersion":	60000020,
 		"minAPIVersion":	50005017,
@@ -43,9 +43,9 @@
 						"actions":	["action.system.home"]
 					}],
 				"descriptionId":	16777218,
-				"iconId":	16777253,
+				"iconId":	16777254,
 				"labelId":	16777219,
-				"startWindowIconId":	16777253,
+				"startWindowIconId":	16777254,
 				"startWindowBackgroundId":	16777241
 			}],
 		"packageName":	"entry",

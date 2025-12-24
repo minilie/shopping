@@ -17,10 +17,25 @@ export enum ProductCategory {
   HOME = 'Home',
 }
 
+export enum SortOption {
+  DEFAULT = 'Default',
+  PRICE_ASC = 'PriceAsc',
+  PRICE_DESC = 'PriceDesc',
+  RATING_DESC = 'RatingDesc',
+}
+
+export enum PriceFilter {
+  ALL = 'All',
+  UNDER_100 = 'Under100',
+  BETWEEN_100_200 = 'Between100200',
+  OVER_200 = 'Over200',
+}
+
 export class ProductListDataSource implements IDataSource {
   private products: Product[] = [];
   private dataChangeListener: DataChangeListener | undefined;
   private allAvailableProducts: Product[] = [];
+  private filteredProducts: Product[] = [];
   private pageSize: number = 20;
   private currentLoadedCount: number = 0;
   private nextProductId: number = 1;
@@ -28,15 +43,20 @@ export class ProductListDataSource implements IDataSource {
   public isLoadingMore: boolean = false;
   public hasMore: boolean = true;
   private category: ProductCategory; // <--- Add category property
+  private searchQuery: string = '';
+  private sortOption: SortOption = SortOption.DEFAULT;
+  private priceFilter: PriceFilter = PriceFilter.ALL;
 
   constructor(category: ProductCategory) { // <--- Accept category in constructor
     this.category = category; // Store the category
     this.generateAllInitialDataForCategory(this.category); // Call the new method
+    this.rebuildFilteredProducts();
     this.loadInitialData();
   }
 
   // Modified to generate data based on category
   private generateAllInitialDataForCategory(category: ProductCategory) {
+    this.allAvailableProducts = [];
     let productNames: string[] = [];
     let productDescriptions: string[] = [];
     let imageResources: Resource[] = []; // Array of Resource objects
@@ -170,18 +190,89 @@ export class ProductListDataSource implements IDataSource {
     console.log(`Generated ${this.allAvailableProducts.length} total mock products for ${category}.`);
   }
 
+  setSearchQuery(query: string) {
+    this.searchQuery = query.trim();
+    this.applyFiltersAndReload();
+  }
+
+  setSortOption(option: SortOption) {
+    this.sortOption = option;
+    this.applyFiltersAndReload();
+  }
+
+  setPriceFilter(filter: PriceFilter) {
+    this.priceFilter = filter;
+    this.applyFiltersAndReload();
+  }
+
+  getSearchQuery(): string {
+    return this.searchQuery;
+  }
+
+  getSortOption(): SortOption {
+    return this.sortOption;
+  }
+
+  getPriceFilter(): PriceFilter {
+    return this.priceFilter;
+  }
+
+  private applyFiltersAndReload() {
+    this.rebuildFilteredProducts();
+    this.loadInitialData();
+  }
+
+  private rebuildFilteredProducts() {
+    let result = this.allAvailableProducts;
+    if (this.searchQuery.length > 0) {
+      const query = this.searchQuery.toLowerCase();
+      result = result.filter((product: Product) => {
+        return product.name.toLowerCase().includes(query) ||
+          product.description.toLowerCase().includes(query);
+      });
+    }
+
+    if (this.priceFilter !== PriceFilter.ALL) {
+      result = result.filter((product: Product) => {
+        if (this.priceFilter === PriceFilter.UNDER_100) {
+          return product.price < 100;
+        }
+        if (this.priceFilter === PriceFilter.BETWEEN_100_200) {
+          return product.price >= 100 && product.price <= 200;
+        }
+        return product.price > 200;
+      });
+    }
+
+    result = result.slice();
+    if (this.sortOption === SortOption.PRICE_ASC) {
+      result.sort((a: Product, b: Product) => a.price - b.price);
+    } else if (this.sortOption === SortOption.PRICE_DESC) {
+      result.sort((a: Product, b: Product) => b.price - a.price);
+    } else if (this.sortOption === SortOption.RATING_DESC) {
+      result.sort((a: Product, b: Product) => {
+        const ratingA = a.ratingPercentage ?? 0;
+        const ratingB = b.ratingPercentage ?? 0;
+        return ratingB - ratingA;
+      });
+    }
+
+    this.filteredProducts = result;
+  }
+
   private loadInitialData() {
     this.products = [];
     this.currentLoadedCount = 0;
     this.hasMore = true;
-    const initialBatch = this.allAvailableProducts.slice(0, this.pageSize);
+    this.isLoadingMore = false;
+    const initialBatch = this.filteredProducts.slice(0, this.pageSize);
     this.products.push(...initialBatch);
     this.currentLoadedCount = this.products.length;
     console.log(`Loaded initial ${this.products.length} products for ${this.category}.`);
     if (this.dataChangeListener) {
       this.dataChangeListener.onDataReloaded();
     }
-    if (this.currentLoadedCount >= this.allAvailableProducts.length) {
+    if (this.currentLoadedCount >= this.filteredProducts.length) {
       this.hasMore = false;
     }
   }
@@ -196,8 +287,8 @@ export class ProductListDataSource implements IDataSource {
     const newItems = await new Promise<Product[]>(resolve => {
       setTimeout(() => {
         const startIndex = this.currentLoadedCount;
-        const endIndex = Math.min(startIndex + this.pageSize, this.allAvailableProducts.length);
-        const fetched = this.allAvailableProducts.slice(startIndex, endIndex);
+        const endIndex = Math.min(startIndex + this.pageSize, this.filteredProducts.length);
+        const fetched = this.filteredProducts.slice(startIndex, endIndex);
         console.log(`Fetched more products from index ${startIndex} to ${endIndex - 1}`);
         resolve(fetched);
       }, 800); // Simulate network delay
@@ -225,6 +316,7 @@ export class ProductListDataSource implements IDataSource {
 
     // For a real application, you would fetch fresh data from a server here.
     // For this mock, we'll just reload the initial batch.
+    this.rebuildFilteredProducts();
     this.loadInitialData(); // This will clear and reload the first batch
 
     if (this.dataChangeListener) {

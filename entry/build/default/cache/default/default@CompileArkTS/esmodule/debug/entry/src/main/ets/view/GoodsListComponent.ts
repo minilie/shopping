@@ -54,7 +54,7 @@ export class ProductItem extends ViewPU {
             // 商品图片
             Image.borderRadius(8);
             // 商品图片
-            Image.alt({ "id": 16777258, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" });
+            Image.alt({ "id": 16777259, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" });
         }, Image);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             // 商品信息区域
