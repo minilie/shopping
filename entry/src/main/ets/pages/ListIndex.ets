@@ -8,10 +8,16 @@ import {
   PriceFilter
 } from '../viewmodel/ListDataSource';
 import { RefreshLayout } from '../view/RefreshLayout'; // 引入新的 RefreshLayout 组件
+import promptAction from '@ohos.promptAction';
 
 interface FilterOption<T> {
   label: string;
   value: T;
+}
+
+interface CategoryTab {
+  label: string;
+  ds: ProductListDataSource;
 }
 
 @Entry
@@ -29,11 +35,33 @@ struct ProductListPage {
   private wearDataSource: ProductListDataSource = new ProductListDataSource(ProductCategory.WEAR);
   private homeDataSource: ProductListDataSource = new ProductListDataSource(ProductCategory.HOME);
 
+  // Tab 配置用于 ForEach 统一生成
+  private categoryTabs: Array<CategoryTab> = [
+    { label: '精选', ds: this.featuredDataSource },
+    { label: '手机', ds: this.mobileDataSource },
+    { label: '服饰', ds: this.fashionDataSource },
+    { label: '穿搭', ds: this.wearDataSource },
+    { label: '家居', ds: this.homeDataSource }
+  ];
+
   // State for search bar
   @State private searchText: string = '';
   @State private activeSort: SortOption = SortOption.DEFAULT;
   @State private activePriceFilter: PriceFilter = PriceFilter.ALL;
   @State private showFilterPanel: boolean = false;
+  @State private activeSubcategoryCurrent: string = '';
+
+  // 非响应式存储：每个分类的当前子类（用于在不同分类间记忆选择）
+  private activeSubByCategory: Map<ProductCategory, string> = new Map<ProductCategory, string>();
+
+  // 每个顶层分类的子类选项
+  private subcategoryOptionsMap: Map<ProductCategory, Array<string>> = new Map<ProductCategory, Array<string>>([
+    [ProductCategory.FEATURED, ['热门', '新品', '健康轻食', '零食饮品']],
+    [ProductCategory.MOBILE, ['旗舰', '续航', '影像', '入门']],
+    [ProductCategory.FASHION, ['卫衣', '牛仔', '连衣裙', '风衣']],
+    [ProductCategory.WEAR, ['T恤', '跑鞋', '手环', '瑜伽']],
+    [ProductCategory.HOME, ['清洁', '家具', '香薰', '寝具']]
+  ]);
 
   private sortOptions: FilterOption<SortOption>[] = [
     { label: '默认', value: SortOption.DEFAULT },
@@ -52,6 +80,8 @@ struct ProductListPage {
   // State for scroll-to-top button
   @State private showScrollToTop: boolean = false;
   private scroller: Scroller = new Scroller(); // Scroller for "Back to Top"
+  @State private wasAtEnd: boolean = false;
+  private lastEndToastMs: number = 0;
 
   // 根据当前选中的Tab返回对应的DataSource
   private get currentDataSource(): ProductListDataSource {
@@ -72,45 +102,32 @@ struct ProductListPage {
   }
 
   aboutToAppear() {
-    this.syncControlsFromDataSource(this.currentDataSource);
+    const ds = this.currentDataSource;
+    if (!ds) {
+      console.error('currentDataSource is undefined in aboutToAppear');
+      return;
+    }
+    this.syncControlsFromDataSource(ds);
+    const cat = ds.getCategory();
+    if (!this.activeSubByCategory.has(cat)) {
+      const opts = this.subcategoryOptionsMap.get(cat) ?? [];
+      const first = opts.length > 0 ? opts[0] : '';
+      this.activeSubByCategory.set(cat, first);
+    }
+    this.activeSubcategoryCurrent = this.activeSubByCategory.get(cat) ?? '';
+    ds.setSubcategory(this.activeSubcategoryCurrent);
   }
 
   build() {
     Navigation() {
       Column() {
-        Tabs({
-          index: this.selectedTabIndex,
-          controller: this.tabsController
-        }) {
-          TabContent() {
-            // "精选" Tab的内容
-            this.buildProductListContent(this.featuredDataSource);
-          }
-          .tabBar("精选")
-
-          TabContent() {
-            // "手机" Tab的内容
-            this.buildProductListContent(this.mobileDataSource);
-          }
-          .tabBar("手机")
-
-          TabContent() {
-            // "服饰" Tab的内容
-            this.buildProductListContent(this.fashionDataSource);
-          }
-          .tabBar("服饰")
-
-          TabContent() {
-            // "穿搭" Tab的内容
-            this.buildProductListContent(this.wearDataSource);
-          }
-          .tabBar("穿搭")
-
-          TabContent() {
-            // "家居" Tab的内容
-            this.buildProductListContent(this.homeDataSource);
-          }
-          .tabBar("家居")
+        Tabs({ index: this.selectedTabIndex, controller: this.tabsController }) {
+          ForEach(this.categoryTabs, (tabCfg: CategoryTab) => {
+            TabContent() {
+              this.buildProductListContent(tabCfg.ds);
+            }
+            .tabBar(tabCfg.label)
+          }, (tabCfg: CategoryTab) => tabCfg.label)
         }
         .scrollable(true) // Tabs本身可滚动
         .barMode(BarMode.Scrollable) // TabBar可滚动
@@ -118,16 +135,30 @@ struct ProductListPage {
         .backgroundColor(Color.White)
         .onChange(index => {
           this.selectedTabIndex = index;
+          this.wasAtEnd = false;
+          this.lastEndToastMs = 0;
+          const ds = this.currentDataSource;
+          if (!ds) {
+            console.error('currentDataSource is undefined in Tabs.onChange');
+            return;
+          }
           // 当Tab切换时，确保当前DataSource的数据是加载过的
           try {
-            if (this.currentDataSource.totalCount() === 0) {
+            if (ds.totalCount() === 0) {
               console.log(`Loading data for tab ${index}`);
-              this.currentDataSource.refresh(); // 或者根据需求只加载一次
+              ds.refresh(); // 或者根据需求只加载一次
             }
           } catch (e) {
             console.error(`Error loading data on tab switch: ${e}`);
           }
-          this.syncControlsFromDataSource(this.currentDataSource);
+          this.syncControlsFromDataSource(ds);
+          const cat2 = ds.getCategory();
+          if (!this.activeSubByCategory.has(cat2)) {
+            const opts2 = this.subcategoryOptionsMap.get(cat2) ?? [];
+            this.activeSubByCategory.set(cat2, opts2.length > 0 ? opts2[0] : '');
+          }
+          this.activeSubcategoryCurrent = this.activeSubByCategory.get(cat2) ?? '';
+          ds.setSubcategory(this.activeSubcategoryCurrent);
         })
       }
     }
@@ -140,13 +171,49 @@ struct ProductListPage {
   // 辅助方法，用于构建商品列表内容，包含下拉刷新和懒加载
   @Builder
   buildProductListContent(dataSource: ProductListDataSource) {
-    // RefreshLayout现在直接接受dataSource，并在内部管理加载状态
-    // scroller也不需要从外部传入，RefreshLayout内部会管理其Scroll组件
-    RefreshLayout({
-      dataSource: dataSource // 传递DataSource实例
-    }) {
+    // 数据源空保护
+    if (!dataSource) {
+      Column() {
+        Text('数据源未初始化')
+          .fontSize(14)
+          .fontColor(Color.Gray)
+          .padding(12)
+      }
+      .width('100%')
+      .height('100%')
+    } else {
+      // RefreshLayout现在直接接受dataSource，并在内部管理加载状态
+      // scroller也不需要从外部传入，RefreshLayout内部会管理其Scroll组件
+      RefreshLayout({
+        dataSource: dataSource // 传递DataSource实例
+      }) {
       Column() {
         this.buildSearchAndFilter(dataSource);
+
+        // 子类选择条
+        if ((this.subcategoryOptionsMap.get(dataSource.getCategory()) ?? []).length > 0) {
+          Scroll() {
+            Row() {
+              ForEach(this.subcategoryOptionsMap.get(dataSource.getCategory()) ?? [], (opt: string) => {
+                Text(opt)
+                  .fontSize(12)
+                  .fontColor((this.activeSubcategoryCurrent ?? '') === opt ? Color.White : Color.Black)
+                  .backgroundColor((this.activeSubcategoryCurrent ?? '') === opt ? '#2D6A4F' : '#E6E6E6')
+                  .borderRadius(12)
+                  .padding({ left: 12, right: 12, top: 6, bottom: 6 })
+                  .margin({ right: 8, bottom: 4, left: 12 })
+                  .onClick(() => {
+                    this.activeSubcategoryCurrent = opt;
+                    this.activeSubByCategory.set(dataSource.getCategory(), opt);
+                    dataSource.setSubcategory(opt);
+                  })
+              }, (opt: string) => opt)
+            }
+          }
+          .scrollable(ScrollDirection.Horizontal)
+          .scrollBar(BarState.Off)
+          .width('100%')
+        }
 
         if (dataSource.totalCount() === 0 && !dataSource.isLoadingMore) {
           Column() {
@@ -168,9 +235,44 @@ struct ProductListPage {
             List() {
               LazyForEach(dataSource, (item: Product) => {
                 ListItem() {
-                  ProductItem({ product: item })
+                  ProductItem({ product: item, category: dataSource.getCategory() })
                 }
               }, (item: Product) => item.id.toString())
+
+              // Loading more indicator (as a ListItem so it appears inside the list)
+              if (dataSource.isLoadingMore) {
+                ListItem() {
+                  Column() {
+                    LoadingProgress()
+                      .width(30).height(30)
+                      .margin({ top: 10, bottom: 20 })
+                  }
+                  .width('100%')
+                  .justifyContent(FlexAlign.Center)
+                }
+              }
+
+              // 到底提示（列表尾部项，确保可见）
+              if (dataSource.totalCount() > 0 && !dataSource.hasMore && !dataSource.isLoadingMore) {
+                ListItem() {
+                  Text('已经到底了')
+                    .fontSize(14)
+                    .fontColor(Color.Gray)
+                    .textAlign(TextAlign.Center)
+                    .width('100%')
+                    .padding(12)
+                    .backgroundColor('#F7F7F7')
+                    .borderRadius(8)
+                    .onAppear(() => {
+                      const now = Date.now();
+                      if (now - this.lastEndToastMs > 1200) {
+                        console.log('已经到底了');
+                        promptAction.showToast({ message: '已经到底了', duration: 1500 });
+                        this.lastEndToastMs = now;
+                      }
+                    })
+                }
+              }
             }
             .width('100%')
             .layoutWeight(1)
@@ -182,28 +284,23 @@ struct ProductListPage {
                 console.log('LazyForEach triggered load more via onScrollIndex');
                 dataSource.loadMore();
               }
-            })
 
-            // Loading more indicator
-            if (dataSource.isLoadingMore) {
-              Column() {
-                LoadingProgress()
-                  .width(30).height(30)
-                  .margin({ top: 10, bottom: 20 })
+              if (!dataSource.hasMore && dataSource.totalCount() > 0) {
+                const atEnd = last >= dataSource.totalCount() - 1;
+                if (atEnd) {
+                  const now = Date.now();
+                  // 每次拉到底都提示；加轻微节流避免连续刷屏
+                  if (now - this.lastEndToastMs > 1200 || !this.wasAtEnd) {
+                    console.log('已经到底了');
+                    promptAction.showToast({ message: '已经到底了', duration: 1500 });
+                    this.lastEndToastMs = now;
+                  }
+                }
+                this.wasAtEnd = atEnd;
+              } else {
+                this.wasAtEnd = false;
               }
-              .width('100%')
-              .justifyContent(FlexAlign.Center)
-            }
-
-            // 到底提示
-            if (dataSource.totalCount() > 0 && !dataSource.hasMore && !dataSource.isLoadingMore) {
-              Text('已经到底了')
-                .fontSize(14)
-                .fontColor(Color.Gray)
-                .textAlign(TextAlign.Center)
-                .width('100%')
-                .padding(10)
-            }
+            })
           }
           .width('100%')
           .layoutWeight(1) // Column的高度需要设置，以便List可以填充
@@ -212,6 +309,7 @@ struct ProductListPage {
       .width('100%')
       .height('100%')
       //.height('100%') // RefreshLayout的高度需要设置 (uncommented to fix potential layout crashes)
+      }
     }
   }
 

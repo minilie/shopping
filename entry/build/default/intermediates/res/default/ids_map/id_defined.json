@@ -8,200 +8,228 @@
 			"name":	"app_icon",
 			"id":	"0x01000001"
 		}, {
-			"type":	"string",
-			"name":	"EntryAbility_desc",
+			"type":	"media",
+			"name":	"background",
 			"id":	"0x01000002"
 		}, {
-			"type":	"string",
-			"name":	"EntryAbility_label",
+			"type":	"media",
+			"name":	"foreground",
 			"id":	"0x01000003"
 		}, {
-			"type":	"string",
-			"name":	"advertising_language",
+			"type":	"media",
+			"name":	"layered_image",
 			"id":	"0x01000004"
 		}, {
 			"type":	"string",
-			"name":	"another_goodsName",
+			"name":	"EntryAbility_desc",
 			"id":	"0x01000005"
 		}, {
 			"type":	"string",
-			"name":	"clothes",
+			"name":	"EntryAbility_label",
 			"id":	"0x01000006"
 		}, {
 			"type":	"string",
-			"name":	"entry_desc",
+			"name":	"advertising_language",
 			"id":	"0x01000007"
 		}, {
 			"type":	"string",
-			"name":	"evaluate",
+			"name":	"another_goodsName",
 			"id":	"0x01000008"
 		}, {
 			"type":	"string",
-			"name":	"goodsName",
+			"name":	"clothes",
 			"id":	"0x01000009"
 		}, {
 			"type":	"string",
-			"name":	"home_furnishing",
+			"name":	"entry_desc",
 			"id":	"0x0100000A"
 		}, {
 			"type":	"string",
-			"name":	"mobile_phone",
+			"name":	"evaluate",
 			"id":	"0x0100000B"
 		}, {
 			"type":	"string",
-			"name":	"price_199",
+			"name":	"goodsName",
 			"id":	"0x0100000C"
 		}, {
 			"type":	"string",
-			"name":	"price_265",
+			"name":	"home_furnishing",
 			"id":	"0x0100000D"
 		}, {
 			"type":	"string",
-			"name":	"price_810",
+			"name":	"mobile_phone",
 			"id":	"0x0100000E"
 		}, {
 			"type":	"string",
-			"name":	"price_999",
+			"name":	"price_199",
 			"id":	"0x0100000F"
 		}, {
 			"type":	"string",
-			"name":	"refresh_text",
+			"name":	"price_265",
 			"id":	"0x01000010"
 		}, {
 			"type":	"string",
-			"name":	"selected",
+			"name":	"price_810",
 			"id":	"0x01000011"
 		}, {
 			"type":	"string",
-			"name":	"shopping_mall",
+			"name":	"price_999",
 			"id":	"0x01000012"
 		}, {
 			"type":	"string",
-			"name":	"to_bottom",
+			"name":	"refresh_text",
 			"id":	"0x01000013"
 		}, {
 			"type":	"string",
-			"name":	"wear",
+			"name":	"selected",
 			"id":	"0x01000014"
 		}, {
-			"type":	"color",
-			"name":	"deepGray",
+			"type":	"string",
+			"name":	"shopping_mall",
 			"id":	"0x01000015"
 		}, {
-			"type":	"color",
-			"name":	"freshRed",
+			"type":	"string",
+			"name":	"to_bottom",
 			"id":	"0x01000016"
 		}, {
-			"type":	"color",
-			"name":	"gray",
+			"type":	"string",
+			"name":	"wear",
 			"id":	"0x01000017"
 		}, {
 			"type":	"color",
-			"name":	"primaryBgColor",
+			"name":	"deepGray",
 			"id":	"0x01000018"
 		}, {
 			"type":	"color",
-			"name":	"white",
+			"name":	"freshRed",
 			"id":	"0x01000019"
 		}, {
-			"type":	"media",
-			"name":	"empty_box_icon",
+			"type":	"color",
+			"name":	"gray",
 			"id":	"0x0100001A"
 		}, {
-			"type":	"media",
-			"name":	"fashion_item_1",
+			"type":	"color",
+			"name":	"primaryBgColor",
 			"id":	"0x0100001B"
 		}, {
-			"type":	"media",
-			"name":	"fashion_item_2",
+			"type":	"color",
+			"name":	"start_window_background",
 			"id":	"0x0100001C"
 		}, {
-			"type":	"media",
-			"name":	"fashion_item_3",
+			"type":	"color",
+			"name":	"white",
 			"id":	"0x0100001D"
 		}, {
-			"type":	"media",
-			"name":	"fashion_item_4",
+			"type":	"float",
+			"name":	"page_text_font_size",
 			"id":	"0x0100001E"
 		}, {
 			"type":	"media",
-			"name":	"goodsImg_2",
+			"name":	"empty_box_icon",
 			"id":	"0x0100001F"
 		}, {
 			"type":	"media",
-			"name":	"goodsImg_3",
+			"name":	"fashion_item_1",
 			"id":	"0x01000020"
 		}, {
 			"type":	"media",
-			"name":	"goodsImg_4",
+			"name":	"fashion_item_2",
 			"id":	"0x01000021"
 		}, {
 			"type":	"media",
-			"name":	"home_item_1",
+			"name":	"fashion_item_3",
 			"id":	"0x01000022"
 		}, {
 			"type":	"media",
-			"name":	"home_item_2",
+			"name":	"fashion_item_4",
 			"id":	"0x01000023"
 		}, {
 			"type":	"media",
-			"name":	"home_item_3",
+			"name":	"goodsImg_2",
 			"id":	"0x01000024"
 		}, {
 			"type":	"media",
-			"name":	"home_item_4",
+			"name":	"goodsImg_3",
 			"id":	"0x01000025"
 		}, {
 			"type":	"media",
-			"name":	"icon",
+			"name":	"goodsImg_4",
 			"id":	"0x01000026"
 		}, {
 			"type":	"media",
-			"name":	"mobile_phone_1",
+			"name":	"home_item_1",
 			"id":	"0x01000027"
 		}, {
 			"type":	"media",
-			"name":	"mobile_phone_2",
+			"name":	"home_item_2",
 			"id":	"0x01000028"
 		}, {
 			"type":	"media",
-			"name":	"mobile_phone_3",
+			"name":	"home_item_3",
 			"id":	"0x01000029"
 		}, {
 			"type":	"media",
-			"name":	"mobile_phone_4",
+			"name":	"home_item_4",
 			"id":	"0x0100002A"
 		}, {
 			"type":	"media",
-			"name":	"product_image_placeholder",
+			"name":	"icon",
 			"id":	"0x0100002B"
 		}, {
 			"type":	"media",
-			"name":	"refreshing",
+			"name":	"mobile_phone_1",
 			"id":	"0x0100002C"
 		}, {
 			"type":	"media",
-			"name":	"search_icon",
+			"name":	"mobile_phone_2",
 			"id":	"0x0100002D"
 		}, {
 			"type":	"media",
-			"name":	"wear_item_1",
+			"name":	"mobile_phone_3",
 			"id":	"0x0100002E"
 		}, {
 			"type":	"media",
-			"name":	"wear_item_2",
+			"name":	"mobile_phone_4",
 			"id":	"0x0100002F"
 		}, {
 			"type":	"media",
-			"name":	"wear_item_3",
+			"name":	"product_image_placeholder",
 			"id":	"0x01000030"
 		}, {
 			"type":	"media",
-			"name":	"wear_item_4",
+			"name":	"refreshing",
 			"id":	"0x01000031"
+		}, {
+			"type":	"media",
+			"name":	"search_icon",
+			"id":	"0x01000032"
+		}, {
+			"type":	"media",
+			"name":	"startIcon",
+			"id":	"0x01000033"
+		}, {
+			"type":	"media",
+			"name":	"wear_item_1",
+			"id":	"0x01000034"
+		}, {
+			"type":	"media",
+			"name":	"wear_item_2",
+			"id":	"0x01000035"
+		}, {
+			"type":	"media",
+			"name":	"wear_item_3",
+			"id":	"0x01000036"
+		}, {
+			"type":	"media",
+			"name":	"wear_item_4",
+			"id":	"0x01000037"
+		}, {
+			"type":	"profile",
+			"name":	"backup_config",
+			"id":	"0x01000038"
 		}, {
 			"type":	"profile",
 			"name":	"main_pages",
-			"id":	"0x01000032"
+			"id":	"0x01000039"
 		}]
 }

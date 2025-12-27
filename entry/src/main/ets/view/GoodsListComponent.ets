@@ -1,19 +1,21 @@
 // entry/src/main/ets/view/GoodsListComponent.ets
-import { Product } from '../viewmodel/ListDataSource';
+import { Product, ProductCategory } from '../viewmodel/ListDataSource';
+import router from '@ohos.router';
 
 @Component
 export struct ProductItem {
   @Prop product: Product;
+  @Prop category: ProductCategory;
 
   build() {
     Column() { // 使用Column作为商品卡片的主容器
       Stack() {
         Image(this.product.imageUrl)
-          .width('100%') // 图片宽度占满
-          .height(180) // 固定高度
+          .width('100%')
+          .height(180)
           .objectFit(ImageFit.Cover)
           .borderRadius(12)
-          .alt($r('app.media.product_image_placeholder')) // 替代文本，防止图片加载失败
+          .alt($r('app.media.product_image_placeholder'))
 
         if (this.product.ratingPercentage !== undefined) {
           Text(`${this.product.ratingPercentage}%好评`)
@@ -75,6 +77,24 @@ export struct ProductItem {
             .backgroundColor('#2D6A4F')
             .borderRadius(12)
             .padding({ left: 10, right: 10, top: 6, bottom: 6 })
+            .onClick(() => {
+              router.pushUrl({
+                url: 'pages/Detail',
+                params: {
+                  id: this.product.id,
+                  category: this.category,
+                  name: this.product.name,
+                  price: this.product.price,
+                  description: this.product.description,
+                  // 不直接传递 Resource，改为通过分类+ID在详情页重建数据源后查找
+                  ratingPercentage: this.product.ratingPercentage,
+                  ratingCount: this.product.ratingCount
+                }
+              });
+            })
+              .onClick(() => {
+                router.pushUrl({ url: 'pages/Detail', params: { id: this.product.id } });
+              })
         }
         .width('100%')
         .margin({ top: 10 })
@@ -82,10 +102,25 @@ export struct ProductItem {
       }
       .padding({ left: 12, right: 12, top: 10, bottom: 12 }) // 内边距
     }
-    .width('100%') // 卡片宽度占满
+    .width('100%')
     .backgroundColor('#FFFFFF')
     .borderRadius(16)
-    .margin({ bottom: 12, left: 12, right: 12 }) // 卡片间距和左右外边距
-    .shadow({ radius: 6, color: '#14000000', offsetX: 0, offsetY: 2 }) // 添加阴影效果
+    .margin({ bottom: 12, left: 12, right: 12 })
+    .shadow({ radius: 6, color: '#14000000', offsetX: 0, offsetY: 2 })
+    .onClick(() => {
+      router.pushUrl({
+        url: 'pages/Detail',
+        params: {
+          id: this.product.id,
+          category: this.category,
+          name: this.product.name,
+          price: this.product.price,
+          description: this.product.description,
+          // 不直接传递 Resource，改为通过分类+ID在详情页重建数据源后查找
+          ratingPercentage: this.product.ratingPercentage,
+          ratingCount: this.product.ratingCount
+        }
+      });
+    })
   }
 }

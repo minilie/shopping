@@ -5,12 +5,14 @@ interface RefreshLayout_Params {
     dataSource?: ProductListDataSource;
     scroller?: Scroller;
     isRefreshing?: boolean;
+    hasRefreshError?: boolean;
     pullDistance?: number;
     lastY?: number;
     scrollY?: number;
     contentHeight?: number;
     scrollHeight?: number;
     REFRESH_THRESHOLD?: number;
+    refreshTimeoutId?: number;
     LOAD_MORE_TRIGGER_OFFSET?: number;
     content?: () => void;
 }
@@ -24,12 +26,14 @@ export class RefreshLayout extends ViewPU {
         this.__dataSource = new SynchedPropertyNesedObjectPU(params.dataSource, this, "dataSource");
         this.scroller = new Scroller();
         this.__isRefreshing = new ObservedPropertySimplePU(false, this, "isRefreshing");
+        this.__hasRefreshError = new ObservedPropertySimplePU(false, this, "hasRefreshError");
         this.__pullDistance = new ObservedPropertySimplePU(0, this, "pullDistance");
         this.__lastY = new ObservedPropertySimplePU(0, this, "lastY");
         this.__scrollY = new ObservedPropertySimplePU(0, this, "scrollY");
         this.__contentHeight = new ObservedPropertySimplePU(0, this, "contentHeight");
         this.__scrollHeight = new ObservedPropertySimplePU(0, this, "scrollHeight");
         this.REFRESH_THRESHOLD = 80;
+        this.refreshTimeoutId = undefined;
         this.LOAD_MORE_TRIGGER_OFFSET = 50;
         this.content = undefined;
         this.setInitiallyProvidedValue(params);
@@ -42,6 +46,9 @@ export class RefreshLayout extends ViewPU {
         }
         if (params.isRefreshing !== undefined) {
             this.isRefreshing = params.isRefreshing;
+        }
+        if (params.hasRefreshError !== undefined) {
+            this.hasRefreshError = params.hasRefreshError;
         }
         if (params.pullDistance !== undefined) {
             this.pullDistance = params.pullDistance;
@@ -61,6 +68,9 @@ export class RefreshLayout extends ViewPU {
         if (params.REFRESH_THRESHOLD !== undefined) {
             this.REFRESH_THRESHOLD = params.REFRESH_THRESHOLD;
         }
+        if (params.refreshTimeoutId !== undefined) {
+            this.refreshTimeoutId = params.refreshTimeoutId;
+        }
         if (params.LOAD_MORE_TRIGGER_OFFSET !== undefined) {
             this.LOAD_MORE_TRIGGER_OFFSET = params.LOAD_MORE_TRIGGER_OFFSET;
         }
@@ -74,6 +84,7 @@ export class RefreshLayout extends ViewPU {
     purgeVariableDependenciesOnElmtId(rmElmtId) {
         this.__dataSource.purgeDependencyOnElmtId(rmElmtId);
         this.__isRefreshing.purgeDependencyOnElmtId(rmElmtId);
+        this.__hasRefreshError.purgeDependencyOnElmtId(rmElmtId);
         this.__pullDistance.purgeDependencyOnElmtId(rmElmtId);
         this.__lastY.purgeDependencyOnElmtId(rmElmtId);
         this.__scrollY.purgeDependencyOnElmtId(rmElmtId);
@@ -83,6 +94,7 @@ export class RefreshLayout extends ViewPU {
     aboutToBeDeleted() {
         this.__dataSource.aboutToBeDeleted();
         this.__isRefreshing.aboutToBeDeleted();
+        this.__hasRefreshError.aboutToBeDeleted();
         this.__pullDistance.aboutToBeDeleted();
         this.__lastY.aboutToBeDeleted();
         this.__scrollY.aboutToBeDeleted();
@@ -102,6 +114,13 @@ export class RefreshLayout extends ViewPU {
     }
     set isRefreshing(newValue: boolean) {
         this.__isRefreshing.set(newValue);
+    }
+    private __hasRefreshError: ObservedPropertySimplePU<boolean>;
+    get hasRefreshError() {
+        return this.__hasRefreshError.get();
+    }
+    set hasRefreshError(newValue: boolean) {
+        this.__hasRefreshError.set(newValue);
     }
     private __pullDistance: ObservedPropertySimplePU<number>;
     get pullDistance() {
@@ -139,6 +158,7 @@ export class RefreshLayout extends ViewPU {
         this.__scrollHeight.set(newValue);
     }
     private readonly REFRESH_THRESHOLD: number;
+    private refreshTimeoutId?: number;
     private readonly LOAD_MORE_TRIGGER_OFFSET: number;
     private __content;
     aboutToAppear() {
@@ -154,8 +174,25 @@ export class RefreshLayout extends ViewPU {
         }, Column);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             If.create();
-            if (this.isRefreshing) {
+            // 顶部刷新提示：下拉刷新 / 松手刷新 / 正在刷新
+            if (!this.isRefreshing && this.pullDistance > 0) {
                 this.ifElseBranchUpdateFunction(0, () => {
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Row.create();
+                        Row.width('100%');
+                        Row.justifyContent(FlexAlign.Center);
+                        Row.padding(10);
+                    }, Row);
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Text.create(this.pullDistance >= this.REFRESH_THRESHOLD ? '松手即可刷新' : '下拉刷新');
+                        Text.fontColor(Color.Gray);
+                    }, Text);
+                    Text.pop();
+                    Row.pop();
+                });
+            }
+            else if (this.isRefreshing) {
+                this.ifElseBranchUpdateFunction(1, () => {
                     this.observeComponentCreation2((elmtId, isInitialRender) => {
                         Row.create();
                         Row.width('100%');
@@ -171,6 +208,40 @@ export class RefreshLayout extends ViewPU {
                         Text.create('正在刷新...');
                         Text.margin({ left: 10 });
                         Text.fontColor(Color.Gray);
+                    }, Text);
+                    Text.pop();
+                    Row.pop();
+                });
+            }
+            else {
+                this.ifElseBranchUpdateFunction(2, () => {
+                });
+            }
+        }, If);
+        If.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            If.create();
+            if (this.hasRefreshError) {
+                this.ifElseBranchUpdateFunction(0, () => {
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Row.create();
+                        Row.width('100%');
+                        Row.justifyContent(FlexAlign.Center);
+                        Row.padding({ top: 4, bottom: 8 });
+                    }, Row);
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Text.create('刷新失败');
+                        Text.fontColor(Color.Red);
+                    }, Text);
+                    Text.pop();
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Text.create('重试');
+                        Text.fontColor('#2D6A4F');
+                        Text.margin({ left: 16 });
+                        Text.onClick(() => {
+                            this.hasRefreshError = false;
+                            this.triggerRefresh();
+                        });
                     }, Text);
                     Text.pop();
                     Row.pop();
@@ -224,16 +295,7 @@ export class RefreshLayout extends ViewPU {
                     }
                     else if (event.type === TouchType.Up) {
                         if (this.pullDistance >= this.REFRESH_THRESHOLD && !this.isRefreshing) {
-                            console.log('Triggering refresh via onTouch');
-                            this.isRefreshing = true;
-                            this.dataSource.refresh().then(() => {
-                                this.isRefreshing = false;
-                                this.pullDistance = 0;
-                            }).catch((error: Error) => {
-                                console.error('Refresh failed:', error);
-                                this.isRefreshing = false;
-                                this.pullDistance = 0;
-                            });
+                            this.triggerRefresh();
                         }
                         this.pullDistance = 0;
                     }
@@ -247,19 +309,156 @@ export class RefreshLayout extends ViewPU {
             Scroll.width('100%');
         }, Scroll);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Column.create();
-            Column.onAreaChange((oldValue: Area, newValue: Area) => {
-                // 安全地将 Length 转换为 number
-                const newHeight = this.convertLengthToNumber(newValue.height);
-                if (newHeight > 0) {
-                    this.contentHeight = newHeight;
-                }
-            });
-        }, Column);
-        this.content.bind(this)();
-        Column.pop();
+            If.create();
+            if (this.isRefreshing && this.dataSource.totalCount() === 0) {
+                this.ifElseBranchUpdateFunction(0, () => {
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Column.create();
+                    }, Column);
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        ForEach.create();
+                        const forEachItemGenFunction = _item => {
+                            const idx = _item;
+                            this.skeletonCard.bind(this)();
+                        };
+                        this.forEachUpdateFunction(elmtId, this.getSkeletonItems(), forEachItemGenFunction, (idx: number) => idx.toString(), false, false);
+                    }, ForEach);
+                    ForEach.pop();
+                    Column.pop();
+                });
+            }
+            else {
+                this.ifElseBranchUpdateFunction(1, () => {
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Column.create();
+                        Column.onAreaChange((oldValue: Area, newValue: Area) => {
+                            // 安全地将 Length 转换为 number
+                            const newHeight = this.convertLengthToNumber(newValue.height);
+                            if (newHeight > 0) {
+                                this.contentHeight = newHeight;
+                            }
+                        });
+                    }, Column);
+                    this.content.bind(this)();
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        If.create();
+                        // 控制末端回弹：在到底且无更多数据时增加一个有限高度的底部间距
+                        if (!this.dataSource.hasMore && this.dataSource.totalCount() > 0) {
+                            this.ifElseBranchUpdateFunction(0, () => {
+                                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                    Blank.create();
+                                    Blank.height(24);
+                                    Blank.width('100%');
+                                }, Blank);
+                                Blank.pop();
+                            });
+                        }
+                        else {
+                            this.ifElseBranchUpdateFunction(1, () => {
+                            });
+                        }
+                    }, If);
+                    If.pop();
+                    Column.pop();
+                });
+            }
+        }, If);
+        If.pop();
         Scroll.pop();
         Column.pop();
+    }
+    private skeletonCard(parent = null) {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+            Column.width('100%');
+            Column.backgroundColor('#FFFFFF');
+            Column.borderRadius(16);
+            Column.margin({ bottom: 12, left: 12, right: 12 });
+            Column.padding({ left: 12, right: 12, top: 10, bottom: 12 });
+            Column.shadow({ radius: 6, color: '#14000000', offsetX: 0, offsetY: 2 });
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            // 图片占位
+            Column.create();
+            // 图片占位
+            Column.width('100%');
+            // 图片占位
+            Column.height(180);
+            // 图片占位
+            Column.backgroundColor('#E6E6E6');
+            // 图片占位
+            Column.borderRadius(12);
+        }, Column);
+        // 图片占位
+        Column.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            // 文本占位1
+            Column.create();
+            // 文本占位1
+            Column.width('60%');
+            // 文本占位1
+            Column.height(16);
+            // 文本占位1
+            Column.backgroundColor('#E6E6E6');
+            // 文本占位1
+            Column.borderRadius(8);
+            // 文本占位1
+            Column.margin({ top: 12 });
+        }, Column);
+        // 文本占位1
+        Column.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            // 文本占位2
+            Column.create();
+            // 文本占位2
+            Column.width('40%');
+            // 文本占位2
+            Column.height(12);
+            // 文本占位2
+            Column.backgroundColor('#E6E6E6');
+            // 文本占位2
+            Column.borderRadius(6);
+            // 文本占位2
+            Column.margin({ top: 8 });
+        }, Column);
+        // 文本占位2
+        Column.pop();
+        Column.pop();
+    }
+    private getSkeletonItems(): Array<number> {
+        return [0, 1, 2, 3, 4, 5, 6, 7];
+    }
+    private triggerRefresh() {
+        console.log('Triggering refresh via onTouch');
+        this.isRefreshing = true;
+        this.hasRefreshError = false;
+        // 刷新超时兜底（例如 8 秒）
+        if (this.refreshTimeoutId !== undefined) {
+            clearTimeout(this.refreshTimeoutId);
+        }
+        this.refreshTimeoutId = setTimeout(() => {
+            if (this.isRefreshing) {
+                console.warn('Refresh timed out');
+                this.isRefreshing = false;
+                this.hasRefreshError = true;
+            }
+        }, 8000);
+        this.dataSource.refresh().then(() => {
+            this.isRefreshing = false;
+            this.hasRefreshError = false;
+            if (this.refreshTimeoutId !== undefined) {
+                clearTimeout(this.refreshTimeoutId);
+                this.refreshTimeoutId = undefined;
+            }
+        }).catch((error: Error) => {
+            console.error('Refresh failed:', error);
+            this.isRefreshing = false;
+            this.hasRefreshError = true;
+            if (this.refreshTimeoutId !== undefined) {
+                clearTimeout(this.refreshTimeoutId);
+                this.refreshTimeoutId = undefined;
+            }
+        });
     }
     // 辅助方法：安全地将 Length 转换为 number
     private convertLengthToNumber(length: Length): number {

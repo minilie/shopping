@@ -5,12 +5,12 @@
         "MODULE_NAME": "1043bfc77febe75fafec0c4309faccf1",
         "API_TYPE": "stageMode",
         "INCREMENTAL_TASKS": {
-          "COMPILE_ARKTS": false
+          "COMPILE_ARKTS": true
         }
       }
     ],
     "NATIVE_COMPILER": "Default",
-    "BUILD_MODE": "test"
+    "BUILD_MODE": "debug"
   },
   "HVIGOR": {
     "IS_INCREMENTAL": true,
@@ -19,38 +19,23 @@
     "IS_HVIGORFILE_TYPE_CHECK": false,
     "TASK_TIME": {
       "1043bfc77febe75fafec0c4309faccf1": {
-        "CreateModuleInfo": 472100,
-        "GenerateMetadata": 2723000,
-        "ConfigureCmake": 207000,
-        "MergeProfile": 4899700,
-        "CreateBuildProfile": 3022000,
-        "PreCheckSyscap": 227900,
-        "GeneratePkgContextInfo": 4863200,
-        "ProcessIntegratedHsp": 512400,
-        "BuildNativeWithCmake": 181800,
-        "MakePackInfo": 3634700,
-        "SyscapTransform": 3991700,
-        "ProcessProfile": 153488300,
-        "ProcessRouterMap": 6479200,
-        "ProcessShareConfig": 5425700,
-        "ProcessStartupConfig": 1218200,
-        "BuildNativeWithNinja": 1140100,
-        "ProcessResource": 9942200,
-        "GenerateLoaderJson": 16770000,
-        "ProcessLibs": 5632900,
-        "CompileResource": 332514500,
-        "DoNativeStrip": 3078000,
-        "OhosTestBuildJS": 3721700,
-        "CacheNativeLibs": 1117874300,
-        "OhosTestCompileArkTS": 2743594800,
-        "OhosTestCopyMockConfigJson": 1042800,
-        "GeneratePkgModuleJson": 3096900,
-        "ProcessCompiledResources": 702700,
-        "PackageHap": 73138400,
-        "PackingCheck": 3016200,
-        "SignHap": 2324300,
-        "CollectDebugSymbol": 1480800,
-        "assembleHap": 122300
+        "CreateModuleInfo": 347700,
+        "ConfigureCmake": 169600,
+        "PreCheckSyscap": 173000,
+        "GeneratePkgContextInfo": 2524600,
+        "ProcessIntegratedHsp": 360800,
+        "BuildNativeWithCmake": 169100,
+        "SyscapTransform": 2401900,
+        "ProcessStartupConfig": 803400,
+        "BuildNativeWithNinja": 401300,
+        "BuildJS": 1767100,
+        "CompileArkTS": 969853400,
+        "ProcessCompiledResources": 406900,
+        "PackageHap": 74119700,
+        "PackingCheck": 2365300,
+        "SignHap": 1357600,
+        "CollectDebugSymbol": 616300,
+        "assembleHap": 144000
       }
     },
     "APIS": [
@@ -75,7 +60,7 @@
       "getStartParams"
     ],
     "CONFIG_PROPERTIES": {},
-    "TOTAL_TIME": 3541596400,
-    "BUILD_ID": "202512242218466890"
+    "TOTAL_TIME": 1198946000,
+    "BUILD_ID": "202512271546567200"
   }
 }

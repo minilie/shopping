@@ -1,26 +1,49 @@
 {
   "ohos-module-entry": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "D:\\shopping\\List_commodity\\entry\\build",
+    "MODULE_BUILD_DIR": "G:\\harmony\\qimo2\\entry\\build",
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "D:\\shopping\\List_commodity\\entry\\src\\main",
+        "SOURCE_ROOT": "G:\\harmony\\qimo2\\entry\\src\\main",
         "RESOURCES_PATH": [
-          "D:\\shopping\\List_commodity\\entry\\src\\main\\resources"
+          "G:\\harmony\\qimo2\\entry\\src\\main\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "D:\\shopping\\List_commodity\\entry\\build\\default\\outputs\\default",
-          "INTERMEDIA_PATH": "D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\loader_out\\default",
-          "JS_LITE_ASSETS_PATH": "D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\loader_out_lite\\default",
-          "RES_PATH": "D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\default",
-          "RES_PROFILE_PATH": "D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "D:\\shopping\\List_commodity\\entry\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "D:\\shopping\\List_commodity\\entry\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
-          "WORKER_LOADER": "D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\loader\\default\\loader.json",
-          "MANIFEST_JSON": "D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\manifest\\default",
-          "OUTPUT_METADATA_JSON": "D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json",
-          "SOURCE_MAP_DIR": "D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\source_map\\default"
+          "OUTPUT_PATH": "G:\\harmony\\qimo2\\entry\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "G:\\harmony\\qimo2\\entry\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "G:\\harmony\\qimo2\\entry\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
+          "WORKER_LOADER": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json",
+          "SOURCE_MAP_DIR": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\source_map\\default"
+        },
+        "BUILD_OPTION": {
+          "debuggable": true
+        }
+      },
+      "ohosTest": {
+        "SOURCE_ROOT": "G:\\harmony\\qimo2\\entry\\src\\ohosTest",
+        "RESOURCES_PATH": [
+          "G:\\harmony\\qimo2\\entry\\src\\ohosTest\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "G:\\harmony\\qimo2\\entry\\build\\default\\outputs\\ohosTest",
+          "INTERMEDIA_PATH": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\loader_out\\ohosTest",
+          "JS_LITE_ASSETS_PATH": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\loader_out_lite\\ohosTest",
+          "RES_PATH": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\res\\ohosTest",
+          "RES_PROFILE_PATH": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\res\\ohosTest\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "G:\\harmony\\qimo2\\entry\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "G:\\harmony\\qimo2\\entry\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileJS\\jsbundle",
+          "WORKER_LOADER": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\loader\\ohosTest\\loader.json",
+          "MANIFEST_JSON": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\manifest\\ohosTest",
+          "OUTPUT_METADATA_JSON": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\hap_metadata\\ohosTest\\output_metadata.json",
+          "SOURCE_MAP_DIR": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\source_map\\ohosTest"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -40,6 +63,10 @@
         {
           "name": "default",
           "runtimeOS": "HarmonyOS"
+        },
+        {
+          "name": "ohosTest",
+          "runtimeOS": "HarmonyOS"
         }
       ]
     },
@@ -47,15 +74,15 @@
   },
   "ohos-project": {
     "SELECT_PRODUCT_NAME": "default",
-    "MODULE_BUILD_DIR": "D:\\shopping\\List_commodity\\build",
+    "MODULE_BUILD_DIR": "G:\\harmony\\qimo2\\build",
     "BUNDLE_NAME": "com.example.list_harmony",
     "BUILD_PATH": {
-      "OUTPUT_PATH": "D:\\shopping\\List_commodity\\build\\outputs\\default"
+      "OUTPUT_PATH": "G:\\harmony\\qimo2\\build\\outputs\\default"
     },
     "MODULES": [
       {
         "name": "entry",
-        "srcPath": "D:\\shopping\\List_commodity\\entry",
+        "srcPath": "G:\\harmony\\qimo2\\entry",
         "targets": [
           {
             "name": "default",
@@ -64,7 +91,7 @@
             ]
           }
         ],
-        "belongProjectPath": "D:\\shopping\\List_commodity"
+        "belongProjectPath": "G:\\harmony\\qimo2"
       }
     ],
     "PROFILE_OPT": {
@@ -101,7 +128,7 @@
       "hvigor.keepDependency": true
     },
     "OVERALL_PROJECT_PATHS": [
-      "D:\\shopping\\List_commodity"
+      "G:\\harmony\\qimo2"
     ],
     "BUILD_CACHE_DIR": ""
   },

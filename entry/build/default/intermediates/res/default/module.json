@@ -6,7 +6,7 @@
 		"versionName":	"1.0.0",
 		"icon":	"$media:app_icon",
 		"label":	"$string:app_name",
-		"apiReleaseType":	"Beta5",
+		"apiReleaseType":	"Release",
 		"compileSdkVersion":	"6.0.0.47",
 		"targetAPIVersion":	60000020,
 		"minAPIVersion":	50005017,
@@ -42,11 +42,11 @@
 						"entities":	["entity.system.home"],
 						"actions":	["action.system.home"]
 					}],
-				"descriptionId":	16777218,
-				"iconId":	16777254,
-				"labelId":	16777219,
-				"startWindowIconId":	16777254,
-				"startWindowBackgroundId":	16777241
+				"descriptionId":	16777221,
+				"iconId":	16777259,
+				"labelId":	16777222,
+				"startWindowIconId":	16777259,
+				"startWindowBackgroundId":	16777245
 			}, {
 				"name":	"TestAbility",
 				"srcEntry":	"./ets/testability/TestAbility.ets",
@@ -56,15 +56,15 @@
 				"startWindowIcon":	"$media:icon",
 				"startWindowBackground":	"$color:white",
 				"exported":	true,
-				"iconId":	16777254,
-				"labelId":	16777219,
-				"startWindowIconId":	16777254,
-				"startWindowBackgroundId":	16777241
+				"iconId":	16777259,
+				"labelId":	16777222,
+				"startWindowIconId":	16777259,
+				"startWindowBackgroundId":	16777245
 			}],
 		"packageName":	"entry",
 		"virtualMachine":	"ark12.0.6.0",
 		"compileMode":	"esmodule",
 		"dependencies":	[],
-		"descriptionId":	16777218
+		"descriptionId":	16777221
 	}
 }

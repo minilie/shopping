@@ -71,10 +71,10 @@ export class ProductListDataSource implements IDataSource {
                     "补充能量，随时随地，活力十足！",
                 ];
                 imageResources = [
-                    { "id": 33554463, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
-                    { "id": 33554464, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
-                    { "id": 33554465, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
-                    { "id": 33554475, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554468, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554469, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554470, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554480, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
                 ];
                 break;
             case ProductCategory.MOBILE:
@@ -91,10 +91,10 @@ export class ProductListDataSource implements IDataSource {
                     "价格实惠，功能全面，智能生活轻松开启！",
                 ];
                 imageResources = [
-                    { "id": 33554471, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
-                    { "id": 33554472, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
-                    { "id": 33554473, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
-                    { "id": 33554474, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554476, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554477, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554478, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554479, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
                 ];
                 break;
             case ProductCategory.FASHION:
@@ -111,10 +111,10 @@ export class ProductListDataSource implements IDataSource {
                     "防风保暖，经典版型，永不过时的时尚单品！",
                 ];
                 imageResources = [
-                    { "id": 33554459, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
-                    { "id": 33554460, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
-                    { "id": 33554461, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
-                    { "id": 33554462, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554464, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554465, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554466, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554467, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
                 ];
                 break;
             case ProductCategory.WEAR:
@@ -131,10 +131,10 @@ export class ProductListDataSource implements IDataSource {
                     "高弹透气，塑形美体，轻松打造完美身材！",
                 ];
                 imageResources = [
-                    { "id": 33554478, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
-                    { "id": 33554479, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
-                    { "id": 33554480, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
-                    { "id": 33554481, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554484, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554485, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554486, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554487, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
                 ];
                 break;
             case ProductCategory.HOME:
@@ -151,16 +151,16 @@ export class ProductListDataSource implements IDataSource {
                     "人体工学设计，深度承托，享受整夜好眠！",
                 ];
                 imageResources = [
-                    { "id": 33554466, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
-                    { "id": 33554467, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
-                    { "id": 33554468, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
-                    { "id": 33554469, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554471, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554472, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554473, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
+                    { "id": 33554474, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" },
                 ];
                 break;
             default: // Fallback for any unknown category
                 productNames = ["默认商品"];
                 productDescriptions = ["默认描述"];
-                imageResources = [{ "id": 33554475, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" }];
+                imageResources = [{ "id": 33554480, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry_test" }];
                 break;
         }
         for (let i = 0; i < this.totalProductCount; i++) {

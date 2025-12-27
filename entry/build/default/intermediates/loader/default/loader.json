@@ -1,10 +1,10 @@
 {
   "modulePathMap": {
-    "entry": "D:\\shopping\\List_commodity\\entry"
+    "entry": "G:\\harmony\\qimo2\\entry"
   },
   "compileMode": "esmodule",
-  "projectRootPath": "D:\\shopping\\List_commodity",
-  "nodeModulesPath": "D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\loader_out\\default\\node_modules",
+  "projectRootPath": "G:\\harmony\\qimo2",
+  "nodeModulesPath": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\loader_out\\default\\node_modules",
   "byteCodeHarInfo": {},
   "declarationEntry": [],
   "moduleName": "entry",
@@ -17,6 +17,9 @@
   "routerMap": [],
   "hspResourcesMap": {},
   "updateVersionInfo": {},
-  "anBuildOutPut": "D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\loader_out\\default\\an\\arm64-v8a",
-  "anBuildMode": "type"
+  "anBuildOutPut": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\loader_out\\default\\an\\arm64-v8a",
+  "anBuildMode": "type",
+  "patchConfig": {
+    "changedFileList": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\patch\\default\\changedFileList.json"
+  }
 }

@@ -6,6 +6,7 @@ export interface Product {
     imageUrl: Resource;
     ratingCount?: number;
     ratingPercentage?: number;
+    subCategory?: string;
 }
 // Enum for categories to make code cleaner and prevent typos
 export enum ProductCategory {
@@ -43,11 +44,20 @@ export class ProductListDataSource implements IDataSource {
     private searchQuery: string = '';
     private sortOption: SortOption = SortOption.DEFAULT;
     private priceFilter: PriceFilter = PriceFilter.ALL;
+    private subCategory: string = '';
     constructor(category: ProductCategory) {
         this.category = category; // Store the category
         this.generateAllInitialDataForCategory(this.category); // Call the new method
         this.rebuildFilteredProducts();
         this.loadInitialData();
+    }
+    // 暴露当前分类，便于外部传递到详情页
+    getCategory(): ProductCategory {
+        return this.category;
+    }
+    // 根据ID查找商品（在完整数据池中）
+    findById(id: number): Product | undefined {
+        return this.allAvailableProducts.find((p: Product) => p.id === id);
     }
     // Modified to generate data based on category
     private generateAllInitialDataForCategory(category: ProductCategory) {
@@ -55,6 +65,7 @@ export class ProductListDataSource implements IDataSource {
         let productNames: string[] = [];
         let productDescriptions: string[] = [];
         let imageResources: Resource[] = []; // Array of Resource objects
+        let subcats: string[] = [];
         // Define different content based on the category
         switch (category) {
             case ProductCategory.FEATURED:
@@ -71,11 +82,12 @@ export class ProductListDataSource implements IDataSource {
                     "补充能量，随时随地，活力十足！",
                 ];
                 imageResources = [
-                    { "id": 16777247, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
-                    { "id": 16777248, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
-                    { "id": 16777249, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
-                    { "id": 16777259, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777252, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777253, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777254, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777264, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
                 ];
+                subcats = ["热门", "新品", "健康轻食", "零食饮品"];
                 break;
             case ProductCategory.MOBILE:
                 productNames = [
@@ -91,11 +103,12 @@ export class ProductListDataSource implements IDataSource {
                     "价格实惠，功能全面，智能生活轻松开启！",
                 ];
                 imageResources = [
-                    { "id": 16777255, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
-                    { "id": 16777256, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
-                    { "id": 16777257, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
-                    { "id": 16777258, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777260, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777261, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777262, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777263, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
                 ];
+                subcats = ["旗舰", "续航", "影像", "入门"];
                 break;
             case ProductCategory.FASHION:
                 productNames = [
@@ -111,11 +124,12 @@ export class ProductListDataSource implements IDataSource {
                     "防风保暖，经典版型，永不过时的时尚单品！",
                 ];
                 imageResources = [
-                    { "id": 16777243, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
-                    { "id": 16777244, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
-                    { "id": 16777245, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
-                    { "id": 16777246, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777248, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777249, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777250, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777251, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
                 ];
+                subcats = ["卫衣", "牛仔", "连衣裙", "风衣"];
                 break;
             case ProductCategory.WEAR:
                 productNames = [
@@ -131,11 +145,12 @@ export class ProductListDataSource implements IDataSource {
                     "高弹透气，塑形美体，轻松打造完美身材！",
                 ];
                 imageResources = [
-                    { "id": 16777262, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
-                    { "id": 16777263, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
-                    { "id": 16777264, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
-                    { "id": 16777265, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777268, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777269, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777270, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777271, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
                 ];
+                subcats = ["T恤", "跑鞋", "手环", "瑜伽"];
                 break;
             case ProductCategory.HOME:
                 productNames = [
@@ -151,22 +166,25 @@ export class ProductListDataSource implements IDataSource {
                     "人体工学设计，深度承托，享受整夜好眠！",
                 ];
                 imageResources = [
-                    { "id": 16777250, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
-                    { "id": 16777251, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
-                    { "id": 16777252, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
-                    { "id": 16777253, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777255, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777256, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777257, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
+                    { "id": 16777258, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" },
                 ];
+                subcats = ["清洁", "家具", "香薰", "寝具"];
                 break;
             default: // Fallback for any unknown category
                 productNames = ["默认商品"];
                 productDescriptions = ["默认描述"];
-                imageResources = [{ "id": 16777259, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" }];
+                imageResources = [{ "id": 16777264, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" }];
+                subcats = ["默认"];
                 break;
         }
         for (let i = 0; i < this.totalProductCount; i++) {
             const nameIndex = i % productNames.length;
             const descIndex = i % productDescriptions.length;
             const imageIndex = i % imageResources.length;
+            const subIndex = i % subcats.length;
             this.allAvailableProducts.push({
                 id: this.nextProductId++,
                 name: `【${this.category}】${productNames[nameIndex]} ${i + 1}`,
@@ -175,6 +193,7 @@ export class ProductListDataSource implements IDataSource {
                 imageUrl: imageResources[imageIndex],
                 ratingCount: 6000 + (i * 10),
                 ratingPercentage: 90 + (i % 5),
+                subCategory: subcats[subIndex],
             });
         }
         console.log(`Generated ${this.allAvailableProducts.length} total mock products for ${category}.`);
@@ -223,6 +242,11 @@ export class ProductListDataSource implements IDataSource {
                 }
                 return product.price > 200;
             });
+        }
+        // 子类过滤（若设置）
+        if (this.subCategory && this.subCategory.length > 0) {
+            const sc = this.subCategory;
+            result = result.filter((product: Product) => product.subCategory === sc);
         }
         result = result.slice();
         if (this.sortOption === SortOption.PRICE_ASC) {
@@ -317,5 +341,12 @@ export class ProductListDataSource implements IDataSource {
     }
     setIsAtTop(isAtTop: boolean): void {
         this.isAtTop = isAtTop;
+    }
+    setSubcategory(subcat: string): void {
+        this.subCategory = subcat;
+        this.applyFiltersAndReload();
+    }
+    getSubcategory(): string {
+        return this.subCategory;
     }
 }

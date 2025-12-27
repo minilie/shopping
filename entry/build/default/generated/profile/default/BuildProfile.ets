@@ -7,7 +7,7 @@ export const VERSION_CODE = 1000000;
 export const VERSION_NAME = '1.0.0';
 export const TARGET_NAME = 'default';
 export const PRODUCT_NAME = 'default';
-export const BUILD_MODE_NAME = 'test';
+export const BUILD_MODE_NAME = 'debug';
 export const DEBUG = true;
 
 /**
