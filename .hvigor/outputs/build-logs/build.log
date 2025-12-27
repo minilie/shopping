@@ -15959,3 +15959,2115 @@ at D:\shopping\List_commodity\entry\src\main\resources\base\media\icon.png
 [2025-12-24T21:27:02.666] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
 [2025-12-24T21:27:02.669] [DEBUG] debug-file - worker[17] exits with exit code 1.
 [2025-12-24T21:27:02.670] [DEBUG] debug-file - worker[18] exits with exit code 1.
+[2025-12-24T22:18:22.922] [DEBUG] debug-file - session manager: set active socket. socketId=CgNvZFKNh1GKwpPFAABv
+[2025-12-24T22:18:22.937] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2025-12-24T22:18:22.950] [DEBUG] debug-file - Hvigor init with startParameters:{
+  hvigorfileTypeCheck: false,
+  parallelExecution: true,
+  incrementalExecution: true,
+  printStackTrace: false,
+  daemon: true,
+  analyze: 0,
+  logLevel: Level { level: 20000, levelStr: 'INFO', colour: 'green' },
+  optimizationStrategy: 'memory',
+  hotCompile: undefined,
+  hotReloadBuild: undefined
+}
+[2025-12-24T22:18:22.959] [DEBUG] debug-file - Cache service initialization finished in 10 ms 
+[2025-12-24T22:18:22.961] [DEBUG] debug-file - hvigorfile, resolving D:\shopping\List_commodity\hvigorfile.ts
+[2025-12-24T22:18:22.967] [DEBUG] debug-file - hvigorfile, require result:  {}
+[2025-12-24T22:18:22.968] [DEBUG] debug-file - hvigorfile, binding system plugins {}
+[2025-12-24T22:18:22.977] [DEBUG] debug-file - Start initialize project's product build option map with build mode debug.
+[2025-12-24T22:18:22.978] [DEBUG] debug-file - Picking option from product 'default' with build mode 'debug'.
+[2025-12-24T22:18:22.978] [DEBUG] debug-file - Product 'default' build option initialized
+[2025-12-24T22:18:22.978] [DEBUG] debug-file - End initialize project's product build option map with build mode 'debug'.
+[2025-12-24T22:18:22.978] [DEBUG] debug-file - Obtain build option for product 'default'in this build.
+[2025-12-24T22:18:22.980] [DEBUG] debug-file - No signingConfig found, initRemoteHspCache failed.
+[2025-12-24T22:18:22.987] [DEBUG] debug-file - Start recording SDK configuration permission data.
+[2025-12-24T22:18:23.008] [DEBUG] debug-file - Sdk init in 28 ms 
+[2025-12-24T22:18:23.010] [DEBUG] debug-file - Project task initialization takes 3 ms 
+[2025-12-24T22:18:23.011] [DEBUG] debug-file - hvigorfile, resolve finished D:\shopping\List_commodity\hvigorfile.ts
+[2025-12-24T22:18:23.011] [DEBUG] debug-file - hvigorfile, resolving D:\shopping\List_commodity\entry\hvigorfile.ts
+[2025-12-24T22:18:23.013] [DEBUG] debug-file - hvigorfile, require result:  {}
+[2025-12-24T22:18:23.013] [DEBUG] debug-file - hvigorfile, binding system plugins {}
+[2025-12-24T22:18:23.015] [DEBUG] debug-file - failed to load cangjie to dynamically generate schemas: Error: Cannot find module '@ohos/cangjie-build-support/index'
+Require stack:
+- D:\devecostudio-windows-6.0.0.848\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\src\plugin\factory\plugin-factory.js
+- D:\devecostudio-windows-6.0.0.848\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\index.js
+- D:\shopping\List_commodity\hvigorfile.ts
+- D:\devecostudio-windows-6.0.0.848\DevEco Studio\tools\hvigor\hvigor\src\base\internal\lifecycle\configuration.js
+- D:\devecostudio-windows-6.0.0.848\DevEco Studio\tools\hvigor\hvigor\src\base\boot\index.js
+- D:\devecostudio-windows-6.0.0.848\DevEco Studio\tools\hvigor\hvigor\src\base\daemon\cluster\worker-process-lifecycle.js
+- D:\devecostudio-windows-6.0.0.848\DevEco Studio\tools\hvigor\hvigor\src\base\daemon\process\daemon-process-boot-script.js
+[2025-12-24T22:18:23.017] [DEBUG] debug-file - Start initialize module-target build option map, moduleName=entry, buildMode=release
+[2025-12-24T22:18:23.017] [DEBUG] debug-file - Target 'default' config initialized
+[2025-12-24T22:18:23.017] [DEBUG] debug-file - Target 'ohosTest' config initialized
+[2025-12-24T22:18:23.017] [DEBUG] debug-file - Module 'entry' target 'default' build option initialized
+[2025-12-24T22:18:23.017] [DEBUG] debug-file - Module 'entry' target 'ohosTest' build option initialized
+[2025-12-24T22:18:23.017] [DEBUG] debug-file - End initialize module-target build option map, moduleName=entry
+[2025-12-24T22:18:23.017] [DEBUG] debug-file - Start initialize module-target build option map, moduleName=entry, buildMode=debug
+[2025-12-24T22:18:23.017] [DEBUG] debug-file - Target 'default' config initialized
+[2025-12-24T22:18:23.017] [DEBUG] debug-file - Target 'ohosTest' config initialized
+[2025-12-24T22:18:23.017] [DEBUG] debug-file - Module 'entry' target 'default' build option initialized
+[2025-12-24T22:18:23.017] [DEBUG] debug-file - Module 'entry' target 'ohosTest' build option initialized
+[2025-12-24T22:18:23.017] [DEBUG] debug-file - End initialize module-target build option map, moduleName=entry
+[2025-12-24T22:18:23.017] [DEBUG] debug-file - Start initialize module-target build option map, moduleName=entry, buildMode=debug
+[2025-12-24T22:18:23.017] [DEBUG] debug-file - Target 'default' config initialized
+[2025-12-24T22:18:23.017] [DEBUG] debug-file - Target 'ohosTest' config initialized
+[2025-12-24T22:18:23.017] [DEBUG] debug-file - Module 'entry' target 'default' build option initialized
+[2025-12-24T22:18:23.017] [DEBUG] debug-file - Module 'entry' target 'ohosTest' build option initialized
+[2025-12-24T22:18:23.018] [DEBUG] debug-file - End initialize module-target build option map, moduleName=entry
+[2025-12-24T22:18:23.018] [DEBUG] debug-file - Obtain build option for module 'entry' target 'default'in this build.
+[2025-12-24T22:18:23.019] [DEBUG] debug-file - Module entry task initialization takes 1 ms 
+[2025-12-24T22:18:23.019] [DEBUG] debug-file - hvigorfile, resolve finished D:\shopping\List_commodity\entry\hvigorfile.ts
+[2025-12-24T22:18:23.035] [DEBUG] debug-file - hvigorfile, resolve hvigorfile dependencies in 15 ms 
+[2025-12-24T22:18:23.035] [DEBUG] debug-file - project has submodules:entry
+[2025-12-24T22:18:23.036] [DEBUG] debug-file - start to load updatedOhPackageInfo to the disk
+[2025-12-24T22:18:23.042] [DEBUG] debug-file - load to the disk finished
+[2025-12-24T22:18:23.043] [DEBUG] debug-file - Start to initialize dependency information.
+[2025-12-24T22:18:23.045] [DEBUG] debug-file - Module List_commodity Collected Dependency: 
+[2025-12-24T22:18:23.045] [DEBUG] debug-file - Module List_commodity's total dependency: 0
+[2025-12-24T22:18:23.045] [DEBUG] debug-file - Start to initialize dependency information.
+[2025-12-24T22:18:23.053] [DEBUG] debug-file - Module entry Collected Dependency: 
+[2025-12-24T22:18:23.054] [DEBUG] debug-file - Module entry's total dependency: 0
+[2025-12-24T22:18:23.056] [DEBUG] debug-file - Configuration phase cost:97 ms 
+[2025-12-24T22:18:23.057] [DEBUG] debug-file - Configuration task cost before running: 112 ms 
+[2025-12-24T22:18:23.057] [DEBUG] debug-file - Executing task :entry:clean
+[2025-12-24T22:18:23.057] [DEBUG] debug-file - clean: Start terminating worker pool.
+[2025-12-24T22:18:23.057] [DEBUG] debug-file - Current worker pool is stopped or closed.
+[2025-12-24T22:18:23.057] [DEBUG] debug-file - Clear worker 4.
+[2025-12-24T22:18:23.057] [DEBUG] debug-file - Worker 4 has been cleared.
+[2025-12-24T22:18:23.057] [DEBUG] debug-file - Current idle worker size: 0.
+[2025-12-24T22:18:23.057] [DEBUG] debug-file - Current busy worker size: 0.
+[2025-12-24T22:18:23.058] [DEBUG] debug-file - Current worker pool is terminated.
+[2025-12-24T22:18:23.058] [DEBUG] debug-file - clean: Terminating worker pool finished.
+[2025-12-24T22:18:23.377] [DEBUG] debug-file - entry : clean cost memory 0.5913162231445312
+[2025-12-24T22:18:23.377] [DEBUG] debug-file - runTaskFromQueue task cost before running: 432 ms 
+[2025-12-24T22:18:23.377] [INFO] debug-file - Finished :entry:clean... after 321 ms 
+[2025-12-24T22:18:23.381] [DEBUG] debug-file - Executing task :entry:default@PreBuild
+[2025-12-24T22:18:23.381] [DEBUG] debug-file - Task 'entry:default@PreBuild' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:23.391] [DEBUG] debug-file - Incremental task entry:default@PreBuild pre-execution cost: 7 ms .
+[2025-12-24T22:18:23.391] [DEBUG] debug-file - entry : default@PreBuild cost memory 0.311004638671875
+[2025-12-24T22:18:23.393] [INFO] debug-file - UP-TO-DATE :entry:default@PreBuild...  
+[2025-12-24T22:18:23.394] [DEBUG] debug-file - Executing task :entry:default@CreateModuleInfo
+[2025-12-24T22:18:23.394] [DEBUG] debug-file - Task 'entry:default@CreateModuleInfo' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:23.395] [DEBUG] debug-file - entry : default@CreateModuleInfo cost memory 0.0378265380859375
+[2025-12-24T22:18:23.395] [DEBUG] debug-file - runTaskFromQueue task cost before running: 450 ms 
+[2025-12-24T22:18:23.395] [INFO] debug-file - Finished :entry:default@CreateModuleInfo... after 1 ms 
+[2025-12-24T22:18:23.396] [DEBUG] debug-file - Executing task :entry:default@GenerateMetadata
+[2025-12-24T22:18:23.396] [DEBUG] debug-file - Task 'entry:default@GenerateMetadata' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:23.397] [DEBUG] debug-file - entry:default@GenerateMetadata is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\hap_metadata\default\output_metadata.json' does not exist.
+[2025-12-24T22:18:23.397] [DEBUG] debug-file - Incremental task entry:default@GenerateMetadata pre-execution cost: 1 ms .
+[2025-12-24T22:18:23.399] [DEBUG] debug-file - entry : default@GenerateMetadata cost memory 0.09131622314453125
+[2025-12-24T22:18:23.399] [DEBUG] debug-file - runTaskFromQueue task cost before running: 454 ms 
+[2025-12-24T22:18:23.399] [INFO] debug-file - Finished :entry:default@GenerateMetadata... after 4 ms 
+[2025-12-24T22:18:23.400] [DEBUG] debug-file - Executing task :entry:default@ConfigureCmake
+[2025-12-24T22:18:23.400] [DEBUG] debug-file - entry : default@ConfigureCmake cost memory 0.0149993896484375
+[2025-12-24T22:18:23.400] [DEBUG] debug-file - runTaskFromQueue task cost before running: 455 ms 
+[2025-12-24T22:18:23.401] [INFO] debug-file - Finished :entry:default@ConfigureCmake... after 1 ms 
+[2025-12-24T22:18:23.402] [DEBUG] debug-file - Executing task :entry:default@MergeProfile
+[2025-12-24T22:18:23.402] [DEBUG] debug-file - Task 'entry:default@MergeProfile' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:23.404] [DEBUG] debug-file - entry:default@MergeProfile is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\merge_profile\default\module.json' does not exist.
+[2025-12-24T22:18:23.404] [DEBUG] debug-file - Incremental task entry:default@MergeProfile pre-execution cost: 2 ms .
+[2025-12-24T22:18:23.404] [DEBUG] debug-file - Change app api release type with 'Beta5'
+[2025-12-24T22:18:23.404] [DEBUG] debug-file - Change app compile API version with '6.0.0.47'
+[2025-12-24T22:18:23.404] [DEBUG] debug-file - Change app target API version with '60000020'
+[2025-12-24T22:18:23.404] [DEBUG] debug-file - Change app minimum API version with '50005017'
+[2025-12-24T22:18:23.404] [DEBUG] debug-file - Use cli appEnvironment
+[2025-12-24T22:18:23.406] [DEBUG] debug-file - entry : default@MergeProfile cost memory 0.19506072998046875
+[2025-12-24T22:18:23.406] [DEBUG] debug-file - runTaskFromQueue task cost before running: 461 ms 
+[2025-12-24T22:18:23.406] [INFO] debug-file - Finished :entry:default@MergeProfile... after 5 ms 
+[2025-12-24T22:18:23.408] [DEBUG] debug-file - Executing task :entry:default@CreateBuildProfile
+[2025-12-24T22:18:23.408] [DEBUG] debug-file - Task 'entry:default@CreateBuildProfile' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:23.410] [DEBUG] debug-file - entry:default@CreateBuildProfile is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\generated\profile\default\BuildProfile.ets' does not exist.
+[2025-12-24T22:18:23.410] [DEBUG] debug-file - Incremental task entry:default@CreateBuildProfile pre-execution cost: 2 ms .
+[2025-12-24T22:18:23.411] [DEBUG] debug-file - entry : default@CreateBuildProfile cost memory 0.0975341796875
+[2025-12-24T22:18:23.411] [DEBUG] debug-file - runTaskFromQueue task cost before running: 466 ms 
+[2025-12-24T22:18:23.411] [INFO] debug-file - Finished :entry:default@CreateBuildProfile... after 4 ms 
+[2025-12-24T22:18:23.412] [DEBUG] debug-file - Executing task :entry:default@PreCheckSyscap
+[2025-12-24T22:18:23.412] [DEBUG] debug-file - entry : default@PreCheckSyscap cost memory 0.01522064208984375
+[2025-12-24T22:18:23.412] [DEBUG] debug-file - runTaskFromQueue task cost before running: 467 ms 
+[2025-12-24T22:18:23.413] [INFO] debug-file - Finished :entry:default@PreCheckSyscap... after 1 ms 
+[2025-12-24T22:18:23.414] [DEBUG] debug-file - Executing task :entry:default@GeneratePkgContextInfo
+[2025-12-24T22:18:23.420] [DEBUG] debug-file - Task 'entry:default@GeneratePkgContextInfo' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:23.420] [DEBUG] debug-file - entry : default@GeneratePkgContextInfo cost memory 0.22509765625
+[2025-12-24T22:18:23.420] [DEBUG] debug-file - runTaskFromQueue task cost before running: 475 ms 
+[2025-12-24T22:18:23.420] [INFO] debug-file - Finished :entry:default@GeneratePkgContextInfo... after 6 ms 
+[2025-12-24T22:18:23.426] [DEBUG] debug-file - Executing task :entry:default@ProcessIntegratedHsp
+[2025-12-24T22:18:23.426] [DEBUG] debug-file - entry:default@ProcessIntegratedHsp is not up-to-date, since the output file 'D:\shopping\List_commodity\build\cache\default\integrated_hsp\integratedHspCache.json' does not exist.
+[2025-12-24T22:18:23.426] [DEBUG] debug-file - Incremental task entry:default@ProcessIntegratedHsp pre-execution cost: 1 ms .
+[2025-12-24T22:18:23.426] [DEBUG] debug-file - entry : default@ProcessIntegratedHsp cost memory 0.05768585205078125
+[2025-12-24T22:18:23.426] [DEBUG] debug-file - runTaskFromQueue task cost before running: 481 ms 
+[2025-12-24T22:18:23.426] [INFO] debug-file - Finished :entry:default@ProcessIntegratedHsp... after 1 ms 
+[2025-12-24T22:18:23.427] [DEBUG] debug-file - Executing task :entry:default@BuildNativeWithCmake
+[2025-12-24T22:18:23.427] [DEBUG] debug-file - entry : default@BuildNativeWithCmake cost memory 0.01604461669921875
+[2025-12-24T22:18:23.427] [DEBUG] debug-file - runTaskFromQueue task cost before running: 482 ms 
+[2025-12-24T22:18:23.427] [INFO] debug-file - Finished :entry:default@BuildNativeWithCmake... after 1 ms 
+[2025-12-24T22:18:23.429] [DEBUG] debug-file - Executing task :entry:default@MakePackInfo
+[2025-12-24T22:18:23.431] [DEBUG] debug-file - entry:default@MakePackInfo is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\outputs\default\pack.info' does not exist.
+[2025-12-24T22:18:23.431] [DEBUG] debug-file - Incremental task entry:default@MakePackInfo pre-execution cost: 2 ms .
+[2025-12-24T22:18:23.431] [DEBUG] debug-file - Module Pack Info:  {
+  summary: {
+    app: { bundleName: 'c***y', bundleType: 'app', version: [Object] },
+    modules: [ [Object] ]
+  },
+  packages: [
+    {
+      deviceType: [Array],
+      moduleType: 'entry',
+      deliveryWithInstall: true,
+      name: 'entry-default'
+    }
+  ]
+}
+[2025-12-24T22:18:23.432] [DEBUG] debug-file - entry : default@MakePackInfo cost memory 0.1407470703125
+[2025-12-24T22:18:23.432] [DEBUG] debug-file - runTaskFromQueue task cost before running: 487 ms 
+[2025-12-24T22:18:23.432] [INFO] debug-file - Finished :entry:default@MakePackInfo... after 3 ms 
+[2025-12-24T22:18:23.434] [DEBUG] debug-file - Executing task :entry:default@SyscapTransform
+[2025-12-24T22:18:23.434] [DEBUG] debug-file - File: 'D:\shopping\List_commodity\entry\src\main\syscap.json' from 'sysCapJsonPath' is not exists, just ignore.
+[2025-12-24T22:18:23.435] [DEBUG] debug-file - Task 'entry:default@SyscapTransform' cost while wrapping incremental declarations: 2 ms 
+[2025-12-24T22:18:23.439] [DEBUG] debug-file - entry:default@SyscapTransform is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\syscap\default\rpcid.sc' does not exist.
+[2025-12-24T22:18:23.440] [DEBUG] debug-file - Incremental task entry:default@SyscapTransform pre-execution cost: 4 ms .
+[2025-12-24T22:18:23.440] [DEBUG] debug-file - entry : default@SyscapTransform cost memory 0.13874053955078125
+[2025-12-24T22:18:23.440] [DEBUG] debug-file - runTaskFromQueue task cost before running: 495 ms 
+[2025-12-24T22:18:23.440] [INFO] debug-file - Finished :entry:default@SyscapTransform... after 6 ms 
+[2025-12-24T22:18:23.441] [DEBUG] debug-file - Executing task :entry:default@ProcessProfile
+[2025-12-24T22:18:23.441] [DEBUG] debug-file - Task 'entry:default@ProcessProfile' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:23.442] [DEBUG] debug-file - entry:default@ProcessProfile is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\intermediates\merge_profile\default\module.json' has been changed.
+[2025-12-24T22:18:23.443] [DEBUG] debug-file - Incremental task entry:default@ProcessProfile pre-execution cost: 1 ms .
+[2025-12-24T22:18:23.444] [DEBUG] debug-file - [
+  'D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\tools\\node\\node.exe',
+  'D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\bin\\ark\\ts2abc.js',
+  '--target-api-version',
+  '17'
+]
+[2025-12-24T22:18:23.581] [DEBUG] debug-file - 12.0.6.0
+[2025-12-24T22:18:23.583] [DEBUG] debug-file - No need to add fake ui ability because of not in preview process.
+[2025-12-24T22:18:23.585] [DEBUG] debug-file - entry : default@ProcessProfile cost memory 0.318359375
+[2025-12-24T22:18:23.585] [DEBUG] debug-file - runTaskFromQueue task cost before running: 640 ms 
+[2025-12-24T22:18:23.585] [INFO] debug-file - Finished :entry:default@ProcessProfile... after 144 ms 
+[2025-12-24T22:18:23.586] [DEBUG] debug-file - Executing task :entry:default@ProcessRouterMap
+[2025-12-24T22:18:23.589] [DEBUG] debug-file - entry:default@ProcessRouterMap is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\router_map\default\temp-router-map.json' does not exist.
+[2025-12-24T22:18:23.589] [DEBUG] debug-file - Incremental task entry:default@ProcessRouterMap pre-execution cost: 3 ms .
+[2025-12-24T22:18:23.591] [DEBUG] debug-file - entry : default@ProcessRouterMap cost memory 0.131103515625
+[2025-12-24T22:18:23.591] [DEBUG] debug-file - runTaskFromQueue task cost before running: 646 ms 
+[2025-12-24T22:18:23.592] [INFO] debug-file - Finished :entry:default@ProcessRouterMap... after 6 ms 
+[2025-12-24T22:18:23.593] [DEBUG] debug-file - Executing task :entry:default@ProcessShareConfig
+[2025-12-24T22:18:23.596] [DEBUG] debug-file - entry:default@ProcessShareConfig is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\share_config\default\temp-share-config.json' does not exist.
+[2025-12-24T22:18:23.596] [DEBUG] debug-file - Incremental task entry:default@ProcessShareConfig pre-execution cost: 3 ms .
+[2025-12-24T22:18:23.598] [DEBUG] debug-file - entry : default@ProcessShareConfig cost memory 0.27741241455078125
+[2025-12-24T22:18:23.598] [DEBUG] debug-file - runTaskFromQueue task cost before running: 653 ms 
+[2025-12-24T22:18:23.598] [INFO] debug-file - Finished :entry:default@ProcessShareConfig... after 5 ms 
+[2025-12-24T22:18:23.600] [DEBUG] debug-file - Executing task :entry:default@ProcessStartupConfig
+[2025-12-24T22:18:23.600] [DEBUG] debug-file - Task 'entry:default@ProcessStartupConfig' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:23.600] [DEBUG] debug-file - entry:default@ProcessStartupConfig is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\startup\default\startup_config.json' does not exist.
+[2025-12-24T22:18:23.600] [DEBUG] debug-file - Incremental task entry:default@ProcessStartupConfig pre-execution cost: 1 ms .
+[2025-12-24T22:18:23.601] [DEBUG] debug-file - entry : default@ProcessStartupConfig cost memory 0.0935211181640625
+[2025-12-24T22:18:23.601] [DEBUG] debug-file - runTaskFromQueue task cost before running: 656 ms 
+[2025-12-24T22:18:23.601] [INFO] debug-file - Finished :entry:default@ProcessStartupConfig... after 1 ms 
+[2025-12-24T22:18:23.602] [DEBUG] debug-file - Executing task :entry:default@BuildNativeWithNinja
+[2025-12-24T22:18:23.603] [DEBUG] debug-file - entry : default@BuildNativeWithNinja cost memory 0.02756500244140625
+[2025-12-24T22:18:23.603] [DEBUG] debug-file - runTaskFromQueue task cost before running: 658 ms 
+[2025-12-24T22:18:23.603] [INFO] debug-file - Finished :entry:default@BuildNativeWithNinja... after 2 ms 
+[2025-12-24T22:18:23.605] [DEBUG] debug-file - restool module names: entry; moduleName=entry, taskName=default@ProcessResource
+[2025-12-24T22:18:23.606] [DEBUG] debug-file - Executing task :entry:default@ProcessResource
+[2025-12-24T22:18:23.606] [DEBUG] debug-file - Task 'entry:default@ProcessResource' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:23.606] [DEBUG] debug-file - entry:default@ProcessResource is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\res\default\resConfig.json' does not exist.
+[2025-12-24T22:18:23.607] [DEBUG] debug-file - Incremental task entry:default@ProcessResource pre-execution cost: 1 ms .
+[2025-12-24T22:18:23.609] [DEBUG] debug-file - entry : default@ProcessResource cost memory -1.4721527099609375
+[2025-12-24T22:18:23.611] [DEBUG] debug-file - runTaskFromQueue task cost before running: 665 ms 
+[2025-12-24T22:18:23.612] [INFO] debug-file - Finished :entry:default@ProcessResource... after 5 ms 
+[2025-12-24T22:18:23.614] [DEBUG] debug-file - Executing task :entry:default@GenerateLoaderJson
+[2025-12-24T22:18:23.614] [DEBUG] debug-file - Task 'entry:default@GenerateLoaderJson' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:23.623] [DEBUG] debug-file - entry:default@GenerateLoaderJson is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\intermediates\router_map\default\temp-router-map.json' has been changed.
+[2025-12-24T22:18:23.623] [DEBUG] debug-file - Incremental task entry:default@GenerateLoaderJson pre-execution cost: 5 ms .
+[2025-12-24T22:18:23.625] [DEBUG] debug-file - entry : default@GenerateLoaderJson cost memory 0.34191131591796875
+[2025-12-24T22:18:23.625] [DEBUG] debug-file - runTaskFromQueue task cost before running: 680 ms 
+[2025-12-24T22:18:23.630] [INFO] debug-file - Finished :entry:default@GenerateLoaderJson... after 12 ms 
+[2025-12-24T22:18:23.631] [DEBUG] debug-file - Executing task :entry:default@ProcessLibs
+[2025-12-24T22:18:23.635] [DEBUG] debug-file - entry:default@ProcessLibs is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\libs\default' does not exist.
+[2025-12-24T22:18:23.635] [DEBUG] debug-file - Incremental task entry:default@ProcessLibs pre-execution cost: 3 ms .
+[2025-12-24T22:18:23.636] [DEBUG] debug-file - Worker dispatch failed, running processLibs on main thread.
+[2025-12-24T22:18:23.637] [DEBUG] debug-file - entry : default@ProcessLibs cost memory 0.291351318359375
+[2025-12-24T22:18:23.637] [DEBUG] debug-file - runTaskFromQueue task cost before running: 692 ms 
+[2025-12-24T22:18:23.638] [INFO] debug-file - Finished :entry:default@ProcessLibs... after 6 ms 
+[2025-12-24T22:18:23.639] [DEBUG] debug-file - restool module names: entry; moduleName=entry, taskName=default@CompileResource
+[2025-12-24T22:18:23.640] [DEBUG] debug-file - Executing task :entry:default@CompileResource
+[2025-12-24T22:18:23.654] [DEBUG] debug-file - entry:default@CompileResource is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\intermediates\process_profile\default\module.json' has been changed.
+[2025-12-24T22:18:23.654] [DEBUG] debug-file - Incremental task entry:default@CompileResource pre-execution cost: 13 ms .
+[2025-12-24T22:18:23.655] [DEBUG] debug-file - worker[4] exits with exit code 1.
+[2025-12-24T22:18:23.656] [DEBUG] debug-file - Use tool [D:\devecostudio-windows-6.0.0.848\DevEco Studio\sdk\default\openharmony\toolchains\restool.exe]
+ [
+  'D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\toolchains\\restool.exe',
+  '-l',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\default\\resConfig.json'
+]
+[2025-12-24T22:18:23.656] [DEBUG] debug-file - current process  memoryUsage: {
+  rss: 104964096,
+  heapTotal: 124542976,
+  heapUsed: 115497768,
+  external: 3119735,
+  arrayBuffers: 167795
+} os memoryUsage :13.752029418945312
+[2025-12-24T22:18:23.855] [DEBUG] debug-file - Info: Pack: normal pack mode
+
+[2025-12-24T22:18:23.916] [DEBUG] debug-file - Info: hardware concurrency count is : 20
+Info: thread count is : 20
+
+[2025-12-24T22:18:23.916] [DEBUG] debug-file - Info: thread pool is started
+
+[2025-12-24T22:18:23.919] [DEBUG] debug-file - Info: GenericCompiler::CompileFiles
+
+[2025-12-24T22:18:23.931] [DEBUG] debug-file - Info: GenericCompiler::CompileFiles
+
+[2025-12-24T22:18:23.944] [DEBUG] debug-file - Info: GenericCompiler::CompileFiles
+
+[2025-12-24T22:18:23.952] [DEBUG] debug-file - 12-24 22:18:23.952 50492 42056 E C01400/ImageTranscoderUtils: DecodeToRGBA IN
+
+[2025-12-24T22:18:23.952] [DEBUG] debug-file - 12-24 22:18:23.952 50492 42056 E C01400/ImageTranscoderUtils: ImageFilter IN D:\shopping\List_commodity\AppScope\resources\base\media\app_icon.png
+
+[2025-12-24T22:18:23.957] [DEBUG] debug-file - 12-24 22:18:23.958 50492 42056 E C01400/ImageTranscoder: TranscodeSLR Only zoom-out is supported.
+
+[2025-12-24T22:18:23.958] [DEBUG] debug-file - Warning: ScaleImage failed, error message: INVALID_PARAMETERS, file path = D:\shopping\List_commodity\AppScope\resources\base\media\app_icon.png
+
+[2025-12-24T22:18:23.960] [DEBUG] debug-file - 12-24 22:18:23.960 50492 42056 E C01400/ImageTranscoderUtils: DecodeToRGBA IN
+12-24 22:18:23.960 50492 42056 E C01400/ImageTranscoderUtils: ImageFilter IN D:\shopping\List_commodity\entry\src\main\resources\base\media\icon.png
+
+[2025-12-24T22:18:23.960] [DEBUG] debug-file - 12-24 22:18:23.961 50492 42056 E C01400/ImageTranscoder: TranscodeSLR Only zoom-out is supported.
+Warning: ScaleImage failed, error message: INVALID_PARAMETERS, file path = D:\shopping\List_commodity\entry\src\main\resources\base\media\icon.png
+
+[2025-12-24T22:18:23.961] [DEBUG] debug-file - Warning: The width or height of the png file referenced by the icon exceeds the limit (41 pixels)
+at D:\shopping\List_commodity\AppScope\resources\base\media\app_icon.png
+
+[2025-12-24T22:18:23.961] [DEBUG] debug-file - Warning: The width or height of the png file referenced by the icon exceeds the limit (41 pixels)
+at D:\shopping\List_commodity\entry\src\main\resources\base\media\icon.png
+
+[2025-12-24T22:18:23.962] [DEBUG] debug-file - Info: restool resources compile success.
+
+[2025-12-24T22:18:23.963] [DEBUG] debug-file - Info: thread pool is stopped
+
+[2025-12-24T22:18:24.035] [DEBUG] debug-file - entry : default@CompileResource cost memory -0.6903533935546875
+[2025-12-24T22:18:24.035] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 90 ms 
+[2025-12-24T22:18:24.036] [INFO] debug-file - Finished :entry:default@CompileResource... after 396 ms 
+[2025-12-24T22:18:24.037] [DEBUG] debug-file - Executing task :entry:default@DoNativeStrip
+[2025-12-24T22:18:24.037] [DEBUG] debug-file - Task 'entry:default@DoNativeStrip' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:24.038] [DEBUG] debug-file - entry:default@DoNativeStrip is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\stripped_native_libs\default' does not exist.
+[2025-12-24T22:18:24.038] [DEBUG] debug-file - Incremental task entry:default@DoNativeStrip pre-execution cost: 1 ms .
+[2025-12-24T22:18:24.040] [DEBUG] debug-file - entry : default@DoNativeStrip cost memory 0.091827392578125
+[2025-12-24T22:18:24.040] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 95 ms 
+[2025-12-24T22:18:24.040] [INFO] debug-file - Finished :entry:default@DoNativeStrip... after 4 ms 
+[2025-12-24T22:18:24.042] [DEBUG] debug-file - Executing task :entry:default@CompileArkTS
+[2025-12-24T22:18:24.042] [DEBUG] debug-file - obfuscationOptions: undefined
+[2025-12-24T22:18:24.050] [DEBUG] debug-file - entry:default@CompileArkTS is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\intermediates\loader\default' has been changed.
+[2025-12-24T22:18:24.050] [DEBUG] debug-file - Incremental task entry:default@CompileArkTS pre-execution cost: 4 ms .
+[2025-12-24T22:18:24.061] [DEBUG] debug-file - build config:
+[2025-12-24T22:18:24.061] [DEBUG] debug-file - {
+  moduleType: 'entry',
+  perf: 0,
+  targetName: '.default',
+  packageManagerType: 'ohpm',
+  localPropertiesPath: 'D:\\shopping\\List_commodity\\local.properties',
+  isPreview: false,
+  isOhosTest: false,
+  isLocalTest: false,
+  buildMode: 'Debug',
+  hotReloadBuild: undefined,
+  watchMode: 'false',
+  aceProfilePath: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\default\\resources\\base\\profile',
+  etsLoaderPath: 'D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader',
+  modulePath: 'D:\\shopping\\List_commodity\\entry',
+  testFrameworkPar: {
+    testMode: undefined,
+    coveragePathFilter: undefined,
+    coverageMode: undefined
+  },
+  needCoverageInsert: false,
+  debugLine: false,
+  projectTopDir: 'D:\\shopping\\List_commodity',
+  compileSdkVersion: 20,
+  compatibleSdkVersion: 17,
+  compatibleSdkVersionStage: undefined,
+  bundleName: 'c***y',
+  etsLoaderVersion: '6.0.0.47',
+  etsLoaderReleaseType: 'Beta5',
+  aotCompileMode: 'type',
+  apPath: 'D:\\shopping\\List_commodity\\entry\\modules.ap',
+  entryModuleName: 'entry',
+  entryModuleVersion: '1.0.0',
+  entryPackageName: 'entry',
+  allModuleNameHash: '59a6b353c31dac45ccd5bbb4b5be5c39',
+  externalApiPaths: [
+    'D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\hms\\ets'
+  ],
+  compilerTypes: [],
+  isCrossplatform: false,
+  hvigorPluginFile: undefined,
+  compilePluginPath: undefined,
+  buildGeneratedProfilePath: 'D:\\shopping\\List_commodity\\entry\\build\\default\\generated\\profile\\default',
+  bundleType: 'app',
+  arkTSVersion: undefined,
+  apiVersion: 20,
+  needCompleteSourcesMap: false,
+  isFaMode: false,
+  strictMode: undefined,
+  buildDir: 'D:\\shopping\\List_commodity\\entry\\build',
+  deviceTypes: [ 'phone' ],
+  useNormalizedOHMUrl: false,
+  pkgContextInfo: undefined,
+  ohPackagePathMap: {},
+  dependencyAliasMap: {},
+  permission: { requestPermissions: undefined, definePermissions: undefined },
+  integratedHsp: false,
+  projectArkOption: undefined,
+  sourceMapDir: undefined,
+  branchElimination: false,
+  transformLib: undefined,
+  caseSensitiveCheck: false,
+  tsImportSendable: false,
+  resolveConflictMode: true,
+  depName2RootPath: {},
+  depName2DepInfo: {},
+  rootPathSet: [ 'D:\\shopping\\List_commodity' ],
+  useNativeResolver: true,
+  shouldEmitJs: true,
+  useTscResolve: false,
+  singleFileEmit: false,
+  userProjectConfig: {
+    autoLazyImport: false,
+    allowEmptyBundleName: false,
+    reExportCheckMode: 'noCheck',
+    executionMode: 'memory',
+    usePathPlaceholder: false,
+    writeRollupCache: true,
+    isExpandImportEnabled: false,
+    expandImportExclude: '',
+    ignoreCrossplatformCheck: false,
+    isPreloadSoEnabled: false
+  },
+  skipOhModulesLint: false,
+  executionMode: 'memory',
+  autoLazyImport: false,
+  allowEmptyBundleName: false,
+  reExportCheckMode: 'noCheck',
+  usePathPlaceholder: false,
+  writeRollupCache: true,
+  isExpandImportEnabled: false,
+  expandImportExclude: '',
+  ignoreCrossplatformCheck: false,
+  isPreloadSoEnabled: false,
+  arkCompileCachePath: 'D:\\shopping\\List_commodity\\entry\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule',
+  aceModuleJsonPath: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\default\\ark_module.json',
+  appResource: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\default\\ResourceTable.txt',
+  rawFileResource: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\default\\resources\\rawfile',
+  resourceTableHash: 'ecdc913c9d9e06d3f5aeffac3734b6e4',
+  runtimeOS: 'HarmonyOS',
+  sdkInfo: 'false:20:6.0.0.47:Beta5',
+  aceModuleRoot: 'D:\\shopping\\List_commodity\\entry\\src\\main\\ets',
+  compileMode: 'esmodule',
+  aceSuperVisualPath: 'D:\\shopping\\List_commodity\\entry\\src\\main\\supervisual',
+  aceBuildJson: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\loader\\default\\loader.json',
+  cachePath: 'D:\\shopping\\List_commodity\\entry\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule\\debug',
+  aceModuleBuild: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\loader_out\\default\\ets',
+  supportChunks: true,
+  declaredFilesPath: undefined,
+  shouldCollectDirectImportees: false,
+  isByteCodeHarOptimize: false,
+  expandImportPath: undefined,
+  pkgNameToPkgBriefInfo: {
+    entry: {
+      pkgRoot: 'D:\\shopping\\List_commodity\\entry',
+      originalSourceRoots: undefined,
+      sourceRoots: [Array],
+      pkgName: 'entry'
+    }
+  },
+  projectModel: {
+    'D:\\shopping\\List_commodity\\entry\\src\\main': {
+      moduleName: 'entry',
+      modulePkgPath: 'D:\\shopping\\List_commodity\\entry',
+      belongProjectPath: 'D:\\shopping\\List_commodity'
+    },
+    'D:\\shopping\\List_commodity\\entry\\src\\ohosTest': {
+      moduleName: 'entry_test',
+      modulePkgPath: 'D:\\shopping\\List_commodity\\entry',
+      belongProjectPath: 'D:\\shopping\\List_commodity'
+    },
+    'D:\\shopping\\List_commodity\\entry': {
+      moduleName: 'entry',
+      modulePkgPath: 'D:\\shopping\\List_commodity\\entry',
+      belongProjectPath: 'D:\\shopping\\List_commodity'
+    },
+    'D:\\shopping\\List_commodity': {
+      moduleName: 'List_commodity',
+      modulePkgPath: 'D:\\shopping\\List_commodity',
+      belongProjectPath: 'D:\\shopping\\List_commodity'
+    }
+  },
+  pkgJsonFileHash: '17e535755504c69b4e6ecbf8aaaca396',
+  allModulePaths: [ 'D:\\shopping\\List_commodity\\entry' ],
+  routerMap: {},
+  obfuscationOptions: undefined,
+  byteCodeHarToDependencyKeys: undefined,
+  compileBlockPkg: [],
+  mockParams: {
+    decorator: '@MockSetup',
+    packageName: '@ohos/hamock',
+    etsSourceRootPath: 'src/main/ets',
+    mockConfigPath: undefined,
+    mockConfigKey2ModuleInfo: {},
+    source2ModuleIdMap: {}
+  },
+  copyCodeResourceEnable: true,
+  copyCodeResourceExcludes: [],
+  copyCodeResourceIncludes: undefined,
+  uiTransformOptimization: false,
+  sdkPath: 'D:/devecostudio-windows-6.0.0.848/DevEco Studio/sdk',
+  needPreloadSoFileSet: {},
+  preloadSoFilePath: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\preload\\default\\preload.json',
+  useSourceHash: false,
+  localModuleParamMap: {},
+  otherPaths: {
+    'entry/*': [
+      '..\\*',
+      '..\\..\\..\\build\\default\\generated\\profile\\default\\*'
+    ]
+  },
+  collectImportersConfig: undefined
+}
+[2025-12-24T22:18:24.062] [DEBUG] debug-file - Compile arkts with external api path: D:\devecostudio-windows-6.0.0.848\DevEco Studio\sdk\default\hms\ets
+[2025-12-24T22:18:24.063] [DEBUG] debug-file - Since there is no instance or instance is terminated, create a new worker pool.
+[2025-12-24T22:18:24.063] [DEBUG] debug-file - Worker pool is initialized with config:  {
+  minPoolNum: 2,
+  maxPoolNum: undefined,
+  maxCoreSize: undefined,
+  cacheCapacity: undefined,
+  cacheTtl: undefined
+}
+[2025-12-24T22:18:24.064] [DEBUG] debug-file - Create  resident worker with id: 0.
+[2025-12-24T22:18:24.065] [DEBUG] debug-file - Create  resident worker with id: 1.
+[2025-12-24T22:18:24.065] [DEBUG] debug-file - default@CompileArkTS work[89] is submitted.
+[2025-12-24T22:18:24.065] [DEBUG] debug-file - default@CompileArkTS work[89] is pushed to ready queue.
+[2025-12-24T22:18:24.065] [DEBUG] debug-file - A work dispatched to worker[19] failed because unable to get work from ready queue.
+[2025-12-24T22:18:24.065] [DEBUG] debug-file - A work dispatched to worker[18] failed because unable to get work from ready queue.
+[2025-12-24T22:18:24.065] [DEBUG] debug-file - A work dispatched to worker[17] failed because unable to get work from ready queue.
+[2025-12-24T22:18:24.065] [DEBUG] debug-file - A work dispatched to worker[16] failed because unable to get work from ready queue.
+[2025-12-24T22:18:24.065] [DEBUG] debug-file - A work dispatched to worker[15] failed because unable to get work from ready queue.
+[2025-12-24T22:18:24.065] [DEBUG] debug-file - A work dispatched to worker[14] failed because unable to get work from ready queue.
+[2025-12-24T22:18:24.065] [DEBUG] debug-file - A work dispatched to worker[13] failed because unable to get work from ready queue.
+[2025-12-24T22:18:24.065] [DEBUG] debug-file - A work dispatched to worker[12] failed because unable to get work from ready queue.
+[2025-12-24T22:18:24.065] [DEBUG] debug-file - A work dispatched to worker[11] failed because unable to get work from ready queue.
+[2025-12-24T22:18:24.065] [DEBUG] debug-file - A work dispatched to worker[10] failed because unable to get work from ready queue.
+[2025-12-24T22:18:24.065] [DEBUG] debug-file - A work dispatched to worker[9] failed because unable to get work from ready queue.
+[2025-12-24T22:18:24.066] [DEBUG] debug-file - A work dispatched to worker[8] failed because unable to get work from ready queue.
+[2025-12-24T22:18:24.066] [DEBUG] debug-file - A work dispatched to worker[7] failed because unable to get work from ready queue.
+[2025-12-24T22:18:24.066] [DEBUG] debug-file - A work dispatched to worker[6] failed because unable to get work from ready queue.
+[2025-12-24T22:18:24.066] [DEBUG] debug-file - A work dispatched to worker[5] failed because unable to get work from ready queue.
+[2025-12-24T22:18:24.066] [DEBUG] debug-file - Create  resident worker with id: 4.
+[2025-12-24T22:18:24.066] [DEBUG] debug-file - default@CompileArkTS work[89] has been dispatched to worker[4].
+[2025-12-24T22:18:24.066] [DEBUG] debug-file - default@CompileArkTS work[89] is dispatched.
+[2025-12-24T22:18:24.066] [DEBUG] debug-file - CopyResources startTime: 33578791988900
+[2025-12-24T22:18:24.066] [DEBUG] debug-file - default@CompileArkTS work[90] is submitted.
+[2025-12-24T22:18:24.066] [DEBUG] debug-file - default@CompileArkTS work[90] is pushed to ready queue.
+[2025-12-24T22:18:24.066] [DEBUG] debug-file - A work dispatched to worker[19] failed because unable to get work from ready queue.
+[2025-12-24T22:18:24.066] [DEBUG] debug-file - Create  resident worker with id: 18.
+[2025-12-24T22:18:24.067] [DEBUG] debug-file - default@CompileArkTS work[90] has been dispatched to worker[18].
+[2025-12-24T22:18:24.067] [DEBUG] debug-file - default@CompileArkTS work[90] is dispatched.
+[2025-12-24T22:18:24.067] [DEBUG] debug-file - entry : default@CompileArkTS cost memory -0.05648040771484375
+[2025-12-24T22:18:24.069] [DEBUG] debug-file - Executing task :entry:default@BuildJS
+[2025-12-24T22:18:24.072] [DEBUG] debug-file - entry : default@BuildJS cost memory 0.114471435546875
+[2025-12-24T22:18:24.072] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 127 ms 
+[2025-12-24T22:18:24.073] [INFO] debug-file - Finished :entry:default@BuildJS... after 4 ms 
+[2025-12-24T22:18:24.074] [DEBUG] debug-file - Executing task :entry:default@CacheNativeLibs
+[2025-12-24T22:18:24.075] [DEBUG] debug-file - Task 'entry:default@CacheNativeLibs' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:24.076] [DEBUG] debug-file - entry:default@CacheNativeLibs is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\patch\default\base_native_libs.json' does not exist.
+[2025-12-24T22:18:24.076] [DEBUG] debug-file - Incremental task entry:default@CacheNativeLibs pre-execution cost: 2 ms .
+[2025-12-24T22:18:24.076] [DEBUG] debug-file - default@CacheNativeLibs work[91] is submitted.
+[2025-12-24T22:18:24.077] [DEBUG] debug-file - default@CacheNativeLibs work[91] is pushed to ready queue.
+[2025-12-24T22:18:24.077] [DEBUG] debug-file - A work dispatched to worker[19] failed because unable to get work from ready queue.
+[2025-12-24T22:18:24.077] [DEBUG] debug-file - A work dispatched to worker[18] failed because of worker busy.
+[2025-12-24T22:18:24.077] [DEBUG] debug-file - Create  resident worker with id: 17.
+[2025-12-24T22:18:24.077] [DEBUG] debug-file - default@CacheNativeLibs work[91] has been dispatched to worker[17].
+[2025-12-24T22:18:24.078] [DEBUG] debug-file - default@CacheNativeLibs work[91] is dispatched.
+[2025-12-24T22:18:24.078] [DEBUG] debug-file - entry : default@CacheNativeLibs cost memory 0.2267303466796875
+[2025-12-24T22:18:25.711] [DEBUG] debug-file - worker[17] has one work done.
+[2025-12-24T22:18:25.711] [DEBUG] debug-file - default@CacheNativeLibs work[91] done.
+[2025-12-24T22:18:25.712] [DEBUG] debug-file - A work dispatched to worker[17] failed because unable to get work from ready queue.
+[2025-12-24T22:18:25.712] [INFO] debug-file - Finished :entry:default@CacheNativeLibs... after 10 ms 
+[2025-12-24T22:18:25.717] [DEBUG] debug-file - worker[18] has one work done.
+[2025-12-24T22:18:25.717] [DEBUG] debug-file - CopyResources is end, endTime: 33580443306600
+[2025-12-24T22:18:25.717] [DEBUG] debug-file - default@CompileArkTS work[90] done.
+[2025-12-24T22:18:25.718] [DEBUG] debug-file - A work dispatched to worker[18] failed because unable to get work from ready queue.
+[2025-12-24T22:18:32.647] [WARN] debug-file - [33mWARN: [33m[33mArkTS:WARN File: D:/shopping/List_commodity/entry/src/main/ets/view/RefreshLayout.ets:57:8
+ 'onScroll' has been deprecated.
+[39m[39m
+
+[2025-12-24T22:18:32.647] [DEBUG] debug-file - Ark compile task finished.finished time is 33587373360300
+[2025-12-24T22:18:32.648] [DEBUG] debug-file - worker[4] has one work done.
+[2025-12-24T22:18:32.650] [DEBUG] debug-file - default@CompileArkTS work[89] done.
+[2025-12-24T22:18:32.650] [DEBUG] debug-file - A work dispatched to worker[4] failed because unable to get work from ready queue.
+[2025-12-24T22:18:32.652] [INFO] debug-file - Finished :entry:default@CompileArkTS... after 4 s 961 ms 
+[2025-12-24T22:18:32.653] [DEBUG] debug-file - Executing task :entry:default@GeneratePkgModuleJson
+[2025-12-24T22:18:32.653] [DEBUG] debug-file - File: 'D:\shopping\List_commodity\entry\build\default\intermediates\preload\default\preload.json' from 'preloadSoJsonPath' is not exists, just ignore.
+[2025-12-24T22:18:32.653] [DEBUG] debug-file - Task 'entry:default@GeneratePkgModuleJson' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:32.654] [DEBUG] debug-file - entry:default@GeneratePkgModuleJson is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\intermediates\res\default\module.json' has been changed.
+[2025-12-24T22:18:32.654] [DEBUG] debug-file - Incremental task entry:default@GeneratePkgModuleJson pre-execution cost: 1 ms .
+[2025-12-24T22:18:32.656] [DEBUG] debug-file - entry : default@GeneratePkgModuleJson cost memory 0.10003662109375
+[2025-12-24T22:18:32.656] [DEBUG] debug-file - runTaskFromQueue task cost before running: 9 s 711 ms 
+[2025-12-24T22:18:32.656] [INFO] debug-file - Finished :entry:default@GeneratePkgModuleJson... after 3 ms 
+[2025-12-24T22:18:32.657] [DEBUG] debug-file - Executing task :entry:default@ProcessCompiledResources
+[2025-12-24T22:18:32.657] [DEBUG] debug-file - File: 'D:\shopping\List_commodity\entry\build\default\intermediates\preload\default\preload.json' from 'preloadSoJsonPath' is not exists, just ignore.
+[2025-12-24T22:18:32.657] [DEBUG] debug-file - Task 'entry:default@ProcessCompiledResources' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:32.658] [DEBUG] debug-file - entry : default@ProcessCompiledResources cost memory -1.42401123046875
+[2025-12-24T22:18:32.658] [DEBUG] debug-file - runTaskFromQueue task cost before running: 9 s 713 ms 
+[2025-12-24T22:18:32.658] [INFO] debug-file - Finished :entry:default@ProcessCompiledResources... after 2 ms 
+[2025-12-24T22:18:32.660] [DEBUG] debug-file - Executing task :entry:default@PackageHap
+[2025-12-24T22:18:32.666] [DEBUG] debug-file - entry:default@PackageHap is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\intermediates\res\default\module.json' has been changed.
+[2025-12-24T22:18:32.666] [DEBUG] debug-file - Incremental task entry:default@PackageHap pre-execution cost: 6 ms .
+[2025-12-24T22:18:32.668] [DEBUG] debug-file - Use tool [D:\devecostudio-windows-6.0.0.848\DevEco Studio\sdk\default\openharmony\toolchains\lib\app_packing_tool.jar]
+ [
+  'java',
+  '-Dfile.encoding=GBK',
+  '-jar',
+  'D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\toolchains\\lib\\app_packing_tool.jar',
+  '--mode',
+  'hap',
+  '--force',
+  'true',
+  '--lib-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\stripped_native_libs\\default',
+  '--json-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\package\\default\\module.json',
+  '--resources-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\default\\resources',
+  '--index-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\default\\resources.index',
+  '--pack-info-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\outputs\\default\\pack.info',
+  '--out-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\outputs\\default\\entry-default-unsigned.hap',
+  '--ets-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\loader_out\\default\\ets'
+]
+[2025-12-24T22:18:32.732] [DEBUG] debug-file - java daemon socket received message:{"code":0,"message":"pack success"}
+[2025-12-24T22:18:32.736] [DEBUG] debug-file - entry : default@PackageHap cost memory 0.40834808349609375
+[2025-12-24T22:18:32.736] [DEBUG] debug-file - runTaskFromQueue task cost before running: 9 s 791 ms 
+[2025-12-24T22:18:32.737] [INFO] debug-file - Finished :entry:default@PackageHap... after 77 ms 
+[2025-12-24T22:18:32.739] [DEBUG] debug-file - Executing task :entry:default@PackingCheck
+[2025-12-24T22:18:32.744] [DEBUG] debug-file - entry : default@PackingCheck cost memory 0.36997222900390625
+[2025-12-24T22:18:32.744] [DEBUG] debug-file - runTaskFromQueue task cost before running: 9 s 799 ms 
+[2025-12-24T22:18:32.744] [INFO] debug-file - Finished :entry:default@PackingCheck... after 6 ms 
+[2025-12-24T22:18:32.746] [DEBUG] debug-file - Executing task :entry:default@SignHap
+[2025-12-24T22:18:32.746] [WARN] debug-file - Will skip sign 'hos_hap'. No signingConfigs profile is configured in current project.
+             If needed, configure the signingConfigs in D:\shopping\List_commodity\build-profile.json5.
+[2025-12-24T22:18:32.747] [DEBUG] debug-file - entry:default@SignHap is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\outputs\default\entry-default-unsigned.hap' has been changed.
+[2025-12-24T22:18:32.747] [DEBUG] debug-file - Incremental task entry:default@SignHap pre-execution cost: 1 ms .
+[2025-12-24T22:18:32.748] [DEBUG] debug-file - entry : default@SignHap cost memory 0.09124755859375
+[2025-12-24T22:18:32.748] [DEBUG] debug-file - runTaskFromQueue task cost before running: 9 s 803 ms 
+[2025-12-24T22:18:32.748] [INFO] debug-file - Finished :entry:default@SignHap... after 3 ms 
+[2025-12-24T22:18:32.749] [DEBUG] debug-file - Executing task :entry:default@CollectDebugSymbol
+[2025-12-24T22:18:32.752] [DEBUG] debug-file - entry : default@CollectDebugSymbol cost memory -0.70684814453125
+[2025-12-24T22:18:32.752] [DEBUG] debug-file - runTaskFromQueue task cost before running: 9 s 806 ms 
+[2025-12-24T22:18:32.752] [INFO] debug-file - Finished :entry:default@CollectDebugSymbol... after 3 ms 
+[2025-12-24T22:18:32.752] [DEBUG] debug-file - Executing task :entry:assembleHap
+[2025-12-24T22:18:32.752] [DEBUG] debug-file - entry : assembleHap cost memory 0.01322174072265625
+[2025-12-24T22:18:32.752] [DEBUG] debug-file - runTaskFromQueue task cost before running: 9 s 807 ms 
+[2025-12-24T22:18:32.752] [INFO] debug-file - Finished :entry:assembleHap... after 1 ms 
+[2025-12-24T22:18:32.763] [INFO] debug-file - BUILD SUCCESSFUL in 9 s 817 ms 
+[2025-12-24T22:18:32.763] [DEBUG] debug-file - There is no need to refresh cache, since the incremental task entry:default@PreBuild is up-to-date.
+[2025-12-24T22:18:32.763] [DEBUG] debug-file - Update task entry:default@CreateModuleInfo output file:D:\shopping\List_commodity\entry\build\default\generated\profile\default\ModuleInfo.ts cache.
+[2025-12-24T22:18:32.763] [DEBUG] debug-file - Incremental task entry:default@CreateModuleInfo post-execution cost:1 ms .
+[2025-12-24T22:18:32.764] [DEBUG] debug-file - Update task entry:default@GenerateMetadata input file:D:\shopping\List_commodity\entry\src\main\module.json5 cache by regenerate.
+[2025-12-24T22:18:32.764] [DEBUG] debug-file - Update task entry:default@GenerateMetadata output file:D:\shopping\List_commodity\entry\build\default\intermediates\hap_metadata\default\output_metadata.json cache.
+[2025-12-24T22:18:32.764] [DEBUG] debug-file - Incremental task entry:default@GenerateMetadata post-execution cost:1 ms .
+[2025-12-24T22:18:32.764] [DEBUG] debug-file - Update task entry:default@MergeProfile input file:D:\shopping\List_commodity\AppScope\app.json5 cache by regenerate.
+[2025-12-24T22:18:32.765] [DEBUG] debug-file - Update task entry:default@MergeProfile input file:D:\shopping\List_commodity\build-profile.json5 cache by regenerate.
+[2025-12-24T22:18:32.765] [DEBUG] debug-file - Update task entry:default@MergeProfile input file:D:\shopping\List_commodity\entry\src\main\module.json5 cache by regenerate.
+[2025-12-24T22:18:32.765] [DEBUG] debug-file - Update task entry:default@MergeProfile output file:D:\shopping\List_commodity\entry\build\default\intermediates\merge_profile\default\module.json cache.
+[2025-12-24T22:18:32.766] [DEBUG] debug-file - Incremental task entry:default@MergeProfile post-execution cost:2 ms .
+[2025-12-24T22:18:32.766] [DEBUG] debug-file - Update task entry:default@CreateBuildProfile input file:D:\shopping\List_commodity\AppScope\app.json5 cache by regenerate.
+[2025-12-24T22:18:32.766] [DEBUG] debug-file - Update task entry:default@CreateBuildProfile input file:D:\shopping\List_commodity\build-profile.json5 cache by regenerate.
+[2025-12-24T22:18:32.766] [DEBUG] debug-file - Update task entry:default@CreateBuildProfile output file:D:\shopping\List_commodity\entry\build\default\generated\profile\default\BuildProfile.ets cache.
+[2025-12-24T22:18:32.767] [DEBUG] debug-file - Incremental task entry:default@CreateBuildProfile post-execution cost:2 ms .
+[2025-12-24T22:18:32.767] [DEBUG] debug-file - Update task entry:default@GeneratePkgContextInfo output file:D:\shopping\List_commodity\entry\build\default\intermediates\loader\default\pkgContextInfo.json cache.
+[2025-12-24T22:18:32.767] [DEBUG] debug-file - Incremental task entry:default@GeneratePkgContextInfo post-execution cost:1 ms .
+[2025-12-24T22:18:32.767] [DEBUG] debug-file - Update task entry:default@ProcessIntegratedHsp output file:D:\shopping\List_commodity\build\cache\default\integrated_hsp\integratedHspCache.json cache.
+[2025-12-24T22:18:32.767] [DEBUG] debug-file - Incremental task entry:default@ProcessIntegratedHsp post-execution cost:1 ms .
+[2025-12-24T22:18:32.767] [DEBUG] debug-file - Update task entry:default@MakePackInfo input file:D:\shopping\List_commodity\AppScope\app.json5 cache by regenerate.
+[2025-12-24T22:18:32.768] [DEBUG] debug-file - Update task entry:default@MakePackInfo input file:D:\shopping\List_commodity\entry\src\main\module.json5 cache by regenerate.
+[2025-12-24T22:18:32.768] [DEBUG] debug-file - Update task entry:default@MakePackInfo input file:D:\shopping\List_commodity\build-profile.json5 cache by regenerate.
+[2025-12-24T22:18:32.769] [DEBUG] debug-file - Update task entry:default@MakePackInfo output file:D:\shopping\List_commodity\entry\build\default\outputs\default\pack.info cache.
+[2025-12-24T22:18:32.769] [DEBUG] debug-file - Incremental task entry:default@MakePackInfo post-execution cost:2 ms .
+[2025-12-24T22:18:32.769] [DEBUG] debug-file - Update task entry:default@SyscapTransform input file:D:\devecostudio-windows-6.0.0.848\DevEco Studio\sdk\default\openharmony\toolchains\syscap_tool.exe cache by regenerate.
+[2025-12-24T22:18:32.770] [DEBUG] debug-file - Update task entry:default@SyscapTransform input file:D:\devecostudio-windows-6.0.0.848\DevEco Studio\sdk\default\openharmony\ets\api\device-define cache by regenerate.
+[2025-12-24T22:18:32.771] [DEBUG] debug-file - Update task entry:default@SyscapTransform output file:D:\shopping\List_commodity\entry\build\default\intermediates\syscap\default\rpcid.sc cache.
+[2025-12-24T22:18:32.771] [DEBUG] debug-file - Incremental task entry:default@SyscapTransform post-execution cost:3 ms .
+[2025-12-24T22:18:32.772] [DEBUG] debug-file - Update task entry:default@ProcessProfile input file:D:\shopping\List_commodity\entry\build\default\intermediates\merge_profile\default\module.json cache from map.
+[2025-12-24T22:18:32.772] [DEBUG] debug-file - Update task entry:default@ProcessProfile output file:D:\shopping\List_commodity\entry\build\default\intermediates\process_profile\default\module.json cache.
+[2025-12-24T22:18:32.772] [DEBUG] debug-file - Incremental task entry:default@ProcessProfile post-execution cost:1 ms .
+[2025-12-24T22:18:32.772] [DEBUG] debug-file - Update task entry:default@ProcessRouterMap input file:D:\shopping\List_commodity\entry\oh-package.json5 cache by regenerate.
+[2025-12-24T22:18:32.773] [DEBUG] debug-file - Update task entry:default@ProcessRouterMap input file:D:\shopping\List_commodity\oh-package.json5 cache by regenerate.
+[2025-12-24T22:18:32.773] [DEBUG] debug-file - Update task entry:default@ProcessRouterMap input file:D:\shopping\List_commodity\entry\src\main\module.json5 cache by regenerate.
+[2025-12-24T22:18:32.773] [DEBUG] debug-file - Update task entry:default@ProcessRouterMap output file:D:\shopping\List_commodity\entry\build\default\intermediates\router_map\default\temp-router-map.json cache.
+[2025-12-24T22:18:32.774] [DEBUG] debug-file - Update task entry:default@ProcessRouterMap output file:D:\shopping\List_commodity\entry\build\default\intermediates\router_map\default\loader-router-map.json cache.
+[2025-12-24T22:18:32.774] [DEBUG] debug-file - Incremental task entry:default@ProcessRouterMap post-execution cost:2 ms .
+[2025-12-24T22:18:32.775] [DEBUG] debug-file - Update task entry:default@ProcessShareConfig input file:D:\shopping\List_commodity\entry\oh-package.json5 cache by regenerate.
+[2025-12-24T22:18:32.775] [DEBUG] debug-file - Update task entry:default@ProcessShareConfig input file:D:\shopping\List_commodity\oh-package.json5 cache by regenerate.
+[2025-12-24T22:18:32.775] [DEBUG] debug-file - Update task entry:default@ProcessShareConfig input file:D:\shopping\List_commodity\entry\src\main\module.json5 cache by regenerate.
+[2025-12-24T22:18:32.776] [DEBUG] debug-file - Update task entry:default@ProcessShareConfig output file:D:\shopping\List_commodity\entry\build\default\intermediates\share_config\default\temp-share-config.json cache.
+[2025-12-24T22:18:32.776] [DEBUG] debug-file - Incremental task entry:default@ProcessShareConfig post-execution cost:2 ms .
+[2025-12-24T22:18:32.776] [DEBUG] debug-file - Update task entry:default@ProcessStartupConfig output file:D:\shopping\List_commodity\entry\build\default\intermediates\startup\default\startup_config.json cache.
+[2025-12-24T22:18:32.776] [DEBUG] debug-file - Incremental task entry:default@ProcessStartupConfig post-execution cost:1 ms .
+[2025-12-24T22:18:32.776] [DEBUG] debug-file - Update task entry:default@ProcessResource output file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\resConfig.json cache.
+[2025-12-24T22:18:32.777] [DEBUG] debug-file - Update task entry:default@ProcessResource output file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\opt-compression.json cache.
+[2025-12-24T22:18:32.777] [DEBUG] debug-file - Incremental task entry:default@ProcessResource post-execution cost:1 ms .
+[2025-12-24T22:18:32.778] [DEBUG] debug-file - Update task entry:default@GenerateLoaderJson input file:D:\shopping\List_commodity\entry\build\default\intermediates\router_map\default\temp-router-map.json cache from map.
+[2025-12-24T22:18:32.778] [DEBUG] debug-file - Update task entry:default@GenerateLoaderJson output file:D:\shopping\List_commodity\entry\build\default\intermediates\loader\default\loader.json cache.
+[2025-12-24T22:18:32.778] [DEBUG] debug-file - Incremental task entry:default@GenerateLoaderJson post-execution cost:2 ms .
+[2025-12-24T22:18:32.779] [DEBUG] debug-file - Update task entry:default@ProcessLibs input file:D:\shopping\List_commodity\build-profile.json5 cache by regenerate.
+[2025-12-24T22:18:32.779] [DEBUG] debug-file - Update task entry:default@ProcessLibs input file:D:\shopping\List_commodity\entry\build-profile.json5 cache by regenerate.
+[2025-12-24T22:18:32.779] [DEBUG] debug-file - Update task entry:default@ProcessLibs output file:D:\shopping\List_commodity\entry\build\default\intermediates\libs\default cache.
+[2025-12-24T22:18:32.780] [DEBUG] debug-file - Incremental task entry:default@ProcessLibs post-execution cost:2 ms .
+[2025-12-24T22:18:32.781] [DEBUG] debug-file - Update task entry:default@CompileResource input file:D:\shopping\List_commodity\entry\src\main\resources cache by regenerate.
+[2025-12-24T22:18:32.788] [DEBUG] debug-file - Update task entry:default@CompileResource input file:D:\shopping\List_commodity\AppScope\resources cache by regenerate.
+[2025-12-24T22:18:32.789] [DEBUG] debug-file - Update task entry:default@CompileResource input file:D:\shopping\List_commodity\entry\build\default\intermediates\process_profile\default\module.json cache from map.
+[2025-12-24T22:18:32.789] [DEBUG] debug-file - Update task entry:default@CompileResource input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\resConfig.json cache by regenerate.
+[2025-12-24T22:18:32.790] [DEBUG] debug-file - Update task entry:default@CompileResource output file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default cache.
+[2025-12-24T22:18:32.798] [DEBUG] debug-file - Update task entry:default@CompileResource output file:D:\shopping\List_commodity\entry\build\default\generated\r\default\ResourceTable.h cache.
+[2025-12-24T22:18:32.799] [DEBUG] debug-file - Update task entry:default@CompileResource output file:D:\shopping\List_commodity\entry\build\default\generated\r\default cache.
+[2025-12-24T22:18:32.800] [DEBUG] debug-file - Incremental task entry:default@CompileResource post-execution cost:21 ms .
+[2025-12-24T22:18:32.800] [DEBUG] debug-file - Update task entry:default@DoNativeStrip input file:D:\shopping\List_commodity\entry\build\default\intermediates\libs\default cache by regenerate.
+[2025-12-24T22:18:32.800] [DEBUG] debug-file - Update task entry:default@DoNativeStrip output file:D:\shopping\List_commodity\entry\build\default\intermediates\stripped_native_libs\default cache.
+[2025-12-24T22:18:32.801] [DEBUG] debug-file - Incremental task entry:default@DoNativeStrip post-execution cost:1 ms .
+[2025-12-24T22:18:32.802] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\shopping\List_commodity\entry\build\default\intermediates\loader\default cache from map.
+[2025-12-24T22:18:32.802] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\ResourceTable.txt cache by regenerate.
+[2025-12-24T22:18:32.803] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\ark_module.json cache by regenerate.
+[2025-12-24T22:18:32.804] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\resources\base\profile cache by regenerate.
+[2025-12-24T22:18:32.804] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\shopping\List_commodity\entry\src\main\ets cache by regenerate.
+[2025-12-24T22:18:32.808] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\shopping\List_commodity\entry\build\default\generated\profile\default\BuildProfile.ets cache by regenerate.
+[2025-12-24T22:18:32.809] [DEBUG] debug-file - Update task entry:default@CompileArkTS output file:D:\shopping\List_commodity\entry\build\default\intermediates\loader_out\default\ets cache.
+[2025-12-24T22:18:32.809] [DEBUG] debug-file - Incremental task entry:default@CompileArkTS post-execution cost:9 ms .
+[2025-12-24T22:18:32.811] [DEBUG] debug-file - Update task entry:default@BuildJS input file:D:\shopping\List_commodity\entry\build\default\intermediates\loader\default cache by regenerate.
+[2025-12-24T22:18:32.811] [DEBUG] debug-file - Update task entry:default@BuildJS input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\ResourceTable.txt cache by regenerate.
+[2025-12-24T22:18:32.811] [DEBUG] debug-file - Update task entry:default@BuildJS input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\ark_module.json cache by regenerate.
+[2025-12-24T22:18:32.812] [DEBUG] debug-file - Update task entry:default@BuildJS input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\resources\base\profile cache by regenerate.
+[2025-12-24T22:18:32.812] [DEBUG] debug-file - Update task entry:default@BuildJS output file:D:\shopping\List_commodity\entry\build\default\intermediates\loader_out\default\js cache.
+[2025-12-24T22:18:32.812] [DEBUG] debug-file - Incremental task entry:default@BuildJS post-execution cost:3 ms .
+[2025-12-24T22:18:32.812] [DEBUG] debug-file - Update task entry:default@CacheNativeLibs input file:D:\shopping\List_commodity\entry\build\default\intermediates\stripped_native_libs\default cache by regenerate.
+[2025-12-24T22:18:32.813] [DEBUG] debug-file - Update task entry:default@CacheNativeLibs input file:D:\shopping\List_commodity\entry\build\default\intermediates\libs\default cache by regenerate.
+[2025-12-24T22:18:32.813] [DEBUG] debug-file - Update task entry:default@CacheNativeLibs output file:D:\shopping\List_commodity\entry\build\default\intermediates\patch\default\base_native_libs.json cache.
+[2025-12-24T22:18:32.813] [DEBUG] debug-file - Incremental task entry:default@CacheNativeLibs post-execution cost:1 ms .
+[2025-12-24T22:18:32.813] [DEBUG] debug-file - Update task entry:default@GeneratePkgModuleJson input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\module.json cache from map.
+[2025-12-24T22:18:32.813] [DEBUG] debug-file - Update task entry:default@GeneratePkgModuleJson output file:D:\shopping\List_commodity\entry\build\default\intermediates\package\default\module.json cache.
+[2025-12-24T22:18:32.814] [DEBUG] debug-file - Incremental task entry:default@GeneratePkgModuleJson post-execution cost:1 ms .
+[2025-12-24T22:18:32.814] [DEBUG] debug-file - Incremental task entry:default@ProcessCompiledResources post-execution cost:1 ms .
+[2025-12-24T22:18:32.815] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\shopping\List_commodity\entry\build\default\intermediates\stripped_native_libs\default cache by regenerate.
+[2025-12-24T22:18:32.815] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\module.json cache from map.
+[2025-12-24T22:18:32.816] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\resources cache by regenerate.
+[2025-12-24T22:18:32.821] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\resources.index cache by regenerate.
+[2025-12-24T22:18:32.822] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\shopping\List_commodity\entry\build\default\outputs\default\pack.info cache by regenerate.
+[2025-12-24T22:18:32.822] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\shopping\List_commodity\entry\build\default\intermediates\loader_out\default\ets cache by regenerate.
+[2025-12-24T22:18:32.823] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\shopping\List_commodity\entry\build\default\intermediates\loader_out\default\ets\sourceMaps.map cache by regenerate.
+[2025-12-24T22:18:32.823] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\shopping\List_commodity\entry\build\default\generated\profile\default\BuildProfile.ets cache by regenerate.
+[2025-12-24T22:18:32.823] [DEBUG] debug-file - Update task entry:default@PackageHap output file:D:\shopping\List_commodity\entry\build\default\outputs\default\entry-default-unsigned.hap cache.
+[2025-12-24T22:18:32.823] [DEBUG] debug-file - Update task entry:default@PackageHap output file:D:\shopping\List_commodity\entry\build\default\intermediates\source_map\default\sourceMaps.map cache.
+[2025-12-24T22:18:32.824] [DEBUG] debug-file - Update task entry:default@PackageHap output file:D:\shopping\List_commodity\entry\build\default\outputs\default\mapping\sourceMaps.map cache.
+[2025-12-24T22:18:32.824] [DEBUG] debug-file - Incremental task entry:default@PackageHap post-execution cost:10 ms .
+[2025-12-24T22:18:32.824] [DEBUG] debug-file - Update task entry:default@SignHap input file:D:\shopping\List_commodity\entry\build\default\outputs\default\entry-default-unsigned.hap cache from map.
+[2025-12-24T22:18:32.824] [DEBUG] debug-file - Update task entry:default@SignHap output file:D:\shopping\List_commodity\entry\build\default\outputs\default\entry-default-signed.hap cache.
+[2025-12-24T22:18:32.824] [DEBUG] debug-file - Incremental task entry:default@SignHap post-execution cost:1 ms .
+[2025-12-24T22:18:32.825] [DEBUG] debug-file - Update task entry:default@CollectDebugSymbol input file:D:\shopping\List_commodity\entry\build\default\intermediates\loader_out\default\ets\sourceMaps.map cache by regenerate.
+[2025-12-24T22:18:32.825] [DEBUG] debug-file - Update task entry:default@CollectDebugSymbol input file:D:\shopping\List_commodity\entry\build\default\intermediates\libs\default cache by regenerate.
+[2025-12-24T22:18:32.825] [DEBUG] debug-file - Update task entry:default@CollectDebugSymbol output file:D:\shopping\List_commodity\entry\build\default\outputs\default\symbol cache.
+[2025-12-24T22:18:32.826] [DEBUG] debug-file - Incremental task entry:default@CollectDebugSymbol post-execution cost:2 ms .
+[2025-12-24T22:18:32.848] [DEBUG] debug-file - Cleanup worker 0.
+[2025-12-24T22:18:32.848] [DEBUG] debug-file - Worker 0 has been cleaned up.
+[2025-12-24T22:18:32.848] [DEBUG] debug-file - Current idle worker size: 4.
+[2025-12-24T22:18:32.848] [DEBUG] debug-file - Current resident worker size: 5.
+[2025-12-24T22:18:32.848] [DEBUG] debug-file - Cleanup worker 1.
+[2025-12-24T22:18:32.848] [DEBUG] debug-file - Worker 1 has been cleaned up.
+[2025-12-24T22:18:32.848] [DEBUG] debug-file - Current idle worker size: 3.
+[2025-12-24T22:18:32.848] [DEBUG] debug-file - Current resident worker size: 5.
+[2025-12-24T22:18:32.849] [DEBUG] debug-file - Cleanup worker 17.
+[2025-12-24T22:18:32.849] [DEBUG] debug-file - Worker 17 has been cleaned up.
+[2025-12-24T22:18:32.849] [DEBUG] debug-file - Current idle worker size: 2.
+[2025-12-24T22:18:32.849] [DEBUG] debug-file - Current resident worker size: 5.
+[2025-12-24T22:18:32.849] [DEBUG] debug-file - Cleanup worker 18.
+[2025-12-24T22:18:32.849] [DEBUG] debug-file - Worker 18 has been cleaned up.
+[2025-12-24T22:18:32.849] [DEBUG] debug-file - Current idle worker size: 1.
+[2025-12-24T22:18:32.849] [DEBUG] debug-file - Current resident worker size: 5.
+[2025-12-24T22:18:32.851] [DEBUG] debug-file - hvigor build process will be closed.
+[2025-12-24T22:18:32.851] [DEBUG] debug-file - java daemon socket close code:1000 reason:close by user
+[2025-12-24T22:18:32.857] [DEBUG] debug-file - session manager: send message to worker process.
+[2025-12-24T22:18:32.858] [DEBUG] debug-file - session manager: send message to worker process.
+[2025-12-24T22:18:32.856] [DEBUG] debug-file - worker[1] exits with exit code 1.
+[2025-12-24T22:18:32.857] [DEBUG] debug-file - worker[0] exits with exit code 1.
+[2025-12-24T22:18:32.858] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2025-12-24T22:18:32.858] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2025-12-24T22:18:32.861] [DEBUG] debug-file - worker[18] exits with exit code 1.
+[2025-12-24T22:18:32.862] [DEBUG] debug-file - worker[17] exits with exit code 1.
+[2025-12-24T22:18:43.940] [DEBUG] debug-file - session manager: set active socket. socketId=eJYfLeAeVVufAZr6AABx
+[2025-12-24T22:18:43.946] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2025-12-24T22:18:43.952] [DEBUG] debug-file - Hvigor init with startParameters:{
+  hvigorfileTypeCheck: false,
+  parallelExecution: true,
+  incrementalExecution: true,
+  printStackTrace: false,
+  daemon: true,
+  analyze: 0,
+  logLevel: Level { level: 20000, levelStr: 'INFO', colour: 'green' },
+  optimizationStrategy: 'memory',
+  hotCompile: undefined,
+  hotReloadBuild: undefined
+}
+[2025-12-24T22:18:43.956] [DEBUG] debug-file - Cache service initialization finished in 4 ms 
+[2025-12-24T22:18:43.957] [DEBUG] debug-file - hvigorfile, resolving D:\shopping\List_commodity\hvigorfile.ts
+[2025-12-24T22:18:43.959] [DEBUG] debug-file - hvigorfile, require result:  {}
+[2025-12-24T22:18:43.959] [DEBUG] debug-file - hvigorfile, binding system plugins {}
+[2025-12-24T22:18:44.106] [DEBUG] debug-file - Start initialize project's product build option map with build mode test.
+[2025-12-24T22:18:44.106] [DEBUG] debug-file - Picking option from product 'default' with build mode 'test'.
+[2025-12-24T22:18:44.106] [DEBUG] debug-file - Product 'default' build option initialized
+[2025-12-24T22:18:44.106] [DEBUG] debug-file - End initialize project's product build option map with build mode 'test'.
+[2025-12-24T22:18:44.107] [DEBUG] debug-file - Obtain build option for product 'default'in this build.
+[2025-12-24T22:18:44.108] [DEBUG] debug-file - No signingConfig found, initRemoteHspCache failed.
+[2025-12-24T22:18:44.112] [DEBUG] debug-file - Start recording SDK configuration permission data.
+[2025-12-24T22:18:44.130] [DEBUG] debug-file - Sdk init in 21 ms 
+[2025-12-24T22:18:44.132] [DEBUG] debug-file - Project task initialization takes 3 ms 
+[2025-12-24T22:18:44.132] [DEBUG] debug-file - hvigorfile, resolve finished D:\shopping\List_commodity\hvigorfile.ts
+[2025-12-24T22:18:44.133] [DEBUG] debug-file - hvigorfile, resolving D:\shopping\List_commodity\entry\hvigorfile.ts
+[2025-12-24T22:18:44.135] [DEBUG] debug-file - hvigorfile, require result:  {}
+[2025-12-24T22:18:44.135] [DEBUG] debug-file - hvigorfile, binding system plugins {}
+[2025-12-24T22:18:44.137] [DEBUG] debug-file - failed to load cangjie to dynamically generate schemas: Error: Cannot find module '@ohos/cangjie-build-support/index'
+Require stack:
+- D:\devecostudio-windows-6.0.0.848\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\src\plugin\factory\plugin-factory.js
+- D:\devecostudio-windows-6.0.0.848\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\index.js
+- D:\shopping\List_commodity\hvigorfile.ts
+- D:\devecostudio-windows-6.0.0.848\DevEco Studio\tools\hvigor\hvigor\src\base\internal\lifecycle\configuration.js
+- D:\devecostudio-windows-6.0.0.848\DevEco Studio\tools\hvigor\hvigor\src\base\boot\index.js
+- D:\devecostudio-windows-6.0.0.848\DevEco Studio\tools\hvigor\hvigor\src\base\daemon\cluster\worker-process-lifecycle.js
+- D:\devecostudio-windows-6.0.0.848\DevEco Studio\tools\hvigor\hvigor\src\base\daemon\process\daemon-process-boot-script.js
+[2025-12-24T22:18:44.141] [DEBUG] debug-file - Start initialize module-target build option map, moduleName=entry, buildMode=release
+[2025-12-24T22:18:44.141] [DEBUG] debug-file - Target 'default' config initialized
+[2025-12-24T22:18:44.141] [DEBUG] debug-file - Target 'ohosTest' config initialized
+[2025-12-24T22:18:44.141] [DEBUG] debug-file - Module 'entry' target 'default' build option initialized
+[2025-12-24T22:18:44.141] [DEBUG] debug-file - Module 'entry' target 'ohosTest' build option initialized
+[2025-12-24T22:18:44.141] [DEBUG] debug-file - End initialize module-target build option map, moduleName=entry
+[2025-12-24T22:18:44.141] [DEBUG] debug-file - Start initialize module-target build option map, moduleName=entry, buildMode=debug
+[2025-12-24T22:18:44.141] [DEBUG] debug-file - Target 'default' config initialized
+[2025-12-24T22:18:44.141] [DEBUG] debug-file - Target 'ohosTest' config initialized
+[2025-12-24T22:18:44.141] [DEBUG] debug-file - Module 'entry' target 'default' build option initialized
+[2025-12-24T22:18:44.141] [DEBUG] debug-file - Module 'entry' target 'ohosTest' build option initialized
+[2025-12-24T22:18:44.141] [DEBUG] debug-file - End initialize module-target build option map, moduleName=entry
+[2025-12-24T22:18:44.142] [DEBUG] debug-file - Start initialize module-target build option map, moduleName=entry, buildMode=test
+[2025-12-24T22:18:44.142] [DEBUG] debug-file - Target 'default' config initialized
+[2025-12-24T22:18:44.142] [DEBUG] debug-file - Target 'ohosTest' config initialized
+[2025-12-24T22:18:44.142] [DEBUG] debug-file - Module 'entry' target 'default' build option initialized
+[2025-12-24T22:18:44.142] [DEBUG] debug-file - Module 'entry' target 'ohosTest' build option initialized
+[2025-12-24T22:18:44.142] [DEBUG] debug-file - End initialize module-target build option map, moduleName=entry
+[2025-12-24T22:18:44.142] [DEBUG] debug-file - Obtain build option for module 'entry' target 'default'in this build.
+[2025-12-24T22:18:44.143] [DEBUG] debug-file - Module entry task initialization takes 2 ms 
+[2025-12-24T22:18:44.143] [DEBUG] debug-file - hvigorfile, resolve finished D:\shopping\List_commodity\entry\hvigorfile.ts
+[2025-12-24T22:18:44.157] [DEBUG] debug-file - hvigorfile, resolve hvigorfile dependencies in 14 ms 
+[2025-12-24T22:18:44.157] [DEBUG] debug-file - project has submodules:entry
+[2025-12-24T22:18:44.159] [DEBUG] debug-file - start to load updatedOhPackageInfo to the disk
+[2025-12-24T22:18:44.164] [DEBUG] debug-file - load to the disk finished
+[2025-12-24T22:18:44.166] [DEBUG] debug-file - Start to initialize dependency information.
+[2025-12-24T22:18:44.168] [DEBUG] debug-file - Module List_commodity Collected Dependency: 
+[2025-12-24T22:18:44.168] [DEBUG] debug-file - Module List_commodity's total dependency: 0
+[2025-12-24T22:18:44.168] [DEBUG] debug-file - Start to initialize dependency information.
+[2025-12-24T22:18:44.175] [DEBUG] debug-file - Module entry Collected Dependency: 
+[2025-12-24T22:18:44.175] [DEBUG] debug-file - Module entry's total dependency: 0
+[2025-12-24T22:18:44.177] [DEBUG] debug-file - Configuration phase cost:222 ms 
+[2025-12-24T22:18:44.178] [DEBUG] debug-file - Configuration task cost before running: 229 ms 
+[2025-12-24T22:18:44.182] [DEBUG] debug-file - Executing task :entry:default@PreBuild
+[2025-12-24T22:18:44.183] [DEBUG] debug-file - Task 'entry:default@PreBuild' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:44.193] [DEBUG] debug-file - Incremental task entry:default@PreBuild pre-execution cost: 8 ms .
+[2025-12-24T22:18:44.193] [DEBUG] debug-file - entry : default@PreBuild cost memory 0.28958892822265625
+[2025-12-24T22:18:44.197] [INFO] debug-file - UP-TO-DATE :entry:default@PreBuild...  
+[2025-12-24T22:18:44.197] [DEBUG] debug-file - Executing task :entry:default@CreateModuleInfo
+[2025-12-24T22:18:44.198] [DEBUG] debug-file - Task 'entry:default@CreateModuleInfo' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:44.198] [DEBUG] debug-file - entry : default@CreateModuleInfo cost memory 0.03774261474609375
+[2025-12-24T22:18:44.198] [DEBUG] debug-file - runTaskFromQueue task cost before running: 249 ms 
+[2025-12-24T22:18:44.198] [INFO] debug-file - Finished :entry:default@CreateModuleInfo... after 1 ms 
+[2025-12-24T22:18:44.199] [DEBUG] debug-file - Executing task :entry:default@GenerateMetadata
+[2025-12-24T22:18:44.199] [DEBUG] debug-file - Task 'entry:default@GenerateMetadata' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:44.200] [DEBUG] debug-file - Incremental task entry:default@GenerateMetadata pre-execution cost: 1 ms .
+[2025-12-24T22:18:44.200] [DEBUG] debug-file - entry : default@GenerateMetadata cost memory 0.083282470703125
+[2025-12-24T22:18:44.201] [INFO] debug-file - UP-TO-DATE :entry:default@GenerateMetadata...  
+[2025-12-24T22:18:44.201] [DEBUG] debug-file - Executing task :entry:default@ConfigureCmake
+[2025-12-24T22:18:44.201] [DEBUG] debug-file - entry : default@ConfigureCmake cost memory 0.0149993896484375
+[2025-12-24T22:18:44.202] [DEBUG] debug-file - runTaskFromQueue task cost before running: 252 ms 
+[2025-12-24T22:18:44.202] [INFO] debug-file - Finished :entry:default@ConfigureCmake... after 1 ms 
+[2025-12-24T22:18:44.202] [DEBUG] debug-file - Executing task :entry:default@MergeProfile
+[2025-12-24T22:18:44.202] [DEBUG] debug-file - Task 'entry:default@MergeProfile' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:44.204] [DEBUG] debug-file - entry:default@MergeProfile is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest' does not exist.
+[2025-12-24T22:18:44.204] [DEBUG] debug-file - Incremental task entry:default@MergeProfile pre-execution cost: 2 ms .
+[2025-12-24T22:18:44.204] [DEBUG] debug-file - Change app api release type with 'Beta5'
+[2025-12-24T22:18:44.204] [DEBUG] debug-file - Change app compile API version with '6.0.0.47'
+[2025-12-24T22:18:44.204] [DEBUG] debug-file - Change app target API version with '60000020'
+[2025-12-24T22:18:44.204] [DEBUG] debug-file - Change app minimum API version with '50005017'
+[2025-12-24T22:18:44.204] [DEBUG] debug-file - Use cli appEnvironment
+[2025-12-24T22:18:44.206] [DEBUG] debug-file - entry : default@MergeProfile cost memory 0.26482391357421875
+[2025-12-24T22:18:44.206] [DEBUG] debug-file - runTaskFromQueue task cost before running: 257 ms 
+[2025-12-24T22:18:44.206] [INFO] debug-file - Finished :entry:default@MergeProfile... after 4 ms 
+[2025-12-24T22:18:44.209] [DEBUG] debug-file - Executing task :entry:default@CreateBuildProfile
+[2025-12-24T22:18:44.210] [DEBUG] debug-file - Task 'entry:default@CreateBuildProfile' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:44.211] [DEBUG] debug-file - entry:default@CreateBuildProfile is not up-to-date, since the task snapshots are different.
+[2025-12-24T22:18:44.211] [DEBUG] debug-file - Incremental task entry:default@CreateBuildProfile pre-execution cost: 2 ms .
+[2025-12-24T22:18:44.212] [DEBUG] debug-file - entry : default@CreateBuildProfile cost memory 0.1080322265625
+[2025-12-24T22:18:44.212] [DEBUG] debug-file - runTaskFromQueue task cost before running: 263 ms 
+[2025-12-24T22:18:44.212] [INFO] debug-file - Finished :entry:default@CreateBuildProfile... after 4 ms 
+[2025-12-24T22:18:44.214] [DEBUG] debug-file - Executing task :entry:default@PreCheckSyscap
+[2025-12-24T22:18:44.214] [DEBUG] debug-file - entry : default@PreCheckSyscap cost memory 0.01522064208984375
+[2025-12-24T22:18:44.214] [DEBUG] debug-file - runTaskFromQueue task cost before running: 265 ms 
+[2025-12-24T22:18:44.214] [INFO] debug-file - Finished :entry:default@PreCheckSyscap... after 1 ms 
+[2025-12-24T22:18:44.215] [DEBUG] debug-file - Executing task :entry:default@GeneratePkgContextInfo
+[2025-12-24T22:18:44.221] [DEBUG] debug-file - Task 'entry:default@GeneratePkgContextInfo' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:44.221] [DEBUG] debug-file - entry : default@GeneratePkgContextInfo cost memory 0.23403167724609375
+[2025-12-24T22:18:44.221] [DEBUG] debug-file - runTaskFromQueue task cost before running: 272 ms 
+[2025-12-24T22:18:44.221] [INFO] debug-file - Finished :entry:default@GeneratePkgContextInfo... after 6 ms 
+[2025-12-24T22:18:44.225] [DEBUG] debug-file - Executing task :entry:default@ProcessIntegratedHsp
+[2025-12-24T22:18:44.226] [DEBUG] debug-file - entry:default@ProcessIntegratedHsp is not up-to-date, since the output file 'D:\shopping\List_commodity\build\cache\default\integrated_hsp\integratedHspCache.json' does not exist.
+[2025-12-24T22:18:44.226] [DEBUG] debug-file - Incremental task entry:default@ProcessIntegratedHsp pre-execution cost: 1 ms .
+[2025-12-24T22:18:44.226] [DEBUG] debug-file - entry : default@ProcessIntegratedHsp cost memory 0.06092071533203125
+[2025-12-24T22:18:44.226] [DEBUG] debug-file - runTaskFromQueue task cost before running: 277 ms 
+[2025-12-24T22:18:44.226] [INFO] debug-file - Finished :entry:default@ProcessIntegratedHsp... after 1 ms 
+[2025-12-24T22:18:44.227] [DEBUG] debug-file - Executing task :entry:default@BuildNativeWithCmake
+[2025-12-24T22:18:44.227] [DEBUG] debug-file - entry : default@BuildNativeWithCmake cost memory 0.01849365234375
+[2025-12-24T22:18:44.227] [DEBUG] debug-file - runTaskFromQueue task cost before running: 278 ms 
+[2025-12-24T22:18:44.227] [INFO] debug-file - Finished :entry:default@BuildNativeWithCmake... after 1 ms 
+[2025-12-24T22:18:44.229] [DEBUG] debug-file - Executing task :entry:default@MakePackInfo
+[2025-12-24T22:18:44.232] [DEBUG] debug-file - Incremental task entry:default@MakePackInfo pre-execution cost: 3 ms .
+[2025-12-24T22:18:44.232] [DEBUG] debug-file - entry : default@MakePackInfo cost memory 0.09319305419921875
+[2025-12-24T22:18:44.232] [INFO] debug-file - UP-TO-DATE :entry:default@MakePackInfo...  
+[2025-12-24T22:18:44.233] [DEBUG] debug-file - Executing task :entry:default@SyscapTransform
+[2025-12-24T22:18:44.233] [DEBUG] debug-file - File: 'D:\shopping\List_commodity\entry\src\main\syscap.json' from 'sysCapJsonPath' is not exists, just ignore.
+[2025-12-24T22:18:44.234] [DEBUG] debug-file - Task 'entry:default@SyscapTransform' cost while wrapping incremental declarations: 2 ms 
+[2025-12-24T22:18:44.236] [DEBUG] debug-file - entry:default@SyscapTransform is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\syscap\default\rpcid.sc' does not exist.
+[2025-12-24T22:18:44.237] [DEBUG] debug-file - Incremental task entry:default@SyscapTransform pre-execution cost: 3 ms .
+[2025-12-24T22:18:44.237] [DEBUG] debug-file - entry : default@SyscapTransform cost memory 0.14188385009765625
+[2025-12-24T22:18:44.237] [DEBUG] debug-file - runTaskFromQueue task cost before running: 288 ms 
+[2025-12-24T22:18:44.237] [INFO] debug-file - Finished :entry:default@SyscapTransform... after 4 ms 
+[2025-12-24T22:18:44.238] [DEBUG] debug-file - Executing task :entry:default@ProcessProfile
+[2025-12-24T22:18:44.239] [DEBUG] debug-file - Task 'entry:default@ProcessProfile' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:44.239] [DEBUG] debug-file - entry:default@ProcessProfile is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\intermediates\merge_profile\default\module.json' has been changed.
+[2025-12-24T22:18:44.239] [DEBUG] debug-file - Incremental task entry:default@ProcessProfile pre-execution cost: 1 ms .
+[2025-12-24T22:18:44.240] [DEBUG] debug-file - [
+  'D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\tools\\node\\node.exe',
+  'D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\bin\\ark\\ts2abc.js',
+  '--target-api-version',
+  '17'
+]
+[2025-12-24T22:18:44.401] [DEBUG] debug-file - 12.0.6.0
+[2025-12-24T22:18:44.402] [DEBUG] debug-file - No need to add fake ui ability because of not in preview process.
+[2025-12-24T22:18:44.403] [DEBUG] debug-file - entry : default@ProcessProfile cost memory 0.37084197998046875
+[2025-12-24T22:18:44.403] [DEBUG] debug-file - runTaskFromQueue task cost before running: 454 ms 
+[2025-12-24T22:18:44.404] [INFO] debug-file - Finished :entry:default@ProcessProfile... after 166 ms 
+[2025-12-24T22:18:44.405] [DEBUG] debug-file - Executing task :entry:default@ProcessRouterMap
+[2025-12-24T22:18:44.409] [DEBUG] debug-file - Incremental task entry:default@ProcessRouterMap pre-execution cost: 4 ms .
+[2025-12-24T22:18:44.409] [DEBUG] debug-file - entry : default@ProcessRouterMap cost memory 0.1167144775390625
+[2025-12-24T22:18:44.409] [INFO] debug-file - UP-TO-DATE :entry:default@ProcessRouterMap...  
+[2025-12-24T22:18:44.411] [DEBUG] debug-file - Executing task :entry:default@ProcessShareConfig
+[2025-12-24T22:18:44.414] [DEBUG] debug-file - Incremental task entry:default@ProcessShareConfig pre-execution cost: 3 ms .
+[2025-12-24T22:18:44.414] [DEBUG] debug-file - entry : default@ProcessShareConfig cost memory 0.09957122802734375
+[2025-12-24T22:18:44.414] [INFO] debug-file - UP-TO-DATE :entry:default@ProcessShareConfig...  
+[2025-12-24T22:18:44.415] [DEBUG] debug-file - Executing task :entry:default@ProcessStartupConfig
+[2025-12-24T22:18:44.415] [DEBUG] debug-file - Task 'entry:default@ProcessStartupConfig' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:44.416] [DEBUG] debug-file - entry:default@ProcessStartupConfig is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\startup\default\startup_config.json' does not exist.
+[2025-12-24T22:18:44.416] [DEBUG] debug-file - Incremental task entry:default@ProcessStartupConfig pre-execution cost: 1 ms .
+[2025-12-24T22:18:44.416] [DEBUG] debug-file - entry : default@ProcessStartupConfig cost memory 0.09737396240234375
+[2025-12-24T22:18:44.416] [DEBUG] debug-file - runTaskFromQueue task cost before running: 467 ms 
+[2025-12-24T22:18:44.417] [INFO] debug-file - Finished :entry:default@ProcessStartupConfig... after 1 ms 
+[2025-12-24T22:18:44.417] [DEBUG] debug-file - Executing task :entry:default@BuildNativeWithNinja
+[2025-12-24T22:18:44.418] [DEBUG] debug-file - entry : default@BuildNativeWithNinja cost memory 0.02164459228515625
+[2025-12-24T22:18:44.418] [DEBUG] debug-file - runTaskFromQueue task cost before running: 469 ms 
+[2025-12-24T22:18:44.418] [INFO] debug-file - Finished :entry:default@BuildNativeWithNinja... after 1 ms 
+[2025-12-24T22:18:44.419] [DEBUG] debug-file - restool module names: entry; moduleName=entry, taskName=default@ProcessResource
+[2025-12-24T22:18:44.420] [DEBUG] debug-file - Executing task :entry:default@ProcessResource
+[2025-12-24T22:18:44.420] [DEBUG] debug-file - Task 'entry:default@ProcessResource' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:44.422] [DEBUG] debug-file - Incremental task entry:default@ProcessResource pre-execution cost: 1 ms .
+[2025-12-24T22:18:44.422] [DEBUG] debug-file - entry : default@ProcessResource cost memory 0.12735748291015625
+[2025-12-24T22:18:44.424] [INFO] debug-file - UP-TO-DATE :entry:default@ProcessResource...  
+[2025-12-24T22:18:44.425] [DEBUG] debug-file - Executing task :entry:default@GenerateLoaderJson
+[2025-12-24T22:18:44.426] [DEBUG] debug-file - Task 'entry:default@GenerateLoaderJson' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:44.434] [DEBUG] debug-file - entry:default@GenerateLoaderJson is not up-to-date, since the task snapshots are different.
+[2025-12-24T22:18:44.434] [DEBUG] debug-file - Incremental task entry:default@GenerateLoaderJson pre-execution cost: 5 ms .
+[2025-12-24T22:18:44.436] [DEBUG] debug-file - entry : default@GenerateLoaderJson cost memory 0.37645721435546875
+[2025-12-24T22:18:44.436] [DEBUG] debug-file - runTaskFromQueue task cost before running: 487 ms 
+[2025-12-24T22:18:44.440] [INFO] debug-file - Finished :entry:default@GenerateLoaderJson... after 12 ms 
+[2025-12-24T22:18:44.441] [DEBUG] debug-file - Executing task :entry:default@ProcessLibs
+[2025-12-24T22:18:44.445] [DEBUG] debug-file - Incremental task entry:default@ProcessLibs pre-execution cost: 3 ms .
+[2025-12-24T22:18:44.445] [DEBUG] debug-file - entry : default@ProcessLibs cost memory 0.095306396484375
+[2025-12-24T22:18:44.447] [INFO] debug-file - UP-TO-DATE :entry:default@ProcessLibs...  
+[2025-12-24T22:18:44.448] [DEBUG] debug-file - restool module names: entry; moduleName=entry, taskName=default@CompileResource
+[2025-12-24T22:18:44.448] [DEBUG] debug-file - Executing task :entry:default@CompileResource
+[2025-12-24T22:18:44.460] [DEBUG] debug-file - entry:default@CompileResource is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\intermediates\process_profile\default\module.json' has been changed.
+[2025-12-24T22:18:44.460] [DEBUG] debug-file - Incremental task entry:default@CompileResource pre-execution cost: 11 ms .
+[2025-12-24T22:18:44.462] [DEBUG] debug-file - Use tool [D:\devecostudio-windows-6.0.0.848\DevEco Studio\sdk\default\openharmony\toolchains\restool.exe]
+ [
+  'D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\toolchains\\restool.exe',
+  '-l',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\default\\resConfig.json'
+]
+[2025-12-24T22:18:44.462] [DEBUG] debug-file - current process  memoryUsage: {
+  rss: 436428800,
+  heapTotal: 164388864,
+  heapUsed: 128088888,
+  external: 3133232,
+  arrayBuffers: 105597
+} os memoryUsage :14.116214752197266
+[2025-12-24T22:18:44.622] [DEBUG] debug-file - Info: Pack: normal pack mode
+
+[2025-12-24T22:18:44.681] [DEBUG] debug-file - Info: hardware concurrency count is : 20
+Info: thread count is : 20
+
+[2025-12-24T22:18:44.681] [DEBUG] debug-file - Info: thread pool is started
+
+[2025-12-24T22:18:44.684] [DEBUG] debug-file - Info: GenericCompiler::CompileFiles
+
+[2025-12-24T22:18:44.697] [DEBUG] debug-file - Info: GenericCompiler::CompileFiles
+
+[2025-12-24T22:18:44.711] [DEBUG] debug-file - Info: GenericCompiler::CompileFiles
+
+[2025-12-24T22:18:44.716] [DEBUG] debug-file - 12-24 22:18:44.717  8808 37452 E C01400/ImageTranscoderUtils: DecodeToRGBA IN
+
+[2025-12-24T22:18:44.717] [DEBUG] debug-file - 12-24 22:18:44.717  8808 37452 E C01400/ImageTranscoderUtils: ImageFilter IN D:\shopping\List_commodity\AppScope\resources\base\media\app_icon.png
+
+[2025-12-24T22:18:44.717] [DEBUG] debug-file - 12-24 22:18:44.717  8808 37452 E C01400/ImageTranscoder: TranscodeSLR Only zoom-out is supported.
+
+[2025-12-24T22:18:44.717] [DEBUG] debug-file - Warning: ScaleImage failed, error message: INVALID_PARAMETERS, file path = D:\shopping\List_commodity\AppScope\resources\base\media\app_icon.png
+
+[2025-12-24T22:18:44.719] [DEBUG] debug-file - 12-24 22:18:44.720  8808 37452 E C01400/ImageTranscoderUtils: DecodeToRGBA IN
+
+[2025-12-24T22:18:44.720] [DEBUG] debug-file - 12-24 22:18:44.720  8808 37452 E C01400/ImageTranscoderUtils: ImageFilter IN D:\shopping\List_commodity\entry\src\main\resources\base\media\icon.png
+
+[2025-12-24T22:18:44.720] [DEBUG] debug-file - 12-24 22:18:44.720  8808 37452 E C01400/ImageTranscoder: TranscodeSLR Only zoom-out is supported.
+Warning: ScaleImage failed, error message: INVALID_PARAMETERS, file path = D:\shopping\List_commodity\entry\src\main\resources\base\media\icon.png
+
+[2025-12-24T22:18:44.720] [DEBUG] debug-file - Warning: The width or height of the png file referenced by the icon exceeds the limit (41 pixels)
+at D:\shopping\List_commodity\AppScope\resources\base\media\app_icon.png
+
+[2025-12-24T22:18:44.720] [DEBUG] debug-file - Warning: The width or height of the png file referenced by the icon exceeds the limit (41 pixels)
+at D:\shopping\List_commodity\entry\src\main\resources\base\media\icon.png
+
+[2025-12-24T22:18:44.722] [DEBUG] debug-file - Info: restool resources compile success.
+
+[2025-12-24T22:18:44.722] [DEBUG] debug-file - Info: thread pool is stopped
+
+[2025-12-24T22:18:44.790] [DEBUG] debug-file - entry : default@CompileResource cost memory 0.9262847900390625
+[2025-12-24T22:18:44.790] [DEBUG] debug-file - runTaskFromQueue task cost before running: 841 ms 
+[2025-12-24T22:18:44.791] [INFO] debug-file - Finished :entry:default@CompileResource... after 342 ms 
+[2025-12-24T22:18:44.792] [DEBUG] debug-file - Executing task :entry:default@DoNativeStrip
+[2025-12-24T22:18:44.792] [DEBUG] debug-file - Task 'entry:default@DoNativeStrip' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:44.793] [DEBUG] debug-file - Incremental task entry:default@DoNativeStrip pre-execution cost: 1 ms .
+[2025-12-24T22:18:44.793] [DEBUG] debug-file - entry : default@DoNativeStrip cost memory 0.075042724609375
+[2025-12-24T22:18:44.793] [INFO] debug-file - UP-TO-DATE :entry:default@DoNativeStrip...  
+[2025-12-24T22:18:44.795] [DEBUG] debug-file - Executing task :entry:default@CompileArkTS
+[2025-12-24T22:18:44.795] [DEBUG] debug-file - obfuscationOptions: undefined
+[2025-12-24T22:18:44.801] [DEBUG] debug-file - entry:default@CompileArkTS is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\intermediates\loader\default' has been changed.
+[2025-12-24T22:18:44.801] [DEBUG] debug-file - Incremental task entry:default@CompileArkTS pre-execution cost: 4 ms .
+[2025-12-24T22:18:44.812] [DEBUG] debug-file - build config:
+[2025-12-24T22:18:44.812] [DEBUG] debug-file - {
+  moduleType: 'entry',
+  perf: 0,
+  targetName: '.default',
+  packageManagerType: 'ohpm',
+  localPropertiesPath: 'D:\\shopping\\List_commodity\\local.properties',
+  isPreview: false,
+  isOhosTest: false,
+  isLocalTest: false,
+  buildMode: 'Debug',
+  hotReloadBuild: undefined,
+  watchMode: 'false',
+  aceProfilePath: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\default\\resources\\base\\profile',
+  etsLoaderPath: 'D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader',
+  modulePath: 'D:\\shopping\\List_commodity\\entry',
+  testFrameworkPar: {
+    testMode: undefined,
+    coveragePathFilter: undefined,
+    coverageMode: undefined
+  },
+  needCoverageInsert: false,
+  debugLine: false,
+  projectTopDir: 'D:\\shopping\\List_commodity',
+  compileSdkVersion: 20,
+  compatibleSdkVersion: 17,
+  compatibleSdkVersionStage: undefined,
+  bundleName: 'c***y',
+  etsLoaderVersion: '6.0.0.47',
+  etsLoaderReleaseType: 'Beta5',
+  aotCompileMode: 'type',
+  apPath: 'D:\\shopping\\List_commodity\\entry\\modules.ap',
+  entryModuleName: 'entry',
+  entryModuleVersion: '1.0.0',
+  entryPackageName: 'entry',
+  allModuleNameHash: '59a6b353c31dac45ccd5bbb4b5be5c39',
+  externalApiPaths: [
+    'D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\hms\\ets'
+  ],
+  compilerTypes: [],
+  isCrossplatform: false,
+  hvigorPluginFile: undefined,
+  compilePluginPath: undefined,
+  buildGeneratedProfilePath: 'D:\\shopping\\List_commodity\\entry\\build\\default\\generated\\profile\\default',
+  bundleType: 'app',
+  arkTSVersion: undefined,
+  apiVersion: 20,
+  needCompleteSourcesMap: false,
+  isFaMode: false,
+  strictMode: undefined,
+  buildDir: 'D:\\shopping\\List_commodity\\entry\\build',
+  deviceTypes: [ 'phone' ],
+  useNormalizedOHMUrl: false,
+  pkgContextInfo: undefined,
+  ohPackagePathMap: {},
+  dependencyAliasMap: {},
+  permission: { requestPermissions: undefined, definePermissions: undefined },
+  integratedHsp: false,
+  projectArkOption: undefined,
+  sourceMapDir: undefined,
+  branchElimination: false,
+  transformLib: undefined,
+  caseSensitiveCheck: false,
+  tsImportSendable: false,
+  resolveConflictMode: true,
+  depName2RootPath: {},
+  depName2DepInfo: {},
+  rootPathSet: [ 'D:\\shopping\\List_commodity' ],
+  useNativeResolver: true,
+  shouldEmitJs: true,
+  useTscResolve: false,
+  singleFileEmit: false,
+  userProjectConfig: {
+    autoLazyImport: false,
+    allowEmptyBundleName: false,
+    reExportCheckMode: 'noCheck',
+    executionMode: 'memory',
+    usePathPlaceholder: false,
+    writeRollupCache: true,
+    isExpandImportEnabled: false,
+    expandImportExclude: '',
+    ignoreCrossplatformCheck: false,
+    isPreloadSoEnabled: false
+  },
+  skipOhModulesLint: false,
+  executionMode: 'memory',
+  autoLazyImport: false,
+  allowEmptyBundleName: false,
+  reExportCheckMode: 'noCheck',
+  usePathPlaceholder: false,
+  writeRollupCache: true,
+  isExpandImportEnabled: false,
+  expandImportExclude: '',
+  ignoreCrossplatformCheck: false,
+  isPreloadSoEnabled: false,
+  arkCompileCachePath: 'D:\\shopping\\List_commodity\\entry\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule',
+  aceModuleJsonPath: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\default\\ark_module.json',
+  appResource: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\default\\ResourceTable.txt',
+  rawFileResource: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\default\\resources\\rawfile',
+  resourceTableHash: 'ecdc913c9d9e06d3f5aeffac3734b6e4',
+  runtimeOS: 'HarmonyOS',
+  sdkInfo: 'false:20:6.0.0.47:Beta5',
+  aceModuleRoot: 'D:\\shopping\\List_commodity\\entry\\src\\main\\ets',
+  compileMode: 'esmodule',
+  aceSuperVisualPath: 'D:\\shopping\\List_commodity\\entry\\src\\main\\supervisual',
+  aceBuildJson: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\loader\\default\\loader.json',
+  cachePath: 'D:\\shopping\\List_commodity\\entry\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule\\debug',
+  aceModuleBuild: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\loader_out\\default\\ets',
+  supportChunks: true,
+  declaredFilesPath: undefined,
+  shouldCollectDirectImportees: false,
+  isByteCodeHarOptimize: false,
+  expandImportPath: undefined,
+  pkgNameToPkgBriefInfo: {
+    entry: {
+      pkgRoot: 'D:\\shopping\\List_commodity\\entry',
+      originalSourceRoots: undefined,
+      sourceRoots: [Array],
+      pkgName: 'entry'
+    }
+  },
+  projectModel: {
+    'D:\\shopping\\List_commodity\\entry\\src\\main': {
+      moduleName: 'entry',
+      modulePkgPath: 'D:\\shopping\\List_commodity\\entry',
+      belongProjectPath: 'D:\\shopping\\List_commodity'
+    },
+    'D:\\shopping\\List_commodity\\entry\\src\\ohosTest': {
+      moduleName: 'entry_test',
+      modulePkgPath: 'D:\\shopping\\List_commodity\\entry',
+      belongProjectPath: 'D:\\shopping\\List_commodity'
+    },
+    'D:\\shopping\\List_commodity\\entry': {
+      moduleName: 'entry',
+      modulePkgPath: 'D:\\shopping\\List_commodity\\entry',
+      belongProjectPath: 'D:\\shopping\\List_commodity'
+    },
+    'D:\\shopping\\List_commodity': {
+      moduleName: 'List_commodity',
+      modulePkgPath: 'D:\\shopping\\List_commodity',
+      belongProjectPath: 'D:\\shopping\\List_commodity'
+    }
+  },
+  pkgJsonFileHash: '17e535755504c69b4e6ecbf8aaaca396',
+  allModulePaths: [ 'D:\\shopping\\List_commodity\\entry' ],
+  routerMap: {},
+  obfuscationOptions: undefined,
+  byteCodeHarToDependencyKeys: undefined,
+  compileBlockPkg: [],
+  mockParams: {
+    decorator: '@MockSetup',
+    packageName: '@ohos/hamock',
+    etsSourceRootPath: 'src/main/ets',
+    mockConfigPath: undefined,
+    mockConfigKey2ModuleInfo: {},
+    source2ModuleIdMap: {}
+  },
+  copyCodeResourceEnable: true,
+  copyCodeResourceExcludes: [],
+  copyCodeResourceIncludes: undefined,
+  uiTransformOptimization: false,
+  sdkPath: 'D:/devecostudio-windows-6.0.0.848/DevEco Studio/sdk',
+  needPreloadSoFileSet: {},
+  preloadSoFilePath: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\preload\\default\\preload.json',
+  useSourceHash: false,
+  localModuleParamMap: {},
+  otherPaths: {
+    'entry/*': [
+      '..\\*',
+      '..\\..\\..\\build\\default\\generated\\profile\\default\\*'
+    ]
+  },
+  collectImportersConfig: undefined
+}
+[2025-12-24T22:18:44.813] [DEBUG] debug-file - Compile arkts with external api path: D:\devecostudio-windows-6.0.0.848\DevEco Studio\sdk\default\hms\ets
+[2025-12-24T22:18:44.813] [DEBUG] debug-file - default@CompileArkTS work[92] is submitted.
+[2025-12-24T22:18:44.813] [DEBUG] debug-file - default@CompileArkTS work[92] is pushed to ready queue.
+[2025-12-24T22:18:44.813] [DEBUG] debug-file - A work dispatched to worker[19] failed because unable to get work from ready queue.
+[2025-12-24T22:18:44.813] [DEBUG] debug-file - A work dispatched to worker[18] failed because unable to get work from ready queue.
+[2025-12-24T22:18:44.813] [DEBUG] debug-file - A work dispatched to worker[17] failed because unable to get work from ready queue.
+[2025-12-24T22:18:44.813] [DEBUG] debug-file - A work dispatched to worker[16] failed because unable to get work from ready queue.
+[2025-12-24T22:18:44.814] [DEBUG] debug-file - A work dispatched to worker[15] failed because unable to get work from ready queue.
+[2025-12-24T22:18:44.814] [DEBUG] debug-file - A work dispatched to worker[14] failed because unable to get work from ready queue.
+[2025-12-24T22:18:44.814] [DEBUG] debug-file - A work dispatched to worker[13] failed because unable to get work from ready queue.
+[2025-12-24T22:18:44.814] [DEBUG] debug-file - A work dispatched to worker[12] failed because unable to get work from ready queue.
+[2025-12-24T22:18:44.814] [DEBUG] debug-file - A work dispatched to worker[11] failed because unable to get work from ready queue.
+[2025-12-24T22:18:44.814] [DEBUG] debug-file - A work dispatched to worker[10] failed because unable to get work from ready queue.
+[2025-12-24T22:18:44.814] [DEBUG] debug-file - A work dispatched to worker[9] failed because unable to get work from ready queue.
+[2025-12-24T22:18:44.814] [DEBUG] debug-file - A work dispatched to worker[8] failed because unable to get work from ready queue.
+[2025-12-24T22:18:44.814] [DEBUG] debug-file - A work dispatched to worker[7] failed because unable to get work from ready queue.
+[2025-12-24T22:18:44.814] [DEBUG] debug-file - A work dispatched to worker[6] failed because unable to get work from ready queue.
+[2025-12-24T22:18:44.814] [DEBUG] debug-file - A work dispatched to worker[5] failed because unable to get work from ready queue.
+[2025-12-24T22:18:44.814] [DEBUG] debug-file - default@CompileArkTS work[92] has been dispatched to worker[4].
+[2025-12-24T22:18:44.814] [DEBUG] debug-file - default@CompileArkTS work[92] is dispatched.
+[2025-12-24T22:18:44.814] [DEBUG] debug-file - CopyResources startTime: 33599539770300
+[2025-12-24T22:18:44.814] [DEBUG] debug-file - default@CompileArkTS work[93] is submitted.
+[2025-12-24T22:18:44.814] [DEBUG] debug-file - default@CompileArkTS work[93] is pushed to ready queue.
+[2025-12-24T22:18:44.814] [DEBUG] debug-file - A work dispatched to worker[19] failed because unable to get work from ready queue.
+[2025-12-24T22:18:44.814] [DEBUG] debug-file - Create  resident worker with id: 18.
+[2025-12-24T22:18:44.815] [DEBUG] debug-file - default@CompileArkTS work[93] has been dispatched to worker[18].
+[2025-12-24T22:18:44.815] [DEBUG] debug-file - default@CompileArkTS work[93] is dispatched.
+[2025-12-24T22:18:44.815] [DEBUG] debug-file - entry : default@CompileArkTS cost memory 1.23876953125
+[2025-12-24T22:18:44.817] [DEBUG] debug-file - Executing task :entry:default@BuildJS
+[2025-12-24T22:18:44.820] [DEBUG] debug-file - entry : default@BuildJS cost memory 0.112518310546875
+[2025-12-24T22:18:44.820] [DEBUG] debug-file - runTaskFromQueue task cost before running: 871 ms 
+[2025-12-24T22:18:44.820] [INFO] debug-file - Finished :entry:default@BuildJS... after 4 ms 
+[2025-12-24T22:18:44.821] [DEBUG] debug-file - Executing task :entry:default@CacheNativeLibs
+[2025-12-24T22:18:44.822] [DEBUG] debug-file - Task 'entry:default@CacheNativeLibs' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:44.823] [DEBUG] debug-file - Incremental task entry:default@CacheNativeLibs pre-execution cost: 2 ms .
+[2025-12-24T22:18:44.823] [DEBUG] debug-file - entry : default@CacheNativeLibs cost memory 0.08834075927734375
+[2025-12-24T22:18:44.823] [INFO] debug-file - UP-TO-DATE :entry:default@CacheNativeLibs...  
+[2025-12-24T22:18:45.512] [WARN] debug-file - [33mWARN: [33m[33mArkTS:WARN File: D:/shopping/List_commodity/entry/src/main/ets/view/RefreshLayout.ets:57:8
+ 'onScroll' has been deprecated.
+[39m[39m
+
+[2025-12-24T22:18:45.513] [DEBUG] debug-file - Ark compile task finished.finished time is 33600238754100
+[2025-12-24T22:18:45.513] [DEBUG] debug-file - worker[4] has one work done.
+[2025-12-24T22:18:45.514] [DEBUG] debug-file - default@CompileArkTS work[92] done.
+[2025-12-24T22:18:45.514] [DEBUG] debug-file - A work dispatched to worker[4] failed because unable to get work from ready queue.
+[2025-12-24T22:18:45.818] [DEBUG] debug-file - worker[18] has one work done.
+[2025-12-24T22:18:45.818] [DEBUG] debug-file - CopyResources is end, endTime: 33600543557300
+[2025-12-24T22:18:45.818] [DEBUG] debug-file - default@CompileArkTS work[93] done.
+[2025-12-24T22:18:45.818] [DEBUG] debug-file - A work dispatched to worker[18] failed because unable to get work from ready queue.
+[2025-12-24T22:18:45.820] [INFO] debug-file - Finished :entry:default@CompileArkTS... after 729 ms 
+[2025-12-24T22:18:45.821] [DEBUG] debug-file - Executing task :entry:default@GeneratePkgModuleJson
+[2025-12-24T22:18:45.821] [DEBUG] debug-file - File: 'D:\shopping\List_commodity\entry\build\default\intermediates\preload\default\preload.json' from 'preloadSoJsonPath' is not exists, just ignore.
+[2025-12-24T22:18:45.821] [DEBUG] debug-file - Task 'entry:default@GeneratePkgModuleJson' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:45.822] [DEBUG] debug-file - entry:default@GeneratePkgModuleJson is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\intermediates\res\default\module.json' has been changed.
+[2025-12-24T22:18:45.822] [DEBUG] debug-file - Incremental task entry:default@GeneratePkgModuleJson pre-execution cost: 1 ms .
+[2025-12-24T22:18:45.823] [DEBUG] debug-file - entry : default@GeneratePkgModuleJson cost memory 0.09812164306640625
+[2025-12-24T22:18:45.823] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 874 ms 
+[2025-12-24T22:18:45.823] [INFO] debug-file - Finished :entry:default@GeneratePkgModuleJson... after 3 ms 
+[2025-12-24T22:18:45.824] [DEBUG] debug-file - Executing task :entry:default@ProcessCompiledResources
+[2025-12-24T22:18:45.824] [DEBUG] debug-file - File: 'D:\shopping\List_commodity\entry\build\default\intermediates\preload\default\preload.json' from 'preloadSoJsonPath' is not exists, just ignore.
+[2025-12-24T22:18:45.824] [DEBUG] debug-file - Task 'entry:default@ProcessCompiledResources' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:45.824] [DEBUG] debug-file - entry : default@ProcessCompiledResources cost memory 0.06174468994140625
+[2025-12-24T22:18:45.824] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 875 ms 
+[2025-12-24T22:18:45.824] [INFO] debug-file - Finished :entry:default@ProcessCompiledResources... after 1 ms 
+[2025-12-24T22:18:45.826] [DEBUG] debug-file - Executing task :entry:default@PackageHap
+[2025-12-24T22:18:45.832] [DEBUG] debug-file - entry:default@PackageHap is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\intermediates\res\default\module.json' has been changed.
+[2025-12-24T22:18:45.832] [DEBUG] debug-file - Incremental task entry:default@PackageHap pre-execution cost: 5 ms .
+[2025-12-24T22:18:45.833] [DEBUG] debug-file - Use tool [D:\devecostudio-windows-6.0.0.848\DevEco Studio\sdk\default\openharmony\toolchains\lib\app_packing_tool.jar]
+ [
+  'java',
+  '-Dfile.encoding=GBK',
+  '-jar',
+  'D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\toolchains\\lib\\app_packing_tool.jar',
+  '--mode',
+  'hap',
+  '--force',
+  'true',
+  '--lib-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\stripped_native_libs\\default',
+  '--json-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\package\\default\\module.json',
+  '--resources-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\default\\resources',
+  '--index-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\default\\resources.index',
+  '--pack-info-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\outputs\\default\\pack.info',
+  '--out-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\outputs\\default\\entry-default-unsigned.hap',
+  '--ets-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\loader_out\\default\\ets'
+]
+[2025-12-24T22:18:45.877] [DEBUG] debug-file - java daemon socket received message:{"code":0,"message":"pack success"}
+[2025-12-24T22:18:45.880] [DEBUG] debug-file - entry : default@PackageHap cost memory 0.46224212646484375
+[2025-12-24T22:18:45.880] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 931 ms 
+[2025-12-24T22:18:45.882] [INFO] debug-file - Finished :entry:default@PackageHap... after 55 ms 
+[2025-12-24T22:18:45.883] [DEBUG] debug-file - Executing task :entry:default@PackingCheck
+[2025-12-24T22:18:45.887] [DEBUG] debug-file - entry : default@PackingCheck cost memory 0.38170623779296875
+[2025-12-24T22:18:45.887] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 938 ms 
+[2025-12-24T22:18:45.888] [INFO] debug-file - Finished :entry:default@PackingCheck... after 5 ms 
+[2025-12-24T22:18:45.889] [DEBUG] debug-file - Executing task :entry:default@SignHap
+[2025-12-24T22:18:45.889] [WARN] debug-file - Will skip sign 'hos_hap'. No signingConfigs profile is configured in current project.
+             If needed, configure the signingConfigs in D:\shopping\List_commodity\build-profile.json5.
+[2025-12-24T22:18:45.890] [DEBUG] debug-file - entry:default@SignHap is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\outputs\default\entry-default-unsigned.hap' has been changed.
+[2025-12-24T22:18:45.890] [DEBUG] debug-file - Incremental task entry:default@SignHap pre-execution cost: 1 ms .
+[2025-12-24T22:18:45.891] [DEBUG] debug-file - entry : default@SignHap cost memory 0.09130096435546875
+[2025-12-24T22:18:45.891] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 942 ms 
+[2025-12-24T22:18:45.891] [INFO] debug-file - Finished :entry:default@SignHap... after 2 ms 
+[2025-12-24T22:18:45.892] [DEBUG] debug-file - Executing task :entry:default@CollectDebugSymbol
+[2025-12-24T22:18:45.893] [DEBUG] debug-file - entry : default@CollectDebugSymbol cost memory 0.08321380615234375
+[2025-12-24T22:18:45.893] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 944 ms 
+[2025-12-24T22:18:45.894] [INFO] debug-file - Finished :entry:default@CollectDebugSymbol... after 2 ms 
+[2025-12-24T22:18:45.894] [DEBUG] debug-file - Executing task :entry:assembleHap
+[2025-12-24T22:18:45.894] [DEBUG] debug-file - entry : assembleHap cost memory 0.01322174072265625
+[2025-12-24T22:18:45.894] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 945 ms 
+[2025-12-24T22:18:45.894] [INFO] debug-file - Finished :entry:assembleHap... after 1 ms 
+[2025-12-24T22:18:45.904] [INFO] debug-file - BUILD SUCCESSFUL in 1 s 954 ms 
+[2025-12-24T22:18:45.904] [DEBUG] debug-file - There is no need to refresh cache, since the incremental task entry:default@PreBuild is up-to-date.
+[2025-12-24T22:18:45.904] [DEBUG] debug-file - Update task entry:default@CreateModuleInfo output file:D:\shopping\List_commodity\entry\build\default\generated\profile\default\ModuleInfo.ts cache.
+[2025-12-24T22:18:45.904] [DEBUG] debug-file - Incremental task entry:default@CreateModuleInfo post-execution cost:1 ms .
+[2025-12-24T22:18:45.904] [DEBUG] debug-file - There is no need to refresh cache, since the incremental task entry:default@GenerateMetadata is up-to-date.
+[2025-12-24T22:18:45.904] [DEBUG] debug-file - Update task entry:default@MergeProfile input file:D:\shopping\List_commodity\AppScope\app.json5 cache by regenerate.
+[2025-12-24T22:18:45.905] [DEBUG] debug-file - Update task entry:default@MergeProfile input file:D:\shopping\List_commodity\build-profile.json5 cache by regenerate.
+[2025-12-24T22:18:45.905] [DEBUG] debug-file - Update task entry:default@MergeProfile input file:D:\shopping\List_commodity\entry\src\main\module.json5 cache by regenerate.
+[2025-12-24T22:18:45.905] [DEBUG] debug-file - Update task entry:default@MergeProfile output file:D:\shopping\List_commodity\entry\build\default\intermediates\merge_profile\default\module.json cache.
+[2025-12-24T22:18:45.905] [DEBUG] debug-file - Update task entry:default@MergeProfile output file:D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest cache.
+[2025-12-24T22:18:45.906] [DEBUG] debug-file - Incremental task entry:default@MergeProfile post-execution cost:2 ms .
+[2025-12-24T22:18:45.906] [DEBUG] debug-file - Update task entry:default@CreateBuildProfile input file:D:\shopping\List_commodity\AppScope\app.json5 cache by regenerate.
+[2025-12-24T22:18:45.906] [DEBUG] debug-file - Update task entry:default@CreateBuildProfile input file:D:\shopping\List_commodity\build-profile.json5 cache by regenerate.
+[2025-12-24T22:18:45.907] [DEBUG] debug-file - Update task entry:default@CreateBuildProfile output file:D:\shopping\List_commodity\entry\build\default\generated\profile\default\BuildProfile.ets cache.
+[2025-12-24T22:18:45.907] [DEBUG] debug-file - Incremental task entry:default@CreateBuildProfile post-execution cost:2 ms .
+[2025-12-24T22:18:45.907] [DEBUG] debug-file - Update task entry:default@GeneratePkgContextInfo output file:D:\shopping\List_commodity\entry\build\default\intermediates\loader\default\pkgContextInfo.json cache.
+[2025-12-24T22:18:45.907] [DEBUG] debug-file - Incremental task entry:default@GeneratePkgContextInfo post-execution cost:1 ms .
+[2025-12-24T22:18:45.907] [DEBUG] debug-file - Update task entry:default@ProcessIntegratedHsp output file:D:\shopping\List_commodity\build\cache\default\integrated_hsp\integratedHspCache.json cache.
+[2025-12-24T22:18:45.908] [DEBUG] debug-file - Incremental task entry:default@ProcessIntegratedHsp post-execution cost:1 ms .
+[2025-12-24T22:18:45.908] [DEBUG] debug-file - There is no need to refresh cache, since the incremental task entry:default@MakePackInfo is up-to-date.
+[2025-12-24T22:18:45.908] [DEBUG] debug-file - Update task entry:default@SyscapTransform input file:D:\devecostudio-windows-6.0.0.848\DevEco Studio\sdk\default\openharmony\toolchains\syscap_tool.exe cache by regenerate.
+[2025-12-24T22:18:45.908] [DEBUG] debug-file - Update task entry:default@SyscapTransform input file:D:\devecostudio-windows-6.0.0.848\DevEco Studio\sdk\default\openharmony\ets\api\device-define cache by regenerate.
+[2025-12-24T22:18:45.909] [DEBUG] debug-file - Update task entry:default@SyscapTransform output file:D:\shopping\List_commodity\entry\build\default\intermediates\syscap\default\rpcid.sc cache.
+[2025-12-24T22:18:45.910] [DEBUG] debug-file - Incremental task entry:default@SyscapTransform post-execution cost:3 ms .
+[2025-12-24T22:18:45.910] [DEBUG] debug-file - Update task entry:default@ProcessProfile input file:D:\shopping\List_commodity\entry\build\default\intermediates\merge_profile\default\module.json cache from map.
+[2025-12-24T22:18:45.910] [DEBUG] debug-file - Update task entry:default@ProcessProfile output file:D:\shopping\List_commodity\entry\build\default\intermediates\process_profile\default\module.json cache.
+[2025-12-24T22:18:45.910] [DEBUG] debug-file - Incremental task entry:default@ProcessProfile post-execution cost:1 ms .
+[2025-12-24T22:18:45.910] [DEBUG] debug-file - There is no need to refresh cache, since the incremental task entry:default@ProcessRouterMap is up-to-date.
+[2025-12-24T22:18:45.910] [DEBUG] debug-file - There is no need to refresh cache, since the incremental task entry:default@ProcessShareConfig is up-to-date.
+[2025-12-24T22:18:45.910] [DEBUG] debug-file - Update task entry:default@ProcessStartupConfig output file:D:\shopping\List_commodity\entry\build\default\intermediates\startup\default\startup_config.json cache.
+[2025-12-24T22:18:45.911] [DEBUG] debug-file - Incremental task entry:default@ProcessStartupConfig post-execution cost:1 ms .
+[2025-12-24T22:18:45.911] [DEBUG] debug-file - There is no need to refresh cache, since the incremental task entry:default@ProcessResource is up-to-date.
+[2025-12-24T22:18:45.912] [DEBUG] debug-file - Update task entry:default@GenerateLoaderJson input file:D:\shopping\List_commodity\entry\build\default\intermediates\router_map\default\temp-router-map.json cache by regenerate.
+[2025-12-24T22:18:45.912] [DEBUG] debug-file - Update task entry:default@GenerateLoaderJson output file:D:\shopping\List_commodity\entry\build\default\intermediates\loader\default\loader.json cache.
+[2025-12-24T22:18:45.913] [DEBUG] debug-file - Incremental task entry:default@GenerateLoaderJson post-execution cost:2 ms .
+[2025-12-24T22:18:45.913] [DEBUG] debug-file - There is no need to refresh cache, since the incremental task entry:default@ProcessLibs is up-to-date.
+[2025-12-24T22:18:45.914] [DEBUG] debug-file - Update task entry:default@CompileResource input file:D:\shopping\List_commodity\entry\src\main\resources cache by regenerate.
+[2025-12-24T22:18:45.923] [DEBUG] debug-file - Update task entry:default@CompileResource input file:D:\shopping\List_commodity\AppScope\resources cache by regenerate.
+[2025-12-24T22:18:45.924] [DEBUG] debug-file - Update task entry:default@CompileResource input file:D:\shopping\List_commodity\entry\build\default\intermediates\process_profile\default\module.json cache from map.
+[2025-12-24T22:18:45.924] [DEBUG] debug-file - Update task entry:default@CompileResource input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\resConfig.json cache by regenerate.
+[2025-12-24T22:18:45.925] [DEBUG] debug-file - Update task entry:default@CompileResource output file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default cache.
+[2025-12-24T22:18:45.933] [DEBUG] debug-file - Update task entry:default@CompileResource output file:D:\shopping\List_commodity\entry\build\default\generated\r\default\ResourceTable.h cache.
+[2025-12-24T22:18:45.934] [DEBUG] debug-file - Update task entry:default@CompileResource output file:D:\shopping\List_commodity\entry\build\default\generated\r\default cache.
+[2025-12-24T22:18:45.934] [DEBUG] debug-file - Incremental task entry:default@CompileResource post-execution cost:22 ms .
+[2025-12-24T22:18:45.934] [DEBUG] debug-file - There is no need to refresh cache, since the incremental task entry:default@DoNativeStrip is up-to-date.
+[2025-12-24T22:18:45.936] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\shopping\List_commodity\entry\build\default\intermediates\loader\default cache from map.
+[2025-12-24T22:18:45.936] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\ResourceTable.txt cache by regenerate.
+[2025-12-24T22:18:45.937] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\ark_module.json cache by regenerate.
+[2025-12-24T22:18:45.937] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\resources\base\profile cache by regenerate.
+[2025-12-24T22:18:45.938] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\shopping\List_commodity\entry\src\main\ets cache by regenerate.
+[2025-12-24T22:18:45.942] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\shopping\List_commodity\entry\build\default\generated\profile\default\BuildProfile.ets cache by regenerate.
+[2025-12-24T22:18:45.943] [DEBUG] debug-file - Update task entry:default@CompileArkTS output file:D:\shopping\List_commodity\entry\build\default\intermediates\loader_out\default\ets cache.
+[2025-12-24T22:18:45.944] [DEBUG] debug-file - Incremental task entry:default@CompileArkTS post-execution cost:10 ms .
+[2025-12-24T22:18:45.945] [DEBUG] debug-file - Update task entry:default@BuildJS input file:D:\shopping\List_commodity\entry\build\default\intermediates\loader\default cache by regenerate.
+[2025-12-24T22:18:45.946] [DEBUG] debug-file - Update task entry:default@BuildJS input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\ResourceTable.txt cache by regenerate.
+[2025-12-24T22:18:45.946] [DEBUG] debug-file - Update task entry:default@BuildJS input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\ark_module.json cache by regenerate.
+[2025-12-24T22:18:45.946] [DEBUG] debug-file - Update task entry:default@BuildJS input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\resources\base\profile cache by regenerate.
+[2025-12-24T22:18:45.947] [DEBUG] debug-file - Update task entry:default@BuildJS output file:D:\shopping\List_commodity\entry\build\default\intermediates\loader_out\default\js cache.
+[2025-12-24T22:18:45.947] [DEBUG] debug-file - Incremental task entry:default@BuildJS post-execution cost:4 ms .
+[2025-12-24T22:18:45.947] [DEBUG] debug-file - There is no need to refresh cache, since the incremental task entry:default@CacheNativeLibs is up-to-date.
+[2025-12-24T22:18:45.947] [DEBUG] debug-file - Update task entry:default@GeneratePkgModuleJson input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\module.json cache from map.
+[2025-12-24T22:18:45.947] [DEBUG] debug-file - Update task entry:default@GeneratePkgModuleJson output file:D:\shopping\List_commodity\entry\build\default\intermediates\package\default\module.json cache.
+[2025-12-24T22:18:45.947] [DEBUG] debug-file - Incremental task entry:default@GeneratePkgModuleJson post-execution cost:1 ms .
+[2025-12-24T22:18:45.947] [DEBUG] debug-file - Incremental task entry:default@ProcessCompiledResources post-execution cost:1 ms .
+[2025-12-24T22:18:45.948] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\shopping\List_commodity\entry\build\default\intermediates\stripped_native_libs\default cache by regenerate.
+[2025-12-24T22:18:45.949] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\module.json cache from map.
+[2025-12-24T22:18:45.949] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\resources cache by regenerate.
+[2025-12-24T22:18:45.956] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\default\resources.index cache by regenerate.
+[2025-12-24T22:18:45.956] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\shopping\List_commodity\entry\build\default\outputs\default\pack.info cache by regenerate.
+[2025-12-24T22:18:45.956] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\shopping\List_commodity\entry\build\default\intermediates\loader_out\default\ets cache by regenerate.
+[2025-12-24T22:18:45.957] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\shopping\List_commodity\entry\build\default\intermediates\loader_out\default\ets\sourceMaps.map cache by regenerate.
+[2025-12-24T22:18:45.957] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\shopping\List_commodity\entry\build\default\generated\profile\default\BuildProfile.ets cache by regenerate.
+[2025-12-24T22:18:45.958] [DEBUG] debug-file - Update task entry:default@PackageHap output file:D:\shopping\List_commodity\entry\build\default\outputs\default\entry-default-unsigned.hap cache.
+[2025-12-24T22:18:45.958] [DEBUG] debug-file - Update task entry:default@PackageHap output file:D:\shopping\List_commodity\entry\build\default\intermediates\source_map\default\sourceMaps.map cache.
+[2025-12-24T22:18:45.958] [DEBUG] debug-file - Update task entry:default@PackageHap output file:D:\shopping\List_commodity\entry\build\default\outputs\default\mapping\sourceMaps.map cache.
+[2025-12-24T22:18:45.958] [DEBUG] debug-file - Incremental task entry:default@PackageHap post-execution cost:11 ms .
+[2025-12-24T22:18:45.959] [DEBUG] debug-file - Update task entry:default@SignHap input file:D:\shopping\List_commodity\entry\build\default\outputs\default\entry-default-unsigned.hap cache from map.
+[2025-12-24T22:18:45.959] [DEBUG] debug-file - Update task entry:default@SignHap output file:D:\shopping\List_commodity\entry\build\default\outputs\default\entry-default-signed.hap cache.
+[2025-12-24T22:18:45.959] [DEBUG] debug-file - Incremental task entry:default@SignHap post-execution cost:1 ms .
+[2025-12-24T22:18:45.959] [DEBUG] debug-file - Update task entry:default@CollectDebugSymbol input file:D:\shopping\List_commodity\entry\build\default\intermediates\loader_out\default\ets\sourceMaps.map cache by regenerate.
+[2025-12-24T22:18:45.960] [DEBUG] debug-file - Update task entry:default@CollectDebugSymbol input file:D:\shopping\List_commodity\entry\build\default\intermediates\libs\default cache by regenerate.
+[2025-12-24T22:18:45.960] [DEBUG] debug-file - Update task entry:default@CollectDebugSymbol output file:D:\shopping\List_commodity\entry\build\default\outputs\default\symbol cache.
+[2025-12-24T22:18:45.960] [DEBUG] debug-file - Incremental task entry:default@CollectDebugSymbol post-execution cost:2 ms .
+[2025-12-24T22:18:45.980] [DEBUG] debug-file - Cleanup worker 18.
+[2025-12-24T22:18:45.980] [DEBUG] debug-file - Worker 18 has been cleaned up.
+[2025-12-24T22:18:45.980] [DEBUG] debug-file - Current idle worker size: 1.
+[2025-12-24T22:18:45.980] [DEBUG] debug-file - Current resident worker size: 2.
+[2025-12-24T22:18:45.981] [DEBUG] debug-file - hvigor build process will be closed.
+[2025-12-24T22:18:45.981] [DEBUG] debug-file - java daemon socket close code:1000 reason:close by user
+[2025-12-24T22:18:45.985] [DEBUG] debug-file - session manager: send message to worker process.
+[2025-12-24T22:18:45.986] [DEBUG] debug-file - session manager: send message to worker process.
+[2025-12-24T22:18:45.986] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2025-12-24T22:18:45.986] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2025-12-24T22:18:45.986] [DEBUG] debug-file - worker[18] exits with exit code 1.
+[2025-12-24T22:18:46.678] [DEBUG] debug-file - session manager: set active socket. socketId=lkuzrF0AFXBnQZJmAABz
+[2025-12-24T22:18:46.686] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2025-12-24T22:18:46.692] [DEBUG] debug-file - Hvigor init with startParameters:{
+  hvigorfileTypeCheck: false,
+  parallelExecution: true,
+  incrementalExecution: true,
+  printStackTrace: false,
+  daemon: true,
+  analyze: 0,
+  logLevel: Level { level: 20000, levelStr: 'INFO', colour: 'green' },
+  optimizationStrategy: 'memory',
+  hotCompile: undefined,
+  hotReloadBuild: undefined
+}
+[2025-12-24T22:18:46.697] [DEBUG] debug-file - Cache service initialization finished in 5 ms 
+[2025-12-24T22:18:46.698] [DEBUG] debug-file - hvigorfile, resolving D:\shopping\List_commodity\hvigorfile.ts
+[2025-12-24T22:18:46.701] [DEBUG] debug-file - hvigorfile, require result:  {}
+[2025-12-24T22:18:46.701] [DEBUG] debug-file - hvigorfile, binding system plugins {}
+[2025-12-24T22:18:46.707] [DEBUG] debug-file - Start initialize project's product build option map with build mode test.
+[2025-12-24T22:18:46.707] [DEBUG] debug-file - Picking option from product 'default' with build mode 'test'.
+[2025-12-24T22:18:46.707] [DEBUG] debug-file - Product 'default' build option initialized
+[2025-12-24T22:18:46.707] [DEBUG] debug-file - End initialize project's product build option map with build mode 'test'.
+[2025-12-24T22:18:46.707] [DEBUG] debug-file - Obtain build option for product 'default'in this build.
+[2025-12-24T22:18:46.709] [DEBUG] debug-file - No signingConfig found, initRemoteHspCache failed.
+[2025-12-24T22:18:46.712] [DEBUG] debug-file - Start recording SDK configuration permission data.
+[2025-12-24T22:18:46.734] [DEBUG] debug-file - Sdk init in 25 ms 
+[2025-12-24T22:18:46.736] [DEBUG] debug-file - Project task initialization takes 3 ms 
+[2025-12-24T22:18:46.737] [DEBUG] debug-file - hvigorfile, resolve finished D:\shopping\List_commodity\hvigorfile.ts
+[2025-12-24T22:18:46.737] [DEBUG] debug-file - hvigorfile, resolving D:\shopping\List_commodity\entry\hvigorfile.ts
+[2025-12-24T22:18:46.739] [DEBUG] debug-file - hvigorfile, require result:  {}
+[2025-12-24T22:18:46.739] [DEBUG] debug-file - hvigorfile, binding system plugins {}
+[2025-12-24T22:18:46.741] [DEBUG] debug-file - failed to load cangjie to dynamically generate schemas: Error: Cannot find module '@ohos/cangjie-build-support/index'
+Require stack:
+- D:\devecostudio-windows-6.0.0.848\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\src\plugin\factory\plugin-factory.js
+- D:\devecostudio-windows-6.0.0.848\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\index.js
+- D:\shopping\List_commodity\hvigorfile.ts
+- D:\devecostudio-windows-6.0.0.848\DevEco Studio\tools\hvigor\hvigor\src\base\internal\lifecycle\configuration.js
+- D:\devecostudio-windows-6.0.0.848\DevEco Studio\tools\hvigor\hvigor\src\base\boot\index.js
+- D:\devecostudio-windows-6.0.0.848\DevEco Studio\tools\hvigor\hvigor\src\base\daemon\cluster\worker-process-lifecycle.js
+- D:\devecostudio-windows-6.0.0.848\DevEco Studio\tools\hvigor\hvigor\src\base\daemon\process\daemon-process-boot-script.js
+[2025-12-24T22:18:46.743] [DEBUG] debug-file - Start initialize module-target build option map, moduleName=entry, buildMode=release
+[2025-12-24T22:18:46.743] [DEBUG] debug-file - Target 'default' config initialized
+[2025-12-24T22:18:46.743] [DEBUG] debug-file - Target 'ohosTest' config initialized
+[2025-12-24T22:18:46.743] [DEBUG] debug-file - Module 'entry' target 'default' build option initialized
+[2025-12-24T22:18:46.743] [DEBUG] debug-file - Module 'entry' target 'ohosTest' build option initialized
+[2025-12-24T22:18:46.743] [DEBUG] debug-file - End initialize module-target build option map, moduleName=entry
+[2025-12-24T22:18:46.743] [DEBUG] debug-file - Start initialize module-target build option map, moduleName=entry, buildMode=debug
+[2025-12-24T22:18:46.743] [DEBUG] debug-file - Target 'default' config initialized
+[2025-12-24T22:18:46.743] [DEBUG] debug-file - Target 'ohosTest' config initialized
+[2025-12-24T22:18:46.743] [DEBUG] debug-file - Module 'entry' target 'default' build option initialized
+[2025-12-24T22:18:46.743] [DEBUG] debug-file - Module 'entry' target 'ohosTest' build option initialized
+[2025-12-24T22:18:46.743] [DEBUG] debug-file - End initialize module-target build option map, moduleName=entry
+[2025-12-24T22:18:46.743] [DEBUG] debug-file - Start initialize module-target build option map, moduleName=entry, buildMode=test
+[2025-12-24T22:18:46.743] [DEBUG] debug-file - Target 'default' config initialized
+[2025-12-24T22:18:46.743] [DEBUG] debug-file - Target 'ohosTest' config initialized
+[2025-12-24T22:18:46.743] [DEBUG] debug-file - Module 'entry' target 'default' build option initialized
+[2025-12-24T22:18:46.743] [DEBUG] debug-file - Module 'entry' target 'ohosTest' build option initialized
+[2025-12-24T22:18:46.743] [DEBUG] debug-file - End initialize module-target build option map, moduleName=entry
+[2025-12-24T22:18:46.743] [DEBUG] debug-file - Obtain build option for module 'entry' target 'ohosTest'in this build.
+[2025-12-24T22:18:46.744] [DEBUG] debug-file - Module entry task initialization takes 1 ms 
+[2025-12-24T22:18:46.744] [DEBUG] debug-file - hvigorfile, resolve finished D:\shopping\List_commodity\entry\hvigorfile.ts
+[2025-12-24T22:18:46.757] [DEBUG] debug-file - hvigorfile, resolve hvigorfile dependencies in 13 ms 
+[2025-12-24T22:18:46.757] [DEBUG] debug-file - project has submodules:entry
+[2025-12-24T22:18:46.759] [DEBUG] debug-file - start to load updatedOhPackageInfo to the disk
+[2025-12-24T22:18:46.764] [DEBUG] debug-file - load to the disk finished
+[2025-12-24T22:18:46.766] [DEBUG] debug-file - Start to initialize dependency information.
+[2025-12-24T22:18:46.767] [DEBUG] debug-file - Module List_commodity Collected Dependency: 
+[2025-12-24T22:18:46.767] [DEBUG] debug-file - Module List_commodity's total dependency: 0
+[2025-12-24T22:18:46.768] [DEBUG] debug-file - Start to initialize dependency information.
+[2025-12-24T22:18:46.774] [DEBUG] debug-file - Module entry Collected Dependency: 
+[2025-12-24T22:18:46.774] [DEBUG] debug-file - Module entry's total dependency: 0
+[2025-12-24T22:18:46.776] [DEBUG] debug-file - Configuration phase cost:79 ms 
+[2025-12-24T22:18:46.776] [DEBUG] debug-file - Configuration task cost before running: 88 ms 
+[2025-12-24T22:18:46.779] [DEBUG] debug-file - Executing task :entry:ohosTest@PreBuild
+[2025-12-24T22:18:46.780] [DEBUG] debug-file - Task 'entry:ohosTest@PreBuild' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:46.789] [DEBUG] debug-file - Incremental task entry:ohosTest@PreBuild pre-execution cost: 7 ms .
+[2025-12-24T22:18:46.789] [DEBUG] debug-file - entry : ohosTest@PreBuild cost memory 0.24565887451171875
+[2025-12-24T22:18:46.791] [INFO] debug-file - UP-TO-DATE :entry:ohosTest@PreBuild...  
+[2025-12-24T22:18:46.792] [DEBUG] debug-file - Executing task :entry:ohosTest@CreateModuleInfo
+[2025-12-24T22:18:46.792] [DEBUG] debug-file - Task 'entry:ohosTest@CreateModuleInfo' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:46.792] [DEBUG] debug-file - entry : ohosTest@CreateModuleInfo cost memory 0.04044342041015625
+[2025-12-24T22:18:46.793] [DEBUG] debug-file - runTaskFromQueue task cost before running: 104 ms 
+[2025-12-24T22:18:46.793] [INFO] debug-file - Finished :entry:ohosTest@CreateModuleInfo... after 1 ms 
+[2025-12-24T22:18:46.794] [DEBUG] debug-file - Executing task :entry:ohosTest@GenerateMetadata
+[2025-12-24T22:18:46.794] [DEBUG] debug-file - Task 'entry:ohosTest@GenerateMetadata' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:46.795] [DEBUG] debug-file - entry:ohosTest@GenerateMetadata is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\hap_metadata\ohosTest\output_metadata.json' does not exist.
+[2025-12-24T22:18:46.795] [DEBUG] debug-file - Incremental task entry:ohosTest@GenerateMetadata pre-execution cost: 1 ms .
+[2025-12-24T22:18:46.796] [DEBUG] debug-file - entry : ohosTest@GenerateMetadata cost memory 0.10361480712890625
+[2025-12-24T22:18:46.796] [DEBUG] debug-file - runTaskFromQueue task cost before running: 108 ms 
+[2025-12-24T22:18:46.796] [INFO] debug-file - Finished :entry:ohosTest@GenerateMetadata... after 3 ms 
+[2025-12-24T22:18:46.797] [DEBUG] debug-file - Executing task :entry:ohosTest@ConfigureCmake
+[2025-12-24T22:18:46.797] [DEBUG] debug-file - entry : ohosTest@ConfigureCmake cost memory 0.01599884033203125
+[2025-12-24T22:18:46.797] [DEBUG] debug-file - runTaskFromQueue task cost before running: 109 ms 
+[2025-12-24T22:18:46.797] [INFO] debug-file - Finished :entry:ohosTest@ConfigureCmake... after 1 ms 
+[2025-12-24T22:18:46.798] [DEBUG] debug-file - Executing task :entry:ohosTest@MergeProfile
+[2025-12-24T22:18:46.798] [DEBUG] debug-file - Task 'entry:ohosTest@MergeProfile' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:46.801] [DEBUG] debug-file - entry:ohosTest@MergeProfile is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\merge_profile\ohosTest\module.json' does not exist.
+[2025-12-24T22:18:46.801] [DEBUG] debug-file - Incremental task entry:ohosTest@MergeProfile pre-execution cost: 3 ms .
+[2025-12-24T22:18:46.801] [DEBUG] debug-file - Change app api release type with 'Beta5'
+[2025-12-24T22:18:46.801] [DEBUG] debug-file - Change app compile API version with '6.0.0.47'
+[2025-12-24T22:18:46.801] [DEBUG] debug-file - Change app target API version with '60000020'
+[2025-12-24T22:18:46.801] [DEBUG] debug-file - Change app minimum API version with '50005017'
+[2025-12-24T22:18:46.801] [DEBUG] debug-file - Use cli appEnvironment
+[2025-12-24T22:18:46.803] [DEBUG] debug-file - entry : ohosTest@MergeProfile cost memory 0.201751708984375
+[2025-12-24T22:18:46.803] [DEBUG] debug-file - runTaskFromQueue task cost before running: 114 ms 
+[2025-12-24T22:18:46.803] [INFO] debug-file - Finished :entry:ohosTest@MergeProfile... after 5 ms 
+[2025-12-24T22:18:46.805] [DEBUG] debug-file - Executing task :entry:ohosTest@CreateBuildProfile
+[2025-12-24T22:18:46.806] [DEBUG] debug-file - Task 'entry:ohosTest@CreateBuildProfile' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:46.807] [DEBUG] debug-file - entry:ohosTest@CreateBuildProfile is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\generated\profile\ohosTest\BuildProfile.ets' does not exist.
+[2025-12-24T22:18:46.807] [DEBUG] debug-file - Incremental task entry:ohosTest@CreateBuildProfile pre-execution cost: 2 ms .
+[2025-12-24T22:18:46.808] [DEBUG] debug-file - entry : ohosTest@CreateBuildProfile cost memory 0.0971527099609375
+[2025-12-24T22:18:46.808] [DEBUG] debug-file - runTaskFromQueue task cost before running: 119 ms 
+[2025-12-24T22:18:46.808] [INFO] debug-file - Finished :entry:ohosTest@CreateBuildProfile... after 3 ms 
+[2025-12-24T22:18:46.809] [DEBUG] debug-file - Executing task :entry:ohosTest@PreCheckSyscap
+[2025-12-24T22:18:46.809] [DEBUG] debug-file - entry : ohosTest@PreCheckSyscap cost memory 0.0162200927734375
+[2025-12-24T22:18:46.809] [DEBUG] debug-file - runTaskFromQueue task cost before running: 121 ms 
+[2025-12-24T22:18:46.809] [INFO] debug-file - Finished :entry:ohosTest@PreCheckSyscap... after 1 ms 
+[2025-12-24T22:18:46.811] [DEBUG] debug-file - Executing task :entry:ohosTest@GeneratePkgContextInfo
+[2025-12-24T22:18:46.815] [DEBUG] debug-file - Task 'entry:ohosTest@GeneratePkgContextInfo' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:46.815] [DEBUG] debug-file - entry : ohosTest@GeneratePkgContextInfo cost memory 0.21429443359375
+[2025-12-24T22:18:46.815] [DEBUG] debug-file - runTaskFromQueue task cost before running: 127 ms 
+[2025-12-24T22:18:46.815] [INFO] debug-file - Finished :entry:ohosTest@GeneratePkgContextInfo... after 5 ms 
+[2025-12-24T22:18:46.820] [DEBUG] debug-file - Executing task :entry:ohosTest@ProcessIntegratedHsp
+[2025-12-24T22:18:46.821] [DEBUG] debug-file - entry:ohosTest@ProcessIntegratedHsp is not up-to-date, since the output file 'D:\shopping\List_commodity\build\cache\default\integrated_hsp\integratedHspCache.json' does not exist.
+[2025-12-24T22:18:46.821] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessIntegratedHsp pre-execution cost: 1 ms .
+[2025-12-24T22:18:46.821] [DEBUG] debug-file - entry : ohosTest@ProcessIntegratedHsp cost memory 0.05998992919921875
+[2025-12-24T22:18:46.821] [DEBUG] debug-file - runTaskFromQueue task cost before running: 132 ms 
+[2025-12-24T22:18:46.821] [INFO] debug-file - Finished :entry:ohosTest@ProcessIntegratedHsp... after 1 ms 
+[2025-12-24T22:18:46.822] [DEBUG] debug-file - Executing task :entry:ohosTest@BuildNativeWithCmake
+[2025-12-24T22:18:46.822] [DEBUG] debug-file - entry : ohosTest@BuildNativeWithCmake cost memory 0.01605224609375
+[2025-12-24T22:18:46.822] [DEBUG] debug-file - runTaskFromQueue task cost before running: 133 ms 
+[2025-12-24T22:18:46.822] [INFO] debug-file - Finished :entry:ohosTest@BuildNativeWithCmake... after 1 ms 
+[2025-12-24T22:18:46.823] [DEBUG] debug-file - Executing task :entry:ohosTest@MakePackInfo
+[2025-12-24T22:18:46.825] [DEBUG] debug-file - entry:ohosTest@MakePackInfo is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\outputs\ohosTest\pack.info' does not exist.
+[2025-12-24T22:18:46.825] [DEBUG] debug-file - Incremental task entry:ohosTest@MakePackInfo pre-execution cost: 2 ms .
+[2025-12-24T22:18:46.825] [DEBUG] debug-file - Module Pack Info:  {
+  summary: {
+    app: { bundleName: 'c***y', bundleType: 'app', version: [Object] },
+    modules: [ [Object], [Object] ]
+  },
+  packages: [
+    {
+      deviceType: [Array],
+      moduleType: 'feature',
+      deliveryWithInstall: true,
+      name: 'entry-ohosTest'
+    }
+  ]
+}
+[2025-12-24T22:18:46.826] [DEBUG] debug-file - entry : ohosTest@MakePackInfo cost memory 0.14833831787109375
+[2025-12-24T22:18:46.826] [DEBUG] debug-file - runTaskFromQueue task cost before running: 138 ms 
+[2025-12-24T22:18:46.827] [INFO] debug-file - Finished :entry:ohosTest@MakePackInfo... after 4 ms 
+[2025-12-24T22:18:46.828] [DEBUG] debug-file - Executing task :entry:ohosTest@SyscapTransform
+[2025-12-24T22:18:46.828] [DEBUG] debug-file - File: 'D:\shopping\List_commodity\entry\src\ohosTest\syscap.json' from 'sysCapJsonPath' is not exists, just ignore.
+[2025-12-24T22:18:46.829] [DEBUG] debug-file - Task 'entry:ohosTest@SyscapTransform' cost while wrapping incremental declarations: 2 ms 
+[2025-12-24T22:18:46.831] [DEBUG] debug-file - entry:ohosTest@SyscapTransform is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\syscap\ohosTest\rpcid.sc' does not exist.
+[2025-12-24T22:18:46.831] [DEBUG] debug-file - Incremental task entry:ohosTest@SyscapTransform pre-execution cost: 3 ms .
+[2025-12-24T22:18:46.832] [DEBUG] debug-file - entry : ohosTest@SyscapTransform cost memory 0.14923858642578125
+[2025-12-24T22:18:46.832] [DEBUG] debug-file - runTaskFromQueue task cost before running: 143 ms 
+[2025-12-24T22:18:46.832] [INFO] debug-file - Finished :entry:ohosTest@SyscapTransform... after 4 ms 
+[2025-12-24T22:18:46.833] [DEBUG] debug-file - Executing task :entry:ohosTest@ProcessProfile
+[2025-12-24T22:18:46.834] [DEBUG] debug-file - Task 'entry:ohosTest@ProcessProfile' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:46.834] [DEBUG] debug-file - entry:ohosTest@ProcessProfile is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\intermediates\merge_profile\ohosTest\module.json' has been changed.
+[2025-12-24T22:18:46.834] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessProfile pre-execution cost: 1 ms .
+[2025-12-24T22:18:46.835] [DEBUG] debug-file - [
+  'D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\tools\\node\\node.exe',
+  'D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\bin\\ark\\ts2abc.js',
+  '--target-api-version',
+  '17'
+]
+[2025-12-24T22:18:46.984] [DEBUG] debug-file - 12.0.6.0
+[2025-12-24T22:18:46.985] [DEBUG] debug-file - No need to add fake ui ability because of not in preview process.
+[2025-12-24T22:18:46.986] [DEBUG] debug-file - entry : ohosTest@ProcessProfile cost memory 0.36017608642578125
+[2025-12-24T22:18:46.986] [DEBUG] debug-file - runTaskFromQueue task cost before running: 298 ms 
+[2025-12-24T22:18:46.986] [INFO] debug-file - Finished :entry:ohosTest@ProcessProfile... after 154 ms 
+[2025-12-24T22:18:46.988] [DEBUG] debug-file - Executing task :entry:ohosTest@ProcessRouterMap
+[2025-12-24T22:18:46.991] [DEBUG] debug-file - entry:ohosTest@ProcessRouterMap is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\router_map\ohosTest\temp-router-map.json' does not exist.
+[2025-12-24T22:18:46.991] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessRouterMap pre-execution cost: 3 ms .
+[2025-12-24T22:18:46.994] [DEBUG] debug-file - entry : ohosTest@ProcessRouterMap cost memory 0.13104248046875
+[2025-12-24T22:18:46.994] [DEBUG] debug-file - runTaskFromQueue task cost before running: 305 ms 
+[2025-12-24T22:18:46.994] [INFO] debug-file - Finished :entry:ohosTest@ProcessRouterMap... after 6 ms 
+[2025-12-24T22:18:46.995] [DEBUG] debug-file - Executing task :entry:ohosTest@ProcessShareConfig
+[2025-12-24T22:18:46.999] [DEBUG] debug-file - entry:ohosTest@ProcessShareConfig is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\share_config\ohosTest\temp-share-config.json' does not exist.
+[2025-12-24T22:18:46.999] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessShareConfig pre-execution cost: 3 ms .
+[2025-12-24T22:18:47.000] [DEBUG] debug-file - entry : ohosTest@ProcessShareConfig cost memory 0.12155914306640625
+[2025-12-24T22:18:47.000] [DEBUG] debug-file - runTaskFromQueue task cost before running: 312 ms 
+[2025-12-24T22:18:47.001] [INFO] debug-file - Finished :entry:ohosTest@ProcessShareConfig... after 5 ms 
+[2025-12-24T22:18:47.002] [DEBUG] debug-file - Executing task :entry:ohosTest@ProcessStartupConfig
+[2025-12-24T22:18:47.002] [DEBUG] debug-file - Task 'entry:ohosTest@ProcessStartupConfig' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:47.003] [DEBUG] debug-file - entry:ohosTest@ProcessStartupConfig is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\startup\ohosTest\startup_config.json' does not exist.
+[2025-12-24T22:18:47.003] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessStartupConfig pre-execution cost: 1 ms .
+[2025-12-24T22:18:47.003] [DEBUG] debug-file - entry : ohosTest@ProcessStartupConfig cost memory 0.09709930419921875
+[2025-12-24T22:18:47.003] [DEBUG] debug-file - runTaskFromQueue task cost before running: 315 ms 
+[2025-12-24T22:18:47.003] [INFO] debug-file - Finished :entry:ohosTest@ProcessStartupConfig... after 2 ms 
+[2025-12-24T22:18:47.005] [DEBUG] debug-file - Executing task :entry:ohosTest@BuildNativeWithNinja
+[2025-12-24T22:18:47.005] [DEBUG] debug-file - entry : ohosTest@BuildNativeWithNinja cost memory 0.02756500244140625
+[2025-12-24T22:18:47.006] [DEBUG] debug-file - runTaskFromQueue task cost before running: 317 ms 
+[2025-12-24T22:18:47.006] [INFO] debug-file - Finished :entry:ohosTest@BuildNativeWithNinja... after 1 ms 
+[2025-12-24T22:18:47.007] [DEBUG] debug-file - restool module names: entry,entry_test; moduleName=entry, taskName=ohosTest@ProcessResource
+[2025-12-24T22:18:47.009] [DEBUG] debug-file - Executing task :entry:ohosTest@ProcessResource
+[2025-12-24T22:18:47.010] [DEBUG] debug-file - Task 'entry:ohosTest@ProcessResource' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:47.010] [DEBUG] debug-file - entry:ohosTest@ProcessResource is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest\resConfig.json' does not exist.
+[2025-12-24T22:18:47.011] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessResource pre-execution cost: 1 ms .
+[2025-12-24T22:18:47.013] [DEBUG] debug-file - entry : ohosTest@ProcessResource cost memory 0.1398468017578125
+[2025-12-24T22:18:47.016] [DEBUG] debug-file - runTaskFromQueue task cost before running: 327 ms 
+[2025-12-24T22:18:47.018] [INFO] debug-file - Finished :entry:ohosTest@ProcessResource... after 6 ms 
+[2025-12-24T22:18:47.019] [DEBUG] debug-file - Executing task :entry:ohosTest@GenerateLoaderJson
+[2025-12-24T22:18:47.020] [DEBUG] debug-file - Task 'entry:ohosTest@GenerateLoaderJson' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:47.029] [DEBUG] debug-file - entry:ohosTest@GenerateLoaderJson is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\intermediates\router_map\ohosTest\temp-router-map.json' has been changed.
+[2025-12-24T22:18:47.030] [DEBUG] debug-file - Incremental task entry:ohosTest@GenerateLoaderJson pre-execution cost: 6 ms .
+[2025-12-24T22:18:47.032] [DEBUG] debug-file - entry : ohosTest@GenerateLoaderJson cost memory 0.34228515625
+[2025-12-24T22:18:47.032] [DEBUG] debug-file - runTaskFromQueue task cost before running: 344 ms 
+[2025-12-24T22:18:47.036] [INFO] debug-file - Finished :entry:ohosTest@GenerateLoaderJson... after 13 ms 
+[2025-12-24T22:18:47.037] [DEBUG] debug-file - Executing task :entry:ohosTest@ProcessLibs
+[2025-12-24T22:18:47.040] [DEBUG] debug-file - entry:ohosTest@ProcessLibs is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\libs\ohosTest' does not exist.
+[2025-12-24T22:18:47.040] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessLibs pre-execution cost: 3 ms .
+[2025-12-24T22:18:47.042] [DEBUG] debug-file - Worker dispatch failed, running processLibs on main thread.
+[2025-12-24T22:18:47.042] [DEBUG] debug-file - entry : ohosTest@ProcessLibs cost memory 0.28810882568359375
+[2025-12-24T22:18:47.042] [DEBUG] debug-file - runTaskFromQueue task cost before running: 354 ms 
+[2025-12-24T22:18:47.043] [INFO] debug-file - Finished :entry:ohosTest@ProcessLibs... after 5 ms 
+[2025-12-24T22:18:47.044] [DEBUG] debug-file - restool module names: entry,entry_test; moduleName=entry, taskName=ohosTest@CompileResource
+[2025-12-24T22:18:47.045] [DEBUG] debug-file - Executing task :entry:ohosTest@CompileResource
+[2025-12-24T22:18:47.050] [DEBUG] debug-file - entry:ohosTest@CompileResource is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\intermediates\process_profile\ohosTest\module.json' has been changed.
+[2025-12-24T22:18:47.050] [DEBUG] debug-file - Incremental task entry:ohosTest@CompileResource pre-execution cost: 5 ms .
+[2025-12-24T22:18:47.052] [DEBUG] debug-file - Use tool [D:\devecostudio-windows-6.0.0.848\DevEco Studio\sdk\default\openharmony\toolchains\restool.exe]
+ [
+  'D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\toolchains\\restool.exe',
+  '-l',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\ohosTest\\resConfig.json'
+]
+[2025-12-24T22:18:47.054] [DEBUG] debug-file - current process  memoryUsage: {
+  rss: 475947008,
+  heapTotal: 164388864,
+  heapUsed: 123547320,
+  external: 3146486,
+  arrayBuffers: 162734
+} os memoryUsage :14.463298797607422
+[2025-12-24T22:18:47.220] [DEBUG] debug-file - Info: Pack: normal pack mode
+
+[2025-12-24T22:18:47.263] [DEBUG] debug-file - Info: hardware concurrency count is : 20
+Info: thread count is : 20
+
+[2025-12-24T22:18:47.263] [DEBUG] debug-file - Info: thread pool is started
+
+[2025-12-24T22:18:47.265] [DEBUG] debug-file - Info: GenericCompiler::CompileFiles
+
+[2025-12-24T22:18:47.279] [DEBUG] debug-file - Info: GenericCompiler::CompileFiles
+
+[2025-12-24T22:18:47.293] [DEBUG] debug-file - Info: GenericCompiler::CompileFiles
+
+[2025-12-24T22:18:47.300] [DEBUG] debug-file - 12-24 22:18:47.300 46988 51040 E C01400/ImageTranscoderUtils: DecodeToRGBA IN
+12-24 22:18:47.300 46988 51040 E C01400/ImageTranscoderUtils: ImageFilter IN D:\shopping\List_commodity\AppScope\resources\base\media\app_icon.png
+
+[2025-12-24T22:18:47.300] [DEBUG] debug-file - 12-24 22:18:47.301 46988 51040 E C01400/ImageTranscoder: TranscodeSLR Only zoom-out is supported.
+
+[2025-12-24T22:18:47.300] [DEBUG] debug-file - Warning: ScaleImage failed, error message: INVALID_PARAMETERS, file path = D:\shopping\List_commodity\AppScope\resources\base\media\app_icon.png
+
+[2025-12-24T22:18:47.304] [DEBUG] debug-file - 12-24 22:18:47.304 46988 51040 E C01400/ImageTranscoderUtils: DecodeToRGBA IN
+
+[2025-12-24T22:18:47.304] [DEBUG] debug-file - 12-24 22:18:47.304 46988 51040 E C01400/ImageTranscoderUtils: ImageFilter IN D:\shopping\List_commodity\entry\src\main\resources\base\media\icon.png
+
+[2025-12-24T22:18:47.304] [DEBUG] debug-file - 12-24 22:18:47.304 46988 51040 E C01400/ImageTranscoder: TranscodeSLR Only zoom-out is supported.
+
+[2025-12-24T22:18:47.304] [DEBUG] debug-file - Warning: ScaleImage failed, error message: INVALID_PARAMETERS, file path = D:\shopping\List_commodity\entry\src\main\resources\base\media\icon.png
+
+[2025-12-24T22:18:47.305] [DEBUG] debug-file - Warning: The width or height of the png file referenced by the icon exceeds the limit (41 pixels)
+at D:\shopping\List_commodity\AppScope\resources\base\media\app_icon.png
+
+[2025-12-24T22:18:47.305] [DEBUG] debug-file - Warning: The width or height of the png file referenced by the icon exceeds the limit (41 pixels)
+at D:\shopping\List_commodity\entry\src\main\resources\base\media\icon.png
+
+[2025-12-24T22:18:47.306] [DEBUG] debug-file - Info: restool resources compile success.
+
+[2025-12-24T22:18:47.307] [DEBUG] debug-file - Info: thread pool is stopped
+
+[2025-12-24T22:18:47.376] [DEBUG] debug-file - entry : ohosTest@CompileResource cost memory -9.881690979003906
+[2025-12-24T22:18:47.376] [DEBUG] debug-file - runTaskFromQueue task cost before running: 687 ms 
+[2025-12-24T22:18:47.377] [INFO] debug-file - Finished :entry:ohosTest@CompileResource... after 332 ms 
+[2025-12-24T22:18:47.378] [DEBUG] debug-file - Executing task :entry:ohosTest@DoNativeStrip
+[2025-12-24T22:18:47.379] [DEBUG] debug-file - Task 'entry:ohosTest@DoNativeStrip' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:47.379] [DEBUG] debug-file - entry:ohosTest@DoNativeStrip is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\stripped_native_libs\ohosTest' does not exist.
+[2025-12-24T22:18:47.379] [DEBUG] debug-file - Incremental task entry:ohosTest@DoNativeStrip pre-execution cost: 1 ms .
+[2025-12-24T22:18:47.381] [DEBUG] debug-file - entry : ohosTest@DoNativeStrip cost memory 0.091949462890625
+[2025-12-24T22:18:47.381] [DEBUG] debug-file - runTaskFromQueue task cost before running: 693 ms 
+[2025-12-24T22:18:47.381] [INFO] debug-file - Finished :entry:ohosTest@DoNativeStrip... after 4 ms 
+[2025-12-24T22:18:47.383] [DEBUG] debug-file - Executing task :entry:ohosTest@OhosTestCompileArkTS
+[2025-12-24T22:18:47.383] [DEBUG] debug-file - obfuscationOptions: undefined
+[2025-12-24T22:18:47.390] [DEBUG] debug-file - entry:ohosTest@OhosTestCompileArkTS is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\intermediates\loader\ohosTest' has been changed.
+[2025-12-24T22:18:47.390] [DEBUG] debug-file - Incremental task entry:ohosTest@OhosTestCompileArkTS pre-execution cost: 5 ms .
+[2025-12-24T22:18:47.400] [DEBUG] debug-file - build config:
+[2025-12-24T22:18:47.400] [DEBUG] debug-file - {
+  moduleType: 'entry',
+  perf: 0,
+  targetName: '.ohosTest',
+  packageManagerType: 'ohpm',
+  localPropertiesPath: 'D:\\shopping\\List_commodity\\local.properties',
+  isPreview: false,
+  isOhosTest: true,
+  isLocalTest: false,
+  buildMode: 'Debug',
+  hotReloadBuild: undefined,
+  watchMode: 'false',
+  aceProfilePath: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\ohosTest\\resources\\base\\profile',
+  etsLoaderPath: 'D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader',
+  modulePath: 'D:\\shopping\\List_commodity\\entry',
+  testFrameworkPar: {
+    testMode: 'ohosTest',
+    coveragePathFilter: undefined,
+    coverageMode: undefined
+  },
+  needCoverageInsert: false,
+  debugLine: false,
+  projectTopDir: 'D:\\shopping\\List_commodity',
+  compileSdkVersion: 20,
+  compatibleSdkVersion: 17,
+  compatibleSdkVersionStage: undefined,
+  bundleName: 'c***y',
+  etsLoaderVersion: '6.0.0.47',
+  etsLoaderReleaseType: 'Beta5',
+  aotCompileMode: 'type',
+  apPath: 'D:\\shopping\\List_commodity\\entry\\modules.ap',
+  entryModuleName: 'entry',
+  entryModuleVersion: '1.0.0',
+  entryPackageName: 'entry',
+  allModuleNameHash: '59a6b353c31dac45ccd5bbb4b5be5c39',
+  externalApiPaths: [
+    'D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\hms\\ets'
+  ],
+  compilerTypes: [],
+  isCrossplatform: false,
+  hvigorPluginFile: undefined,
+  compilePluginPath: undefined,
+  buildGeneratedProfilePath: 'D:\\shopping\\List_commodity\\entry\\build\\default\\generated\\profile\\ohosTest',
+  bundleType: 'app',
+  arkTSVersion: undefined,
+  apiVersion: 20,
+  needCompleteSourcesMap: true,
+  isFaMode: false,
+  strictMode: undefined,
+  buildDir: 'D:\\shopping\\List_commodity\\entry\\build',
+  deviceTypes: [ 'phone' ],
+  useNormalizedOHMUrl: false,
+  pkgContextInfo: undefined,
+  ohPackagePathMap: {},
+  dependencyAliasMap: {},
+  permission: { requestPermissions: undefined, definePermissions: undefined },
+  integratedHsp: false,
+  projectArkOption: undefined,
+  sourceMapDir: undefined,
+  branchElimination: false,
+  transformLib: undefined,
+  caseSensitiveCheck: false,
+  tsImportSendable: false,
+  resolveConflictMode: true,
+  depName2RootPath: {},
+  depName2DepInfo: {},
+  rootPathSet: [ 'D:\\shopping\\List_commodity' ],
+  useNativeResolver: true,
+  shouldEmitJs: true,
+  useTscResolve: false,
+  singleFileEmit: false,
+  userProjectConfig: {
+    autoLazyImport: false,
+    allowEmptyBundleName: false,
+    reExportCheckMode: 'noCheck',
+    executionMode: 'memory',
+    usePathPlaceholder: false,
+    writeRollupCache: true,
+    isExpandImportEnabled: false,
+    expandImportExclude: '',
+    ignoreCrossplatformCheck: false,
+    isPreloadSoEnabled: false
+  },
+  skipOhModulesLint: false,
+  executionMode: 'memory',
+  autoLazyImport: false,
+  allowEmptyBundleName: false,
+  reExportCheckMode: 'noCheck',
+  usePathPlaceholder: false,
+  writeRollupCache: true,
+  isExpandImportEnabled: false,
+  expandImportExclude: '',
+  ignoreCrossplatformCheck: false,
+  isPreloadSoEnabled: false,
+  arkCompileCachePath: 'D:\\shopping\\List_commodity\\entry\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileArkTS\\esmodule',
+  aceModuleJsonPath: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\ohosTest\\ark_module.json',
+  appResource: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\ohosTest\\ResourceTable.txt',
+  rawFileResource: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\ohosTest\\resources\\rawfile',
+  resourceTableHash: '3f8d6c1fb1a3b08bfe11aed5f2125512',
+  runtimeOS: 'HarmonyOS',
+  sdkInfo: 'false:20:6.0.0.47:Beta5',
+  aceModuleRoot: 'D:\\shopping\\List_commodity\\entry\\src\\ohosTest\\ets',
+  compileMode: 'esmodule',
+  aceSuperVisualPath: 'D:\\shopping\\List_commodity\\entry\\src\\ohosTest\\supervisual',
+  aceBuildJson: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\loader\\ohosTest\\loader.json',
+  cachePath: 'D:\\shopping\\List_commodity\\entry\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileArkTS\\esmodule\\debug',
+  aceModuleBuild: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\loader_out\\ohosTest\\ets',
+  supportChunks: false,
+  declaredFilesPath: undefined,
+  shouldCollectDirectImportees: false,
+  isByteCodeHarOptimize: false,
+  expandImportPath: undefined,
+  pkgNameToPkgBriefInfo: {
+    entry: {
+      pkgRoot: 'D:\\shopping\\List_commodity\\entry',
+      originalSourceRoots: undefined,
+      sourceRoots: [Array],
+      pkgName: 'entry'
+    }
+  },
+  projectModel: {
+    'D:\\shopping\\List_commodity\\entry\\src\\main': {
+      moduleName: 'entry',
+      modulePkgPath: 'D:\\shopping\\List_commodity\\entry',
+      belongProjectPath: 'D:\\shopping\\List_commodity'
+    },
+    'D:\\shopping\\List_commodity\\entry\\src\\ohosTest': {
+      moduleName: 'entry_test',
+      modulePkgPath: 'D:\\shopping\\List_commodity\\entry',
+      belongProjectPath: 'D:\\shopping\\List_commodity'
+    },
+    'D:\\shopping\\List_commodity\\entry': {
+      moduleName: 'entry',
+      modulePkgPath: 'D:\\shopping\\List_commodity\\entry',
+      belongProjectPath: 'D:\\shopping\\List_commodity'
+    },
+    'D:\\shopping\\List_commodity': {
+      moduleName: 'List_commodity',
+      modulePkgPath: 'D:\\shopping\\List_commodity',
+      belongProjectPath: 'D:\\shopping\\List_commodity'
+    }
+  },
+  pkgJsonFileHash: '17e535755504c69b4e6ecbf8aaaca396',
+  allModulePaths: [ 'D:\\shopping\\List_commodity\\entry' ],
+  routerMap: {},
+  obfuscationOptions: undefined,
+  byteCodeHarToDependencyKeys: undefined,
+  compileBlockPkg: [],
+  mockParams: {
+    decorator: '@MockSetup',
+    packageName: '@ohos/hamock',
+    etsSourceRootPath: 'src/main/ets',
+    mockConfigPath: undefined,
+    mockConfigKey2ModuleInfo: {},
+    source2ModuleIdMap: {}
+  },
+  copyCodeResourceEnable: true,
+  copyCodeResourceExcludes: [],
+  copyCodeResourceIncludes: undefined,
+  uiTransformOptimization: false,
+  sdkPath: 'D:/devecostudio-windows-6.0.0.848/DevEco Studio/sdk',
+  needPreloadSoFileSet: {},
+  preloadSoFilePath: 'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\preload\\ohosTest\\preload.json',
+  useSourceHash: false,
+  localModuleParamMap: {},
+  otherPaths: {
+    'entry/*': [
+      '..\\..\\main\\*',
+      '..\\..\\..\\build\\default\\generated\\profile\\ohosTest\\*'
+    ]
+  },
+  collectImportersConfig: undefined
+}
+[2025-12-24T22:18:47.400] [DEBUG] debug-file - Compile arkts with external api path: D:\devecostudio-windows-6.0.0.848\DevEco Studio\sdk\default\hms\ets
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - ohosTest@OhosTestCompileArkTS work[94] is submitted.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - ohosTest@OhosTestCompileArkTS work[94] is pushed to ready queue.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - A work dispatched to worker[19] failed because unable to get work from ready queue.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - A work dispatched to worker[18] failed because unable to get work from ready queue.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - A work dispatched to worker[17] failed because unable to get work from ready queue.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - A work dispatched to worker[16] failed because unable to get work from ready queue.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - A work dispatched to worker[15] failed because unable to get work from ready queue.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - A work dispatched to worker[14] failed because unable to get work from ready queue.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - A work dispatched to worker[13] failed because unable to get work from ready queue.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - A work dispatched to worker[12] failed because unable to get work from ready queue.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - A work dispatched to worker[11] failed because unable to get work from ready queue.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - A work dispatched to worker[10] failed because unable to get work from ready queue.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - A work dispatched to worker[9] failed because unable to get work from ready queue.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - A work dispatched to worker[8] failed because unable to get work from ready queue.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - A work dispatched to worker[7] failed because unable to get work from ready queue.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - A work dispatched to worker[6] failed because unable to get work from ready queue.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - A work dispatched to worker[5] failed because unable to get work from ready queue.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - ohosTest@OhosTestCompileArkTS work[94] has been dispatched to worker[4].
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - ohosTest@OhosTestCompileArkTS work[94] is dispatched.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - CopyResources startTime: 33602128211900
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - ohosTest@OhosTestCompileArkTS work[95] is submitted.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - ohosTest@OhosTestCompileArkTS work[95] is pushed to ready queue.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - A work dispatched to worker[19] failed because unable to get work from ready queue.
+[2025-12-24T22:18:47.402] [DEBUG] debug-file - Create  resident worker with id: 18.
+[2025-12-24T22:18:47.403] [DEBUG] debug-file - ohosTest@OhosTestCompileArkTS work[95] has been dispatched to worker[18].
+[2025-12-24T22:18:47.403] [DEBUG] debug-file - ohosTest@OhosTestCompileArkTS work[95] is dispatched.
+[2025-12-24T22:18:47.403] [DEBUG] debug-file - entry : ohosTest@OhosTestCompileArkTS cost memory 1.24945068359375
+[2025-12-24T22:18:47.405] [DEBUG] debug-file - Executing task :entry:ohosTest@OhosTestBuildJS
+[2025-12-24T22:18:47.408] [DEBUG] debug-file - entry : ohosTest@OhosTestBuildJS cost memory 0.11795806884765625
+[2025-12-24T22:18:47.408] [DEBUG] debug-file - runTaskFromQueue task cost before running: 720 ms 
+[2025-12-24T22:18:47.408] [INFO] debug-file - Finished :entry:ohosTest@OhosTestBuildJS... after 4 ms 
+[2025-12-24T22:18:47.410] [DEBUG] debug-file - Executing task :entry:ohosTest@CacheNativeLibs
+[2025-12-24T22:18:47.410] [DEBUG] debug-file - Task 'entry:ohosTest@CacheNativeLibs' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:47.411] [DEBUG] debug-file - entry:ohosTest@CacheNativeLibs is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\patch\ohosTest\base_native_libs.json' does not exist.
+[2025-12-24T22:18:47.411] [DEBUG] debug-file - Incremental task entry:ohosTest@CacheNativeLibs pre-execution cost: 2 ms .
+[2025-12-24T22:18:47.411] [DEBUG] debug-file - ohosTest@CacheNativeLibs work[96] is submitted.
+[2025-12-24T22:18:47.412] [DEBUG] debug-file - ohosTest@CacheNativeLibs work[96] is pushed to ready queue.
+[2025-12-24T22:18:47.412] [DEBUG] debug-file - A work dispatched to worker[19] failed because unable to get work from ready queue.
+[2025-12-24T22:18:47.412] [DEBUG] debug-file - A work dispatched to worker[18] failed because of worker busy.
+[2025-12-24T22:18:47.412] [DEBUG] debug-file - Create  resident worker with id: 17.
+[2025-12-24T22:18:47.412] [DEBUG] debug-file - ohosTest@CacheNativeLibs work[96] has been dispatched to worker[17].
+[2025-12-24T22:18:47.412] [DEBUG] debug-file - ohosTest@CacheNativeLibs work[96] is dispatched.
+[2025-12-24T22:18:47.412] [DEBUG] debug-file - entry : ohosTest@CacheNativeLibs cost memory 0.2321319580078125
+[2025-12-24T22:18:48.527] [DEBUG] debug-file - worker[17] has one work done.
+[2025-12-24T22:18:48.527] [DEBUG] debug-file - ohosTest@CacheNativeLibs work[96] done.
+[2025-12-24T22:18:48.527] [DEBUG] debug-file - A work dispatched to worker[17] failed because unable to get work from ready queue.
+[2025-12-24T22:18:48.527] [INFO] debug-file - Finished :entry:ohosTest@CacheNativeLibs... after 8 ms 
+[2025-12-24T22:18:48.537] [DEBUG] debug-file - worker[18] has one work done.
+[2025-12-24T22:18:48.537] [DEBUG] debug-file - CopyResources is end, endTime: 33603263110300
+[2025-12-24T22:18:48.537] [DEBUG] debug-file - ohosTest@OhosTestCompileArkTS work[95] done.
+[2025-12-24T22:18:48.537] [DEBUG] debug-file - A work dispatched to worker[18] failed because unable to get work from ready queue.
+[2025-12-24T22:18:50.122] [DEBUG] debug-file - Ark compile task finished.finished time is 33604847999300
+[2025-12-24T22:18:50.122] [DEBUG] debug-file - worker[4] has one work done.
+[2025-12-24T22:18:50.124] [DEBUG] debug-file - ohosTest@OhosTestCompileArkTS work[94] done.
+[2025-12-24T22:18:50.124] [DEBUG] debug-file - A work dispatched to worker[4] failed because unable to get work from ready queue.
+[2025-12-24T22:18:50.127] [INFO] debug-file - Finished :entry:ohosTest@OhosTestCompileArkTS... after 2 s 740 ms 
+[2025-12-24T22:18:50.128] [DEBUG] debug-file - Executing task :entry:ohosTest@OhosTestCopyMockConfigJson
+[2025-12-24T22:18:50.128] [DEBUG] debug-file - File: 'D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest\mock-config.json' from 'mockConfigJsonFile' is not exists, just ignore.
+[2025-12-24T22:18:50.128] [DEBUG] debug-file - Task 'entry:ohosTest@OhosTestCopyMockConfigJson' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:50.128] [DEBUG] debug-file - entry:ohosTest@OhosTestCopyMockConfigJson is not up-to-date, since the output file 'D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest\resources\rawfile\mock\mock-config.json' does not exist.
+[2025-12-24T22:18:50.128] [DEBUG] debug-file - Incremental task entry:ohosTest@OhosTestCopyMockConfigJson pre-execution cost: 1 ms .
+[2025-12-24T22:18:50.129] [DEBUG] debug-file - Failed to generate mock-config.json during compilation.
+[2025-12-24T22:18:50.129] [DEBUG] debug-file - entry : ohosTest@OhosTestCopyMockConfigJson cost memory 0.10961151123046875
+[2025-12-24T22:18:50.129] [DEBUG] debug-file - runTaskFromQueue task cost before running: 3 s 440 ms 
+[2025-12-24T22:18:50.129] [INFO] debug-file - Finished :entry:ohosTest@OhosTestCopyMockConfigJson... after 1 ms 
+[2025-12-24T22:18:50.130] [DEBUG] debug-file - Executing task :entry:ohosTest@GeneratePkgModuleJson
+[2025-12-24T22:18:50.130] [DEBUG] debug-file - File: 'D:\shopping\List_commodity\entry\build\default\intermediates\preload\ohosTest\preload.json' from 'preloadSoJsonPath' is not exists, just ignore.
+[2025-12-24T22:18:50.130] [DEBUG] debug-file - Task 'entry:ohosTest@GeneratePkgModuleJson' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:50.131] [DEBUG] debug-file - entry:ohosTest@GeneratePkgModuleJson is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest\module.json' has been changed.
+[2025-12-24T22:18:50.131] [DEBUG] debug-file - Incremental task entry:ohosTest@GeneratePkgModuleJson pre-execution cost: 1 ms .
+[2025-12-24T22:18:50.133] [DEBUG] debug-file - entry : ohosTest@GeneratePkgModuleJson cost memory 0.10329437255859375
+[2025-12-24T22:18:50.133] [DEBUG] debug-file - runTaskFromQueue task cost before running: 3 s 444 ms 
+[2025-12-24T22:18:50.133] [INFO] debug-file - Finished :entry:ohosTest@GeneratePkgModuleJson... after 3 ms 
+[2025-12-24T22:18:50.134] [DEBUG] debug-file - Executing task :entry:ohosTest@ProcessCompiledResources
+[2025-12-24T22:18:50.134] [DEBUG] debug-file - File: 'D:\shopping\List_commodity\entry\build\default\intermediates\preload\ohosTest\preload.json' from 'preloadSoJsonPath' is not exists, just ignore.
+[2025-12-24T22:18:50.134] [DEBUG] debug-file - Task 'entry:ohosTest@ProcessCompiledResources' cost while wrapping incremental declarations: 1 ms 
+[2025-12-24T22:18:50.134] [DEBUG] debug-file - entry : ohosTest@ProcessCompiledResources cost memory 0.0623626708984375
+[2025-12-24T22:18:50.135] [DEBUG] debug-file - runTaskFromQueue task cost before running: 3 s 446 ms 
+[2025-12-24T22:18:50.135] [INFO] debug-file - Finished :entry:ohosTest@ProcessCompiledResources... after 1 ms 
+[2025-12-24T22:18:50.136] [DEBUG] debug-file - Executing task :entry:ohosTest@PackageHap
+[2025-12-24T22:18:50.141] [DEBUG] debug-file - entry:ohosTest@PackageHap is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest\module.json' has been changed.
+[2025-12-24T22:18:50.141] [DEBUG] debug-file - Incremental task entry:ohosTest@PackageHap pre-execution cost: 4 ms .
+[2025-12-24T22:18:50.142] [DEBUG] debug-file - Use tool [D:\devecostudio-windows-6.0.0.848\DevEco Studio\sdk\default\openharmony\toolchains\lib\app_packing_tool.jar]
+ [
+  'java',
+  '-Dfile.encoding=GBK',
+  '-jar',
+  'D:\\devecostudio-windows-6.0.0.848\\DevEco Studio\\sdk\\default\\openharmony\\toolchains\\lib\\app_packing_tool.jar',
+  '--mode',
+  'hap',
+  '--force',
+  'true',
+  '--lib-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\stripped_native_libs\\ohosTest',
+  '--json-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\package\\ohosTest\\module.json',
+  '--resources-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\ohosTest\\resources',
+  '--index-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\res\\ohosTest\\resources.index',
+  '--pack-info-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\outputs\\ohosTest\\pack.info',
+  '--out-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\outputs\\ohosTest\\entry-ohosTest-unsigned.hap',
+  '--ets-path',
+  'D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\loader_out\\ohosTest\\ets'
+]
+[2025-12-24T22:18:50.204] [DEBUG] debug-file - java daemon socket received message:{"code":0,"message":"pack success"}
+[2025-12-24T22:18:50.207] [DEBUG] debug-file - entry : ohosTest@PackageHap cost memory 0.3624114990234375
+[2025-12-24T22:18:50.208] [DEBUG] debug-file - runTaskFromQueue task cost before running: 3 s 519 ms 
+[2025-12-24T22:18:50.209] [INFO] debug-file - Finished :entry:ohosTest@PackageHap... after 72 ms 
+[2025-12-24T22:18:50.211] [DEBUG] debug-file - Executing task :entry:ohosTest@PackingCheck
+[2025-12-24T22:18:50.214] [DEBUG] debug-file - entry : ohosTest@PackingCheck cost memory 0.195709228515625
+[2025-12-24T22:18:50.214] [DEBUG] debug-file - runTaskFromQueue task cost before running: 3 s 525 ms 
+[2025-12-24T22:18:50.214] [INFO] debug-file - Finished :entry:ohosTest@PackingCheck... after 3 ms 
+[2025-12-24T22:18:50.215] [DEBUG] debug-file - Executing task :entry:ohosTest@SignHap
+[2025-12-24T22:18:50.215] [WARN] debug-file - Will skip sign 'hos_hap'. No signingConfigs profile is configured in current project.
+             If needed, configure the signingConfigs in D:\shopping\List_commodity\build-profile.json5.
+[2025-12-24T22:18:50.217] [DEBUG] debug-file - entry:ohosTest@SignHap is not up-to-date, since the input file 'D:\shopping\List_commodity\entry\build\default\outputs\ohosTest\entry-ohosTest-unsigned.hap' has been changed.
+[2025-12-24T22:18:50.217] [DEBUG] debug-file - Incremental task entry:ohosTest@SignHap pre-execution cost: 2 ms .
+[2025-12-24T22:18:50.217] [DEBUG] debug-file - entry : ohosTest@SignHap cost memory 0.09209442138671875
+[2025-12-24T22:18:50.217] [DEBUG] debug-file - runTaskFromQueue task cost before running: 3 s 529 ms 
+[2025-12-24T22:18:50.218] [INFO] debug-file - Finished :entry:ohosTest@SignHap... after 3 ms 
+[2025-12-24T22:18:50.219] [DEBUG] debug-file - Executing task :entry:ohosTest@CollectDebugSymbol
+[2025-12-24T22:18:50.220] [DEBUG] debug-file - entry : ohosTest@CollectDebugSymbol cost memory 0.0836181640625
+[2025-12-24T22:18:50.221] [DEBUG] debug-file - runTaskFromQueue task cost before running: 3 s 532 ms 
+[2025-12-24T22:18:50.221] [INFO] debug-file - Finished :entry:ohosTest@CollectDebugSymbol... after 2 ms 
+[2025-12-24T22:18:50.221] [DEBUG] debug-file - Executing task :entry:assembleHap
+[2025-12-24T22:18:50.221] [DEBUG] debug-file - entry : assembleHap cost memory 0.0174560546875
+[2025-12-24T22:18:50.221] [DEBUG] debug-file - runTaskFromQueue task cost before running: 3 s 532 ms 
+[2025-12-24T22:18:50.221] [INFO] debug-file - Finished :entry:assembleHap... after 1 ms 
+[2025-12-24T22:18:50.231] [INFO] debug-file - BUILD SUCCESSFUL in 3 s 542 ms 
+[2025-12-24T22:18:50.231] [DEBUG] debug-file - There is no need to refresh cache, since the incremental task entry:ohosTest@PreBuild is up-to-date.
+[2025-12-24T22:18:50.231] [DEBUG] debug-file - Update task entry:ohosTest@CreateModuleInfo output file:D:\shopping\List_commodity\entry\build\default\generated\profile\ohosTest\ModuleInfo.ts cache.
+[2025-12-24T22:18:50.231] [DEBUG] debug-file - Incremental task entry:ohosTest@CreateModuleInfo post-execution cost:1 ms .
+[2025-12-24T22:18:50.231] [DEBUG] debug-file - Update task entry:ohosTest@GenerateMetadata input file:D:\shopping\List_commodity\entry\src\ohosTest\module.json5 cache by regenerate.
+[2025-12-24T22:18:50.232] [DEBUG] debug-file - Update task entry:ohosTest@GenerateMetadata output file:D:\shopping\List_commodity\entry\build\default\intermediates\hap_metadata\ohosTest\output_metadata.json cache.
+[2025-12-24T22:18:50.232] [DEBUG] debug-file - Incremental task entry:ohosTest@GenerateMetadata post-execution cost:1 ms .
+[2025-12-24T22:18:50.232] [DEBUG] debug-file - Update task entry:ohosTest@MergeProfile input file:D:\shopping\List_commodity\AppScope\app.json5 cache by regenerate.
+[2025-12-24T22:18:50.232] [DEBUG] debug-file - Update task entry:ohosTest@MergeProfile input file:D:\shopping\List_commodity\build-profile.json5 cache by regenerate.
+[2025-12-24T22:18:50.232] [DEBUG] debug-file - Update task entry:ohosTest@MergeProfile input file:D:\shopping\List_commodity\entry\src\ohosTest\module.json5 cache by regenerate.
+[2025-12-24T22:18:50.233] [DEBUG] debug-file - Update task entry:ohosTest@MergeProfile output file:D:\shopping\List_commodity\entry\build\default\intermediates\merge_profile\ohosTest\module.json cache.
+[2025-12-24T22:18:50.233] [DEBUG] debug-file - Update task entry:ohosTest@MergeProfile output file:D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest cache.
+[2025-12-24T22:18:50.241] [DEBUG] debug-file - Incremental task entry:ohosTest@MergeProfile post-execution cost:10 ms .
+[2025-12-24T22:18:50.241] [DEBUG] debug-file - Update task entry:ohosTest@CreateBuildProfile input file:D:\shopping\List_commodity\AppScope\app.json5 cache by regenerate.
+[2025-12-24T22:18:50.242] [DEBUG] debug-file - Update task entry:ohosTest@CreateBuildProfile input file:D:\shopping\List_commodity\build-profile.json5 cache by regenerate.
+[2025-12-24T22:18:50.242] [DEBUG] debug-file - Update task entry:ohosTest@CreateBuildProfile output file:D:\shopping\List_commodity\entry\build\default\generated\profile\ohosTest\BuildProfile.ets cache.
+[2025-12-24T22:18:50.242] [DEBUG] debug-file - Incremental task entry:ohosTest@CreateBuildProfile post-execution cost:1 ms .
+[2025-12-24T22:18:50.242] [DEBUG] debug-file - Update task entry:ohosTest@GeneratePkgContextInfo output file:D:\shopping\List_commodity\entry\build\default\intermediates\loader\ohosTest\pkgContextInfo.json cache.
+[2025-12-24T22:18:50.242] [DEBUG] debug-file - Incremental task entry:ohosTest@GeneratePkgContextInfo post-execution cost:1 ms .
+[2025-12-24T22:18:50.242] [DEBUG] debug-file - Update task entry:ohosTest@ProcessIntegratedHsp output file:D:\shopping\List_commodity\build\cache\default\integrated_hsp\integratedHspCache.json cache.
+[2025-12-24T22:18:50.242] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessIntegratedHsp post-execution cost:1 ms .
+[2025-12-24T22:18:50.243] [DEBUG] debug-file - Update task entry:ohosTest@MakePackInfo input file:D:\shopping\List_commodity\AppScope\app.json5 cache by regenerate.
+[2025-12-24T22:18:50.243] [DEBUG] debug-file - Update task entry:ohosTest@MakePackInfo input file:D:\shopping\List_commodity\entry\src\ohosTest\module.json5 cache by regenerate.
+[2025-12-24T22:18:50.243] [DEBUG] debug-file - Update task entry:ohosTest@MakePackInfo input file:D:\shopping\List_commodity\build-profile.json5 cache by regenerate.
+[2025-12-24T22:18:50.243] [DEBUG] debug-file - Update task entry:ohosTest@MakePackInfo output file:D:\shopping\List_commodity\entry\build\default\outputs\ohosTest\pack.info cache.
+[2025-12-24T22:18:50.243] [DEBUG] debug-file - Incremental task entry:ohosTest@MakePackInfo post-execution cost:1 ms .
+[2025-12-24T22:18:50.244] [DEBUG] debug-file - Update task entry:ohosTest@SyscapTransform input file:D:\devecostudio-windows-6.0.0.848\DevEco Studio\sdk\default\openharmony\toolchains\syscap_tool.exe cache by regenerate.
+[2025-12-24T22:18:50.244] [DEBUG] debug-file - Update task entry:ohosTest@SyscapTransform input file:D:\devecostudio-windows-6.0.0.848\DevEco Studio\sdk\default\openharmony\ets\api\device-define cache by regenerate.
+[2025-12-24T22:18:50.245] [DEBUG] debug-file - Update task entry:ohosTest@SyscapTransform output file:D:\shopping\List_commodity\entry\build\default\intermediates\syscap\ohosTest\rpcid.sc cache.
+[2025-12-24T22:18:50.245] [DEBUG] debug-file - Incremental task entry:ohosTest@SyscapTransform post-execution cost:2 ms .
+[2025-12-24T22:18:50.245] [DEBUG] debug-file - Update task entry:ohosTest@ProcessProfile input file:D:\shopping\List_commodity\entry\build\default\intermediates\merge_profile\ohosTest\module.json cache from map.
+[2025-12-24T22:18:50.245] [DEBUG] debug-file - Update task entry:ohosTest@ProcessProfile output file:D:\shopping\List_commodity\entry\build\default\intermediates\process_profile\ohosTest\module.json cache.
+[2025-12-24T22:18:50.246] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessProfile post-execution cost:1 ms .
+[2025-12-24T22:18:50.246] [DEBUG] debug-file - Update task entry:ohosTest@ProcessRouterMap input file:D:\shopping\List_commodity\entry\oh-package.json5 cache by regenerate.
+[2025-12-24T22:18:50.246] [DEBUG] debug-file - Update task entry:ohosTest@ProcessRouterMap input file:D:\shopping\List_commodity\oh-package.json5 cache by regenerate.
+[2025-12-24T22:18:50.246] [DEBUG] debug-file - Update task entry:ohosTest@ProcessRouterMap input file:D:\shopping\List_commodity\entry\src\ohosTest\module.json5 cache by regenerate.
+[2025-12-24T22:18:50.247] [DEBUG] debug-file - Update task entry:ohosTest@ProcessRouterMap output file:D:\shopping\List_commodity\entry\build\default\intermediates\router_map\ohosTest\temp-router-map.json cache.
+[2025-12-24T22:18:50.247] [DEBUG] debug-file - Update task entry:ohosTest@ProcessRouterMap output file:D:\shopping\List_commodity\entry\build\default\intermediates\router_map\ohosTest\loader-router-map.json cache.
+[2025-12-24T22:18:50.247] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessRouterMap post-execution cost:2 ms .
+[2025-12-24T22:18:50.247] [DEBUG] debug-file - Update task entry:ohosTest@ProcessShareConfig input file:D:\shopping\List_commodity\entry\oh-package.json5 cache by regenerate.
+[2025-12-24T22:18:50.248] [DEBUG] debug-file - Update task entry:ohosTest@ProcessShareConfig input file:D:\shopping\List_commodity\oh-package.json5 cache by regenerate.
+[2025-12-24T22:18:50.248] [DEBUG] debug-file - Update task entry:ohosTest@ProcessShareConfig input file:D:\shopping\List_commodity\entry\src\ohosTest\module.json5 cache by regenerate.
+[2025-12-24T22:18:50.248] [DEBUG] debug-file - Update task entry:ohosTest@ProcessShareConfig output file:D:\shopping\List_commodity\entry\build\default\intermediates\share_config\ohosTest\temp-share-config.json cache.
+[2025-12-24T22:18:50.248] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessShareConfig post-execution cost:2 ms .
+[2025-12-24T22:18:50.248] [DEBUG] debug-file - Update task entry:ohosTest@ProcessStartupConfig output file:D:\shopping\List_commodity\entry\build\default\intermediates\startup\ohosTest\startup_config.json cache.
+[2025-12-24T22:18:50.249] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessStartupConfig post-execution cost:1 ms .
+[2025-12-24T22:18:50.249] [DEBUG] debug-file - Update task entry:ohosTest@ProcessResource output file:D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest\resConfig.json cache.
+[2025-12-24T22:18:50.249] [DEBUG] debug-file - Update task entry:ohosTest@ProcessResource output file:D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest\opt-compression.json cache.
+[2025-12-24T22:18:50.249] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessResource post-execution cost:1 ms .
+[2025-12-24T22:18:50.250] [DEBUG] debug-file - Update task entry:ohosTest@GenerateLoaderJson input file:D:\shopping\List_commodity\entry\build\default\intermediates\router_map\ohosTest\temp-router-map.json cache from map.
+[2025-12-24T22:18:50.250] [DEBUG] debug-file - Update task entry:ohosTest@GenerateLoaderJson output file:D:\shopping\List_commodity\entry\build\default\intermediates\loader\ohosTest\loader.json cache.
+[2025-12-24T22:18:50.250] [DEBUG] debug-file - Incremental task entry:ohosTest@GenerateLoaderJson post-execution cost:2 ms .
+[2025-12-24T22:18:50.251] [DEBUG] debug-file - Update task entry:ohosTest@ProcessLibs input file:D:\shopping\List_commodity\build-profile.json5 cache by regenerate.
+[2025-12-24T22:18:50.251] [DEBUG] debug-file - Update task entry:ohosTest@ProcessLibs input file:D:\shopping\List_commodity\entry\build-profile.json5 cache by regenerate.
+[2025-12-24T22:18:50.251] [DEBUG] debug-file - Update task entry:ohosTest@ProcessLibs output file:D:\shopping\List_commodity\entry\build\default\intermediates\libs\ohosTest cache.
+[2025-12-24T22:18:50.252] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessLibs post-execution cost:2 ms .
+[2025-12-24T22:18:50.253] [DEBUG] debug-file - Update task entry:ohosTest@CompileResource input file:D:\shopping\List_commodity\AppScope\resources cache by regenerate.
+[2025-12-24T22:18:50.254] [DEBUG] debug-file - Update task entry:ohosTest@CompileResource input file:D:\shopping\List_commodity\entry\build\default\intermediates\process_profile\ohosTest\module.json cache from map.
+[2025-12-24T22:18:50.254] [DEBUG] debug-file - Update task entry:ohosTest@CompileResource input file:D:\shopping\List_commodity\entry\src\main\resources cache by regenerate.
+[2025-12-24T22:18:50.262] [DEBUG] debug-file - Update task entry:ohosTest@CompileResource input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest\resConfig.json cache by regenerate.
+[2025-12-24T22:18:50.262] [DEBUG] debug-file - Update task entry:ohosTest@CompileResource output file:D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest cache.
+[2025-12-24T22:18:50.270] [DEBUG] debug-file - Update task entry:ohosTest@CompileResource output file:D:\shopping\List_commodity\entry\build\default\generated\r\ohosTest\ResourceTable.h cache.
+[2025-12-24T22:18:50.271] [DEBUG] debug-file - Update task entry:ohosTest@CompileResource output file:D:\shopping\List_commodity\entry\build\default\generated\r\ohosTest cache.
+[2025-12-24T22:18:50.272] [DEBUG] debug-file - Incremental task entry:ohosTest@CompileResource post-execution cost:21 ms .
+[2025-12-24T22:18:50.272] [DEBUG] debug-file - Update task entry:ohosTest@DoNativeStrip input file:D:\shopping\List_commodity\entry\build\default\intermediates\libs\ohosTest cache by regenerate.
+[2025-12-24T22:18:50.272] [DEBUG] debug-file - Update task entry:ohosTest@DoNativeStrip output file:D:\shopping\List_commodity\entry\build\default\intermediates\stripped_native_libs\ohosTest cache.
+[2025-12-24T22:18:50.273] [DEBUG] debug-file - Incremental task entry:ohosTest@DoNativeStrip post-execution cost:1 ms .
+[2025-12-24T22:18:50.274] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCompileArkTS input file:D:\shopping\List_commodity\entry\build\default\intermediates\loader\ohosTest cache from map.
+[2025-12-24T22:18:50.274] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCompileArkTS input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest\ark_module.json cache by regenerate.
+[2025-12-24T22:18:50.275] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCompileArkTS input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest\resources\base\profile cache by regenerate.
+[2025-12-24T22:18:50.275] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCompileArkTS input file:D:\shopping\List_commodity\entry\src\ohosTest\ets cache by regenerate.
+[2025-12-24T22:18:50.277] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCompileArkTS input file:D:\shopping\List_commodity\entry\src\ohosTest cache by regenerate.
+[2025-12-24T22:18:50.280] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCompileArkTS input file:D:\shopping\List_commodity\entry\build\default\generated\profile\ohosTest\BuildProfile.ets cache by regenerate.
+[2025-12-24T22:18:50.280] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCompileArkTS input file:D:\shopping\List_commodity\entry\src\main\ets cache by regenerate.
+[2025-12-24T22:18:50.284] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCompileArkTS output file:D:\shopping\List_commodity\entry\build\default\intermediates\loader_out\ohosTest\ets cache.
+[2025-12-24T22:18:50.285] [DEBUG] debug-file - Incremental task entry:ohosTest@OhosTestCompileArkTS post-execution cost:13 ms .
+[2025-12-24T22:18:50.287] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestBuildJS input file:D:\shopping\List_commodity\entry\build\default\intermediates\loader\ohosTest cache by regenerate.
+[2025-12-24T22:18:50.287] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestBuildJS input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest\ark_module.json cache by regenerate.
+[2025-12-24T22:18:50.288] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestBuildJS input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest\resources\base\profile cache by regenerate.
+[2025-12-24T22:18:50.288] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestBuildJS input file:D:\shopping\List_commodity\entry\src\ohosTest cache by regenerate.
+[2025-12-24T22:18:50.291] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestBuildJS output file:D:\shopping\List_commodity\entry\build\default\intermediates\loader_out\ohosTest\js cache.
+[2025-12-24T22:18:50.292] [DEBUG] debug-file - Incremental task entry:ohosTest@OhosTestBuildJS post-execution cost:7 ms .
+[2025-12-24T22:18:50.292] [DEBUG] debug-file - Update task entry:ohosTest@CacheNativeLibs input file:D:\shopping\List_commodity\entry\build\default\intermediates\stripped_native_libs\ohosTest cache by regenerate.
+[2025-12-24T22:18:50.292] [DEBUG] debug-file - Update task entry:ohosTest@CacheNativeLibs input file:D:\shopping\List_commodity\entry\build\default\intermediates\libs\ohosTest cache by regenerate.
+[2025-12-24T22:18:50.292] [DEBUG] debug-file - Update task entry:ohosTest@CacheNativeLibs output file:D:\shopping\List_commodity\entry\build\default\intermediates\patch\ohosTest\base_native_libs.json cache.
+[2025-12-24T22:18:50.293] [DEBUG] debug-file - Incremental task entry:ohosTest@CacheNativeLibs post-execution cost:1 ms .
+[2025-12-24T22:18:50.293] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCopyMockConfigJson output file:D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest\resources\rawfile\mock\mock-config.json cache.
+[2025-12-24T22:18:50.293] [DEBUG] debug-file - Incremental task entry:ohosTest@OhosTestCopyMockConfigJson post-execution cost:1 ms .
+[2025-12-24T22:18:50.293] [DEBUG] debug-file - Update task entry:ohosTest@GeneratePkgModuleJson input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest\module.json cache from map.
+[2025-12-24T22:18:50.293] [DEBUG] debug-file - Update task entry:ohosTest@GeneratePkgModuleJson output file:D:\shopping\List_commodity\entry\build\default\intermediates\package\ohosTest\module.json cache.
+[2025-12-24T22:18:50.293] [DEBUG] debug-file - Incremental task entry:ohosTest@GeneratePkgModuleJson post-execution cost:1 ms .
+[2025-12-24T22:18:50.293] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessCompiledResources post-execution cost:1 ms .
+[2025-12-24T22:18:50.294] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap input file:D:\shopping\List_commodity\entry\build\default\intermediates\stripped_native_libs\ohosTest cache by regenerate.
+[2025-12-24T22:18:50.294] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest\module.json cache from map.
+[2025-12-24T22:18:50.294] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest\resources cache by regenerate.
+[2025-12-24T22:18:50.300] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap input file:D:\shopping\List_commodity\entry\build\default\intermediates\res\ohosTest\resources.index cache by regenerate.
+[2025-12-24T22:18:50.300] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap input file:D:\shopping\List_commodity\entry\build\default\outputs\ohosTest\pack.info cache by regenerate.
+[2025-12-24T22:18:50.300] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap input file:D:\shopping\List_commodity\entry\build\default\intermediates\loader_out\ohosTest\ets cache by regenerate.
+[2025-12-24T22:18:50.301] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap input file:D:\shopping\List_commodity\entry\build\default\intermediates\loader_out\ohosTest\ets\sourceMaps.map cache by regenerate.
+[2025-12-24T22:18:50.301] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap input file:D:\shopping\List_commodity\entry\build\default\generated\profile\ohosTest\BuildProfile.ets cache by regenerate.
+[2025-12-24T22:18:50.301] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap output file:D:\shopping\List_commodity\entry\build\default\outputs\ohosTest\entry-ohosTest-unsigned.hap cache.
+[2025-12-24T22:18:50.301] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap output file:D:\shopping\List_commodity\entry\build\default\intermediates\source_map\ohosTest\sourceMaps.map cache.
+[2025-12-24T22:18:50.302] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap output file:D:\shopping\List_commodity\entry\build\default\outputs\ohosTest\mapping\sourceMaps.map cache.
+[2025-12-24T22:18:50.302] [DEBUG] debug-file - Incremental task entry:ohosTest@PackageHap post-execution cost:9 ms .
+[2025-12-24T22:18:50.303] [DEBUG] debug-file - Update task entry:ohosTest@SignHap input file:D:\shopping\List_commodity\entry\build\default\outputs\ohosTest\entry-ohosTest-unsigned.hap cache from map.
+[2025-12-24T22:18:50.303] [DEBUG] debug-file - Update task entry:ohosTest@SignHap output file:D:\shopping\List_commodity\entry\build\default\outputs\ohosTest\entry-ohosTest-signed.hap cache.
+[2025-12-24T22:18:50.303] [DEBUG] debug-file - Incremental task entry:ohosTest@SignHap post-execution cost:1 ms .
+[2025-12-24T22:18:50.304] [DEBUG] debug-file - Update task entry:ohosTest@CollectDebugSymbol input file:D:\shopping\List_commodity\entry\build\default\intermediates\loader_out\ohosTest\ets\sourceMaps.map cache by regenerate.
+[2025-12-24T22:18:50.304] [DEBUG] debug-file - Update task entry:ohosTest@CollectDebugSymbol input file:D:\shopping\List_commodity\entry\build\default\intermediates\libs\ohosTest cache by regenerate.
+[2025-12-24T22:18:50.304] [DEBUG] debug-file - Update task entry:ohosTest@CollectDebugSymbol output file:D:\shopping\List_commodity\entry\build\default\outputs\ohosTest\symbol cache.
+[2025-12-24T22:18:50.305] [DEBUG] debug-file - Incremental task entry:ohosTest@CollectDebugSymbol post-execution cost:2 ms .
+[2025-12-24T22:18:50.328] [DEBUG] debug-file - Cleanup worker 17.
+[2025-12-24T22:18:50.328] [DEBUG] debug-file - Worker 17 has been cleaned up.
+[2025-12-24T22:18:50.328] [DEBUG] debug-file - Current idle worker size: 2.
+[2025-12-24T22:18:50.328] [DEBUG] debug-file - Current resident worker size: 3.
+[2025-12-24T22:18:50.328] [DEBUG] debug-file - Cleanup worker 18.
+[2025-12-24T22:18:50.328] [DEBUG] debug-file - Worker 18 has been cleaned up.
+[2025-12-24T22:18:50.328] [DEBUG] debug-file - Current idle worker size: 1.
+[2025-12-24T22:18:50.328] [DEBUG] debug-file - Current resident worker size: 3.
+[2025-12-24T22:18:50.329] [DEBUG] debug-file - hvigor build process will be closed.
+[2025-12-24T22:18:50.329] [DEBUG] debug-file - java daemon socket close code:1000 reason:close by user
+[2025-12-24T22:18:50.333] [DEBUG] debug-file - session manager: send message to worker process.
+[2025-12-24T22:18:50.333] [DEBUG] debug-file - session manager: send message to worker process.
+[2025-12-24T22:18:50.333] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2025-12-24T22:18:50.334] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2025-12-24T22:18:50.337] [DEBUG] debug-file - worker[17] exits with exit code 1.
+[2025-12-24T22:18:50.337] [DEBUG] debug-file - worker[18] exits with exit code 1.
