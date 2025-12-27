@@ -133,7 +133,7 @@ class DataDriver {
 }
 
 export default DataDriver;
-ÂÙ|D:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\config\DataDriver.jsÔrB˜±isLocalDependency¯isNodeEntryFile§pkgPath§pkgNameªpkgVersion±belongProjectPath±dependencyPkgInfo¨commonjsÂÂÙWD:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium¬@ohos/hypium¦1.0.24ºD:\shopping\List_commodityÔrC’§pkgNameªpkgVersion¬@ohos/hypium¦1.0.24ÔrD’°hasDefaultExportªisCommonJSÃÂÃÚ*/*
+ÂÙrG:\harmony\qimo2\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\config\DataDriver.jsÔrB˜±isLocalDependency¯isNodeEntryFile§pkgPath§pkgNameªpkgVersion±belongProjectPath±dependencyPkgInfo¨commonjsÂÂÙMG:\harmony\qimo2\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium¬@ohos/hypium¦1.0.24°G:\harmony\qimo2ÔrC’§pkgNameªpkgVersion¬@ohos/hypium¦1.0.24ÔrD’°hasDefaultExportªisCommonJSÃÂÃÚ*/*
  * Copyright (c) 2021-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -559,7 +559,7 @@ $”% 
  Ì‚
 ” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚—”  Ìƒ ” Ìƒ” Ìƒ” Ìƒ” Ìƒ” Ìƒ” Ìƒ“”  Ì„ ” Ì„” Ì„’”  Ì… ” Ì…Ü ”  Ì† ” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†”	 Ì†	”
  Ì†
-” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†‘Ù|D:\shopping\List_commodity\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\config\DataDriver.js‘Ú*/*
+” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†‘ÙrG:\harmony\qimo2\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\config\DataDriver.js‘Ú*/*
  * Copyright (c) 2021-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

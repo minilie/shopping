@@ -3,8 +3,10 @@ if (!("finalizeConstruction" in ViewPU.prototype)) {
 }
 interface ProductItem_Params {
     product?: Product;
+    category?: ProductCategory;
 }
-import type { Product } from '../viewmodel/ListDataSource';
+import type { Product, ProductCategory } from '../viewmodel/ListDataSource';
+import router from "@ohos:router";
 export class ProductItem extends ViewPU {
     constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
         super(parent, __localStorage, elmtId, extraInfo);
@@ -12,6 +14,7 @@ export class ProductItem extends ViewPU {
             this.paramsGenerator_ = paramsLambda;
         }
         this.__product = new SynchedPropertyObjectOneWayPU(params.product, this, "product");
+        this.__category = new SynchedPropertySimpleOneWayPU(params.category, this, "category");
         this.setInitiallyProvidedValue(params);
         this.finalizeConstruction();
     }
@@ -19,12 +22,15 @@ export class ProductItem extends ViewPU {
     }
     updateStateVars(params: ProductItem_Params) {
         this.__product.reset(params.product);
+        this.__category.reset(params.category);
     }
     purgeVariableDependenciesOnElmtId(rmElmtId) {
         this.__product.purgeDependencyOnElmtId(rmElmtId);
+        this.__category.purgeDependencyOnElmtId(rmElmtId);
     }
     aboutToBeDeleted() {
         this.__product.aboutToBeDeleted();
+        this.__category.aboutToBeDeleted();
         SubscriberManager.Get().delete(this.id__());
         this.aboutToBeDeletedInternal();
     }
@@ -35,6 +41,13 @@ export class ProductItem extends ViewPU {
     set product(newValue: Product) {
         this.__product.set(newValue);
     }
+    private __category: SynchedPropertySimpleOneWayPU<ProductCategory>;
+    get category() {
+        return this.__category.get();
+    }
+    set category(newValue: ProductCategory) {
+        this.__category.set(newValue);
+    }
     initialRender() {
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Column.create();
@@ -43,6 +56,21 @@ export class ProductItem extends ViewPU {
             Column.borderRadius(16);
             Column.margin({ bottom: 12, left: 12, right: 12 });
             Column.shadow({ radius: 6, color: '#14000000', offsetX: 0, offsetY: 2 });
+            Column.onClick(() => {
+                router.pushUrl({
+                    url: 'pages/Detail',
+                    params: {
+                        id: this.product.id,
+                        category: this.category,
+                        name: this.product.name,
+                        price: this.product.price,
+                        description: this.product.description,
+                        // 不直接传递 Resource，改为通过分类+ID在详情页重建数据源后查找
+                        ratingPercentage: this.product.ratingPercentage,
+                        ratingCount: this.product.ratingCount
+                    }
+                });
+            });
         }, Column);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Stack.create();
@@ -55,7 +83,7 @@ export class ProductItem extends ViewPU {
             Image.height(180);
             Image.objectFit(ImageFit.Cover);
             Image.borderRadius(12);
-            Image.alt({ "id": 16777259, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" });
+            Image.alt({ "id": 16777264, "type": 20000, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" });
         }, Image);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             If.create();
@@ -177,6 +205,24 @@ export class ProductItem extends ViewPU {
             Text.backgroundColor('#2D6A4F');
             Text.borderRadius(12);
             Text.padding({ left: 10, right: 10, top: 6, bottom: 6 });
+            Text.onClick(() => {
+                router.pushUrl({
+                    url: 'pages/Detail',
+                    params: {
+                        id: this.product.id,
+                        category: this.category,
+                        name: this.product.name,
+                        price: this.product.price,
+                        description: this.product.description,
+                        // 不直接传递 Resource，改为通过分类+ID在详情页重建数据源后查找
+                        ratingPercentage: this.product.ratingPercentage,
+                        ratingCount: this.product.ratingCount
+                    }
+                });
+            });
+            Text.onClick(() => {
+                router.pushUrl({ url: 'pages/Detail', params: { id: this.product.id } });
+            });
         }, Text);
         Text.pop();
         // 评价和价格行

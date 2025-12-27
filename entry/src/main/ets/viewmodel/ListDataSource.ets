@@ -6,6 +6,7 @@ export interface Product {
   imageUrl: Resource;
   ratingCount?: number;
   ratingPercentage?: number;
+  subCategory?: string;
 }
 
 // Enum for categories to make code cleaner and prevent typos
@@ -48,6 +49,7 @@ export class ProductListDataSource implements IDataSource {
   private searchQuery: string = '';
   private sortOption: SortOption = SortOption.DEFAULT;
   private priceFilter: PriceFilter = PriceFilter.ALL;
+  private subCategory: string = '';
 
   constructor(category: ProductCategory) { // <--- Accept category in constructor
     this.category = category; // Store the category
@@ -56,12 +58,23 @@ export class ProductListDataSource implements IDataSource {
     this.loadInitialData();
   }
 
+  // 暴露当前分类，便于外部传递到详情页
+  getCategory(): ProductCategory {
+    return this.category;
+  }
+
+  // 根据ID查找商品（在完整数据池中）
+  findById(id: number): Product | undefined {
+    return this.allAvailableProducts.find((p: Product) => p.id === id);
+  }
+
   // Modified to generate data based on category
   private generateAllInitialDataForCategory(category: ProductCategory) {
     this.allAvailableProducts = [];
     let productNames: string[] = [];
     let productDescriptions: string[] = [];
     let imageResources: Resource[] = []; // Array of Resource objects
+    let subcats: string[] = [];
 
     // Define different content based on the category
     switch (category) {
@@ -84,6 +97,7 @@ export class ProductListDataSource implements IDataSource {
           $r('app.media.goodsImg_4'),
           $r('app.media.product_image_placeholder'),
         ];
+        subcats = ["热门", "新品", "健康轻食", "零食饮品"];
         break;
       case ProductCategory.MOBILE:
         productNames = [
@@ -104,6 +118,7 @@ export class ProductListDataSource implements IDataSource {
           $r('app.media.mobile_phone_3'),
           $r('app.media.mobile_phone_4'),
         ];
+        subcats = ["旗舰", "续航", "影像", "入门"];
         break;
       case ProductCategory.FASHION:
         productNames = [
@@ -124,6 +139,7 @@ export class ProductListDataSource implements IDataSource {
           $r('app.media.fashion_item_3'),
           $r('app.media.fashion_item_4'),
         ];
+        subcats = ["卫衣", "牛仔", "连衣裙", "风衣"];
         break;
       case ProductCategory.WEAR:
         productNames = [
@@ -144,6 +160,7 @@ export class ProductListDataSource implements IDataSource {
           $r('app.media.wear_item_3'),
           $r('app.media.wear_item_4'),
         ];
+        subcats = ["T恤", "跑鞋", "手环", "瑜伽"];
         break;
       case ProductCategory.HOME:
         productNames = [
@@ -164,11 +181,13 @@ export class ProductListDataSource implements IDataSource {
           $r('app.media.home_item_3'),
           $r('app.media.home_item_4'),
         ];
+        subcats = ["清洁", "家具", "香薰", "寝具"];
         break;
       default: // Fallback for any unknown category
         productNames = ["默认商品"];
         productDescriptions = ["默认描述"];
         imageResources = [$r('app.media.product_image_placeholder')];
+        subcats = ["默认"];
         break;
     }
 
@@ -176,6 +195,7 @@ export class ProductListDataSource implements IDataSource {
       const nameIndex = i % productNames.length;
       const descIndex = i % productDescriptions.length;
       const imageIndex = i % imageResources.length;
+      const subIndex = i % subcats.length;
 
       this.allAvailableProducts.push({
         id: this.nextProductId++,
@@ -185,6 +205,7 @@ export class ProductListDataSource implements IDataSource {
         imageUrl: imageResources[imageIndex],
         ratingCount: 6000 + (i * 10),
         ratingPercentage: 90 + (i % 5),
+        subCategory: subcats[subIndex],
       });
     }
     console.log(`Generated ${this.allAvailableProducts.length} total mock products for ${category}.`);
@@ -242,6 +263,12 @@ export class ProductListDataSource implements IDataSource {
         }
         return product.price > 200;
       });
+    }
+
+    // 子类过滤（若设置）
+    if (this.subCategory && this.subCategory.length > 0) {
+      const sc = this.subCategory;
+      result = result.filter((product: Product) => product.subCategory === sc);
     }
 
     result = result.slice();
@@ -347,5 +374,14 @@ export class ProductListDataSource implements IDataSource {
 
   setIsAtTop(isAtTop: boolean): void {
     this.isAtTop = isAtTop;
+  }
+
+  setSubcategory(subcat: string): void {
+    this.subCategory = subcat;
+    this.applyFiltersAndReload();
+  }
+
+  getSubcategory(): string {
+    return this.subCategory;
   }
 }

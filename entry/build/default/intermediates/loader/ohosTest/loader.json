@@ -1,11 +1,11 @@
 {
   "modulePathMap": {
-    "entry_test": "D:\\shopping\\List_commodity\\entry",
-    "entry": "D:\\shopping\\List_commodity\\entry"
+    "entry_test": "G:\\harmony\\qimo2\\entry",
+    "entry": "G:\\harmony\\qimo2\\entry"
   },
   "compileMode": "esmodule",
-  "projectRootPath": "D:\\shopping\\List_commodity",
-  "nodeModulesPath": "D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\loader_out\\ohosTest\\node_modules",
+  "projectRootPath": "G:\\harmony\\qimo2",
+  "nodeModulesPath": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\loader_out\\ohosTest\\node_modules",
   "byteCodeHarInfo": {},
   "declarationEntry": [],
   "moduleName": "entry_test",
@@ -18,6 +18,6 @@
   "routerMap": [],
   "hspResourcesMap": {},
   "updateVersionInfo": {},
-  "anBuildOutPut": "D:\\shopping\\List_commodity\\entry\\build\\default\\intermediates\\loader_out\\ohosTest\\an\\arm64-v8a",
+  "anBuildOutPut": "G:\\harmony\\qimo2\\entry\\build\\default\\intermediates\\loader_out\\ohosTest\\an\\arm64-v8a",
   "anBuildMode": "type"
 }
