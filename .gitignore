@@ -1,1 +1,54 @@
+# Root Git ignore for Harmony/OpenHarmony project
+
+# Dependencies
+oh_modules/
+**/oh_modules/
+
+# Build outputs (root and modules)
+build/
+dist/
+out/
+**/build/
+**/dist/
+**/out/
+
+# Hvigor and caches
+.hvigor/
+hvigor/.cache/
+hvigor/.temp/
+.ets-cache/
+.arkui-cache/
+**/.hvigor/
+**/.ets-cache/
+**/.arkui-cache/
+
+# IDE/editor configs
+.vscode/
+.idea/
+*.iml
+.editorconfig
+.eslintcache
+
+# OS/filesystem junk
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local machine configuration
+local.properties
+
+# Backup folders
+qimo2-backup-*/
 entry/build
+screenshots/
